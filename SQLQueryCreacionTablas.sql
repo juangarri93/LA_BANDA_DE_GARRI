@@ -4,6 +4,12 @@ GO
 CREATE SCHEMA [LA_BANDA_DE_GARRI] AUTHORIZATION [gd]
 GO
 
+CREATE TABLE [Roles] (
+		[Id] TINYINT IDENTITY (1,1),	
+        [Rol] NVARCHAR(255) NOT NULL,
+        [Habilitado] BIT DEFAULT 1 NOT NULL, --0 false 1 true
+        CONSTRAINT [PK_Roles] PRIMARY KEY ([Id])
+ )
 CREATE TABLE LA_BANDA_DE_GARRI.Tipo_servicio(
 id int identity,
 Tipo_Servicio nvarchar(255),
