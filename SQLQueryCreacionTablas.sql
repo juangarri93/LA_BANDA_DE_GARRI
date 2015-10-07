@@ -11,7 +11,7 @@ CREATE TABLE [Roles] (
 CONSTRAINT [PK_Roles] PRIMARY KEY ([Id])
  )
  
- CREATE TABLE [Funcionalidades] (
+CREATE TABLE [Funcionalidades] (
 [Id] TINYINT IDENTITY (1,1),
 [Nombre] VARCHAR (255) NOT NULL,
 CONSTRAINT [PK_Funcionalidades] PRIMARY KEY ([Id])
