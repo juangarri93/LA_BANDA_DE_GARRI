@@ -11,18 +11,27 @@ CREATE TABLE [Roles] (
 CONSTRAINT [PK_Roles] PRIMARY KEY ([Id])
  )
  
- CREATE TABLE [Funcionalidades] (
+CREATE TABLE [Funcionalidades] (
 [Id] TINYINT IDENTITY (1,1),
-[Nombre] VARCHAR (255) NOT NULL,
+[Nombre] NVARCHAR (255) NOT NULL,
 CONSTRAINT [PK_Funcionalidades] PRIMARY KEY ([Id])
 )
 
 CREATE TABLE [Rol_Funcionalidad] (
-Id_Rol  TINYINT NOT NULL,
-Id_Funcionalidad TINYINT NOT NULL,
+[Id_Rol] TINYINT NOT NULL,
+[Id_Funcionalidad] TINYINT NOT NULL,
 CONSTRAINT [PK_Rol_Funcionalidad] PRIMARY KEY ([Id_Rol], [Id_Funcionalidad]),
 CONSTRAINT [FK_Rol] FOREIGN KEY ([Id_Rol]) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id]),
 CONSTRAINT [FK_Funcionalidad] FOREIGN KEY ([Id_Funcionalidad]) REFERENCES [LA_BANDA_DE_GARRI].[Funcionalidades] ([Id])
+)
+
+CREATE TABLE [Usuarios] (
+[Id] INT IDENTITY (1,1),
+[Username] NVARCHAR (255) UNIQUE NOT NULL,
+[Password] NVARCHAR (255),
+[Id_Rol] TINYINT NOT NULL,
+CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id])
+CONSTRAINT [FK_Usuarios] FOREIGN KEY ([Id_Rol) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
 )
 
 GO
@@ -72,8 +81,20 @@ GO
             values('Canje de millas')
 
 		insert into LA_BANDA_DE_GARRI.Funcionalidades(Nombre)
-            values('Listado Estadístico')			
-			
+            values('Listado Estadístico')
+
+-- el hash de w23e --> e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7
+		insert into LA_BANDA_DE_GARRI.Usuarios(Username, Password, Id_Rol)
+            values('gonza', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)					
+
+		insert into LA_BANDA_DE_GARRI.Usuarios(Username, Password, Id_Rol)
+            values('garri', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
+
+		insert into LA_BANDA_DE_GARRI.Usuarios(Username, Password, Id_Rol)
+            values('lucas', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
+
+		insert into LA_BANDA_DE_GARRI.Usuarios(Username, Password, Id_Rol)
+            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)				
 
 commit tran trn_migracion_datos
  
