@@ -34,14 +34,27 @@ CREATE TABLE [Usuarios] (
 [Habilitado] BIT NOT NULL,
 [Id_Rol] TINYINT NOT NULL,
 CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id])
-CONSTRAINT [FK_Usuarios] FOREIGN KEY ([Id_Rol) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
+CONSTRAINT [FK_Rol] FOREIGN KEY ([Id_Rol) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
 )
 
 CREATE TABLE [Ciudades](
 [Id] INT IDENTITY (1,1),
-[Nombre] NVARCHAR(255) NOT NULL,
+[Nombre] NVARCHAR(255),
 [Habilitada] BIT DEFAULT 1 NOT NULL,
 CONSTRAINT [PK_Ciudades] PRIMARY KEY ([Id])
+)
+
+CREATE TABLE [Ruta_Aerea](
+[Codigo] NUMERIC(18,0),
+[Tipo_Servicio] NVARCHAR(255) NOT NULL,
+[Ciudad_Origen] INT,
+[Ciudad_Destino] INT,
+[Precio_base_pasaje] NUMERIC(18,2),
+[Precio_base_kg] NUMERIC(18,2),
+[Habilitada] BIT DEFAULT 1 NOT NULL,   
+CONSTRAINT [PK_Ciudades] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Ciudad_Origen] FOREIGN KEY ([Ciudad_Origen) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id]),
+CONSTRAINT [FK_Ciudad_Destino] FOREIGN KEY ([Ciudad_Destino) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id])
 )
 
 GO
