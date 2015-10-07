@@ -1,3 +1,9 @@
+USE [GD2C2015]
+GO
+
+CREATE SCHEMA [LA_BANDA_DE_GARRI] AUTHORIZATION [gd]
+GO
+
 CREATE TABLE LA_BANDA_DE_GARRI.Tipo_servicio(
 id int identity,
 Tipo_Servicio nvarchar(255),
