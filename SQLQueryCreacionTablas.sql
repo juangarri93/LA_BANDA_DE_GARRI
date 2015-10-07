@@ -37,6 +37,13 @@ CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id])
 CONSTRAINT [FK_Usuarios] FOREIGN KEY ([Id_Rol) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
 )
 
+CREATE TABLE [Ciudades](
+[Id] INT IDENTITY (1,1),
+[Nombre] NVARCHAR(255) NOT NULL,
+[Habilitada] BIT DEFAULT 1 NOT NULL,
+CONSTRAINT [PK_Ciudades] PRIMARY KEY ([Id])
+)
+
 GO
  -- Transaccion para la migracion de datos (acá irian todos los inserts a las tablas)
  begin tran trn_migracion_datos
@@ -97,7 +104,17 @@ GO
             values('lucas', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
 
 		insert into LA_BANDA_DE_GARRI.Usuarios(Username, Password, Id_Rol)
-            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)				
+            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
+
+			
+		insert into LA_BANDA_DE_GARRI.Ciudades(Nombre)
+			select distinct master.Ruta_Ciudad_Origen
+                from gd_esquema.Maestra master
+				where master.Ruta_Ciudad_Origen is not null
+			UNION
+			select distinct master.Ruta_Ciudad_Destino
+                from gd_esquema.Maestra master
+				where master.Ruta_Ciudad_Destino is not null
 
 commit tran trn_migracion_datos
  
