@@ -29,6 +29,9 @@ CREATE TABLE [Usuarios] (
 [Id] INT IDENTITY (1,1),
 [Username] NVARCHAR (255) UNIQUE NOT NULL,
 [Password] NVARCHAR (255),
+[ultimo_login] DATETIME,
+[intentos_fallidos] TINYINT,
+[Habilitado] BIT NOT NULL,
 [Id_Rol] TINYINT NOT NULL,
 CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id])
 CONSTRAINT [FK_Usuarios] FOREIGN KEY ([Id_Rol) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
