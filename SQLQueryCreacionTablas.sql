@@ -57,6 +57,18 @@ CONSTRAINT [FK_Ciudad_Origen] FOREIGN KEY ([Ciudad_Origen) REFERENCES [LA_BANDA_
 CONSTRAINT [FK_Ciudad_Destino] FOREIGN KEY ([Ciudad_Destino) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id])
 )
 
+CREATE TABLE [Clientes] (
+[Id] INT IDENTITY (1,1),
+[Nombre] NVARCHAR(255) NOT NULL,
+[Apellido] NVARCHAR(255) NOT NULL,
+[dni] NUMERIC(18,0) UNIQUE NOT NULL,
+[direccion] NVARCHAR(255),
+[telefono] NUMERIC(18,0), 
+[mail] NVARCHAR(255),
+[fecha_nacimiento] DATETIME,
+CONSTRAINT [PK_Clientes] PRIMARY KEY ([Id])
+)
+
 GO
  -- Transaccion para la migracion de datos (acá irian todos los inserts a las tablas)
  begin tran trn_migracion_datos
@@ -128,9 +140,16 @@ GO
 			select distinct master.Ruta_Ciudad_Destino
                 from gd_esquema.Maestra master
 				where master.Ruta_Ciudad_Destino is not null
+				
+-- ACA IRIA EL INSERT DE RUTA AEREA
+				
+		insert into LA_BANDA_DE_GARRI.Clientes(Nombre, Apellido, dni, direccion, telefono, mail, fecha_nacimiento)
+			select distinct m.Cli_Nombre, m.Cli_Apellido, m.Cli_Dni, m.Cli_Dir, m.Cli_Telefono, m.Cli_Mail, m.Cli_Fecha_Nac
+                from gd_esquema.Maestra m				
 
 commit tran trn_migracion_datos
- 
+
+GO
  
 CREATE TABLE LA_BANDA_DE_GARRI.Tipo_servicio(
 id int identity,
