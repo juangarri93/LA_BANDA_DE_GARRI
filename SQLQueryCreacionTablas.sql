@@ -190,3 +190,81 @@ Aeronave int NOT NULL REFERENCES [LA_BANDA_DE_GARRI].[Aeronave])
 insert into LA_BANDA_DE_GARRI.Butaca_Ventanilla
 SELECT M.Butaca_Nro, M.Butaca_Piso, M.Butaca_Tipo
 FROM gd_esquema.Maestra M
+
+
+
+--STORED PROCEDURES
+create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @password NVARCHAR(255), @result NVARCHAR(25) output)
+
+    as
+        begin
+
+            if @username_enviado is null
+                begin
+                    set @result = 'LOGIN_ERROR'
+                    return 1
+                end
+
+            declare @check_password nvarchar(255)
+            declare @check_habilitado bit
+            declare @check_fallidos tinyint
+
+            if (exists(select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado))
+
+                begin
+                    -- Seleccionamos el hash
+                    set @check_password = (select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+
+                    -- Seleccionamos si está habilitado
+                    set @check_habilitado = (select Habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+                    if (@check_habilitado = 0)
+
+                        begin
+                            set @result = 'LOGIN_OFF'
+                            return 1
+                        end
+
+
+                    -- Si intentos_fallidos = 3, deshabilitar usuario
+                    set @check_fallidos = (select intentos_fallidos from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+                    if (@check_fallidos >= 3)
+                        begin
+                                update LA_BANDA_DE_GARRI.Login
+                                    set Habilitado = 0
+                                    where username = @username_enviado
+
+                                set @result = 'LOGIN_MAS_TRES_VECES'
+                                return 1
+                        end    
+
+                    -- Usuario correcto pero contraseña incorrecta
+                    if (@check_password <> @password)
+                        
+                        begin
+                                update LA_BANDA_DE_GARRI.Usuarios
+                                    set intentos_fallidos = intentos_fallidos + 1
+                                    where username = @username_enviado
+
+                                set @result = 'LOGIN_ERROR_PASSWORD'
+                                return 1
+                        end              
+
+                    -- Login Correcto deberia entrar aca
+                    if (@check_habilitado = 1 and @check_password = @password)
+                        begin
+                            update LA_BANDA_DE_GARRI.Usuarios
+                                set intentos_fallidos = 0
+                                where username = @username_enviado
+
+                            set @result = 'LOGIN_OK'
+                            return 0
+                        end
+                end
+            
+            -- Si no se cumple ninguna de las condiciones anteriores, (usuario inexistente, otro error, etc) retornar error
+            set @result = 'LOGIN_ERROR'
+            return 1
+            
+        end
+
+GO
