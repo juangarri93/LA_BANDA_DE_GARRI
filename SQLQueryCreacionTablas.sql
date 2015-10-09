@@ -57,6 +57,42 @@ CONSTRAINT [FK_Ciudad_Origen] FOREIGN KEY ([Ciudad_Origen) REFERENCES [LA_BANDA_
 CONSTRAINT [FK_Ciudad_Destino] FOREIGN KEY ([Ciudad_Destino) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id])
 )
 
+CREATE TABLE [Aeronave](
+[Fecha_alta] DATETIME,
+[Numero] NUMERIC(18,0)
+[Matricula] NVARCHAR(255),
+[Modelo] int NOT NULL REFERENCES [LA_BANDA_DE_GARRI].[Modelo],
+[Fabricante] NVARCHRA(255),
+[Kg_Disponibles] numeric(18,0),
+[Cantidad_Butacas_Ventana] numeric(18,0),
+[Cantidad_Ventanas_Pasillo] numeric(18,0),
+[Baja_Fuera_Servicio] datetime,
+[Baja_Vida_Util] datetime,
+[Fecha_Reinicio] datetime,
+[Fecha_Fuera_Servicio] datetime,
+[Fecha_baja_definitiva] datetime,
+[kg_disponibles_encomienda] numeric(18,0)
+)
+
+CREATE TABLE [Butaca] (
+[Id] INT IDENTITY (1,1),
+[Nro] numeric(18,0), 
+[Tipo] nvarchar(255), 
+[Piso] numeric(18,0), 
+[Aeronave_id] int not null,
+)
+
+CREATE TABLE [Viajes] (
+[Id] INT IDENTITY (1,1),
+[Fecha_salida] DATETIME,
+[Fecha_llegada] DATETIME,
+[Fecha_llegada_estimada] DATETIME,
+[Id_Aeronave] INT,
+[Codigo_Ruta_Aerea] NUMERIC(18,0),
+CONSTRAINT [PK_Viajes] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Aeronave] FOREIGN KEY ([Id_Aeronave) REFERENCES [LA_BANDA_DE_GARRI].[Aeronaves] ([Matricula])
+)
+
 CREATE TABLE [Clientes] (
 [Id] INT IDENTITY (1,1),
 [Nombre] NVARCHAR(255) NOT NULL,
@@ -67,6 +103,61 @@ CREATE TABLE [Clientes] (
 [mail] NVARCHAR(255),
 [fecha_nacimiento] DATETIME,
 CONSTRAINT [PK_Clientes] PRIMARY KEY ([Id])
+)
+
+CREATE TABLE [Pasaje_Encomienda] (
+[Id] INT IDENTITY(1,1),
+[Id_Cliente] INT,
+[Id_Viaje] INT,
+[cantidad_butacas] INT,
+[KG] NUMERIC(18,0),
+CONSTRAINT [PK_Pasaje_Encomienda] PRIMARY KEY ([Id])
+CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id]),
+CONSTRAINT [FK_Viaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viajes] ([Id])
+)
+
+CREATE TABLE [Pago](
+[PNR] INT IDENTITY (1,1),
+[Id_viaje] INT,
+[Id_Cliente] INT,
+[Importe] NUMERIC(18,2),
+[Fecha_compra] DATETIME,
+[Tipo_Pago] CHAR(1),
+CONSTRAINT [PK_Pago] PRIMARY KEY ([PNR]),
+CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id]),
+CONSTRAINT [FK_Viaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viajes] ([Id])
+)
+
+CREATE TABLE [Devoluciones] (
+[PNR] INT,
+[Id_Pasaje_Encomienda] INT,
+[Fecha_Devolucion] DATETIME,
+[Motivo] NVARCHAR(255),
+CONSTRAINT [PK_Pago] PRIMARY KEY ([PNR]),
+CONSTRAINT [FK_PNR] FOREIGN KEY ([PNR]) REFERENCES [LA_BANDA_DE_GARRI].[Pago] ([PNR]),
+CONSTRAINT [FK_Pasaje_Encomienda] FOREIGN KEY ([Id_Pasaje_Encomienda]) REFERENCES [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] ([Id]),
+)
+
+CREATE TABLE [Millas] (
+[Id_cliente] INT,
+[Cantidad] INT,
+[Validez_Hasta] DATETIME,
+CONSTRAINT [PK_Millas] PRIMARY KEY ([Id_Cliente]),
+CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id])
+)
+
+CREATE TABLE [Productos] (
+[Id] INT IDENTITY(1,1),
+[Descripcion] NVARCHAR(255),
+CONSTRAINT (PK_Productos) PRIMARY KEY ([Id])
+)
+
+CREATE TABLE [Canje_Millas] (
+[DNI] NUMERIC(18,0),
+[Producto_elegido] INT,
+[cantidad] INT,
+[Fecha] DATETIME,
+CONSTRAINT [FK_Producto] FOREIGN KEY ([Producto_elegido]) REFERENCES [LA_BANDA_DE_GARRI].[Productos] ([Id])
 )
 
 GO
@@ -180,12 +271,13 @@ Baja_Vida_Util datetime,
 Numero_Aeronave numeric(18,0), 
 PRIMARY KEY (id))
 
-create table LA_BANDA_DE_GARRI.Butaca_Ventanilla (
-id INT IDENTITY, 
-Butaca_Nro numeric(18,0), 
-Butaca_Tipo nvarchar(255), 
-Butaca_Piso numeric(18,0), 
-Aeronave int NOT NULL REFERENCES [LA_BANDA_DE_GARRI].[Aeronave])
+create table [Butaca] (
+[Id] INT IDENTITY, 
+[Nro] numeric(18,0), 
+[Tipo] nvarchar(255), 
+[Piso] numeric(18,0), 
+[Aeronave_id] int not null,
+)
 
 insert into LA_BANDA_DE_GARRI.Butaca_Ventanilla
 SELECT M.Butaca_Nro, M.Butaca_Piso, M.Butaca_Tipo
@@ -266,5 +358,4 @@ create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @
             return 1
             
         end
-
 GO
