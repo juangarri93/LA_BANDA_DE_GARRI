@@ -12,7 +12,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _Codigo;
         private string _Nombre;
         private bool _Habilitado;
-        private List<int> _Funcionalidades;
+        private List<int> _Funcionalidades; // Funcionalidades nuevas para la persona
 
         public int Codigo
         {
@@ -41,8 +41,9 @@ namespace AerolineaFrba.ConstructorDeClases
 
         public Rol(string nombre, List<int> funcionalidades) 
         {
-        
-        
+            Nombre = nombre;
+            Funcionalidades = funcionalidades;
+            Habilitado = true;
         
         }
 

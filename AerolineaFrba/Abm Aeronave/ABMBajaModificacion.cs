@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
+using AerolineaFrba.Herramientas;
 
 namespace AerolineaFrba.Abm_Aeronave
 {
@@ -19,19 +20,31 @@ namespace AerolineaFrba.Abm_Aeronave
         private bool IsFiltroNumeroAeronave = false;
         private bool IsFiltroModelo = false;
         private bool IsFiltroFabricante = false;
-        
+  
         public ABMBajaModificacion()
-        {
+        {      
             InitializeComponent();
-        
+           
+        }
+
+        private void deshabilitarTextBox()
+        {
+            dtpFechaAlta.Enabled = false;
+            txtNumeroAeronave.ReadOnly = true;
+            txtModelo.ReadOnly = true;
+            txtMatricula.ReadOnly = true;
+            txtFabricante.ReadOnly = true;
+            txtTipoDeServicio.ReadOnly = true;
+            cmbBajaFueraDeServicio.Enabled = false;
+            cmbBajaPorVidaUtil.Enabled = false;
+            dtFechaFueraDeServicio.Enabled = false;
+            dtFechaDeReinicio.Enabled = false;
+            dtFechaBajaDefinitiva.Enabled = false;
+            txtCantidadDeButacas.ReadOnly = true;
+            txtCantidadDeKG.ReadOnly = true;
         }
 
         private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -79,6 +92,9 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void dataListadoAeronaves_DoubleClick(object sender, EventArgs e)
         {
+
+
+
             this.txtCodigo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CodigoAeronave"].Value);
             this.dtpFechaAlta.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaAlta"].Value);
             this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["NumeroAeronave"].Value);
@@ -161,7 +177,8 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
                 MessageBox.Show("La Aeronave se agrego correctamente.");
-                //limpiar();
+                deshabilitarTextBox();
+                limpiarTextBox();
 
             }
             catch(Exception ex)
@@ -180,62 +197,49 @@ namespace AerolineaFrba.Abm_Aeronave
 
             return new Aeronave(Convert.ToInt32(txtCodigo.Text),dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
                                        txtModelo.Text, txtMatricula.Text, txtFabricante.Text, txtTipoDeServicio.Text,
-                                       txtMatricula.Text, txtMatricula.Text, dtFechaFueraDeServicio.Value, dtFechaDeReinicio.Value, dtFechaBajaDefinitiva.Value, Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
+                                       cmbBajaFueraDeServicio.ValueMember,cmbBajaPorVidaUtil.ValueMember, dtFechaFueraDeServicio.Value, dtFechaDeReinicio.Value, dtFechaBajaDefinitiva.Value, Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-
+            btnCancelar.Enabled = true;
+            btnCancelar.Enabled = true;
+            habilitarTextBox();
         }
 
-        private void Eliminar_Click_1(object sender, EventArgs e)
+        private void habilitarTextBox()
         {
-            try
-            {
-                DialogResult Opcion;
-                Opcion = MessageBox.Show("Realmente Desea Eliminar los Registros", "ABM de Aeronaves", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                if(Opcion == DialogResult.OK)
-                {
-                    string Codigo;
-                    
-                    foreach (DataGridViewRow row in dataListadoAeronaves.Rows)
-                    {
-                        if(Convert.ToBoolean(row.Cells[0].Value))
-                        {
-                            Codigo = Convert.ToString(row.Cells[1].Value);
-                            DAOAerolinea.EliminarAeronave(Convert.ToInt32(Codigo));
-                        
-                        }
-
-                        Mostrar();
-                        this.dataListadoAeronaves.Columns[0].Visible = true;
-                        
-
-
-                    
-                    }
-
-                
-                }
-            }
-
-            catch 
-            {
-            
-            }
-
-
+            dtpFechaAlta.Enabled = true;
+            txtNumeroAeronave.ReadOnly = false;
+            txtModelo.ReadOnly = false;
+            txtMatricula.ReadOnly = false;
+            txtFabricante.ReadOnly = false;
+            txtTipoDeServicio.ReadOnly = false;
+            cmbBajaFueraDeServicio.Enabled = true;
+            cmbBajaPorVidaUtil.Enabled = true;
+            dtFechaFueraDeServicio.Enabled = true;
+            dtFechaDeReinicio.Enabled = true;
+            dtFechaBajaDefinitiva.Enabled = true;
+            txtCantidadDeButacas.ReadOnly = false;
+            txtCantidadDeKG.ReadOnly = false;
         }
 
+ 
         private void ABMBajaModificacion_Load(object sender, EventArgs e)
         {
             this.Top = 0;
             this.Left = 0;
             Mostrar();
+            btnBajaLogica.Enabled = false;
+            cmbBajaFueraDeServicio.Items.Add("");
             cmbBajaFueraDeServicio.Items.Add("Habilitado");
             cmbBajaFueraDeServicio.Items.Add("Deshabilitado");
+            cmbBajaPorVidaUtil.Items.Add("");
             cmbBajaPorVidaUtil.Items.Add("Deshabilitado");
+            btnCancelar.Enabled = false;
+            btnCancelar.Enabled = false;
+            txtCodigo.ReadOnly = true;
+            deshabilitarTextBox(); 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -243,6 +247,88 @@ namespace AerolineaFrba.Abm_Aeronave
            
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpiarTextBox();
+            deshabilitarTextBox();
+        }
+
+        private void limpiarTextBox()
+        {
+            txtCodigo.Text = "";
+            dtpFechaAlta.Enabled = false;
+            txtNumeroAeronave.Text = "";
+            txtModelo.Text = "";
+            txtMatricula.Text = "";
+            txtFabricante.Text = "";
+            txtTipoDeServicio.Text = "";
+            cmbBajaFueraDeServicio.Items.Clear();
+            cmbBajaPorVidaUtil.Items.Clear();
+            dtFechaFueraDeServicio.Enabled = false;
+            dtFechaDeReinicio.Enabled = false;
+            dtFechaBajaDefinitiva.Enabled = false;
+            txtCantidadDeButacas.Text= "";
+            txtCantidadDeKG.Text = "";
+        }
+
+        private void btnBajaLogica_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult Opcion;
+                Opcion = MessageBox.Show("Realmente Desea dar de baja definitiva la aeronave", "Sistema de Aerolineas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (Opcion == DialogResult.OK)
+                {
+                    string Codigo;
+                    string Rpta = "";
+                    
+                    foreach (DataGridViewRow row in dataListadoAeronaves.Rows)
+                    {
+                        if (Convert.ToBoolean(row.Cells[0].Value))
+                        {
+                            Codigo = Convert.ToString(row.Cells[1].Value);
+                            row.Cells[4].Value = "Deshabilitado";
+                           
+                            if (Rpta.Equals("OK"))
+                            {
+                                FormsHerramientas.MensajeOk("Se Elimino Correctamente el registro");
+                            }
+                            else
+                            {
+                                FormsHerramientas.MensajeError(Rpta);
+                            }
+                        }
+
+                    }
+                    this.Mostrar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+            }
         
-    }
+        
+        
+        }
+        
+        private void bajaLogica1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (checkBoxbajaLogica1.Checked)
+            {
+                btnBajaLogica.Enabled = true;
+                this.dataListadoAeronaves.Columns[0].Visible = true;
+            }
+            else
+            {
+                btnBajaLogica.Enabled = false;
+                this.dataListadoAeronaves.Columns[0].Visible = false;
+            }
+        }
+
+        
+    } 
 }
