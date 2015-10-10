@@ -32,14 +32,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnFiltroNumero = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.dataListadoAeronaves = new System.Windows.Forms.DataGridView();
+            
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblTotal = new System.Windows.Forms.Label();
             this.checkBoxbajaLogica1 = new System.Windows.Forms.CheckBox();
             this.btnBajaLogica = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
+         
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             this.tabPage1.Controls.Add(this.btnBajaLogica);
             this.tabPage1.Controls.Add(this.checkBoxbajaLogica1);
             this.tabPage1.Controls.Add(this.lblTotal);
-            this.tabPage1.Controls.Add(this.dataListadoAeronaves);
+            
             this.tabPage1.Controls.Add(this.txtBuscar);
             this.tabPage1.Controls.Add(this.btnFiltroNumero);
             this.tabPage1.Controls.Add(this.label2);
@@ -87,22 +87,7 @@
             this.txtBuscar.Size = new System.Drawing.Size(188, 20);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            // 
-            // dataListadoAeronaves
-            // 
-            this.dataListadoAeronaves.AllowUserToAddRows = false;
-            this.dataListadoAeronaves.AllowUserToDeleteRows = false;
-            this.dataListadoAeronaves.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataListadoAeronaves.ColumnHeadersHeight = 30;
-            this.dataListadoAeronaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataListadoAeronaves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxColumn1});
-            this.dataListadoAeronaves.Location = new System.Drawing.Point(6, 91);
-            this.dataListadoAeronaves.MultiSelect = false;
-            this.dataListadoAeronaves.Name = "dataListadoAeronaves";
-            this.dataListadoAeronaves.ReadOnly = true;
-            this.dataListadoAeronaves.Size = new System.Drawing.Size(886, 242);
-            this.dataListadoAeronaves.TabIndex = 4;
+           
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -156,8 +141,7 @@
             this.Name = "ABMCiudadBajaModif";
             this.Text = "ABMCiudadBajaModif";
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).EndInit();
+          
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
