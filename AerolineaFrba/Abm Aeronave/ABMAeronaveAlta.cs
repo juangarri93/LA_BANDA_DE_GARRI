@@ -57,7 +57,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             return new Aeronave(1,dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
                                         txtModelo.Text, txtMatricula.Text, txtFabricante.Text, txtTipoDeServicio.Text,
-                                        "Habilitado", "Habilitado", dtpFechaAlta.Value, dtpFechaAlta.Value, dtpFechaAlta.Value, Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));
+                                        "Habilitado", dtpFechaAlta.Value, dtpFechaAlta.Value,Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));
                                  
         }
 

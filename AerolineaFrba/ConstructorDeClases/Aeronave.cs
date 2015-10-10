@@ -29,8 +29,8 @@ namespace AerolineaFrba.ConstructorDeClases
 
         public Aeronave(int codigoAeronave,DateTime fechaAlta,int numero,string modelo,
                         string matricula,string fabricante,string tipoDeServicio,string bajaPorFueraDeServicio,
-                        string bajaPorVidaUtil,DateTime fechaDeFueraDeServicio,DateTime fechaDeReinicioDeServicio,
-                        DateTime fechaDeBajaDefinitiva, int cantidadButacas, int cantidadKG) 
+                        DateTime fechaDeFueraDeServicio,DateTime fechaDeReinicioDeServicio,
+                        int cantidadButacas, int cantidadKG) 
         {
             CodigoAeronave = codigoAeronave;
             FechaAlta = fechaAlta;
@@ -40,10 +40,8 @@ namespace AerolineaFrba.ConstructorDeClases
             Fabricante = fabricante;
             TipoDeServicio = tipoDeServicio;
             BajaPorFueraDeServicio = bajaPorFueraDeServicio;
-            BajaPorVidaUtil = bajaPorVidaUtil;
             FechaDeFueraDeServicio = fechaDeFueraDeServicio;
             FechaDeReinicioDeServicio = fechaDeReinicioDeServicio;
-            FechaDeBajaDefinitiva = fechaDeBajaDefinitiva;
             CantidadDeButacas = cantidadButacas;
             KGDisponible = cantidadKG;
         }

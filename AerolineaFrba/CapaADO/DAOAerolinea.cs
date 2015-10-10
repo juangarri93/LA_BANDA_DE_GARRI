@@ -18,7 +18,7 @@ namespace AerolineaFrba.CapaADO
 
             executeProcedure("spinsertar_aeronave",1,aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
                              aeronave.Matricula,aeronave.Fabricante,aeronave.TipoDeServicio,aeronave.BajaPorFueraDeServicio,
-                             aeronave.BajaPorVidaUtil,aeronave.FechaDeFueraDeServicio,aeronave.FechaDeReinicioDeServicio,aeronave.FechaDeBajaDefinitiva,
+                             aeronave.FechaDeFueraDeServicio,aeronave.FechaDeReinicioDeServicio,
                              aeronave.CantidadDeButacas,aeronave.KGDisponible);
 
         }
@@ -58,6 +58,11 @@ namespace AerolineaFrba.CapaADO
         public static void EliminarAeronave(Int32 codigoAeronave)
         {
             executeProcedure("speliminar_aeronave", codigoAeronave);
+        }
+
+        public static void darDeBajaAerolinea(int Codigo)
+        {
+            executeProcedure("spdardebaja_aerolinea", Codigo);
         }
     }
 
