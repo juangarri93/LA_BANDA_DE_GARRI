@@ -75,6 +75,12 @@
     <Compile Include="Abm Ciudad\ABMCiudadAlta.Designer.cs">
       <DependentUpon>ABMCiudadAlta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Ciudad\ABMCiudadBajaModif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ciudad\ABMCiudadBajaModif.Designer.cs">
+      <DependentUpon>ABMCiudadBajaModif.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rol\ABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Ciudad\ABMCiudadAlta.resx">
       <DependentUpon>ABMCiudadAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ciudad\ABMCiudadBajaModif.resx">
+      <DependentUpon>ABMCiudadBajaModif.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\ABMRol.resx">
       <DependentUpon>ABMRol.cs</DependentUpon>

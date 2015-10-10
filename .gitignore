@@ -72,6 +72,12 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+<<<<<<< HEAD
+=======
+*.v11.suo
+*.suo
+*.config
+>>>>>>> c2d9121662fb8059e315e21304429fe9d1b3e9a6
 
 # Chutzpah Test files
 _Chutzpah*

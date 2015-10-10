@@ -202,6 +202,7 @@
             this.label2.Size = new System.Drawing.Size(149, 28);
             this.label2.TabIndex = 0;
             this.label2.Text = "Numero Aeronave :";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // tabPage2
             // 
