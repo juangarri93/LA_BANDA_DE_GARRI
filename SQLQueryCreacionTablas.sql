@@ -1,23 +1,95 @@
 USE [GD2C2015]
 GO
 
-CREATE SCHEMA [LA_BANDA_DE_GARRI] AUTHORIZATION [gd]
+--Dropeo las procedures
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_login') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_login;
+
+
+--Dropeo las tablas
+  
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Usuarios]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Usuarios];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Millas]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Millas];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Canje_Millas]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Canje_Millas];
+  
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Rol_Funcionalidad]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Rol_Funcionalidad];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Devoluciones]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Devoluciones];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Butaca]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Butaca];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ruta_Aerea]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Ruta_Aerea];
+  
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Pago]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Pago];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Pasaje_Encomienda]', 'U') IS NOT NULL
+DROP TABLE [LA_BANDA_DE_GARRI].[Pasaje_Encomienda];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Viajes]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Viajes];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Productos]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Productos];
+ 
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Clientes]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Clientes];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Funcionalidades]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Funcionalidades];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Roles]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Roles];
+  
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ciudades]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Ciudades];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Modelo]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Modelo];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Fabricante]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Fabricante];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Tipo_Servicio];
+
+--Dropeo el schema
+
+DROP SCHEMA [LA_BANDA_DE_GARRI]
 GO
 
-CREATE TABLE [Roles] (
+CREATE SCHEMA [LA_BANDA_DE_GARRI]
+GO
+
+--Empiezo la creacion de tablas
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Roles] (
 [Id] TINYINT IDENTITY (1,1),	
 [Rol] NVARCHAR(255) NOT NULL,
 [Habilitado] BIT DEFAULT 1 NOT NULL, --0 false 1 true
 CONSTRAINT [PK_Roles] PRIMARY KEY ([Id])
  )
- 
-CREATE TABLE [Funcionalidades] (
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Funcionalidades] (
 [Id] TINYINT IDENTITY (1,1),
 [Nombre] NVARCHAR (255) NOT NULL,
 CONSTRAINT [PK_Funcionalidades] PRIMARY KEY ([Id])
 )
 
-CREATE TABLE [Rol_Funcionalidad] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Rol_Funcionalidad] (
 [Id_Rol] TINYINT NOT NULL,
 [Id_Funcionalidad] TINYINT NOT NULL,
 CONSTRAINT [PK_Rol_Funcionalidad] PRIMARY KEY ([Id_Rol], [Id_Funcionalidad]),
@@ -25,26 +97,26 @@ CONSTRAINT [FK_Rol] FOREIGN KEY ([Id_Rol]) REFERENCES [LA_BANDA_DE_GARRI].[Roles
 CONSTRAINT [FK_Funcionalidad] FOREIGN KEY ([Id_Funcionalidad]) REFERENCES [LA_BANDA_DE_GARRI].[Funcionalidades] ([Id])
 )
 
-CREATE TABLE [Usuarios] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Usuarios] (
 [Id] INT IDENTITY (1,1),
 [Username] NVARCHAR (255) UNIQUE NOT NULL,
 [Password] NVARCHAR (255),
 [ultimo_login] DATETIME,
 [intentos_fallidos] TINYINT,
-[Habilitado] BIT NOT NULL,
 [Id_Rol] TINYINT NOT NULL,
-CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id])
-CONSTRAINT [FK_Rol] FOREIGN KEY ([Id_Rol) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
+CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Rol_Usuario] FOREIGN KEY ([Id_Rol]) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
 )
 
-CREATE TABLE [Ciudades](
+CREATE TABLE [LA_BANDA_DE_GARRI].[Ciudades](
 [Id] INT IDENTITY (1,1),
 [Nombre] NVARCHAR(255),
 [Habilitada] BIT DEFAULT 1 NOT NULL,
 CONSTRAINT [PK_Ciudades] PRIMARY KEY ([Id])
 )
 
-CREATE TABLE [Ruta_Aerea](
+CREATE TABLE [LA_BANDA_DE_GARRI].[Ruta_Aerea](
+[Id] INT IDENTITY (1,1),
 [Codigo] NUMERIC(18,0),
 [Tipo_Servicio] NVARCHAR(255) NOT NULL,
 [Ciudad_Origen] INT,
@@ -52,17 +124,37 @@ CREATE TABLE [Ruta_Aerea](
 [Precio_base_pasaje] NUMERIC(18,2),
 [Precio_base_kg] NUMERIC(18,2),
 [Habilitada] BIT DEFAULT 1 NOT NULL,   
-CONSTRAINT [PK_Ciudades] PRIMARY KEY ([Id]),
-CONSTRAINT [FK_Ciudad_Origen] FOREIGN KEY ([Ciudad_Origen) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id]),
-CONSTRAINT [FK_Ciudad_Destino] FOREIGN KEY ([Ciudad_Destino) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id])
+CONSTRAINT [PK_Ruta_Aerea] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Ciudad_Origen] FOREIGN KEY ([Ciudad_Origen]) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id]),
+CONSTRAINT [FK_Ciudad_Destino] FOREIGN KEY ([Ciudad_Destino]) REFERENCES [LA_BANDA_DE_GARRI].[Ciudades] ([Id])
 )
 
-CREATE TABLE [Aeronave](
+CREATE TABLE [LA_BANDA_DE_GARRI].[Tipo_Servicio](
+id int identity,
+Tipo_Servicio nvarchar(255),
+PRIMARY KEY (id))
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Fabricante](
+[id] int identity,
+[Nombre] nvarchar(255),
+PRIMARY KEY (id))
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Modelo](
+[id] int identity,
+[Fabricante] INT,
+[Nombre] nvarchar(255),
+PRIMARY KEY (id),
+CONSTRAINT [FK_Fabricante] FOREIGN KEY ([Fabricante]) REFERENCES [LA_BANDA_DE_GARRI].[Fabricante] ([Id])
+)
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
+[Id] int identity,
 [Fecha_alta] DATETIME,
-[Numero] NUMERIC(18,0)
+[Numero] NUMERIC(18,0),
 [Matricula] NVARCHAR(255),
-[Modelo] int NOT NULL REFERENCES [LA_BANDA_DE_GARRI].[Modelo],
-[Fabricante] NVARCHRA(255),
+[Modelo] int,
+--AL FABRICANTE ACCEDES DESDE EL MODELO
+[Tipo_Servicio] int,
 [Kg_Disponibles] numeric(18,0),
 [Cantidad_Butacas_Ventana] numeric(18,0),
 [Cantidad_Ventanas_Pasillo] numeric(18,0),
@@ -72,17 +164,12 @@ CREATE TABLE [Aeronave](
 [Fecha_Fuera_Servicio] datetime,
 [Fecha_baja_definitiva] datetime,
 [kg_disponibles_encomienda] numeric(18,0)
+PRIMARY KEY (id),
+CONSTRAINT [FK_Modelo] FOREIGN KEY ([Modelo]) REFERENCES [LA_BANDA_DE_GARRI].[Modelo] ([Id]),
+CONSTRAINT [FK_TipoServ] FOREIGN KEY ([Tipo_Servicio]) REFERENCES [LA_BANDA_DE_GARRI].[Tipo_Servicio] ([Id])
 )
 
-CREATE TABLE [Butaca] (
-[Id] INT IDENTITY (1,1),
-[Nro] numeric(18,0), 
-[Tipo] nvarchar(255), 
-[Piso] numeric(18,0), 
-[Aeronave_id] int not null,
-)
-
-CREATE TABLE [Viajes] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Viajes] (
 [Id] INT IDENTITY (1,1),
 [Fecha_salida] DATETIME,
 [Fecha_llegada] DATETIME,
@@ -90,10 +177,10 @@ CREATE TABLE [Viajes] (
 [Id_Aeronave] INT,
 [Codigo_Ruta_Aerea] NUMERIC(18,0),
 CONSTRAINT [PK_Viajes] PRIMARY KEY ([Id]),
-CONSTRAINT [FK_Aeronave] FOREIGN KEY ([Id_Aeronave) REFERENCES [LA_BANDA_DE_GARRI].[Aeronaves] ([Matricula])
+CONSTRAINT [FK_Aeronave] FOREIGN KEY ([Id_Aeronave]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id])
 )
 
-CREATE TABLE [Clientes] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Clientes] (
 [Id] INT IDENTITY (1,1),
 [Nombre] NVARCHAR(255) NOT NULL,
 [Apellido] NVARCHAR(255) NOT NULL,
@@ -105,18 +192,18 @@ CREATE TABLE [Clientes] (
 CONSTRAINT [PK_Clientes] PRIMARY KEY ([Id])
 )
 
-CREATE TABLE [Pasaje_Encomienda] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] (
 [Id] INT IDENTITY(1,1),
 [Id_Cliente] INT,
 [Id_Viaje] INT,
 [cantidad_butacas] INT,
 [KG] NUMERIC(18,0),
-CONSTRAINT [PK_Pasaje_Encomienda] PRIMARY KEY ([Id])
-CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id]),
+CONSTRAINT [PK_Pasaje_Encomienda] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Cliente_PasajeEncomienda] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id]),
 CONSTRAINT [FK_Viaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viajes] ([Id])
 )
 
-CREATE TABLE [Pago](
+CREATE TABLE [LA_BANDA_DE_GARRI].[Pago](
 [PNR] INT IDENTITY (1,1),
 [Id_viaje] INT,
 [Id_Cliente] INT,
@@ -124,21 +211,21 @@ CREATE TABLE [Pago](
 [Fecha_compra] DATETIME,
 [Tipo_Pago] CHAR(1),
 CONSTRAINT [PK_Pago] PRIMARY KEY ([PNR]),
-CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id]),
-CONSTRAINT [FK_Viaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viajes] ([Id])
+CONSTRAINT [FK_Cliente_Pago] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id]),
+CONSTRAINT [FK_Viaje_Pago] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viajes] ([Id])
 )
 
-CREATE TABLE [Devoluciones] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Devoluciones] (
 [PNR] INT,
 [Id_Pasaje_Encomienda] INT,
 [Fecha_Devolucion] DATETIME,
 [Motivo] NVARCHAR(255),
-CONSTRAINT [PK_Pago] PRIMARY KEY ([PNR]),
+CONSTRAINT [PK_Devolucion] PRIMARY KEY ([PNR]),
 CONSTRAINT [FK_PNR] FOREIGN KEY ([PNR]) REFERENCES [LA_BANDA_DE_GARRI].[Pago] ([PNR]),
 CONSTRAINT [FK_Pasaje_Encomienda] FOREIGN KEY ([Id_Pasaje_Encomienda]) REFERENCES [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] ([Id]),
 )
 
-CREATE TABLE [Millas] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Millas] (
 [Id_cliente] INT,
 [Cantidad] INT,
 [Validez_Hasta] DATETIME,
@@ -146,21 +233,33 @@ CONSTRAINT [PK_Millas] PRIMARY KEY ([Id_Cliente]),
 CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Clientes] ([Id])
 )
 
-CREATE TABLE [Productos] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Productos] (
 [Id] INT IDENTITY(1,1),
 [Descripcion] NVARCHAR(255),
-CONSTRAINT (PK_Productos) PRIMARY KEY ([Id])
+CONSTRAINT [PK_Productos] PRIMARY KEY ([Id])
 )
 
-CREATE TABLE [Canje_Millas] (
+CREATE TABLE [LA_BANDA_DE_GARRI].[Canje_Millas] (
+[Id] INT IDENTITY,
 [DNI] NUMERIC(18,0),
 [Producto_elegido] INT,
 [cantidad] INT,
 [Fecha] DATETIME,
+CONSTRAINT [PK_Canje_Millas] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Producto] FOREIGN KEY ([Producto_elegido]) REFERENCES [LA_BANDA_DE_GARRI].[Productos] ([Id])
 )
 
+create table [LA_BANDA_DE_GARRI].[Butaca] (
+[Id] INT IDENTITY, 
+[Nro] numeric(18,0), 
+[Tipo] nvarchar(255), 
+[Piso] numeric(18,0), 
+[Aeronave_id] int not null,
+CONSTRAINT [PK_Butaca] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Aeronave_Butaca] FOREIGN KEY ([Aeronave_id]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id])
+)
 GO
+
  -- Transaccion para la migracion de datos (acá irian todos los inserts a las tablas)
  begin tran trn_migracion_datos
         
@@ -226,7 +325,7 @@ GO
 		insert into LA_BANDA_DE_GARRI.Ciudades(Nombre)
 			select distinct master.Ruta_Ciudad_Origen
                 from gd_esquema.Maestra master
-				where master.Ruta_Ciudad_Origen is not null
+			where master.Ruta_Ciudad_Origen is not null
 			UNION
 			select distinct master.Ruta_Ciudad_Destino
                 from gd_esquema.Maestra master
@@ -241,51 +340,13 @@ GO
 commit tran trn_migracion_datos
 
 GO
- 
-CREATE TABLE LA_BANDA_DE_GARRI.Tipo_servicio(
-id int identity,
-Tipo_Servicio nvarchar(255),
-PRIMARY KEY (id))
 
-CREATE TABLE LA_BANDA_DE_GARRI.Fabricante(
-id int identity,
-Nombre nvarchar(255),
-PRIMARY KEY (id))
-
-CREATE TABLE LA_BANDA_DE_GARRI.Modelo(
-id int identity,
-Fabricante int NOT NULL REFERENCES [LA_BANDA_DE_GARRI].[Fabricante],
-Nombre nvarchar(255),
-PRIMARY KEY (id))
-
-CREATE TABLE LA_BANDA_DE_GARRI.Aeronave(
-id int identity,
-Matricula nvarchar(255),
-Modelo int NOT NULL REFERENCES [LA_BANDA_DE_GARRI].[Modelo],
-Kg_Disponibles numeric(18,0),
-Cantidad_Butacas_Ventana numeric(18,0),
-Cantidad_Ventanas_Pasillo numeric(18,0),
-Baja_Fuera_Servicio datetime,
-Fecha_Reinicio datetime,
-Baja_Vida_Util datetime,
-Numero_Aeronave numeric(18,0), 
-PRIMARY KEY (id))
-
-create table [Butaca] (
-[Id] INT IDENTITY, 
-[Nro] numeric(18,0), 
-[Tipo] nvarchar(255), 
-[Piso] numeric(18,0), 
-[Aeronave_id] int not null,
-)
-
-insert into LA_BANDA_DE_GARRI.Butaca_Ventanilla
-SELECT M.Butaca_Nro, M.Butaca_Piso, M.Butaca_Tipo
-FROM gd_esquema.Maestra M
-
-
+--insert into LA_BANDA_DE_GARRI.Butaca_Ventanilla
+--SELECT M.Butaca_Nro, M.Butaca_Piso, M.Butaca_Tipo
+--FROM gd_esquema.Maestra M
 
 --STORED PROCEDURES
+
 create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @password NVARCHAR(255), @result NVARCHAR(25) output)
 
     as
@@ -308,8 +369,8 @@ create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @
                     set @check_password = (select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
 
                     -- Seleccionamos si está habilitado
-                    set @check_habilitado = (select Habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
-                    if (@check_habilitado = 0)
+                    --set @check_habilitado = (select Habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+                    --if (@check_habilitado = 0)
 
                         begin
                             set @result = 'LOGIN_OFF'
@@ -321,9 +382,9 @@ create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @
                     set @check_fallidos = (select intentos_fallidos from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
                     if (@check_fallidos >= 3)
                         begin
-                                update LA_BANDA_DE_GARRI.Login
-                                    set Habilitado = 0
-                                    where username = @username_enviado
+                                --update LA_BANDA_DE_GARRI.Login
+                                --    set Habilitado = 0
+                                --    where username = @username_enviado
 
                                 set @result = 'LOGIN_MAS_TRES_VECES'
                                 return 1
