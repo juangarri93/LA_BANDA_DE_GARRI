@@ -27,6 +27,9 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Devoluciones]', 'U') IS NOT NULL
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Butaca]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Butaca];
 
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Butaca]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Tipo_Butaca];
+
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ruta_Aerea]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Ruta_Aerea];
   
@@ -249,14 +252,21 @@ CONSTRAINT [PK_Canje_Millas] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Producto] FOREIGN KEY ([Producto_elegido]) REFERENCES [LA_BANDA_DE_GARRI].[Productos] ([Id])
 )
 
+create table [LA_BANDA_DE_GARRI].[Tipo_Butaca](
+[Id] INT IDENTITY,
+[Tipo] nvarchar(255), 
+CONSTRAINT [PK_Tipo_Butaca] PRIMARY KEY ([Id])
+)
+
 create table [LA_BANDA_DE_GARRI].[Butaca] (
 [Id] INT IDENTITY, 
 [Nro] numeric(18,0), 
-[Tipo] nvarchar(255), 
+[Tipo] INT, 
 [Piso] numeric(18,0), 
 [Aeronave_id] int not null,
 CONSTRAINT [PK_Butaca] PRIMARY KEY ([Id]),
-CONSTRAINT [FK_Aeronave_Butaca] FOREIGN KEY ([Aeronave_id]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id])
+CONSTRAINT [FK_Aeronave_Butaca] FOREIGN KEY ([Aeronave_id]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id]),
+CONSTRAINT [FK_Tipo_Butaca] FOREIGN KEY ([Tipo]) REFERENCES [LA_BANDA_DE_GARRI].[Tipo_Butaca] ([Id])
 )
 GO
 
@@ -331,8 +341,42 @@ GO
                 from gd_esquema.Maestra master
 				where master.Ruta_Ciudad_Destino is not null
 				
--- ACA IRIA EL INSERT DE RUTA AEREA
+		insert into LA_BANDA_DE_GARRI.Tipo_Butaca(Tipo)
+			select distinct gd_esquema.Maestra.Butaca_Tipo from gd_esquema.Maestra
+			where gd_esquema.Maestra.Butaca_Tipo !='0';
 				
+		insert into LA_BANDA_DE_GARRI.Tipo_Servicio(Tipo_Servicio)
+			select distinct gd_esquema.Maestra.Tipo_Servicio from gd_esquema.Maestra;
+
+		insert into LA_BANDA_DE_GARRI.Fabricante(Nombre)
+			select distinct gd_esquema.Maestra.Aeronave_Fabricante from gd_esquema.Maestra;
+
+		insert into LA_BANDA_DE_GARRI.Modelo(Fabricante, Nombre)
+			select distinct (Select LA_BANDA_DE_GARRI.Fabricante.id from LA_BANDA_DE_GARRI.Fabricante
+			where LA_BANDA_DE_GARRI.Fabricante.Nombre = gd_esquema.Maestra.Aeronave_Fabricante), 
+			 gd_esquema.Maestra.Aeronave_Modelo from gd_esquema.Maestra;
+
+		insert into LA_BANDA_DE_GARRI.Aeronave(Matricula, Modelo, Tipo_Servicio, Kg_Disponibles)
+			select distinct gd_esquema.Maestra.Aeronave_Matricula, 
+			(Select LA_BANDA_DE_GARRI.Modelo.id from LA_BANDA_DE_GARRI.Modelo
+			where LA_BANDA_DE_GARRI.Modelo.Nombre = gd_esquema.Maestra.Aeronave_Modelo 
+			AND gd_esquema.Maestra.Aeronave_Fabricante = 
+			(select LA_BANDA_DE_GARRI.Fabricante.Nombre from LA_BANDA_DE_GARRI.Fabricante 
+			where LA_BANDA_DE_GARRI.Modelo.Fabricante = LA_BANDA_DE_GARRI.Fabricante.id)), 
+			(Select LA_BANDA_DE_GARRI.Tipo_Servicio.id from LA_BANDA_DE_GARRI.Tipo_Servicio
+			where LA_BANDA_DE_GARRI.Tipo_Servicio.Tipo_Servicio = gd_esquema.Maestra.Tipo_Servicio), 
+			gd_esquema.Maestra.Aeronave_KG_Disponibles 
+			from gd_esquema.Maestra;
+
+		insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+			select distinct gd_esquema.Maestra.Butaca_Nro, 
+			(Select LA_BANDA_DE_GARRI.Tipo_Butaca.Id from LA_BANDA_DE_GARRI.Tipo_Butaca
+			where LA_BANDA_DE_GARRI.Tipo_Butaca.Tipo = gd_esquema.Maestra.Butaca_Tipo), 
+			gd_esquema.Maestra.Butaca_Piso,
+			(Select LA_BANDA_DE_GARRI.Aeronave.Id from LA_BANDA_DE_GARRI.Aeronave
+			where LA_BANDA_DE_GARRI.Aeronave.Matricula = gd_esquema.Maestra.Aeronave_Matricula)
+			 from gd_esquema.Maestra;
+
 		insert into LA_BANDA_DE_GARRI.Clientes(Nombre, Apellido, dni, direccion, telefono, mail, fecha_nacimiento)
 			select distinct m.Cli_Nombre, m.Cli_Apellido, m.Cli_Dni, m.Cli_Dir, m.Cli_Telefono, m.Cli_Mail, m.Cli_Fecha_Nac
                 from gd_esquema.Maestra m				
@@ -340,10 +384,6 @@ GO
 commit tran trn_migracion_datos
 
 GO
-
---insert into LA_BANDA_DE_GARRI.Butaca_Ventanilla
---SELECT M.Butaca_Nro, M.Butaca_Piso, M.Butaca_Tipo
---FROM gd_esquema.Maestra M
 
 --STORED PROCEDURES
 
