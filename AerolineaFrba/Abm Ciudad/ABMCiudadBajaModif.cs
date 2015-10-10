@@ -49,9 +49,7 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void Mostrar()
         {
-            this.dataListadoCiudades.DataSource = DAOCiudad.Mostrar();
-            this.OcultarColumnas();
-            lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListadoAeronaves.Rows.Count);
+             
         }
     }
 }
