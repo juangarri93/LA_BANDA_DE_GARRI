@@ -91,8 +91,6 @@ namespace AerolineaFrba.Abm_Aeronave
         private void dataListadoAeronaves_DoubleClick(object sender, EventArgs e)
         {
 
-
-
             this.txtCodigo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CodigoAeronave"].Value);
             this.dtpFechaAlta.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaAlta"].Value);
             this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["NumeroAeronave"].Value);
