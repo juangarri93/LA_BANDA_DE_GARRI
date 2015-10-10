@@ -28,57 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSeleccionarTodos = new System.Windows.Forms.Button();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.Funcionalidades = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnGuardar
             // 
-            this.button1.Location = new System.Drawing.Point(256, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 33);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGuardar.Location = new System.Drawing.Point(310, 264);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(119, 33);
+            this.btnGuardar.TabIndex = 0;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.Location = new System.Drawing.Point(386, 43);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 43);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Modificar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(308, 187);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(120, 33);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // button3
+            // btnSeleccionarTodos
             // 
-            this.button3.Location = new System.Drawing.Point(149, 43);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 43);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSeleccionarTodos.Location = new System.Drawing.Point(308, 110);
+            this.btnSeleccionarTodos.Name = "btnSeleccionarTodos";
+            this.btnSeleccionarTodos.Size = new System.Drawing.Size(120, 33);
+            this.btnSeleccionarTodos.TabIndex = 13;
+            this.btnSeleccionarTodos.Text = "Seleccionar Todos";
+            this.btnSeleccionarTodos.UseVisualStyleBackColor = true;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(13, 31);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(90, 25);
+            this.lblNombre.TabIndex = 14;
+            this.lblNombre.Text = "Nombre:";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(110, 31);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(163, 20);
+            this.txtNombre.TabIndex = 15;
+            // 
+            // Funcionalidades
+            // 
+            this.Funcionalidades.FormattingEnabled = true;
+            this.Funcionalidades.Location = new System.Drawing.Point(16, 88);
+            this.Funcionalidades.Name = "Funcionalidades";
+            this.Funcionalidades.Size = new System.Drawing.Size(257, 229);
+            this.Funcionalidades.TabIndex = 16;
             // 
             // ABMRolAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 262);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(466, 340);
+            this.Controls.Add(this.Funcionalidades);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.btnSeleccionarTodos);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnGuardar);
             this.Name = "ABMRolAlta";
             this.Text = "ABMRolAlta";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnSeleccionarTodos;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.CheckedListBox Funcionalidades;
     }
 }

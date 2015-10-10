@@ -100,6 +100,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="CapaADO\DAOAerolinea.cs" />
+    <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\SqlConnector.cs" />
     <Compile Include="Compra\Form1.cs">
       <SubType>Form</SubType>
@@ -108,6 +109,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ConstructorDeClases\Aeronave.cs" />
+    <Compile Include="ConstructorDeClases\Persona.cs" />
+    <Compile Include="ConstructorDeClases\Rol.cs" />
     <Compile Include="Consulta Millas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\ABMRolAlta.resx">
       <DependentUpon>ABMRolAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\ABMRolBajaModificacion.resx">
+      <DependentUpon>ABMRolBajaModificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AerolineasPrincipal.resx">
       <DependentUpon>AerolineasPrincipal.cs</DependentUpon>

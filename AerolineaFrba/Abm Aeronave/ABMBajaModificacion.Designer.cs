@@ -30,11 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnBajaLogica = new System.Windows.Forms.Button();
+            this.checkBoxbajaLogica1 = new System.Windows.Forms.CheckBox();
             this.btnFabricante = new System.Windows.Forms.Button();
             this.btnFiltroModelo = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.dataListadoAeronaves = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnFiltroNumero = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,6 +72,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -90,6 +92,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnBajaLogica);
+            this.tabPage1.Controls.Add(this.checkBoxbajaLogica1);
             this.tabPage1.Controls.Add(this.btnFabricante);
             this.tabPage1.Controls.Add(this.btnFiltroModelo);
             this.tabPage1.Controls.Add(this.lblTotal);
@@ -104,6 +108,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnBajaLogica
+            // 
+            this.btnBajaLogica.Location = new System.Drawing.Point(161, 55);
+            this.btnBajaLogica.Name = "btnBajaLogica";
+            this.btnBajaLogica.Size = new System.Drawing.Size(104, 23);
+            this.btnBajaLogica.TabIndex = 11;
+            this.btnBajaLogica.Text = "Baja Logica";
+            this.btnBajaLogica.Click += new System.EventHandler(this.btnBajaLogica_Click);
+            // 
+            // checkBoxbajaLogica1
+            // 
+            this.checkBoxbajaLogica1.AutoSize = true;
+            this.checkBoxbajaLogica1.Location = new System.Drawing.Point(9, 59);
+            this.checkBoxbajaLogica1.Name = "checkBoxbajaLogica1";
+            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxbajaLogica1.TabIndex = 10;
+            this.checkBoxbajaLogica1.Text = "Baja Logica";
+            this.checkBoxbajaLogica1.UseVisualStyleBackColor = true;
+            this.checkBoxbajaLogica1.CheckedChanged += new System.EventHandler(this.bajaLogica1_CheckedChanged);
             // 
             // btnFabricante
             // 
@@ -149,15 +173,6 @@
             this.dataListadoAeronaves.TabIndex = 4;
             this.dataListadoAeronaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoAeronaves_CellContentClick);
             this.dataListadoAeronaves.DoubleClick += new System.EventHandler(this.dataListadoAeronaves_DoubleClick);
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Eliminar";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxColumn1.Width = 68;
             // 
             // txtBuscar
             // 
@@ -259,53 +274,53 @@
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 156);
-            this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
-            this.dtFechaFueraDeServicio.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
+            this.dtFechaFueraDeServicio.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtFechaFueraDeServicio.Name = "dtFechaFueraDeServicio";
             this.dtFechaFueraDeServicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaFueraDeServicio.ShowUpDown = true;
             this.dtFechaFueraDeServicio.Size = new System.Drawing.Size(121, 20);
             this.dtFechaFueraDeServicio.TabIndex = 65;
-            this.dtFechaFueraDeServicio.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            this.dtFechaFueraDeServicio.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             // 
             // dtFechaBajaDefinitiva
             // 
             this.dtFechaBajaDefinitiva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaBajaDefinitiva.Location = new System.Drawing.Point(754, 59);
-            this.dtFechaBajaDefinitiva.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
-            this.dtFechaBajaDefinitiva.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtFechaBajaDefinitiva.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
+            this.dtFechaBajaDefinitiva.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtFechaBajaDefinitiva.Name = "dtFechaBajaDefinitiva";
             this.dtFechaBajaDefinitiva.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaBajaDefinitiva.ShowUpDown = true;
             this.dtFechaBajaDefinitiva.Size = new System.Drawing.Size(121, 20);
             this.dtFechaBajaDefinitiva.TabIndex = 64;
-            this.dtFechaBajaDefinitiva.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            this.dtFechaBajaDefinitiva.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             // 
             // dtFechaDeReinicio
             // 
             this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDeReinicio.Location = new System.Drawing.Point(754, 24);
-            this.dtFechaDeReinicio.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
-            this.dtFechaDeReinicio.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
+            this.dtFechaDeReinicio.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtFechaDeReinicio.Name = "dtFechaDeReinicio";
             this.dtFechaDeReinicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaDeReinicio.ShowUpDown = true;
             this.dtFechaDeReinicio.Size = new System.Drawing.Size(121, 20);
             this.dtFechaDeReinicio.TabIndex = 63;
-            this.dtFechaDeReinicio.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            this.dtFechaDeReinicio.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             // 
             // dtpFechaAlta
             // 
             this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaAlta.Location = new System.Drawing.Point(130, 59);
-            this.dtpFechaAlta.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
-            this.dtpFechaAlta.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 59, 0);
+            this.dtpFechaAlta.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 59, 0);
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFechaAlta.ShowUpDown = true;
             this.dtpFechaAlta.Size = new System.Drawing.Size(121, 20);
             this.dtpFechaAlta.TabIndex = 62;
-            this.dtpFechaAlta.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaAlta.Value = new System.DateTime(2015, 1, 25, 23, 59, 59, 0);
             // 
             // txtCantidadDeKG
             // 
@@ -452,6 +467,7 @@
             this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnEditar
             // 
@@ -526,6 +542,13 @@
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
             // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Baja Logica";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Width = 69;
+            // 
             // ABMBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -553,7 +576,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DataGridView dataListadoAeronaves;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnFiltroNumero;
         private System.Windows.Forms.Label label2;
@@ -592,6 +614,9 @@
         private System.Windows.Forms.DateTimePicker dtFechaDeReinicio;
         private System.Windows.Forms.ComboBox cmbBajaFueraDeServicio;
         private System.Windows.Forms.ComboBox cmbBajaPorVidaUtil;
+        private System.Windows.Forms.Button btnBajaLogica;
+        private System.Windows.Forms.CheckBox checkBoxbajaLogica1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
 
     }
 }
