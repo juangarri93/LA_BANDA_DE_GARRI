@@ -1,0 +1,597 @@
+﻿namespace AerolineaFrba.Abm_Aeronave
+{
+    partial class ABMBajaModificacion
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnFabricante = new System.Windows.Forms.Button();
+            this.btnFiltroModelo = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.dataListadoAeronaves = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnFiltroNumero = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbBajaPorVidaUtil = new System.Windows.Forms.ComboBox();
+            this.cmbBajaFueraDeServicio = new System.Windows.Forms.ComboBox();
+            this.dtFechaFueraDeServicio = new System.Windows.Forms.DateTimePicker();
+            this.dtFechaBajaDefinitiva = new System.Windows.Forms.DateTimePicker();
+            this.dtFechaDeReinicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.txtCantidadDeKG = new System.Windows.Forms.TextBox();
+            this.txtCantidadDeButacas = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtTipoDeServicio = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtFabricante = new System.Windows.Forms.TextBox();
+            this.txtMatricula = new System.Windows.Forms.TextBox();
+            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.txtNumeroAeronave = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.CodigoAeronave = new System.Windows.Forms.Label();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 28);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(906, 365);
+            this.tabControl1.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnFabricante);
+            this.tabPage1.Controls.Add(this.btnFiltroModelo);
+            this.tabPage1.Controls.Add(this.lblTotal);
+            this.tabPage1.Controls.Add(this.dataListadoAeronaves);
+            this.tabPage1.Controls.Add(this.txtBuscar);
+            this.tabPage1.Controls.Add(this.btnFiltroNumero);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(898, 339);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Listado";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnFabricante
+            // 
+            this.btnFabricante.Location = new System.Drawing.Point(623, 15);
+            this.btnFabricante.Name = "btnFabricante";
+            this.btnFabricante.Size = new System.Drawing.Size(104, 23);
+            this.btnFabricante.TabIndex = 9;
+            this.btnFabricante.Text = "Filtro Fabricante";
+            this.btnFabricante.Click += new System.EventHandler(this.btnFabricante_Click);
+            // 
+            // btnFiltroModelo
+            // 
+            this.btnFiltroModelo.Location = new System.Drawing.Point(501, 15);
+            this.btnFiltroModelo.Name = "btnFiltroModelo";
+            this.btnFiltroModelo.Size = new System.Drawing.Size(104, 23);
+            this.btnFiltroModelo.TabIndex = 8;
+            this.btnFiltroModelo.Text = "Filtro Modelo";
+            this.btnFiltroModelo.Click += new System.EventHandler(this.btnFiltroModelo_Click);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(432, 72);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(109, 13);
+            this.lblTotal.TabIndex = 6;
+            this.lblTotal.Text = "Cantidad Aeronaves :";
+            // 
+            // dataListadoAeronaves
+            // 
+            this.dataListadoAeronaves.AllowUserToAddRows = false;
+            this.dataListadoAeronaves.AllowUserToDeleteRows = false;
+            this.dataListadoAeronaves.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataListadoAeronaves.ColumnHeadersHeight = 30;
+            this.dataListadoAeronaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataListadoAeronaves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1});
+            this.dataListadoAeronaves.Location = new System.Drawing.Point(6, 91);
+            this.dataListadoAeronaves.MultiSelect = false;
+            this.dataListadoAeronaves.Name = "dataListadoAeronaves";
+            this.dataListadoAeronaves.ReadOnly = true;
+            this.dataListadoAeronaves.Size = new System.Drawing.Size(767, 242);
+            this.dataListadoAeronaves.TabIndex = 4;
+            this.dataListadoAeronaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoAeronaves_CellContentClick);
+            this.dataListadoAeronaves.DoubleClick += new System.EventHandler(this.dataListadoAeronaves_DoubleClick);
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Eliminar";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxColumn1.Width = 68;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(161, 18);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(188, 20);
+            this.txtBuscar.TabIndex = 1;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged_1);
+            // 
+            // btnFiltroNumero
+            // 
+            this.btnFiltroNumero.Location = new System.Drawing.Point(379, 15);
+            this.btnFiltroNumero.Name = "btnFiltroNumero";
+            this.btnFiltroNumero.Size = new System.Drawing.Size(104, 23);
+            this.btnFiltroNumero.TabIndex = 7;
+            this.btnFiltroNumero.Text = "Filtro Numero";
+            this.btnFiltroNumero.Click += new System.EventHandler(this.FiltroNumero_Click);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 28);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Numero Aeronave :";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(898, 339);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Mantenimiento";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmbBajaPorVidaUtil);
+            this.groupBox1.Controls.Add(this.cmbBajaFueraDeServicio);
+            this.groupBox1.Controls.Add(this.dtFechaFueraDeServicio);
+            this.groupBox1.Controls.Add(this.dtFechaBajaDefinitiva);
+            this.groupBox1.Controls.Add(this.dtFechaDeReinicio);
+            this.groupBox1.Controls.Add(this.dtpFechaAlta);
+            this.groupBox1.Controls.Add(this.txtCantidadDeKG);
+            this.groupBox1.Controls.Add(this.txtCantidadDeButacas);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.txtTipoDeServicio);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtFabricante);
+            this.groupBox1.Controls.Add(this.txtMatricula);
+            this.groupBox1.Controls.Add(this.txtModelo);
+            this.groupBox1.Controls.Add(this.txtNumeroAeronave);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.btnCancelar);
+            this.groupBox1.Controls.Add(this.btnEditar);
+            this.groupBox1.Controls.Add(this.btnGuardar);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtCodigo);
+            this.groupBox1.Controls.Add(this.CodigoAeronave);
+            this.groupBox1.Location = new System.Drawing.Point(0, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(899, 330);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Aeronaves";
+            // 
+            // cmbBajaPorVidaUtil
+            // 
+            this.cmbBajaPorVidaUtil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cmbBajaPorVidaUtil.FormattingEnabled = true;
+            this.cmbBajaPorVidaUtil.Location = new System.Drawing.Point(447, 116);
+            this.cmbBajaPorVidaUtil.Name = "cmbBajaPorVidaUtil";
+            this.cmbBajaPorVidaUtil.Size = new System.Drawing.Size(121, 21);
+            this.cmbBajaPorVidaUtil.TabIndex = 67;
+            // 
+            // cmbBajaFueraDeServicio
+            // 
+            this.cmbBajaFueraDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cmbBajaFueraDeServicio.FormattingEnabled = true;
+            this.cmbBajaFueraDeServicio.Location = new System.Drawing.Point(447, 89);
+            this.cmbBajaFueraDeServicio.Name = "cmbBajaFueraDeServicio";
+            this.cmbBajaFueraDeServicio.Size = new System.Drawing.Size(121, 21);
+            this.cmbBajaFueraDeServicio.TabIndex = 66;
+            this.cmbBajaFueraDeServicio.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // dtFechaFueraDeServicio
+            // 
+            this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 156);
+            this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
+            this.dtFechaFueraDeServicio.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtFechaFueraDeServicio.Name = "dtFechaFueraDeServicio";
+            this.dtFechaFueraDeServicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtFechaFueraDeServicio.ShowUpDown = true;
+            this.dtFechaFueraDeServicio.Size = new System.Drawing.Size(121, 20);
+            this.dtFechaFueraDeServicio.TabIndex = 65;
+            this.dtFechaFueraDeServicio.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtFechaBajaDefinitiva
+            // 
+            this.dtFechaBajaDefinitiva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaBajaDefinitiva.Location = new System.Drawing.Point(754, 59);
+            this.dtFechaBajaDefinitiva.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
+            this.dtFechaBajaDefinitiva.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtFechaBajaDefinitiva.Name = "dtFechaBajaDefinitiva";
+            this.dtFechaBajaDefinitiva.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtFechaBajaDefinitiva.ShowUpDown = true;
+            this.dtFechaBajaDefinitiva.Size = new System.Drawing.Size(121, 20);
+            this.dtFechaBajaDefinitiva.TabIndex = 64;
+            this.dtFechaBajaDefinitiva.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtFechaDeReinicio
+            // 
+            this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaDeReinicio.Location = new System.Drawing.Point(754, 24);
+            this.dtFechaDeReinicio.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
+            this.dtFechaDeReinicio.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtFechaDeReinicio.Name = "dtFechaDeReinicio";
+            this.dtFechaDeReinicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtFechaDeReinicio.ShowUpDown = true;
+            this.dtFechaDeReinicio.Size = new System.Drawing.Size(121, 20);
+            this.dtFechaDeReinicio.TabIndex = 63;
+            this.dtFechaDeReinicio.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtpFechaAlta
+            // 
+            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaAlta.Location = new System.Drawing.Point(130, 59);
+            this.dtpFechaAlta.MaxDate = new System.DateTime(1996, 6, 18, 0, 0, 0, 0);
+            this.dtpFechaAlta.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaAlta.Name = "dtpFechaAlta";
+            this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtpFechaAlta.ShowUpDown = true;
+            this.dtpFechaAlta.Size = new System.Drawing.Size(121, 20);
+            this.dtpFechaAlta.TabIndex = 62;
+            this.dtpFechaAlta.Value = new System.DateTime(1996, 1, 1, 0, 0, 0, 0);
+            // 
+            // txtCantidadDeKG
+            // 
+            this.txtCantidadDeKG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtCantidadDeKG.Location = new System.Drawing.Point(754, 123);
+            this.txtCantidadDeKG.Name = "txtCantidadDeKG";
+            this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeKG.TabIndex = 37;
+            // 
+            // txtCantidadDeButacas
+            // 
+            this.txtCantidadDeButacas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtCantidadDeButacas.Location = new System.Drawing.Point(754, 91);
+            this.txtCantidadDeButacas.Name = "txtCantidadDeButacas";
+            this.txtCantidadDeButacas.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeButacas.TabIndex = 36;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(589, 92);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(159, 23);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "Cantidad de Butacas :";
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(582, 59);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(166, 23);
+            this.label15.TabIndex = 33;
+            this.label15.Text = "Fecha Baja definitiva :";
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(609, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(139, 23);
+            this.label14.TabIndex = 32;
+            this.label14.Text = "Fecha de reinicio  :";
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(257, 158);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(174, 23);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Fecha fuera de servicio :";
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(291, 122);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(183, 23);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Baja Por Vida Util :";
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(257, 91);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(183, 23);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Baja Fuera De Servicio :";
+            // 
+            // txtTipoDeServicio
+            // 
+            this.txtTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtTipoDeServicio.Location = new System.Drawing.Point(447, 56);
+            this.txtTipoDeServicio.Name = "txtTipoDeServicio";
+            this.txtTipoDeServicio.Size = new System.Drawing.Size(121, 20);
+            this.txtTipoDeServicio.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(303, 55);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(137, 23);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Tipo De Servicio :";
+            // 
+            // txtFabricante
+            // 
+            this.txtFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtFabricante.Location = new System.Drawing.Point(447, 24);
+            this.txtFabricante.Name = "txtFabricante";
+            this.txtFabricante.Size = new System.Drawing.Size(121, 20);
+            this.txtFabricante.TabIndex = 20;
+            // 
+            // txtMatricula
+            // 
+            this.txtMatricula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtMatricula.Location = new System.Drawing.Point(130, 162);
+            this.txtMatricula.Name = "txtMatricula";
+            this.txtMatricula.Size = new System.Drawing.Size(121, 20);
+            this.txtMatricula.TabIndex = 19;
+            // 
+            // txtModelo
+            // 
+            this.txtModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtModelo.Location = new System.Drawing.Point(130, 125);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(121, 20);
+            this.txtModelo.TabIndex = 18;
+            // 
+            // txtNumeroAeronave
+            // 
+            this.txtNumeroAeronave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtNumeroAeronave.Location = new System.Drawing.Point(130, 92);
+            this.txtNumeroAeronave.Name = "txtNumeroAeronave";
+            this.txtNumeroAeronave.Size = new System.Drawing.Size(121, 20);
+            this.txtNumeroAeronave.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(34, 92);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 23);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Numero :";
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(13, 58);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 23);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Fecha Alta :";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(550, 213);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(99, 50);
+            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(230, 213);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(99, 50);
+            this.btnEditar.TabIndex = 12;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(390, 213);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(99, 50);
+            this.btnGuardar.TabIndex = 11;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(337, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 23);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Fabricante :";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(13, 159);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 23);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Matricula  :";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(634, 125);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(114, 23);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Kg Disponible :";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(38, 125);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 23);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Modelo :";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtCodigo.Location = new System.Drawing.Point(130, 24);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(121, 20);
+            this.txtCodigo.TabIndex = 1;
+            // 
+            // CodigoAeronave
+            // 
+            this.CodigoAeronave.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CodigoAeronave.Location = new System.Drawing.Point(38, 24);
+            this.CodigoAeronave.Name = "CodigoAeronave";
+            this.CodigoAeronave.Size = new System.Drawing.Size(72, 23);
+            this.CodigoAeronave.TabIndex = 0;
+            this.CodigoAeronave.Text = "Codigo :";
+            // 
+            // ABMBajaModificacion
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(923, 395);
+            this.Controls.Add(this.tabControl1);
+            this.Name = "ABMBajaModificacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "ABMBajaModificacion";
+            this.Load += new System.EventHandler(this.ABMBajaModificacion_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.DataGridView dataListadoAeronaves;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnFiltroNumero;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtCantidadDeKG;
+        private System.Windows.Forms.TextBox txtCantidadDeButacas;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtTipoDeServicio;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtFabricante;
+        private System.Windows.Forms.TextBox txtMatricula;
+        private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.TextBox txtNumeroAeronave;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label CodigoAeronave;
+        private System.Windows.Forms.Button btnFiltroModelo;
+        private System.Windows.Forms.Button btnFabricante;
+        private System.Windows.Forms.DateTimePicker dtpFechaAlta;
+        private System.Windows.Forms.DateTimePicker dtFechaFueraDeServicio;
+        private System.Windows.Forms.DateTimePicker dtFechaBajaDefinitiva;
+        private System.Windows.Forms.DateTimePicker dtFechaDeReinicio;
+        private System.Windows.Forms.ComboBox cmbBajaFueraDeServicio;
+        private System.Windows.Forms.ComboBox cmbBajaPorVidaUtil;
+
+    }
+}
