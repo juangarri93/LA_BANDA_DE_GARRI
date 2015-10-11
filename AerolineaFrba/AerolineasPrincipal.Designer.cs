@@ -33,6 +33,9 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnABM_Ciudad = new System.Windows.Forms.Button();
             this.btnABMRutaAerea = new System.Windows.Forms.Button();
+            this.btnRegistrosDeUsuarios = new System.Windows.Forms.Button();
+            this.btnGenerarViaje = new System.Windows.Forms.Button();
+            this.btnRegistroDeLlegadaDestino = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnABMAronaves
@@ -85,11 +88,41 @@
             this.btnABMRutaAerea.UseVisualStyleBackColor = true;
             this.btnABMRutaAerea.Click += new System.EventHandler(this.btnABMRutaAerea_Click);
             // 
+            // btnRegistrosDeUsuarios
+            // 
+            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(282, 94);
+            this.btnRegistrosDeUsuarios.Name = "btnRegistrosDeUsuarios";
+            this.btnRegistrosDeUsuarios.Size = new System.Drawing.Size(180, 36);
+            this.btnRegistrosDeUsuarios.TabIndex = 11;
+            this.btnRegistrosDeUsuarios.Text = "Registro de Usuarios";
+            this.btnRegistrosDeUsuarios.UseVisualStyleBackColor = true;
+            // 
+            // btnGenerarViaje
+            // 
+            this.btnGenerarViaje.Location = new System.Drawing.Point(282, 145);
+            this.btnGenerarViaje.Name = "btnGenerarViaje";
+            this.btnGenerarViaje.Size = new System.Drawing.Size(180, 36);
+            this.btnGenerarViaje.TabIndex = 12;
+            this.btnGenerarViaje.Text = "Generar Viaje";
+            this.btnGenerarViaje.UseVisualStyleBackColor = true;
+            // 
+            // btnRegistroDeLlegadaDestino
+            // 
+            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(282, 203);
+            this.btnRegistroDeLlegadaDestino.Name = "btnRegistroDeLlegadaDestino";
+            this.btnRegistroDeLlegadaDestino.Size = new System.Drawing.Size(180, 36);
+            this.btnRegistroDeLlegadaDestino.TabIndex = 13;
+            this.btnRegistroDeLlegadaDestino.Text = "Registro De Llegada Destino";
+            this.btnRegistroDeLlegadaDestino.UseVisualStyleBackColor = true;
+            // 
             // AerolineasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 341);
+            this.Controls.Add(this.btnRegistroDeLlegadaDestino);
+            this.Controls.Add(this.btnGenerarViaje);
+            this.Controls.Add(this.btnRegistrosDeUsuarios);
             this.Controls.Add(this.btnABMRutaAerea);
             this.Controls.Add(this.btnABM_Ciudad);
             this.Controls.Add(this.lblTitulo);
@@ -110,6 +143,9 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnABM_Ciudad;
         private System.Windows.Forms.Button btnABMRutaAerea;
+        private System.Windows.Forms.Button btnRegistrosDeUsuarios;
+        private System.Windows.Forms.Button btnGenerarViaje;
+        private System.Windows.Forms.Button btnRegistroDeLlegadaDestino;
 
     }
 }
