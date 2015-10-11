@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AerolineaFrba.Herramientas;
 
 namespace AerolineaFrba.Abm_Ciudad
 {
@@ -16,22 +15,6 @@ namespace AerolineaFrba.Abm_Ciudad
         public ABMCiudad()
         {
             InitializeComponent();
-        }
-
-        private void lbTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAlta_Click(object sender, EventArgs e)
-        {
-            var ventanaAltaCiudad = new ABMCiudadAlta();
-            FormsHerramientas.mostrarVentanaNueva(ventanaAltaCiudad, this);
-        }
-
-        private void btnBaja_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

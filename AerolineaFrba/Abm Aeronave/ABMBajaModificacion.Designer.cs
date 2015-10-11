@@ -36,24 +36,21 @@
             this.btnFiltroModelo = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.dataListadoAeronaves = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnFiltroNumero = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbBajaPorVidaUtil = new System.Windows.Forms.ComboBox();
             this.cmbBajaFueraDeServicio = new System.Windows.Forms.ComboBox();
             this.dtFechaFueraDeServicio = new System.Windows.Forms.DateTimePicker();
-            this.dtFechaBajaDefinitiva = new System.Windows.Forms.DateTimePicker();
             this.dtFechaDeReinicio = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             this.txtCantidadDeKG = new System.Windows.Forms.TextBox();
             this.txtCantidadDeButacas = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtTipoDeServicio = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -72,7 +69,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -174,6 +170,13 @@
             this.dataListadoAeronaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoAeronaves_CellContentClick);
             this.dataListadoAeronaves.DoubleClick += new System.EventHandler(this.dataListadoAeronaves_DoubleClick);
             // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Baja Logica";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Width = 69;
+            // 
             // txtBuscar
             // 
             this.txtBuscar.Location = new System.Drawing.Point(161, 18);
@@ -213,19 +216,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbBajaPorVidaUtil);
             this.groupBox1.Controls.Add(this.cmbBajaFueraDeServicio);
             this.groupBox1.Controls.Add(this.dtFechaFueraDeServicio);
-            this.groupBox1.Controls.Add(this.dtFechaBajaDefinitiva);
             this.groupBox1.Controls.Add(this.dtFechaDeReinicio);
             this.groupBox1.Controls.Add(this.dtpFechaAlta);
             this.groupBox1.Controls.Add(this.txtCantidadDeKG);
             this.groupBox1.Controls.Add(this.txtCantidadDeButacas);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtTipoDeServicio);
             this.groupBox1.Controls.Add(this.label9);
@@ -251,15 +250,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aeronaves";
             // 
-            // cmbBajaPorVidaUtil
-            // 
-            this.cmbBajaPorVidaUtil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.cmbBajaPorVidaUtil.FormattingEnabled = true;
-            this.cmbBajaPorVidaUtil.Location = new System.Drawing.Point(447, 116);
-            this.cmbBajaPorVidaUtil.Name = "cmbBajaPorVidaUtil";
-            this.cmbBajaPorVidaUtil.Size = new System.Drawing.Size(121, 21);
-            this.cmbBajaPorVidaUtil.TabIndex = 67;
-            // 
             // cmbBajaFueraDeServicio
             // 
             this.cmbBajaFueraDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -273,7 +263,7 @@
             // dtFechaFueraDeServicio
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 156);
+            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 123);
             this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtFechaFueraDeServicio.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtFechaFueraDeServicio.Name = "dtFechaFueraDeServicio";
@@ -283,23 +273,10 @@
             this.dtFechaFueraDeServicio.TabIndex = 65;
             this.dtFechaFueraDeServicio.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             // 
-            // dtFechaBajaDefinitiva
-            // 
-            this.dtFechaBajaDefinitiva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaBajaDefinitiva.Location = new System.Drawing.Point(754, 59);
-            this.dtFechaBajaDefinitiva.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtFechaBajaDefinitiva.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
-            this.dtFechaBajaDefinitiva.Name = "dtFechaBajaDefinitiva";
-            this.dtFechaBajaDefinitiva.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtFechaBajaDefinitiva.ShowUpDown = true;
-            this.dtFechaBajaDefinitiva.Size = new System.Drawing.Size(121, 20);
-            this.dtFechaBajaDefinitiva.TabIndex = 64;
-            this.dtFechaBajaDefinitiva.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
-            // 
             // dtFechaDeReinicio
             // 
             this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaDeReinicio.Location = new System.Drawing.Point(754, 24);
+            this.dtFechaDeReinicio.Location = new System.Drawing.Point(447, 165);
             this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtFechaDeReinicio.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtFechaDeReinicio.Name = "dtFechaDeReinicio";
@@ -325,7 +302,7 @@
             // txtCantidadDeKG
             // 
             this.txtCantidadDeKG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeKG.Location = new System.Drawing.Point(754, 123);
+            this.txtCantidadDeKG.Location = new System.Drawing.Point(754, 56);
             this.txtCantidadDeKG.Name = "txtCantidadDeKG";
             this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadDeKG.TabIndex = 37;
@@ -333,7 +310,7 @@
             // txtCantidadDeButacas
             // 
             this.txtCantidadDeButacas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeButacas.Location = new System.Drawing.Point(754, 91);
+            this.txtCantidadDeButacas.Location = new System.Drawing.Point(754, 27);
             this.txtCantidadDeButacas.Name = "txtCantidadDeButacas";
             this.txtCantidadDeButacas.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadDeButacas.TabIndex = 36;
@@ -341,25 +318,16 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(589, 92);
+            this.label16.Location = new System.Drawing.Point(589, 24);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(159, 23);
             this.label16.TabIndex = 35;
             this.label16.Text = "Cantidad de Butacas :";
             // 
-            // label15
-            // 
-            this.label15.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(582, 59);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(166, 23);
-            this.label15.TabIndex = 33;
-            this.label15.Text = "Fecha Baja definitiva :";
-            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(609, 24);
+            this.label14.Location = new System.Drawing.Point(292, 162);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(139, 23);
             this.label14.TabIndex = 32;
@@ -368,20 +336,11 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(257, 158);
+            this.label12.Location = new System.Drawing.Point(257, 125);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(174, 23);
             this.label12.TabIndex = 29;
             this.label12.Text = "Fecha fuera de servicio :";
-            // 
-            // label11
-            // 
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(291, 122);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(183, 23);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "Baja Por Vida Util :";
             // 
             // label10
             // 
@@ -510,7 +469,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(634, 125);
+            this.label4.Location = new System.Drawing.Point(634, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 23);
             this.label4.TabIndex = 5;
@@ -541,13 +500,6 @@
             this.CodigoAeronave.Size = new System.Drawing.Size(72, 23);
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Baja Logica";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Width = 69;
             // 
             // ABMBajaModificacion
             // 
@@ -584,10 +536,8 @@
         private System.Windows.Forms.TextBox txtCantidadDeKG;
         private System.Windows.Forms.TextBox txtCantidadDeButacas;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtTipoDeServicio;
         private System.Windows.Forms.Label label9;
@@ -610,10 +560,8 @@
         private System.Windows.Forms.Button btnFabricante;
         private System.Windows.Forms.DateTimePicker dtpFechaAlta;
         private System.Windows.Forms.DateTimePicker dtFechaFueraDeServicio;
-        private System.Windows.Forms.DateTimePicker dtFechaBajaDefinitiva;
         private System.Windows.Forms.DateTimePicker dtFechaDeReinicio;
         private System.Windows.Forms.ComboBox cmbBajaFueraDeServicio;
-        private System.Windows.Forms.ComboBox cmbBajaPorVidaUtil;
         private System.Windows.Forms.Button btnBajaLogica;
         private System.Windows.Forms.CheckBox checkBoxbajaLogica1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;

@@ -36,10 +36,8 @@ namespace AerolineaFrba.Abm_Aeronave
             txtFabricante.ReadOnly = true;
             txtTipoDeServicio.ReadOnly = true;
             cmbBajaFueraDeServicio.Enabled = false;
-            cmbBajaPorVidaUtil.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
-            dtFechaBajaDefinitiva.Enabled = false;
             txtCantidadDeButacas.ReadOnly = true;
             txtCantidadDeKG.ReadOnly = true;
         }
@@ -103,10 +101,8 @@ namespace AerolineaFrba.Abm_Aeronave
             this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
             this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["TipoDeServicio"].Value);
             this.cmbBajaFueraDeServicio.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["BajaPorFueraDeServicio"].Value);
-            this.cmbBajaPorVidaUtil.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["BajaPorVidaUtil"].Value);
             this.dtFechaFueraDeServicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeFueraDeServicio"].Value);
             this.dtFechaDeReinicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeReinicioDeServicio"].Value);
-            this.dtFechaBajaDefinitiva.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeBajaDefinitiva"].Value);
             this.txtCantidadDeButacas.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CantidadButacas"].Value);
             this.txtCantidadDeKG.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["KgDisponible"].Value);
 
@@ -197,7 +193,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             return new Aeronave(Convert.ToInt32(txtCodigo.Text),dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
                                        txtModelo.Text, txtMatricula.Text, txtFabricante.Text, txtTipoDeServicio.Text,
-                                       cmbBajaFueraDeServicio.ValueMember,cmbBajaPorVidaUtil.ValueMember, dtFechaFueraDeServicio.Value, dtFechaDeReinicio.Value, dtFechaBajaDefinitiva.Value, Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
+                                       cmbBajaFueraDeServicio.ValueMember,dtFechaFueraDeServicio.Value,dtFechaDeReinicio.Value,Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -216,10 +212,8 @@ namespace AerolineaFrba.Abm_Aeronave
             txtFabricante.ReadOnly = false;
             txtTipoDeServicio.ReadOnly = false;
             cmbBajaFueraDeServicio.Enabled = true;
-            cmbBajaPorVidaUtil.Enabled = true;
             dtFechaFueraDeServicio.Enabled = true;
             dtFechaDeReinicio.Enabled = true;
-            dtFechaBajaDefinitiva.Enabled = true;
             txtCantidadDeButacas.ReadOnly = false;
             txtCantidadDeKG.ReadOnly = false;
         }
@@ -234,8 +228,6 @@ namespace AerolineaFrba.Abm_Aeronave
             cmbBajaFueraDeServicio.Items.Add("");
             cmbBajaFueraDeServicio.Items.Add("Habilitado");
             cmbBajaFueraDeServicio.Items.Add("Deshabilitado");
-            cmbBajaPorVidaUtil.Items.Add("");
-            cmbBajaPorVidaUtil.Items.Add("Deshabilitado");
             btnCancelar.Enabled = false;
             btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;
@@ -263,10 +255,9 @@ namespace AerolineaFrba.Abm_Aeronave
             txtFabricante.Text = "";
             txtTipoDeServicio.Text = "";
             cmbBajaFueraDeServicio.Items.Clear();
-            cmbBajaPorVidaUtil.Items.Clear();
+
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
-            dtFechaBajaDefinitiva.Enabled = false;
             txtCantidadDeButacas.Text= "";
             txtCantidadDeKG.Text = "";
         }
@@ -280,24 +271,16 @@ namespace AerolineaFrba.Abm_Aeronave
 
                 if (Opcion == DialogResult.OK)
                 {
-                    string Codigo;
-                    string Rpta = "";
-                    
+                    int Codigo;
+                                        
                     foreach (DataGridViewRow row in dataListadoAeronaves.Rows)
                     {
                         if (Convert.ToBoolean(row.Cells[0].Value))
                         {
-                            Codigo = Convert.ToString(row.Cells[1].Value);
-                            row.Cells[4].Value = "Deshabilitado";
+                            Codigo = Convert.ToInt32(row.Cells[1].Value);
+                            DAOAerolinea.darDeBajaAerolinea(Codigo);
                            
-                            if (Rpta.Equals("OK"))
-                            {
-                                FormsHerramientas.MensajeOk("Se Elimino Correctamente el registro");
-                            }
-                            else
-                            {
-                                FormsHerramientas.MensajeError(Rpta);
-                            }
+                           
                         }
 
                     }
@@ -309,8 +292,8 @@ namespace AerolineaFrba.Abm_Aeronave
                 MessageBox.Show(ex.Message + ex.StackTrace);
 
             }
-        
-        
+
+            checkBoxbajaLogica1.Checked = false;
         
         }
         

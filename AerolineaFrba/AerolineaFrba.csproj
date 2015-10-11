@@ -32,8 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -71,12 +69,6 @@
     <Compile Include="Abm Ciudad\ABMCiudad.Designer.cs">
       <DependentUpon>ABMCiudad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Ciudad\ABMCiudadAlta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Ciudad\ABMCiudadAlta.Designer.cs">
-      <DependentUpon>ABMCiudadAlta.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Rol\ABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,7 +99,6 @@
     <Compile Include="Canje Millas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="CapaADO\DAOCiudad.cs" />
     <Compile Include="CapaADO\DAOAerolinea.cs" />
     <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\SqlConnector.cs" />
@@ -118,12 +109,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ConstructorDeClases\Aeronave.cs" />
-<<<<<<< HEAD
-    <Compile Include="ConstructorDeClases\Ciudad.cs" />
-=======
     <Compile Include="ConstructorDeClases\Persona.cs" />
     <Compile Include="ConstructorDeClases\Rol.cs" />
->>>>>>> c3c6f3ce771c46b3123ef2621b86c6f647d397de
     <Compile Include="Consulta Millas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,12 +165,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Aeronave\ABMBajaModificacion.resx">
       <DependentUpon>ABMBajaModificacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm Ciudad\ABMCiudad.resx">
-      <DependentUpon>ABMCiudad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm Ciudad\ABMCiudadAlta.resx">
-      <DependentUpon>ABMCiudadAlta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\ABMRol.resx">
       <DependentUpon>ABMRol.cs</DependentUpon>
