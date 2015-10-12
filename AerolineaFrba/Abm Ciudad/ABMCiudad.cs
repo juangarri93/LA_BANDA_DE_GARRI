@@ -31,7 +31,8 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-
+            var ventanaBajaModif = new ABMCiudadBajaModif();
+            FormsHerramientas.mostrarVentanaNueva(ventanaBajaModif, this);
         }
     }
 }

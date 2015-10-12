@@ -13,13 +13,22 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _id_ciudad;
         private string _nombre;
         private string _pais;
+        private string _BajaPorVidaUtil;
 
         public Ciudad(int codigoCiudad, string nombre,string  pais) 
         {
             IdentificadorCiudad = codigoCiudad;
             Nombre =  nombre;
             Pais = pais;
+            _BajaPorVidaUtil = "Habilitado";
 
+        }
+     
+ 
+         public string BajaPorVidaUtil
+        {
+            get { return _BajaPorVidaUtil; }
+            set { _BajaPorVidaUtil = value; }
         }
 
         public int IdentificadorCiudad

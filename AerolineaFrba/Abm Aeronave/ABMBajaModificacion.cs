@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
-using AerolineaFrba.Herramientas;
 
 namespace AerolineaFrba.Abm_Aeronave
 {
@@ -320,6 +312,16 @@ namespace AerolineaFrba.Abm_Aeronave
         }
 
         private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNumeroAeronave_TextChanged(object sender, EventArgs e)
         {
 
         }

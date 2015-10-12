@@ -16,7 +16,7 @@ namespace AerolineaFrba.CapaADO
         public static void AgregarCiudad(Ciudad ciudad)
         {
 
-            executeProcedure("spinsertar_ciudad", 1, ciudad.Nombre,ciudad.Pais);
+            executeProcedure("spinsertar_ciudad", 1, ciudad.Nombre,ciudad.Pais,ciudad.BajaPorVidaUtil);
 
         }
 
@@ -26,7 +26,10 @@ namespace AerolineaFrba.CapaADO
               return retrieveDataTable("spmostrar_ciudad");
         }
 
-
+        public static DataTable buscarCiudad(string textoBuscar)
+        {
+            return retrieveDataTable("spbuscar_ciudad", textoBuscar);
+        }
 
         public static void EditarCiudad(Ciudad ciudad)
         {
@@ -37,6 +40,12 @@ namespace AerolineaFrba.CapaADO
         {
             executeProcedure("speliminar_ciudad", codigoCiudad);
         }
+        
+        public static void darDeBajaCiudad(int Codigo)
+        {
+            executeProcedure("spbaja_ciudad", Codigo);
+        }
+
     }
     
 
