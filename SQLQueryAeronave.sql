@@ -50,7 +50,11 @@ go
 drop proc spmostrar_ciudad
 go
 
+drop proc spbaja_ciudad
+go 
+
 drop proc spMostrar_Funcionalidades
+go
 
 --ELIMINAR insertar rol-funcionalidad en tabla rol_funcionalidad--
 drop proc spinsertar_rol_funcionalidad
@@ -121,8 +125,10 @@ CREATE TABLE dbo.Ciudad
    (CodigoCiudad int PRIMARY KEY NOT NULL identity ,
     Nombre varchar(50) NOT NULL,
 	Pais varchar(50) NOT NULL, 
+	BajaPorVidaUtil varchar(50) NOT NULL,
 	)
 go
+
 
 --------------------------------------------------
 
@@ -279,10 +285,12 @@ go
 create proc spinsertar_ciudad
  (  @codigo int output,
 @nombre varchar(50),
-@pais varchar(50))
+@pais varchar(50),
+@BajaPorVidaUtil varchar(50)
+)
 as
-insert into Ciudad(Nombre,Pais)
-values(@nombre, @pais)
+insert into Ciudad(Nombre,Pais,BajaPorVidaUtil)
+values(@nombre, @pais,@BajaPorVidaUtil)
 go
 
 ----------------------------------------------------------------
@@ -299,6 +307,7 @@ where CodigoCiudad = @codigo
 go
 
 -----------------------------------------------------------------------
+
 
 --PROCEDIMIENTO MOSTRAR TABLA Ciudad--
 create proc spmostrar_ciudad
@@ -317,6 +326,24 @@ delete from Ciudad
 where CodigoCiudad = @codigoCiudad
 go
 
+--------------------------------------------------------------------------
+
+--PROCEDIMIENTO BUSCAR CIUDAD--
+create proc spbuscar_ciudad
+@textoBuscar varchar(50)
+as
+select * from Ciudad
+where nombre like @textoBuscar + '%'
+go
+--------------------------------------------------------------------------
+
+--PROCEDIMIENTO spdardebaja_ciudad --
+create proc spbaja_ciudad
+@CodigoCiudad int
+as
+update Ciudad Set BajaPorVidaUtil = 'Deshabilitado'
+where @CodigoCiudad = CodigoCiudad
+go
 ----------------------------------------------------------------------------
 
 --PROCEDIMIENTO MOSTRAR TABLA FUNCIONALIDAD --> spMostrar_Funcionalidades --
