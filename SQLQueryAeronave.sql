@@ -174,6 +174,38 @@ select * from Funcionalidad
 order by id_funcionalidad
 go
 
+--PROCEDIMIENTO INSERTAR ROL --> spinsertar_rol --
+CREATE PROC spinsertar_rol
+ (@id_rol int output,
+@nombre varchar(100),
+@habilitado binary
+)
+as
+
+insert into Rol(nombre,habilitado)
+values(@nombre,@habilitado)
+
+declare @id_aux int
+select @id_aux = id_rol from Rol where @nombre = nombre 
+
+go
+
+--PROCEDIMIENTO CREAR TABLA ROL --
+CREATE TABLE Rol
+(id_rol int PRIMARY KEY not null identity,
+nombre varchar(100),
+habilitado binary
+)
+go
+
+--ELIMINAR PROCEDIMIENTO spinsertar_rol--
+DROP PROC spinsertar_rol;
+go
+
+--ELIMINAR TABLA ROL--
+drop table Rol;
+go
+
 --ELIMINAR TABLA FUNCIONALIDAD--
 drop table Funcionalidad;
 go
@@ -216,3 +248,6 @@ alter table Aeronave alter column FechaDeReinicioDeReinicioDeServicio date
 
 alter table Aeronave alter column FechaDeBajaDefinitiva date
 
+select * from Rol
+
+exec spinsertar_rol 4,'nico',4 

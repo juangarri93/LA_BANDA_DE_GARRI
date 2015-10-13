@@ -32,7 +32,7 @@ namespace AerolineaFrba.Abm_Rol
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            var ventanaBajaModificacionRol = new ABMRolAlta();
+            var ventanaBajaModificacionRol = new ABMRolBajaModificacion();
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRol, this);
         }
     }

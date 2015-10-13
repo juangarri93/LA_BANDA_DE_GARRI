@@ -41,6 +41,7 @@ namespace AerolineaFrba.Abm_Rol
 
         }
 
+        //Genero un nuevo Rol con la lista de funcionalidades que son enteros --> Son los que selecciono
         private Rol GenerarRol()
         {
             var lista = Funcionalidades.CheckedIndices.Cast<int>().ToList();
