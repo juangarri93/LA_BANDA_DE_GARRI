@@ -71,5 +71,10 @@ namespace AerolineaFrba.Abm_Rol
         {
             
         }
+
+        private void btnSeleccionarTodos_Click(object sender, EventArgs e)
+        {
+         
+        }
     }
 }
