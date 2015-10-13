@@ -14,7 +14,12 @@ namespace AerolineaFrba.CapaADO
         public static void AgregarRol(Rol rol)
         {
             rol.Codigo = executeProcedureWithReturnValue("spinsertar_rol", rol.Codigo, rol.Nombre, rol.Habilitado);
-            MessageBox.Show(Convert.ToString(rol.Codigo));
+            
+            //Recibo el id del rol donde se inserto en la tabla rol para cargar las funcionalidades en la tabla
+            foreach (var funcionalidad in rol.Funcionalidades)
+            {
+                executeProcedure("spinsertar_rol_funcionalidad", rol.Codigo, funcionalidad + 1);
+            }
         }
     }
 }

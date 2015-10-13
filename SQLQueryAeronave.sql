@@ -188,6 +188,7 @@ values(@nombre,@habilitado)
 declare @id_aux int
 select @id_aux = id_rol from Rol where @nombre = nombre 
 
+return(@id_aux)
 go
 
 --PROCEDIMIENTO CREAR TABLA ROL --
