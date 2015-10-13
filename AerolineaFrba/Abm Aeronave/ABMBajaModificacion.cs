@@ -173,6 +173,9 @@ namespace AerolineaFrba.Abm_Aeronave
                 MessageBox.Show("La Aeronave se agrego correctamente.");
                 deshabilitarTextBox();
                 limpiarTextBox();
+                btnGuardar.Enabled = false;
+                btnEditar.Enabled = true;
+                btnCancelar.Enabled = false;
 
             }
             catch(Exception ex)
@@ -197,7 +200,9 @@ namespace AerolineaFrba.Abm_Aeronave
         private void btnEditar_Click(object sender, EventArgs e)
         {
             btnCancelar.Enabled = true;
-            btnCancelar.Enabled = true;
+            btnGuardar.Enabled = true;
+            btnEditar.Enabled = false;
+
             habilitarTextBox();
         }
 
@@ -229,6 +234,7 @@ namespace AerolineaFrba.Abm_Aeronave
             btnCancelar.Enabled = false;
             btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;
+            btnGuardar.Enabled = false;
             deshabilitarTextBox(); 
         }
 
@@ -241,6 +247,9 @@ namespace AerolineaFrba.Abm_Aeronave
         {
             limpiarTextBox();
             deshabilitarTextBox();
+            btnGuardar.Enabled = false;
+            btnCancelar.Enabled = false;
+            btnEditar.Enabled = true;
         }
 
         private void limpiarTextBox()

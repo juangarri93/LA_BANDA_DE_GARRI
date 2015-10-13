@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data;
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
+
 
 namespace AerolineaFrba.Abm_Rol
 {
@@ -18,8 +14,18 @@ namespace AerolineaFrba.Abm_Rol
         public ABMRolAlta()
         {
             InitializeComponent();
+            mostarListaFuncionalidades();
         }
 
+        //Muestro y cargo Funcionalidades que se encuentran en la tabla --> Las debo ir a buscar a la base
+        private void mostarListaFuncionalidades()
+        {
+            Funcionalidades.DataSource = DAOFuncionalidades.getFuncionalidades().DefaultView;
+            Funcionalidades.DisplayMember = "nombre";
+            Funcionalidades.ValueMember = "id_funcionalidad";     
+        }
+
+        //Cargo y genero un nuevo rol a la lista de funcionalidades
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -48,6 +54,21 @@ namespace AerolineaFrba.Abm_Rol
         private void btnCancelar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Funcionalidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void ABMRolAlta_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

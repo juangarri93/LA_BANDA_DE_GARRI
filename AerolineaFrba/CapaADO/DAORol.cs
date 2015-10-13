@@ -8,7 +8,7 @@ using AerolineaFrba.ConstructorDeClases;
 
 namespace AerolineaFrba.CapaADO
 {
-    class DAORol
+    public class DAORol : SqlConnector
     {
         public static void AgregarRol(Rol rol)
         {

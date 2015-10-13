@@ -160,6 +160,24 @@ delete from Ciudad
 where CodigoCiudad = @codigoCiudad
 go
 
+--PROCEDIMIENTO CREAR TABLA Funcionalidad--
+create table Funcionalidad
+(id_funcionalidad int PRIMARY KEY not null identity,
+nombre varchar(100)
+)
+go
+
+--PROCEDIMIENTO MOSTRAR TABLA FUNCIONALIDAD --> spMostrar_Funcionalidades --
+CREATE PROC spMostrar_Funcionalidades
+as
+select * from Funcionalidad
+order by id_funcionalidad
+go
+
+--ELIMINAR TABLA FUNCIONALIDAD--
+drop table Funcionalidad;
+go
+
 --ELIMINAR TABLA AERONAVE--
 drop table Aeronave;
 go

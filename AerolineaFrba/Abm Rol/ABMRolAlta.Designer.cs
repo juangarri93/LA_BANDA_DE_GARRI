@@ -80,6 +80,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(163, 20);
             this.txtNombre.TabIndex = 15;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // Funcionalidades
             // 
@@ -88,6 +89,7 @@
             this.Funcionalidades.Name = "Funcionalidades";
             this.Funcionalidades.Size = new System.Drawing.Size(257, 229);
             this.Funcionalidades.TabIndex = 16;
+            this.Funcionalidades.SelectedIndexChanged += new System.EventHandler(this.Funcionalidades_SelectedIndexChanged);
             // 
             // ABMRolAlta
             // 
@@ -102,6 +104,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Name = "ABMRolAlta";
             this.Text = "ABMRolAlta";
+            this.Load += new System.EventHandler(this.ABMRolAlta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
