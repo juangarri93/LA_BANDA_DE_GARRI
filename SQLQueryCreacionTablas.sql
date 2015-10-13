@@ -81,14 +81,14 @@ GO
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Roles] (
 [Id] TINYINT IDENTITY (1,1),	
-[Rol] NVARCHAR(255) NOT NULL,
+[Rol] NVARCHAR(255) UNIQUE NOT NULL,
 [Habilitado] BIT DEFAULT 1 NOT NULL, --0 false 1 true
 CONSTRAINT [PK_Roles] PRIMARY KEY ([Id])
  )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Funcionalidades] (
 [Id] TINYINT IDENTITY (1,1),
-[Nombre] NVARCHAR (255) NOT NULL,
+[Nombre] NVARCHAR (255) UNIQUE NOT NULL,
 CONSTRAINT [PK_Funcionalidades] PRIMARY KEY ([Id])
 )
 
@@ -387,6 +387,7 @@ GO
 
 --STORED PROCEDURES
 
+
 create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @password NVARCHAR(255), @result NVARCHAR(25) output)
 
     as
@@ -460,3 +461,218 @@ create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @
             
         end
 GO
+
+create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @password NVARCHAR(255), @result NVARCHAR(25) output) AS
+begin
+
+	if @username_enviado is null
+		begin
+			set @result = 'LOGIN_ERROR'
+			return 1
+		end
+
+	declare @check_password nvarchar(255)
+	declare @check_habilitado bit
+	declare @check_fallidos tinyint
+
+	if (exists(select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado))
+
+		begin
+			-- Seleccionamos el hash
+			set @check_password = (select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+
+			-- Seleccionamos si está habilitado
+			set @check_habilitado = (select Habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+			if (@check_habilitado = 0)
+
+				begin
+					set @result = 'LOGIN_OFF'
+					return 1
+				end
+
+
+			-- Si intentos_fallidos = 3, deshabilitar usuario
+			set @check_fallidos = (select intentos_fallidos from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+			if (@check_fallidos >= 3)
+				begin
+						update LA_BANDA_DE_GARRI.Login
+							set Habilitado = 0
+							where username = @username_enviado
+
+						set @result = 'LOGIN_MAS_TRES_VECES'
+						return 1
+				end    
+
+			-- Usuario correcto pero contraseña incorrecta
+			if (@check_password <> @password)
+				
+				begin
+						update LA_BANDA_DE_GARRI.Usuarios
+							set intentos_fallidos = intentos_fallidos + 1
+							where username = @username_enviado
+
+						set @result = 'LOGIN_ERROR_PASSWORD'
+						return 1
+				end              
+
+			-- Login Correcto deberia entrar aca
+			if (@check_habilitado = 1 and @check_password = @password)
+				begin
+					update LA_BANDA_DE_GARRI.Usuarios
+						set intentos_fallidos = 0
+						where username = @username_enviado
+
+					set @result = 'LOGIN_OK'
+					return 0
+				end
+		end
+	
+	-- Si no se cumple ninguna de las condiciones anteriores, (usuario inexistente, otro error, etc) retornar error
+	set @result = 'LOGIN_ERROR'
+	return 1
+	
+end
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_listar_roles AS
+BEGIN
+	select Rol
+	from LA_BANDA_DE_GARRI.Roles
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol NVARCHAR(255), @estado BIT) AS
+BEGIN
+	update LA_BANDA_DE_GARRI.Roles
+		set Habilitado = @estado
+		where Rol = @rol
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_crear_ruta_aerea (@codigo numeric(18,0), 
+														@tipo NVARCHAR(255), 
+														@origen int, 
+														@destino int, 
+														@precio_pasaje numeric(18,2)
+														@precio_kg numeric(18,2)) AS
+BEGIN
+	insert into LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo, Tipo_Servicio, Ciudad_Origen, Ciudad_Destino, Precio_base_pasaje, Precio_base_kg)
+	values(@codigo, @tipo, @origen, @destino, @precio_pasaje, @precio_kg)
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_area(@codigo) AS
+BEGIN
+	update LA_BANDA_DE_GARRI.Ruta_Aerea
+	set Habilitada = 0
+	
+	EXEC LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas @codigo = @codigo
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas (@codigo NUMERIC (18,0)) AS
+
+BEGIN
+	
+
+END
+
+GO
+
+
+
+CREATE PROCEDURE LA_BANDA_DE_GARR.sp_generar_viaje(@ruta_aerea numeric(18,0), 
+													@aeronave NVARCHAR(255), 
+													@fecha_salida DATETIME, 
+													@fecha_llegada DATETIME
+													@resultado varchar(100) output) AS
+BEGIN
+		
+	if(LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_area, @aeronave) = 0)
+		begin
+			set @resultado = 'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
+			return	
+		end
+	
+	if(LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave, @fecha_salida) = 0)
+		begin
+			set @resultado = 'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
+			return	
+		end
+	
+END
+
+create function LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea NUMERIC(18,0),@aeronave NVARCHAR(255))RETURNS INT as
+begin
+	
+	DECLARE @tipo_servicio_ruta NVARCHAR(255);
+	DECLARE @tipo_servicio_aeronave NVARCHAR(255);
+	
+	select @tipo_servicio_ruta = tipo_servicio 
+	from LA_BANDA_DE_GARRI.Ruta_aerea
+	where Codigo = @ruta_aerea
+	
+	select @tipo_servicio_aeronave = tipo_servicio
+	from LA_BANDA_DE_GARRI.Aeronave
+	where matricula = @aeronave
+	
+	if(@tipo_servicio_ruta <> @tipo_servicio_aeronave)
+		begin
+			return 0;
+		end;
+	return 1;
+end
+
+GO
+
+create function LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave NVARCHAR(255), @fecha_salida DATETIME) RETURNS INT as
+BEGIN
+	DECLARE @cantidad INT;
+	
+	select @cantidad = count(*) 
+	from LA_BANDA_DE_GARRI.Viajes
+	where Id_Aeronave = @aeronave
+	and Fecha_salida = @fecha_salida
+	
+		if(@cantidad <> 0)
+		begin
+			return 0;
+		end;
+	return 1;
+
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.comprar_pasaje AS
+BEGIN
+
+END
+
+GO
+
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.comprar_encomienda AS
+BEGIN
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_consultar_millas AS
+BEGIN
+
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_canjear_millas AS
+BEGIN
+
+END
+
+GO
+
