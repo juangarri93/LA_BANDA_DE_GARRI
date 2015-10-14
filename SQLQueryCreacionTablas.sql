@@ -386,82 +386,50 @@ commit tran trn_migracion_datos
 GO
 
 --STORED PROCEDURES
+--ABM ROL
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_listar_roles AS
+BEGIN
+	select Rol
+	from LA_BANDA_DE_GARRI.Roles
+END
 
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol(@rol NVARCHAR(255)) AS
+BEGIN
+	update LA_BANDA_DE_GARRI.Roles
+	set Rol = @nuevo_nombre
+	where Rol = @rol
+END
 
-create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @password NVARCHAR(255), @result NVARCHAR(25) output)
-
-    as
-        begin
-
-            if @username_enviado is null
-                begin
-                    set @result = 'LOGIN_ERROR'
-                    return 1
-                end
-
-            declare @check_password nvarchar(255)
-            declare @check_habilitado bit
-            declare @check_fallidos tinyint
-
-            if (exists(select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado))
-
-                begin
-                    -- Seleccionamos el hash
-                    set @check_password = (select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
-
-                    -- Seleccionamos si está habilitado
-                    --set @check_habilitado = (select Habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
-                    --if (@check_habilitado = 0)
-
-                        begin
-                            set @result = 'LOGIN_OFF'
-                            return 1
-                        end
-
-
-                    -- Si intentos_fallidos = 3, deshabilitar usuario
-                    set @check_fallidos = (select intentos_fallidos from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
-                    if (@check_fallidos >= 3)
-                        begin
-                                --update LA_BANDA_DE_GARRI.Login
-                                --    set Habilitado = 0
-                                --    where username = @username_enviado
-
-                                set @result = 'LOGIN_MAS_TRES_VECES'
-                                return 1
-                        end    
-
-                    -- Usuario correcto pero contraseña incorrecta
-                    if (@check_password <> @password)
-                        
-                        begin
-                                update LA_BANDA_DE_GARRI.Usuarios
-                                    set intentos_fallidos = intentos_fallidos + 1
-                                    where username = @username_enviado
-
-                                set @result = 'LOGIN_ERROR_PASSWORD'
-                                return 1
-                        end              
-
-                    -- Login Correcto deberia entrar aca
-                    if (@check_habilitado = 1 and @check_password = @password)
-                        begin
-                            update LA_BANDA_DE_GARRI.Usuarios
-                                set intentos_fallidos = 0
-                                where username = @username_enviado
-
-                            set @result = 'LOGIN_OK'
-                            return 0
-                        end
-                end
-            
-            -- Si no se cumple ninguna de las condiciones anteriores, (usuario inexistente, otro error, etc) retornar error
-            set @result = 'LOGIN_ERROR'
-            return 1
-            
-        end
 GO
 
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_agregar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
+BEGIN
+		INSERT INTO LA_BANDA_DE_GARRI.Rol_Funcionalidad(Id_Rol, Id_Funcionalidad)
+		VALUES ((SELECT Id FROM FOQZ.Roles WHERE Rol = @rol),
+		        (SELECT Id FROM FOQZ.Funcionalidades WHERE Nombre = @func))
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_eliminar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
+BEGIN
+		delete from LA_BANDA_DE_GARRI.Rol_Funcionalidad
+		where Id_Rol = SELECT Id FROM FOQZ.Roles WHERE Rol = @rol 
+		and Id_Funcionalidad = SELECT Id FROM FOQZ.Funcionalidades WHERE Nombre = @func
+END
+
+GO
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol NVARCHAR(255), @nuevo_nombre NVARCHAR(255), @estado BIT) AS
+BEGIN
+	update LA_BANDA_DE_GARRI.Roles
+	set Habilitado = @estado
+	where Rol = @rol
+END
+
+GO
+
+--LOGIN
 create procedure LA_BANDA_DE_GARRI.sp_login (@username_enviado NVARCHAR(255) , @password NVARCHAR(255), @result NVARCHAR(25) output) AS
 begin
 
@@ -532,25 +500,13 @@ begin
 	return 1
 	
 end
-GO
-
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_listar_roles AS
-BEGIN
-	select Rol
-	from LA_BANDA_DE_GARRI.Roles
-END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol NVARCHAR(255), @estado BIT) AS
-BEGIN
-	update LA_BANDA_DE_GARRI.Roles
-		set Habilitado = @estado
-		where Rol = @rol
-END
+--ABM DE USUARIO NO ES NECESARIO HACERLO
+--ABM CIUDADES NO ES NECESARIO HACERLO
 
-GO
-
+--ABM RUTA AEREA
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_crear_ruta_aerea (@codigo numeric(18,0), 
 														@tipo NVARCHAR(255), 
 														@origen int, 
@@ -574,17 +530,11 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas (@codigo NUMERIC (18,0)) AS
-
-BEGIN
-	
-
-END
-
-GO
+--ABM AERONAVES
 
 
 
+--GENERAR VIAJE
 CREATE PROCEDURE LA_BANDA_DE_GARR.sp_generar_viaje(@ruta_aerea numeric(18,0), 
 													@aeronave NVARCHAR(255), 
 													@fecha_salida DATETIME, 
@@ -648,7 +598,11 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.comprar_pasaje AS
+--REGISTRO LLEGADA A DESTION
+
+
+--COMPRA PASAJE-ENCOMIENDA
+CREATE PROCEDURE LA_BANDA_DE_GARRI.comprar_pasaje(@fecha datetime, @origen, @destino) AS
 BEGIN
 
 END
@@ -662,13 +616,23 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_consultar_millas AS
+--CANCELACION/DEVOLUCION PASAJE-ENCOMIENDA
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas (@codigo NUMERIC (18,0)) AS
 BEGIN
 
 END
 
 GO
 
+--CONSULTAR MILLAS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_consultar_millas(@dni numeric(18,0)) AS
+BEGIN
+
+END
+
+GO
+
+--CANJE DE MILLAS
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_canjear_millas AS
 BEGIN
 
