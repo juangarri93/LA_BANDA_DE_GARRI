@@ -105,6 +105,7 @@
             this.btnGenerarViaje.TabIndex = 12;
             this.btnGenerarViaje.Text = "Generar Viaje";
             this.btnGenerarViaje.UseVisualStyleBackColor = true;
+            this.btnGenerarViaje.Click += new System.EventHandler(this.btnGenerarViaje_Click);
             // 
             // btnRegistroDeLlegadaDestino
             // 
