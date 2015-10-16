@@ -239,6 +239,7 @@ CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI
 CREATE TABLE [LA_BANDA_DE_GARRI].[Productos] (
 [Id] INT IDENTITY(1,1),
 [Descripcion] NVARCHAR(255),
+[Stock] int,
 CONSTRAINT [PK_Productos] PRIMARY KEY ([Id])
 )
 
@@ -524,14 +525,14 @@ CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_area(@codigo) AS
 BEGIN
 	update LA_BANDA_DE_GARRI.Ruta_Aerea
 	set Habilitada = 0
+	where Codigo = @codigo
 	
-	EXEC LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas @codigo = @codigo
+	EXEC LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas @codigo = @codigo --falta codificar este sp
 END
 
 GO
 
 --ABM AERONAVES
-
 
 
 --GENERAR VIAJE
@@ -553,6 +554,9 @@ BEGIN
 			set @resultado = 'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
 			return	
 		end
+		
+	insert into LA_BANDA_DE_GARRI.Viajes(Fecha_salida, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+	values(@fecha_salida, @fecha_llegada, @aeronave, @ruta_aerea)
 	
 END
 
@@ -598,11 +602,19 @@ END
 
 GO
 
---REGISTRO LLEGADA A DESTION
+--REGISTRO LLEGADA A DESTINO
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@fecha_llegada DATETIME, @aeronave NVARCHAR(255), @origen, @destino) AS
+BEGIN
+
+--insert a una tabla nueva de registro de llegadas?
+
+END
+
+GO
 
 
 --COMPRA PASAJE-ENCOMIENDA
-CREATE PROCEDURE LA_BANDA_DE_GARRI.comprar_pasaje(@fecha datetime, @origen, @destino) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_pasaje(@fecha datetime, @origen, @destino) AS
 BEGIN
 
 END
@@ -610,7 +622,7 @@ END
 GO
 
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.comprar_encomienda AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_encomienda AS
 BEGIN
 END
 
@@ -627,14 +639,44 @@ GO
 --CONSULTAR MILLAS
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_consultar_millas(@dni numeric(18,0)) AS
 BEGIN
-
+	select *
+	from LA_BANDA_DE_GARRI.Millas m
+	join LA_BANDA_DE_GARRI.Clientes c on m.Id_Cliente = c.Id
+	where c.dni = @dni
+	
 END
 
 GO
 
 --CANJE DE MILLAS
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_canjear_millas AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_canjear_millas(@dni numeric(18,0), @producto int, @cant int, @fecha_canje datetime, @resultado nvarchar(255) output) AS
 BEGIN
+
+	if(LA_BANDA_DE_GARRI.fn_validar_stock(@producto, @cant) = 0)
+	begin
+		set @resultado = 'NO HAY STOCK DISPONIBLE DE ESE PRODUCTO'
+		return	
+	end
+
+	insert into LA_BANDA_DE_GARRI.Canje_Millas(DNI, Producto_elegido, cantidad, Fecha)
+	values(@dni, @producto, @cant, @fecha_canje)
+
+END
+
+create function LA_BANDA_DE_GARRI.fn_validar_stock(@producto int, @cantidad int) RETURNS INT as
+BEGIN
+	DECLARE @stock INT;
+	
+	select @stock = Stock 
+	from LA_BANDA_DE_GARRI.Productos
+	where Id = @producto
+	and Fecha_salida = @fecha_salida	
+		
+		if(@stock < @cantidad)
+		begin
+			return 0;
+		end;
+	return 1;
 
 END
 
