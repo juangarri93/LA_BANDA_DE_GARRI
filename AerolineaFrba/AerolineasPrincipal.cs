@@ -15,6 +15,9 @@ using AerolineaFrba.Abm_Ruta;
 using AerolineaFrba.Canje_Millas;
 using AerolineaFrba.Herramientas;
 
+using AerolineaFrba.Generacion_Viaje;
+using AerolineaFrba.Herramientas;
+
 
 namespace AerolineaFrba
 {
@@ -52,6 +55,14 @@ namespace AerolineaFrba
         {
             var nuevaVentanaRutaArea = new ABMRuta();
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRutaArea, this);
+        }
+
+        private void btnGenerarViaje_Click(object sender, EventArgs e)
+        {
+
+            var nuevaVentanaGenerarViae = new GenerarViaje();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaGenerarViae, this);
+
         }
     }
 }

@@ -97,6 +97,8 @@ namespace AerolineaFrba.Abm_Aeronave
             this.txtCantidadDeKG.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["KgDisponible"].Value);
 
             this.tabControl1.SelectedIndex = 1;
+
+            btnEditar.Enabled = true;
         }
 
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
