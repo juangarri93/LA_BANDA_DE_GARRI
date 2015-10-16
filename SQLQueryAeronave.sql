@@ -3,7 +3,15 @@
 ---------------- ELIMINAR Y DROPEAR TABLAS Y PROCEDIMIENTOS ----------------------
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+--ELIMINAR TABLA VIAJE--
+drop table Viaje
+go
+
+--ELIMINAR TABLA RUTA_AEREA--
+drop table Ruta_Aerea
+go
 
 --ELIMINAR TABLA rol_funcionalidad--
 drop table rol_funcionalidad
@@ -98,6 +106,32 @@ go
 ---------------- TABLAS ----------------------
 ----------------------------------------------
 ----------------------------------------------
+
+--CREAR TABLA Ruta_Aerea--
+create table Ruta_Aerea
+(id_Ruta int primary key not null identity,
+ tipo_servicio varchar(100),
+ ciudad_origen varchar(100),
+ ciudad_destino varchar(100),
+ precio_base_pasaje int,
+ precio_base_kg int,
+ habilitado binary,
+ CodigoAeronave int foreign key references Aeronave(CodigoAeronave),
+ CodigoCiudad int foreign key references Ciudad(CodigoCiudad)
+)
+
+--CREAR TABLA VIAJE--
+CREATE TABLE Viaje
+(
+	id_Viaje int PRIMARY KEY NOT NULL identity,
+	fecha_salida datetime,
+	fecha_llegada datetime,
+	Codigo_Aeronave int foreign key references Aeronave(CodigoAeronave),
+	ruta_Aerea int foreign key references Ruta_Aerea(id_Ruta),
+	rutaaerea varchar(100),
+	butacas_disponibles int,
+	kg_disponibles int
+)
 
 --CREAR TABLA AERONAVE--
 CREATE TABLE dbo.Aeronave

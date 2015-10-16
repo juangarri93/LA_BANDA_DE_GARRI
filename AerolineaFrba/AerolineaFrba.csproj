@@ -106,6 +106,18 @@
     <Compile Include="Abm Ruta\ABMRuta.Designer.cs">
       <DependentUpon>ABMRuta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Ruta\ABMRutaAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ruta\ABMRutaAlta.Designer.cs">
+      <DependentUpon>ABMRutaAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Ruta\ABMRutaBajaModificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Ruta\ABMRutaBajaModificacion.Designer.cs">
+      <DependentUpon>ABMRutaBajaModificacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Canje Millas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\ABMRolBajaModificacion.resx">
       <DependentUpon>ABMRolBajaModificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ruta\ABMRuta.resx">
+      <DependentUpon>ABMRuta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AerolineasPrincipal.resx">
       <DependentUpon>AerolineasPrincipal.cs</DependentUpon>
