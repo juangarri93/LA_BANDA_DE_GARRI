@@ -128,6 +128,7 @@
     <Compile Include="CapaADO\DAOCiudad.cs" />
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
     <Compile Include="CapaADO\DAORol.cs" />
+    <Compile Include="CapaADO\DAORuta.cs" />
     <Compile Include="CapaADO\SqlConnector.cs" />
     <Compile Include="Compra\Form1.cs">
       <SubType>Form</SubType>
@@ -139,6 +140,7 @@
     <Compile Include="ConstructorDeClases\Ciudad.cs" />
     <Compile Include="ConstructorDeClases\Persona.cs" />
     <Compile Include="ConstructorDeClases\Rol.cs" />
+    <Compile Include="ConstructorDeClases\Ruta.cs" />
     <Compile Include="Consulta Millas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Ruta\ABMRuta.resx">
       <DependentUpon>ABMRuta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ruta\ABMRutaAlta.resx">
+      <DependentUpon>ABMRutaAlta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AerolineasPrincipal.resx">
       <DependentUpon>AerolineasPrincipal.cs</DependentUpon>
