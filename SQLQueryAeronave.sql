@@ -297,6 +297,7 @@ go
 create proc spmostrar_aeronave
 as
 select * from Aeronave
+where BajaPorVidaUtil = 'Habilitado'
 order by CodigoAeronave
 go
 

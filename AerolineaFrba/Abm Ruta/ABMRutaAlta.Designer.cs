@@ -43,6 +43,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cbOrigen = new System.Windows.Forms.ComboBox();
             this.cbDestino = new System.Windows.Forms.ComboBox();
+            this.cmbHabiltiado = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -161,6 +163,7 @@
             this.btnCancelar.TabIndex = 55;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // cbOrigen
             // 
@@ -178,11 +181,32 @@
             this.cbDestino.Size = new System.Drawing.Size(148, 21);
             this.cbDestino.TabIndex = 57;
             // 
+            // cmbHabiltiado
+            // 
+            this.cmbHabiltiado.BackColor = System.Drawing.Color.White;
+            this.cmbHabiltiado.FormattingEnabled = true;
+            this.cmbHabiltiado.Location = new System.Drawing.Point(125, 316);
+            this.cmbHabiltiado.Name = "cmbHabiltiado";
+            this.cmbHabiltiado.Size = new System.Drawing.Size(148, 21);
+            this.cmbHabiltiado.TabIndex = 67;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(22, 321);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 16);
+            this.label8.TabIndex = 68;
+            this.label8.Text = "Habilitado";
+            // 
             // ABMRutaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 349);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cmbHabiltiado);
             this.Controls.Add(this.cbDestino);
             this.Controls.Add(this.cbOrigen);
             this.Controls.Add(this.btnCancelar);
@@ -223,5 +247,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cbOrigen;
         private System.Windows.Forms.ComboBox cbDestino;
+        private System.Windows.Forms.ComboBox cmbHabiltiado;
+        private System.Windows.Forms.Label label8;
     }
 }

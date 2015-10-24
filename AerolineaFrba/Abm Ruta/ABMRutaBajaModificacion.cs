@@ -16,5 +16,20 @@ namespace AerolineaFrba.Abm_Ruta
         {
             InitializeComponent();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        public void limpiar()
+        {
+
+            txtTipoServicio.Text = "";
+            cbOrigen.ValueMember = null;
+            cbDestino.ValueMember = null;
+            txtPrecioKG.Text = "";
+            txtPrecioBase.Text = "";
+        }
     }
 }

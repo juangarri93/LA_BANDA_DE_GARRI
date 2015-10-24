@@ -16,8 +16,6 @@ using AerolineaFrba.Canje_Millas;
 using AerolineaFrba.Herramientas;
 
 using AerolineaFrba.Generacion_Viaje;
-using AerolineaFrba.Herramientas;
-
 
 namespace AerolineaFrba
 {

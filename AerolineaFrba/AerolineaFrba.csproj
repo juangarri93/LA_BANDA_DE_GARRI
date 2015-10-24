@@ -220,6 +220,9 @@
     <EmbeddedResource Include="Abm Ruta\ABMRutaAlta.resx">
       <DependentUpon>ABMRutaAlta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Ruta\ABMRutaBajaModificacion.resx">
+      <DependentUpon>ABMRutaBajaModificacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AerolineasPrincipal.resx">
       <DependentUpon>AerolineasPrincipal.cs</DependentUpon>
     </EmbeddedResource>

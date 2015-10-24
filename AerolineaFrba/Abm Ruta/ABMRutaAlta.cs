@@ -24,6 +24,9 @@ namespace AerolineaFrba.Abm_Ruta
         {
             this.Top = 0;
             this.Left = 0;
+            cmbHabiltiado.Items.Add("");
+            cmbHabiltiado.Items.Add("Habilitado");
+            cmbHabiltiado.Items.Add("Deshabilitado");
             cargarComboBox();
 
         }
@@ -45,7 +48,6 @@ namespace AerolineaFrba.Abm_Ruta
 
                 DAORuta.AgregarRuta(cargarRuta());
                 MessageBox.Show("La Ruta se agrego correctamente.");
-                MessageBox.Show("1 -" + cbOrigen);     
                 limpiar();
             }
             catch (Exception ex)
@@ -67,6 +69,11 @@ namespace AerolineaFrba.Abm_Ruta
         private  Ruta cargarRuta()
         {
             return new Ruta(txtCodigoRuta.Text, txtTipoServicio.Text, Convert.ToString(cbOrigen.SelectedIndex + 1), Convert.ToString(cbDestino.SelectedIndex + 1), txtPrecioKG.Text, txtPrecioBase.Text);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
         }
 
     }
