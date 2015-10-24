@@ -45,7 +45,8 @@ namespace AerolineaFrba.Abm_Ruta
 
                 DAORuta.AgregarRuta(cargarRuta());
                 MessageBox.Show("La Ruta se agrego correctamente.");
-                //limpiar();
+                MessageBox.Show("1 -" + cbOrigen);     
+                limpiar();
             }
             catch (Exception ex)
             {
@@ -53,9 +54,19 @@ namespace AerolineaFrba.Abm_Ruta
             }
         }
 
+        public void limpiar()
+        {
+            txtCodigoRuta.Text = "";
+            txtTipoServicio.Text = "";
+            cbOrigen.ValueMember = null;
+            cbDestino.ValueMember = null;
+            txtPrecioKG.Text = "";
+            txtPrecioBase.Text = "";
+        }
+
         private  Ruta cargarRuta()
         {
-           return new Ruta(txtCodigoRuta.Text,txtTipoServicio.Text,cbOrigen.ValueMember,cbDestino.ValueMember,txtPrecioKG.Text,txtPrecioBase.Text);
+            return new Ruta(txtCodigoRuta.Text, txtTipoServicio.Text, Convert.ToString(cbOrigen.SelectedIndex + 1), Convert.ToString(cbDestino.SelectedIndex + 1), txtPrecioKG.Text, txtPrecioBase.Text);
         }
 
     }

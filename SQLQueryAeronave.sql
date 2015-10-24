@@ -43,6 +43,9 @@ drop table Ciudad
 go
 
 ----------------------------------------------------------------------------------------
+drop proc spinsertar_Ruta
+go
+
 drop proc speliminar_ciudad
 go
 
@@ -99,6 +102,10 @@ go
 
 --ELIMINAR PROCEDIMIENTO spdardebaja_aerolinea--
 DROP PROC spdardebaja_aerolinea
+go
+
+--ELIMINAR PROCEDIMIENTO spMostrar_Ciudad_sin_baja_util--
+DROP PROC spMostrar_Ciudad_sin_baja_util
 go
 
 ----------------------------------------------
@@ -426,3 +433,29 @@ values(@id_rol,@id_funcionalidad)
 go
 
 -------------------------------------------------------------------------------------------
+--PROCEDIMIENTO spinsertar_Ruta--
+CREATE PROC spinsertar_Ruta
+(@CodigoRuta int output,
+@TipoServicio varchar(100),
+@CiudadOrigen varchar(100),
+@CiudadDestino varchar(100),
+@PrecioKG int,
+@PrecioBase int
+
+)
+as
+insert into Ruta_Aerea(tipo_servicio,ciudad_origen,ciudad_destino,precio_base_kg,precio_base_pasaje)
+values(@TipoServicio,@CiudadOrigen,@CiudadDestino,@PrecioKG,@PrecioBase)
+
+go
+
+-------------------------------------------------------------------------------------------
+
+--PROCEDIMIENTO spMostrar_Ciudad_sin_baja_util --
+CREATE PROC spMostrar_Ciudad_sin_baja_util
+as
+select * from Ciudad
+where BajaPorVidaUtil = 'No'
+order by CodigoCiudad
+go
+

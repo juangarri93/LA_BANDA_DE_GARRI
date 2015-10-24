@@ -8,22 +8,58 @@ namespace AerolineaFrba.ConstructorDeClases
 {
     public class Ruta
     {
-        private string p1;
-        private string p2;
-        private string p3;
-        private string p4;
-        private string p5;
-        private string p6;
+        private string _CodigoRuta;
+        private string _TipoServicio;    
+        private string _CiudadOrigen;
+        private string _CiudadDestino;
+        private string _PrecioKG;
+        private string _PrecioBase;
 
-        public Ruta(string p1, string p2, string p3, string p4, string p5, string p6)
+        public Ruta(string codigoRuta, string tipoDeServicio, string ciudadOrigen, string ciudadDestino, string precioKG, string precioBase)
         {
             // TODO: Complete member initialization
-            this.p1 = p1;
-            this.p2 = p2;
-            this.p3 = p3;
-            this.p4 = p4;
-            this.p5 = p5;
-            this.p6 = p6;
+            this.CodigoRuta = codigoRuta;
+            this.TipoServicio = tipoDeServicio;
+            this.CiudadOrigen = ciudadOrigen;
+            this.CiudadDestino = ciudadDestino;
+            this.PrecioKG = precioKG;
+            this.PrecioBase = precioBase;
+        }
+
+        public string CodigoRuta
+        {
+            get { return _CodigoRuta; }
+            set { _CodigoRuta = value; }
+        }
+
+        public string TipoServicio
+        {
+            get { return _TipoServicio; }
+            set { _TipoServicio = value; }
+        }
+
+        public string CiudadOrigen
+        {
+            get { return _CiudadOrigen; }
+            set { _CiudadOrigen = value; }
+        }
+
+        public string CiudadDestino
+        {
+            get { return _CiudadDestino; }
+            set { _CiudadDestino = value; }
+        }
+
+        public string PrecioKG
+        {
+            get { return _PrecioKG; }
+            set { _PrecioKG = value; }
+        }
+
+        public string PrecioBase
+        {
+            get { return _PrecioBase; }
+            set { _PrecioBase = value; }
         }
     }
 }
