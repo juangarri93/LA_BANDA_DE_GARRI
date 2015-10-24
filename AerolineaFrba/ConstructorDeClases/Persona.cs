@@ -8,5 +8,79 @@ namespace AerolineaFrba.ConstructorDeClases
 {
     public class Persona
     {
+        //Cli_Nombre	Cli_Apellido	Cli_Dni	Cli_Dir	Cli_Telefono	Cli_Mail	Cli_Fecha_Nac
+        //AARON	Lucero	50782882	Avenida Montes de Oca5685	97134963	aaron@gmail.com	1932-11-15 00:00:00.000
+
+        private int _idPersona;
+        private string _nombre;
+        private string _apellido;
+        private int _dni;
+        private string _direccion;
+        private int _telefono;
+        private string _email;
+        private DateTime _fechaNac;
+
+        public Persona(int idpersona, string nombre, string apellido, int dni, string direccion, int telefono, string email, DateTime fechanac) {
+
+            Id = idpersona;
+            Nombre = nombre;
+            Apellido = apellido;
+            Dni = dni;
+            Direccion = direccion;
+            Telefono = telefono;
+            Email = email;
+            FechaNac = fechanac;
+
+        }
+      
+        public int Id
+        {
+            get { return _idPersona; }
+            set { _idPersona = value; }
+        }
+
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+
+        public string Apellido
+        {
+            get { return _apellido; }
+            set { _apellido = value; }
+        }
+
+        public int Dni
+        {
+            get { return _dni; }
+            set { _dni = value; }
+        }
+
+        public string Direccion
+        {
+            get { return _direccion; }
+            set { _direccion = value; }
+        }
+
+        public int Telefono
+        {
+            get { return _telefono; }
+            set { _telefono = value; }
+        }
+
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+
+        public DateTime FechaNac
+        {
+            get { return _fechaNac; }
+            set { _fechaNac = value; }
+        }
+
+
     }
 }

@@ -14,7 +14,7 @@ using AerolineaFrba.Abm_Ciudad;
 using AerolineaFrba.Abm_Ruta;
 using AerolineaFrba.Canje_Millas;
 using AerolineaFrba.Herramientas;
-
+using AerolineaFrba.Registro_de_Usuario;
 using AerolineaFrba.Generacion_Viaje;
 
 namespace AerolineaFrba
@@ -61,6 +61,12 @@ namespace AerolineaFrba
             var nuevaVentanaGenerarViae = new GenerarViaje();
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaGenerarViae, this);
 
+        }
+
+        private void btnRegistrosDeUsuarios_Click(object sender, EventArgs e)
+        {
+            var nuevaVentanaRegistroUsuarios = new RegistroUsuarios();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRegistroUsuarios, this);
         }
     }
 }
