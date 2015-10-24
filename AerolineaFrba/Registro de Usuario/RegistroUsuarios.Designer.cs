@@ -40,9 +40,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textMail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textFNac = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textTel = new System.Windows.Forms.TextBox();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -97,7 +99,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 169);
+            this.label4.Location = new System.Drawing.Point(16, 170);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 28);
@@ -106,7 +108,7 @@
             // 
             // textDNI
             // 
-            this.textDNI.Location = new System.Drawing.Point(304, 169);
+            this.textDNI.Location = new System.Drawing.Point(305, 175);
             this.textDNI.Margin = new System.Windows.Forms.Padding(4);
             this.textDNI.Name = "textDNI";
             this.textDNI.Size = new System.Drawing.Size(492, 22);
@@ -116,7 +118,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 223);
+            this.label5.Location = new System.Drawing.Point(16, 219);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 28);
@@ -125,7 +127,7 @@
             // 
             // textDir
             // 
-            this.textDir.Location = new System.Drawing.Point(304, 223);
+            this.textDir.Location = new System.Drawing.Point(304, 225);
             this.textDir.Margin = new System.Windows.Forms.Padding(4);
             this.textDir.Name = "textDir";
             this.textDir.Size = new System.Drawing.Size(492, 22);
@@ -135,7 +137,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 273);
+            this.label6.Location = new System.Drawing.Point(16, 328);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 28);
@@ -144,7 +146,7 @@
             // 
             // textMail
             // 
-            this.textMail.Location = new System.Drawing.Point(304, 273);
+            this.textMail.Location = new System.Drawing.Point(304, 333);
             this.textMail.Margin = new System.Windows.Forms.Padding(4);
             this.textMail.Name = "textMail";
             this.textMail.Size = new System.Drawing.Size(492, 22);
@@ -154,25 +156,16 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(16, 325);
+            this.label7.Location = new System.Drawing.Point(16, 380);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(263, 28);
             this.label7.TabIndex = 11;
             this.label7.Text = "Fecha de Nacimiento :";
             // 
-            // textFNac
-            // 
-            this.textFNac.Location = new System.Drawing.Point(304, 325);
-            this.textFNac.Margin = new System.Windows.Forms.Padding(4);
-            this.textFNac.Name = "textFNac";
-            this.textFNac.Size = new System.Drawing.Size(492, 22);
-            this.textFNac.TabIndex = 12;
-            this.textFNac.TextChanged += new System.EventHandler(this.textFNac_TextChanged);
-            // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(637, 412);
+            this.btnCancelar.Location = new System.Drawing.Point(637, 423);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(160, 58);
@@ -183,7 +176,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(304, 412);
+            this.btnAceptar.Location = new System.Drawing.Point(305, 423);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(160, 58);
@@ -192,14 +185,50 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(16, 277);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(133, 28);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Teléfono :";
+            // 
+            // textTel
+            // 
+            this.textTel.Location = new System.Drawing.Point(304, 277);
+            this.textTel.Margin = new System.Windows.Forms.Padding(4);
+            this.textTel.Name = "textTel";
+            this.textTel.Size = new System.Drawing.Size(492, 22);
+            this.textTel.TabIndex = 16;
+            this.textTel.TextChanged += new System.EventHandler(this.textTel_TextChanged);
+            // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaNac.Location = new System.Drawing.Point(305, 380);
+            this.dtpFechaNac.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaNac.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
+            this.dtpFechaNac.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtpFechaNac.ShowUpDown = true;
+            this.dtpFechaNac.Size = new System.Drawing.Size(153, 22);
+            this.dtpFechaNac.TabIndex = 62;
+            this.dtpFechaNac.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtpFechaNac.ValueChanged += new System.EventHandler(this.dtpFechaNac_ValueChanged);
+            // 
             // RegistroUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 521);
+            this.Controls.Add(this.dtpFechaNac);
+            this.Controls.Add(this.textTel);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.textFNac);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textMail);
             this.Controls.Add(this.label6);
@@ -234,8 +263,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textMail;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textFNac;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textTel;
+        private System.Windows.Forms.DateTimePicker dtpFechaNac;
     }
 }

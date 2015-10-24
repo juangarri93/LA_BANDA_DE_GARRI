@@ -43,6 +43,27 @@ drop table Ciudad
 go
 
 ----------------------------------------------------------------------------------------
+
+--ELIMINAR TABLA Persona--
+drop table Persona
+go
+
+----------------------------------------------------------------------------------------
+drop proc speliminar_usuario
+go
+
+drop proc spinsertar_usuario
+go
+
+drop proc speditar_usuario
+go
+
+drop proc spmostrar_usuario
+go
+
+drop proc spbaja_usuario
+go
+ 
 drop proc spinsertar_Ruta
 go
 
@@ -108,6 +129,7 @@ go
 DROP PROC spMostrar_Ciudad_sin_baja_util
 go
 
+ 
 ----------------------------------------------
 ----------------------------------------------
 ---------------- TABLAS ----------------------
@@ -200,6 +222,24 @@ id_funcionalidad int foreign key references Funcionalidad(id_funcionalidad)
 go
 
 -------------------------------------------------------
+
+ 
+--CREAR TABLA Persona--
+CREATE TABLE dbo.Persona
+   (CodigoPersona int PRIMARY KEY NOT NULL identity ,
+    Nombre varchar(50) NOT NULL,
+	Apellido varchar(50) NOT NULL, 
+	Dni int NOT NULL,
+	Direccion varchar(50) NOT NULL,
+	Telefono int NOT NULL,
+	Email varchar(50) NOT NULL,
+	FechaNac datetime NOT NULL,
+	Estado varchar(50) NOT NULL
+	)
+go
+
+
+--------------------------------------------------
 
 -------------------------------------------------------
 -------------------------------------------------------
@@ -460,3 +500,83 @@ where BajaPorVidaUtil = 'No'
 order by CodigoCiudad
 go
 
+---------------------------------------------------------------------------------------------
+
+-- PROCEDIMIENTO spinsertar_usuario --
+
+CREATE PROC spinsertar_usuario
+(
+	@CodigoPersona int output,
+    @Nombre varchar(50),
+	@Apellido varchar(50), 
+	@Dni int,
+	@Direccion varchar(50),
+	@Telefono int,
+	@Email varchar(50),
+	@FechaNac datetime,
+	@estado varchar(50)
+	)
+as
+insert into Persona(Nombre,Apellido,Dni,Direccion,Telefono,Email,Fechanac,Estado)
+values(@Nombre,@Apellido,@Dni,@Direccion,@Telefono,@Email,@FechaNac,@estado)
+go
+------------------------------------------------------------------------------------------
+
+-- PROCEDIMIENTO spmostrar_usuario --
+
+CREATE PROC spmostrar_usuario
+as
+select * from Persona
+order by CodigoPersona
+go
+------------------------------------------------------------------------------------------
+--PROCEDIMIENTO BUSCAR USUARIO--
+create proc spbuscar_usuario
+@textoBuscar varchar(50)
+as
+select * from Persona
+where Dni like @textoBuscar + '%'
+go
+--------------------------------------------------------------------------
+--PROCEDIMIENTO EDITAR USUARIO ---
+
+create proc speditar_usuario
+( 	@codigoPersona int output,
+    @nombre varchar(50),
+	@apellido varchar(50), 
+	@dni int,
+	@direccion varchar(50),
+	@telefono int,
+	@email varchar(50),
+	@fechaNac datetime
+	)
+as
+update Persona set Nombre = @nombre,
+	Apellido = @apellido,
+	Dni = @dni,
+	Direccion = @direccion,
+	Telefono =  @telefono,
+	Email = @email,
+	FechaNac = @fechaNac
+where CodigoPersona = @codigoPersona
+go
+--------------------------------------------------------------------------
+--PROCEDIMIENDO ELIMINAR USUARIO---
+
+CREATE proc speliminar_usuario
+@dni int 
+as
+delete from Persona
+where Dni = @dni
+go
+
+--------------------------------------------------------------------------
+-- PROCEDIMIENTO BAJA USUARIO --
+
+create proc spbaja_usuario
+@dni int
+as
+update Persona Set Estado = 'Deshabilitado'
+where @dni = dni
+go
+---------------------------------------------------------------------------

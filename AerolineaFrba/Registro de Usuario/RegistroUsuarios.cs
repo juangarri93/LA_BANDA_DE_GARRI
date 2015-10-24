@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AerolineaFrba.ConstructorDeClases;
+using AerolineaFrba.CapaADO;
 
 namespace AerolineaFrba.Registro_de_Usuario
 {
@@ -29,7 +31,18 @@ namespace AerolineaFrba.Registro_de_Usuario
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+
+                DAOUsuario.AgregarUsuario(CargarUsuario());
+                MessageBox.Show("El Usuario se agregó correctamente.");
+                limpiar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error." + ex.Message);
+            }
 
         }
 
@@ -60,7 +73,40 @@ namespace AerolineaFrba.Registro_de_Usuario
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            limpiar();
+        }
+
+
+        private void textTel_TextChanged(object sender, EventArgs e)
+        {
 
         }
+
+        private void dtpFechaNac_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private Persona CargarUsuario()
+        {
+             
+            return new Persona(1, textNombre.Text, textApellido.Text, Convert.ToInt32(textDNI.Text), textDir.Text, Convert.ToInt32(textTel.Text), textMail.Text, dtpFechaNac.Value);
+
+        }
+
+        private void limpiar()
+        {
+            textNombre.Text = "";
+            textApellido.Text = "";
+            textDNI.Text = "";
+            textDir.Text = "";
+            textMail.Text = "";
+            textTel.Text = "";
+
+
+        }
+
+        
+        
     }
 }

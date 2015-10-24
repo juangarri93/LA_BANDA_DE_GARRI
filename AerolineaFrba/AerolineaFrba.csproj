@@ -129,6 +129,7 @@
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
     <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\DAORuta.cs" />
+    <Compile Include="CapaADO\DAOUsuario.cs" />
     <Compile Include="CapaADO\SqlConnector.cs" />
     <Compile Include="Compra\Form1.cs">
       <SubType>Form</SubType>
@@ -175,6 +176,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registro de Usuario\ABMBajaModifUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\ABMBajaModifUsuario.Designer.cs">
+      <DependentUpon>ABMBajaModifUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registro de Usuario\ABMUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\ABMUsuario.Designer.cs">
+      <DependentUpon>ABMUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario\RegistroUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +251,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Registro de Usuario\ABMBajaModifUsuario.resx">
+      <DependentUpon>ABMBajaModifUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro de Usuario\ABMUsuario.resx">
+      <DependentUpon>ABMUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\RegistroUsuarios.resx">
       <DependentUpon>RegistroUsuarios.cs</DependentUpon>
     </EmbeddedResource>

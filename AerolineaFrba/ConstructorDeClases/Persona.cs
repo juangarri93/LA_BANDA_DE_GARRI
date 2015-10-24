@@ -19,6 +19,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _telefono;
         private string _email;
         private DateTime _fechaNac;
+        private string _estado;
 
         public Persona(int idpersona, string nombre, string apellido, int dni, string direccion, int telefono, string email, DateTime fechanac) {
 
@@ -30,9 +31,16 @@ namespace AerolineaFrba.ConstructorDeClases
             Telefono = telefono;
             Email = email;
             FechaNac = fechanac;
+            Estado = "Habilitado";
 
         }
-      
+
+
+        public string Estado
+        {
+            get { return _estado; }
+            set { _estado = value; }
+        } 
         public int Id
         {
             get { return _idPersona; }

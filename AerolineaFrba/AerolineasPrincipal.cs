@@ -65,7 +65,7 @@ namespace AerolineaFrba
 
         private void btnRegistrosDeUsuarios_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaRegistroUsuarios = new RegistroUsuarios();
+            var nuevaVentanaRegistroUsuarios = new ABMUsuario();
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRegistroUsuarios, this);
         }
     }
