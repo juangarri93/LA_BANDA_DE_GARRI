@@ -43,6 +43,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.Habilitado = new System.Windows.Forms.Label();
             this.txtHabilitado = new System.Windows.Forms.TextBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // cbDestino
@@ -177,11 +179,20 @@
             this.txtHabilitado.Size = new System.Drawing.Size(148, 20);
             this.txtHabilitado.TabIndex = 74;
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(312, 27);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(507, 215);
+            this.dataGridView.TabIndex = 75;
+            // 
             // ABMRutaBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 302);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.txtHabilitado);
             this.Controls.Add(this.Habilitado);
             this.Controls.Add(this.btnEditar);
@@ -199,6 +210,7 @@
             this.Controls.Add(this.label2);
             this.Name = "ABMRutaBajaModificacion";
             this.Text = "ABMRutaBajaModificacion";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +233,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label Habilitado;
         private System.Windows.Forms.TextBox txtHabilitado;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }

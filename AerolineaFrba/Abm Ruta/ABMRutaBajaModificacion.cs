@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AerolineaFrba.CapaADO;
+
 namespace AerolineaFrba.Abm_Ruta
 {
     public partial class ABMRutaBajaModificacion : Form
@@ -30,6 +32,14 @@ namespace AerolineaFrba.Abm_Ruta
             cbDestino.ValueMember = null;
             txtPrecioKG.Text = "";
             txtPrecioBase.Text = "";
+        }
+
+        //Metodo Mostrar
+        private void Mostrar()
+        {
+            //this.dataListadoRuta.DataSource = DAORuta.Mostrar();
+            //this.OcultarColumnas();
+            //lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListadoAeronaves.Rows.Count);
         }
     }
 }

@@ -23,5 +23,10 @@ namespace AerolineaFrba.CapaADO
             executeProcedure("spinsertar_Ruta", 1,ruta.TipoServicio,ruta.CiudadOrigen,ruta.CiudadDestino,ruta.PrecioKG,ruta.PrecioBase);
             
         }
+
+        public static DataTable Mostrar()
+        {
+            return retrieveDataTable("spmostrar_Ruta");
+        }
     }
 }
