@@ -49,6 +49,9 @@ drop table Persona
 go
 
 ----------------------------------------------------------------------------------------
+drop proc spmostrar_Ruta
+GO
+
 drop proc speliminar_usuario
 go
 
@@ -475,15 +478,15 @@ go
 CREATE PROC spinsertar_Ruta
 (@CodigoRuta int output,
 @TipoServicio varchar(100),
-@CiudadOrigen varchar(100),
-@CiudadDestino varchar(100),
+@CiudadOrigen int,
+@CiudadDestino int,
 @PrecioKG int,
 @PrecioBase int
 
 )
 as
-insert into Ruta_Aerea(tipo_servicio,ciudad_origen,ciudad_destino,precio_base_kg,precio_base_pasaje)
-values(@TipoServicio,@CiudadOrigen,@CiudadDestino,@PrecioKG,@PrecioBase)
+insert into Ruta_Aerea(tipo_servicio,precio_base_kg,precio_base_pasaje,idCiudadOrigen,idCiudadDestino)
+values(@TipoServicio,@PrecioKG,@PrecioBase,@CiudadOrigen,@CiudadDestino)
 
 go
 
@@ -493,7 +496,7 @@ go
 CREATE PROC spMostrar_Ciudad_sin_baja_util
 as
 select * from Ciudad
-where BajaPorVidaUtil = 'No'
+where BajaPorVidaUtil = 'Habilitado'
 order by CodigoCiudad
 go
 
@@ -577,3 +580,10 @@ update Persona Set Estado = 'Deshabilitado'
 where @dni = dni
 go
 ---------------------------------------------------------------------------
+
+--PROCEDIMIENTO MOSTRAR RUTA -- 
+create proc spmostrar_Ruta
+as 
+select * from Ruta_Aerea
+order by id_Ruta
+go

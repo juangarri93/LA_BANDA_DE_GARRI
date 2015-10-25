@@ -19,8 +19,7 @@ namespace AerolineaFrba.CapaADO
 
         public static void AgregarRuta(Ruta ruta)
         {
-            MessageBox.Show("2 -" + ruta.CiudadOrigen); 
-            executeProcedure("spinsertar_Ruta", 1,ruta.TipoServicio,ruta.CiudadOrigen,ruta.CiudadDestino,ruta.PrecioKG,ruta.PrecioBase);
+            executeProcedure("spinsertar_Ruta", 1,ruta.TipoServicio,ruta.CiudadOrigen,ruta.CiudadDestino,ruta.PrecioKG,ruta.PrecioBase,ruta.Habilitado);
             
         }
 

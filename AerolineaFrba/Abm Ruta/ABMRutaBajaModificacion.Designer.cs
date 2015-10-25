@@ -182,7 +182,7 @@
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(312, 27);
+            this.dataGridView.Location = new System.Drawing.Point(312, 36);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(507, 215);
             this.dataGridView.TabIndex = 75;
@@ -210,6 +210,7 @@
             this.Controls.Add(this.label2);
             this.Name = "ABMRutaBajaModificacion";
             this.Text = "ABMRutaBajaModificacion";
+            this.Load += new System.EventHandler(this.ABMRutaBajaModificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

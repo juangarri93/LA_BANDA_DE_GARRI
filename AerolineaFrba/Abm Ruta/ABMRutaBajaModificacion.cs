@@ -37,9 +37,14 @@ namespace AerolineaFrba.Abm_Ruta
         //Metodo Mostrar
         private void Mostrar()
         {
-            //this.dataListadoRuta.DataSource = DAORuta.Mostrar();
+            this.dataGridView.DataSource = DAORuta.Mostrar();
             //this.OcultarColumnas();
             //lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListadoAeronaves.Rows.Count);
+        }
+
+        private void ABMRutaBajaModificacion_Load(object sender, EventArgs e)
+        {
+            Mostrar();
         }
     }
 }
