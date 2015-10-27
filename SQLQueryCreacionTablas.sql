@@ -1,11 +1,33 @@
 USE [GD2C2015]
 GO
 
+--Dropeo las functions
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible') IS NOT NULL)
+  DROP FUNCTION LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible;
+
 --Dropeo las procedures
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_login') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_login;
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_agregar_funcionalidad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_agregar_funcionalidad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cambiar_estado_rol') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_consultar_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_consultar_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_eliminar_funcionalidad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_eliminar_funcionalidad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_listar_roles') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_listar_roles;
+
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol;
 
 --Dropeo las tablas
   
@@ -393,8 +415,9 @@ BEGIN
 	select Rol
 	from LA_BANDA_DE_GARRI.Roles
 END
+GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol(@rol NVARCHAR(255)) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol(@rol NVARCHAR(255), @nuevo_nombre NVARCHAR(255)) AS
 BEGIN
 	update LA_BANDA_DE_GARRI.Roles
 	set Rol = @nuevo_nombre
@@ -406,8 +429,8 @@ GO
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_agregar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
 BEGIN
 		INSERT INTO LA_BANDA_DE_GARRI.Rol_Funcionalidad(Id_Rol, Id_Funcionalidad)
-		VALUES ((SELECT Id FROM FOQZ.Roles WHERE Rol = @rol),
-		        (SELECT Id FROM FOQZ.Funcionalidades WHERE Nombre = @func))
+		VALUES ((SELECT Id FROM LA_BANDA_DE_GARRI.Roles WHERE Rol = @rol),
+		        (SELECT Id FROM LA_BANDA_DE_GARRI.Funcionalidades WHERE Nombre = @func))
 END
 
 GO
@@ -415,8 +438,8 @@ GO
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_eliminar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
 BEGIN
 		delete from LA_BANDA_DE_GARRI.Rol_Funcionalidad
-		where Id_Rol = SELECT Id FROM FOQZ.Roles WHERE Rol = @rol 
-		and Id_Funcionalidad = SELECT Id FROM FOQZ.Funcionalidades WHERE Nombre = @func
+		where Id_Rol = (SELECT Id FROM LA_BANDA_DE_GARRI.Roles WHERE Rol = @rol) 
+		and Id_Funcionalidad = (SELECT Id FROM LA_BANDA_DE_GARRI.Funcionalidades WHERE Nombre = @func)
 END
 
 GO
