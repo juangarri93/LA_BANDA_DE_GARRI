@@ -31,7 +31,7 @@
             this.cbDestino = new System.Windows.Forms.ComboBox();
             this.cbOrigen = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.txtPrecioBase = new System.Windows.Forms.TextBox();
             this.txtPrecioKG = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -73,14 +73,14 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnAceptar
+            // btnGuardar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(312, 257);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(127, 33);
-            this.btnAceptar.TabIndex = 67;
-            this.btnAceptar.Text = "Guardar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(312, 257);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(127, 33);
+            this.btnGuardar.TabIndex = 67;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // txtPrecioBase
             // 
@@ -151,6 +151,7 @@
             this.btnEditar.TabIndex = 72;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // label6
             // 
@@ -200,7 +201,7 @@
             this.Controls.Add(this.cbDestino);
             this.Controls.Add(this.cbOrigen);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.txtPrecioBase);
             this.Controls.Add(this.txtPrecioKG);
             this.Controls.Add(this.label6);
@@ -222,7 +223,7 @@
         private System.Windows.Forms.ComboBox cbDestino;
         private System.Windows.Forms.ComboBox cbOrigen;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TextBox txtPrecioBase;
         private System.Windows.Forms.TextBox txtPrecioKG;
         private System.Windows.Forms.Label label4;

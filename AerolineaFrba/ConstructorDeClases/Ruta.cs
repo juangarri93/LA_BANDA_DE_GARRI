@@ -14,9 +14,9 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _CiudadDestino;
         private int _PrecioKG;
         private int _PrecioBase;
-        private int _habilitado;
+        private string _habilitado;
 
-        public Ruta(int codigoRuta, string tipoDeServicio, int ciudadOrigen, int ciudadDestino, int precioKG, int precioBase,int habilitado)
+        public Ruta(int codigoRuta, string tipoDeServicio, int ciudadOrigen, int ciudadDestino, int precioKG, int precioBase,string habilitado)
         {
             // TODO: Complete member initialization
             this.CodigoRuta = codigoRuta;
@@ -28,7 +28,7 @@ namespace AerolineaFrba.ConstructorDeClases
             this.Habilitado = habilitado;
         }
 
-        public int Habilitado
+        public string Habilitado
         {
             get { return _habilitado; }
             set { _habilitado = value; }

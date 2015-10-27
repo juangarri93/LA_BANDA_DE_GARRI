@@ -193,11 +193,11 @@ create table Ruta_Aerea
  tipo_servicio varchar(100),
  precio_base_pasaje int,
  precio_base_kg int,
- habilitado binary,
+ habilitado varchar(100),
  idCiudadOrigen int foreign key references Ciudad(CodigoCiudad),
  idCiudadDestino int foreign key references Ciudad(CodigoCiudad)
 )
-
+go
 
 
 --CREAR TABLA VIAJE--
@@ -481,12 +481,12 @@ CREATE PROC spinsertar_Ruta
 @CiudadOrigen int,
 @CiudadDestino int,
 @PrecioKG int,
-@PrecioBase int
-
+@PrecioBase int,
+@habilitado varchar(100)
 )
 as
-insert into Ruta_Aerea(tipo_servicio,precio_base_kg,precio_base_pasaje,idCiudadOrigen,idCiudadDestino)
-values(@TipoServicio,@PrecioKG,@PrecioBase,@CiudadOrigen,@CiudadDestino)
+insert into Ruta_Aerea(tipo_servicio,precio_base_kg,precio_base_pasaje,idCiudadOrigen,idCiudadDestino,habilitado)
+values(@TipoServicio,@PrecioKG,@PrecioBase,@CiudadOrigen,@CiudadDestino,@habilitado)
 
 go
 

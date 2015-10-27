@@ -46,5 +46,14 @@ namespace AerolineaFrba.Abm_Ruta
         {
             Mostrar();
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            btnCancelar.Enabled = true;
+            btnGuardar.Enabled = true;
+            btnEditar.Enabled = false;
+
+           // habilitarTextBox();
+        }
     }
 }

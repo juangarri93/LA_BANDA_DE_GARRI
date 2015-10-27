@@ -68,7 +68,7 @@ namespace AerolineaFrba.Abm_Ruta
 
         private  Ruta cargarRuta()
         {
-            return new Ruta(Convert.ToInt32(txtCodigoRuta.Text), txtTipoServicio.Text,cbOrigen.SelectedIndex + 1, cbDestino.SelectedIndex + 1,Convert.ToInt32(txtPrecioKG.Text),Convert.ToInt32(txtPrecioBase.Text),cmbHabiltiado.SelectedIndex + 1);
+            return new Ruta(Convert.ToInt32(txtCodigoRuta.Text), txtTipoServicio.Text, cbOrigen.SelectedIndex + 1, cbDestino.SelectedIndex + 1, Convert.ToInt32(txtPrecioKG.Text), Convert.ToInt32(txtPrecioBase.Text), Convert.ToString(cmbHabiltiado.SelectedIndex + 1));
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
