@@ -27,5 +27,10 @@ namespace AerolineaFrba.CapaADO
         {
             return retrieveDataTable("spmostrar_Ruta");
         }
+
+        internal static void EditarRuta(object p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -226,7 +226,6 @@ namespace AerolineaFrba.Abm_Aeronave
             cmbBajaFueraDeServicio.Items.Add("Habilitado");
             cmbBajaFueraDeServicio.Items.Add("Deshabilitado");
             btnCancelar.Enabled = false;
-            btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;
             btnGuardar.Enabled = false;
             deshabilitarTextBox(); 
@@ -324,6 +323,11 @@ namespace AerolineaFrba.Abm_Aeronave
         }
 
         private void txtNumeroAeronave_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
