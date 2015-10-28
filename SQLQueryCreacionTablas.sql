@@ -4,8 +4,38 @@ GO
 --Dropeo las functions
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible;
+  
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_servicio_es_valido') IS NOT NULL)
+  DROP FUNCTION LA_BANDA_DE_GARRI.fn_servicio_es_valido;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
+  DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_baja_ruta_aerea') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_aerea;
+  
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas;
+  
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_comprar_encomienda') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_encomienda;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_registrar_llegada_destino') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_comprar_pasaje') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_pasaje
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_canjear_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_canjear_millas;
+  
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_generar_viaje') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_crear_ruta_aerea') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_crear_ruta_aerea;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_login') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_login;
@@ -24,7 +54,6 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_eliminar_funcionalidad') IS NOT NULL)
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_listar_roles') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_listar_roles;
-
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol;
@@ -128,6 +157,7 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Usuarios] (
 [Password] NVARCHAR (255),
 [ultimo_login] DATETIME,
 [intentos_fallidos] TINYINT,
+[habilitado] BIT,
 [Id_Rol] TINYINT NOT NULL,
 CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Rol_Usuario] FOREIGN KEY ([Id_Rol]) REFERENCES [LA_BANDA_DE_GARRI].[Roles] ([Id])
@@ -474,7 +504,7 @@ begin
 			set @check_password = (select password from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
 
 			-- Seleccionamos si está habilitado
-			set @check_habilitado = (select Habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
+			set @check_habilitado = (select habilitado from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
 			if (@check_habilitado = 0)
 
 				begin
@@ -488,7 +518,7 @@ begin
 			if (@check_fallidos >= 3)
 				begin
 						update LA_BANDA_DE_GARRI.Login
-							set Habilitado = 0
+							set habilitado = 0
 							where username = @username_enviado
 
 						set @result = 'LOGIN_MAS_TRES_VECES'
@@ -535,7 +565,7 @@ CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_crear_ruta_aerea (@codigo numeric(18,0),
 														@tipo NVARCHAR(255), 
 														@origen int, 
 														@destino int, 
-														@precio_pasaje numeric(18,2)
+														@precio_pasaje numeric(18,2),
 														@precio_kg numeric(18,2)) AS
 BEGIN
 	insert into LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo, Tipo_Servicio, Ciudad_Origen, Ciudad_Destino, Precio_base_pasaje, Precio_base_kg)
@@ -544,44 +574,18 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_area(@codigo) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_aerea(@codigo numeric(18,0)) AS
 BEGIN
 	update LA_BANDA_DE_GARRI.Ruta_Aerea
 	set Habilitada = 0
 	where Codigo = @codigo
 	
-	EXEC LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas @codigo = @codigo --falta codificar este sp
+	--EXEC LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas @codigo = @codigo --falta codificar este sp
 END
 
 GO
 
 --ABM AERONAVES
-
-
---GENERAR VIAJE
-CREATE PROCEDURE LA_BANDA_DE_GARR.sp_generar_viaje(@ruta_aerea numeric(18,0), 
-													@aeronave NVARCHAR(255), 
-													@fecha_salida DATETIME, 
-													@fecha_llegada DATETIME
-													@resultado varchar(100) output) AS
-BEGIN
-		
-	if(LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_area, @aeronave) = 0)
-		begin
-			set @resultado = 'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
-			return	
-		end
-	
-	if(LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave, @fecha_salida) = 0)
-		begin
-			set @resultado = 'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
-			return	
-		end
-		
-	insert into LA_BANDA_DE_GARRI.Viajes(Fecha_salida, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
-	values(@fecha_salida, @fecha_llegada, @aeronave, @ruta_aerea)
-	
-END
 
 create function LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea NUMERIC(18,0),@aeronave NVARCHAR(255))RETURNS INT as
 begin
@@ -606,6 +610,7 @@ end
 
 GO
 
+
 create function LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave NVARCHAR(255), @fecha_salida DATETIME) RETURNS INT as
 BEGIN
 	DECLARE @cantidad INT;
@@ -625,10 +630,37 @@ END
 
 GO
 
---REGISTRO LLEGADA A DESTINO
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@fecha_llegada DATETIME, @aeronave NVARCHAR(255), @origen, @destino) AS
-BEGIN
 
+--GENERAR VIAJE
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@ruta_aerea numeric(18,0), 
+													@aeronave NVARCHAR(255), 
+													@fecha_salida DATETIME, 
+													@fecha_llegada DATETIME,
+													@resultado varchar(100) output) AS
+BEGIN
+		
+	if(LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea, @aeronave) = 0)
+		begin
+			set @resultado = 'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
+			return	
+		end
+	
+	if(LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave, @fecha_salida) = 0)
+		begin
+			set @resultado = 'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
+			return	
+		end
+		
+	insert into LA_BANDA_DE_GARRI.Viajes(Fecha_salida, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+	values(@fecha_salida, @fecha_llegada, @aeronave, @ruta_aerea)
+	
+END
+go
+
+--REGISTRO LLEGADA A DESTINO
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@fecha_llegada DATETIME, @aeronave NVARCHAR(255), @origen int, @destino int) AS
+BEGIN
+return 1;
 --insert a una tabla nueva de registro de llegadas?
 
 END
@@ -637,9 +669,9 @@ GO
 
 
 --COMPRA PASAJE-ENCOMIENDA
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_pasaje(@fecha datetime, @origen, @destino) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_pasaje(@fecha datetime, @origen int, @destino int) AS
 BEGIN
-
+return 1;
 END
 
 GO
@@ -647,6 +679,8 @@ GO
 
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_encomienda AS
 BEGIN
+
+	return 1;
 END
 
 GO
@@ -654,7 +688,7 @@ GO
 --CANCELACION/DEVOLUCION PASAJE-ENCOMIENDA
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas (@codigo NUMERIC (18,0)) AS
 BEGIN
-
+	return 1;
 END
 
 GO
@@ -672,6 +706,24 @@ END
 GO
 
 --CANJE DE MILLAS
+
+create function LA_BANDA_DE_GARRI.fn_validar_stock(@producto int, @cantidad int) RETURNS INT as
+BEGIN
+	DECLARE @stock INT;
+	
+	select @stock = Stock 
+	from LA_BANDA_DE_GARRI.Productos
+	where Id = @producto
+	--and Fecha_salida = @fecha_salida	PARA QUE ESTO?
+		
+		if(@stock < @cantidad)
+		begin
+			return 0;
+		end;
+	return 1;
+END
+GO
+
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_canjear_millas(@dni numeric(18,0), @producto int, @cant int, @fecha_canje datetime, @resultado nvarchar(255) output) AS
 BEGIN
 
@@ -685,23 +737,4 @@ BEGIN
 	values(@dni, @producto, @cant, @fecha_canje)
 
 END
-
-create function LA_BANDA_DE_GARRI.fn_validar_stock(@producto int, @cantidad int) RETURNS INT as
-BEGIN
-	DECLARE @stock INT;
-	
-	select @stock = Stock 
-	from LA_BANDA_DE_GARRI.Productos
-	where Id = @producto
-	and Fecha_salida = @fecha_salida	
-		
-		if(@stock < @cantidad)
-		begin
-			return 0;
-		end;
-	return 1;
-
-END
-
 GO
-
