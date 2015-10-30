@@ -745,6 +745,12 @@ BEGIN
 END
 GO
 
+create proc [LA_BANDA_DE_GARRI].[spmostrar_aeronave]
+as
+select * from LA_BANDA_DE_GARRI.Aeronave
+order by Aeronave.Id
+GO
+
 create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
 (@codigo int output, 
 @fechaAlta  date,
