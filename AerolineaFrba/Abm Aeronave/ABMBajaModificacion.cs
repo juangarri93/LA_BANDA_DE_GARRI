@@ -22,22 +22,19 @@ namespace AerolineaFrba.Abm_Aeronave
         private void deshabilitarTextBox()
         {
             dtpFechaAlta.Enabled = false;
-            txtNumeroAeronave.ReadOnly = true;
-            txtModelo.ReadOnly = true;
-            txtMatricula.ReadOnly = true;
-            txtFabricante.ReadOnly = true;
-            txtTipoDeServicio.ReadOnly = true;
+            txtNumeroAeronave.Enabled = false;
+            txtModelo.Enabled = false;
+            txtMatricula.Enabled = false;
+            txtFabricante.Enabled = false;
+            txtTipoDeServicio.Enabled = false;
             cmbBajaFueraDeServicio.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
-            txtCantidadDeButacas.ReadOnly = true;
-            txtCantidadDeKG.ReadOnly = true;
+            txtCantidadDeButacas.Enabled = false;
+            txtCantidadDeKG.Enabled = false;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
@@ -213,6 +210,15 @@ namespace AerolineaFrba.Abm_Aeronave
             dtFechaDeReinicio.Enabled = true;
             txtCantidadDeButacas.ReadOnly = false;
             txtCantidadDeKG.ReadOnly = false;
+
+            txtNumeroAeronave.Enabled = true;
+            txtModelo.Enabled = true;
+            txtMatricula.Enabled = true;
+            txtFabricante.Enabled = true;
+            txtTipoDeServicio.Enabled = true;
+            txtCantidadDeButacas.Enabled = true;
+            txtCantidadDeKG.Enabled = true;
+
         }
 
  
@@ -312,11 +318,7 @@ namespace AerolineaFrba.Abm_Aeronave
             }
         }
 
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void txtCodigo_TextChanged(object sender, EventArgs e)
         {
 
@@ -328,6 +330,11 @@ namespace AerolineaFrba.Abm_Aeronave
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

@@ -146,7 +146,7 @@ go
 --CREAR TABLA AERONAVE--
 CREATE TABLE dbo.Aeronave
    (CodigoAeronave int PRIMARY KEY NOT NULL identity ,
-    FechaAlta datetime NOT NULL,
+    FechaAlta date NOT NULL,
     NumeroAeronave int NOT NULL,
     Modelo varchar(50) NOT NULL,
 	Matricula varchar(50) NOT NULL,
@@ -154,9 +154,9 @@ CREATE TABLE dbo.Aeronave
 	TipoDeServicio varchar(50) NOT NULL,
 	BajaPorFueraDeServicio varchar(50) NOT NULL,
 	BajaPorVidaUtil varchar(50) NOT NULL,
-	FechaDeFueraDeServicio datetime  NOT NULL,
-	FechaDeReinicioDeServicio datetime  NOT NULL,
-	FechaDeBajaDefinitiva datetime  NOT NULL,
+	FechaDeFueraDeServicio date  NOT NULL,
+	FechaDeReinicioDeServicio date  NOT NULL,
+	FechaDeBajaDefinitiva date  NOT NULL,
 	CantidadButacas int NOT NULL,
 	KgDisponible int NOT NULL,
 	)
@@ -171,7 +171,7 @@ CREATE TABLE dbo.Persona
 	Direccion varchar(50) NOT NULL,
 	Telefono int NOT NULL,
 	Email varchar(50) NOT NULL,
-	FechaNac datetime NOT NULL,
+	FechaNac date NOT NULL,
 	Estado varchar(50) NOT NULL
 	)
 go
@@ -250,15 +250,15 @@ go
 --PROCEDIMIENTO INSERTAR AERONAVE EN TABLA AERONAVE--
 create proc spinsertar_aeronave
 (@codigo int output, 
-@fechaAlta  datetime ,
+@fechaAlta  date,
 @numeroAeronave int, 
 @modelo varchar(50),
 @matricula varchar(50), 
 @fabricante varchar(50),
 @tipoDeServicio varchar(50), 
 @bajaPorFueraDeServicio varchar(50),
-@FechaDeFueraDeServicio datetime ,
-@FechaDeReinicioDeServicio datetime ,
+@FechaDeFueraDeServicio date ,
+@FechaDeReinicioDeServicio date ,
 @CantidadButacas int, 
 @kgDisponible int)
 as
@@ -301,7 +301,7 @@ go
 --PROCEDIMIENTO EDITAR AERONAVE--
 create proc speditar_aeronave
 (@codigo int, 
-@fechaAlta  datetime ,
+@fechaAlta  date,
 @numeroAeronave int, 
 @modelo varchar(50),
 @matricula varchar(50), 
@@ -309,9 +309,9 @@ create proc speditar_aeronave
 @tipoDeServicio varchar(50), 
 @bajaPorFueraDeServicio varchar(50),
 @BajaPorVidaUtil varchar(50),
-@FechaDeFueraDeServicio datetime ,
-@FechaDeReinicioDeServicio datetime ,
-@FechaBajaDefinitiva datetime ,
+@FechaDeFueraDeServicio date,
+@FechaDeReinicioDeServicio date ,
+@FechaBajaDefinitiva date,
 @CantidadButacas int, 
 @kgDisponible int)
 as
@@ -513,7 +513,7 @@ CREATE PROC spinsertar_usuario
 	@Direccion varchar(50),
 	@Telefono int,
 	@Email varchar(50),
-	@FechaNac datetime,
+	@FechaNac date,
 	@estado varchar(50)
 	)
 as
@@ -548,7 +548,7 @@ create proc speditar_usuario
 	@direccion varchar(50),
 	@telefono int,
 	@email varchar(50),
-	@fechaNac datetime
+	@fechaNac date
 	)
 as
 update Persona set Nombre = @nombre,

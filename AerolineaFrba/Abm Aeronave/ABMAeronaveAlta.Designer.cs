@@ -193,14 +193,14 @@
             // 
             this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaAlta.Location = new System.Drawing.Point(95, 56);
-            this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtpFechaAlta.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
+            this.dtpFechaAlta.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFechaAlta.ShowUpDown = true;
             this.dtpFechaAlta.Size = new System.Drawing.Size(116, 20);
             this.dtpFechaAlta.TabIndex = 61;
-            this.dtpFechaAlta.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtpFechaAlta.Value = new System.DateTime(2015, 1, 25, 0, 0, 0, 0);
             // 
             // ABMAeronaveAlta
             // 
