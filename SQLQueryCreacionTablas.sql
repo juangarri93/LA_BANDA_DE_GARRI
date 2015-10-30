@@ -11,10 +11,17 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_servicio_es_valido') IS NOT NULL)
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
---Dropeo las procedures
+--Dropeo las procedures 
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_aeronave;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_aeronave;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_baja_ruta_aerea') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_aerea;
+ 
   
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas;
@@ -208,12 +215,12 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Numero] NUMERIC(18,0),
 [Matricula] NVARCHAR(255),
 [Modelo] int,
---AL FABRICANTE ACCEDES DESDE EL MODELO
+[Fabricante] int,
 [Tipo_Servicio] int,
 [Kg_Disponibles] numeric(18,0),
 [Cantidad_Butacas_Ventana] numeric(18,0),
 [Cantidad_Ventanas_Pasillo] numeric(18,0),
-[Baja_Fuera_Servicio] datetime,
+[Baja_Fuera_Servicio] bit,
 [Baja_Vida_Util] datetime,
 [Fecha_Reinicio] datetime,
 [Fecha_Fuera_Servicio] datetime,
@@ -409,16 +416,15 @@ GO
 			where LA_BANDA_DE_GARRI.Fabricante.Nombre = gd_esquema.Maestra.Aeronave_Fabricante), 
 			 gd_esquema.Maestra.Aeronave_Modelo from gd_esquema.Maestra;
 
-		insert into LA_BANDA_DE_GARRI.Aeronave(Matricula, Modelo, Tipo_Servicio, Kg_Disponibles)
+		insert into LA_BANDA_DE_GARRI.Aeronave(Matricula, Modelo, Fabricante, Tipo_Servicio, Kg_Disponibles)
 			select distinct gd_esquema.Maestra.Aeronave_Matricula, 
 			(Select LA_BANDA_DE_GARRI.Modelo.id from LA_BANDA_DE_GARRI.Modelo
-			where LA_BANDA_DE_GARRI.Modelo.Nombre = gd_esquema.Maestra.Aeronave_Modelo 
-			AND gd_esquema.Maestra.Aeronave_Fabricante = 
-			(select LA_BANDA_DE_GARRI.Fabricante.Nombre from LA_BANDA_DE_GARRI.Fabricante 
-			where LA_BANDA_DE_GARRI.Modelo.Fabricante = LA_BANDA_DE_GARRI.Fabricante.id)), 
+			where LA_BANDA_DE_GARRI.Modelo.Nombre = gd_esquema.Maestra.Aeronave_Modelo),
+			(select LA_BANDA_DE_GARRI.Fabricante.id from LA_BANDA_DE_GARRI.Fabricante 
+			where LA_BANDA_DE_GARRI.Fabricante.Nombre = gd_esquema.Maestra.Aeronave_Fabricante), 
 			(Select LA_BANDA_DE_GARRI.Tipo_Servicio.id from LA_BANDA_DE_GARRI.Tipo_Servicio
 			where LA_BANDA_DE_GARRI.Tipo_Servicio.Tipo_Servicio = gd_esquema.Maestra.Tipo_Servicio), 
-			gd_esquema.Maestra.Aeronave_KG_Disponibles 
+			gd_esquema.Maestra.Aeronave_KG_Disponibles
 			from gd_esquema.Maestra;
 
 		insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
@@ -735,6 +741,37 @@ BEGIN
 
 	insert into LA_BANDA_DE_GARRI.Canje_Millas(DNI, Producto_elegido, cantidad, Fecha)
 	values(@dni, @producto, @cant, @fecha_canje)
+
+END
+GO
+
+create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
+(@codigo int output, 
+@fechaAlta  date,
+@numeroAeronave int, 
+@modelo int,
+@matricula varchar(50), 
+@fabricante int,
+@tipoDeServicio int, 
+@bajaPorFueraDeServicio varchar(50),
+@FechaDeFueraDeServicio date ,
+@FechaDeReinicioDeServicio date ,
+@CantidadButaca int,
+--@CantidadButacasVentana int,
+--@CantidadButacasPasillo int, 
+@kgDisponible int)
+as
+BEGIN
+insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
+[Numero],Modelo,Matricula,Fabricante,
+[Tipo_Servicio],[Baja_Fuera_Servicio],
+[Baja_Vida_Util],[Fecha_Fuera_Servicio],
+[Fecha_Reinicio],[Fecha_baja_definitiva],[Kg_Disponibles])
+values(@fechaAlta,@numeroAeronave,@modelo,@matricula, 
+@fabricante,@tipoDeServicio, @bajaPorFueraDeServicio,
+@FechaDeFueraDeServicio,@FechaDeReinicioDeServicio,'2050-01-01', @kgDisponible)
+
+--Aca iria while para butacas
 
 END
 GO

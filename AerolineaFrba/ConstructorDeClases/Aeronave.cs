@@ -15,10 +15,10 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _CodigoAeronave;
         private DateTime _FechaAlta;
         private int _NumeroAeronave;
-        private string _Modelo;
+        private int _Modelo;
         private string _Matricula;
-        private string _Fabricante;
-        private string _TipoDeServicio;
+        private int _Fabricante;
+        private int _TipoDeServicio;
         private string _BajaPorFueraDeServicio;
         private string _BajaPorVidaUtil;
         private DateTime _FechaDeFueraDeServicio;
@@ -27,8 +27,8 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _CantidadDeButacas;
         private int _KGDisponible;
 
-        public Aeronave(int codigoAeronave,DateTime fechaAlta,int numero,string modelo,
-                        string matricula,string fabricante,string tipoDeServicio,string bajaPorFueraDeServicio,
+        public Aeronave(int codigoAeronave,DateTime fechaAlta,int numero,int modelo,
+                        string matricula,int fabricante,int tipoDeServicio,string bajaPorFueraDeServicio,
                         DateTime fechaDeFueraDeServicio,DateTime fechaDeReinicioDeServicio,
                         int cantidadButacas, int cantidadKG) 
         {
@@ -95,13 +95,13 @@ namespace AerolineaFrba.ConstructorDeClases
           set { _BajaPorFueraDeServicio = value; }
         }
 
-        public string TipoDeServicio
+        public int TipoDeServicio
         {
           get { return _TipoDeServicio; }
           set { _TipoDeServicio = value; }
         }
 
-        public string Fabricante
+        public int Fabricante
         {
           get { return _Fabricante; }
           set { _Fabricante = value; }
@@ -113,7 +113,7 @@ namespace AerolineaFrba.ConstructorDeClases
           set { _Matricula = value; }
         }
 
-        public string Modelo
+        public int Modelo
         {
           get { return _Modelo; }
           set { _Modelo = value; }

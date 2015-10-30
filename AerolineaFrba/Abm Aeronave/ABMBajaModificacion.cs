@@ -80,22 +80,22 @@ namespace AerolineaFrba.Abm_Aeronave
         private void dataListadoAeronaves_DoubleClick(object sender, EventArgs e)
         {
 
-            this.txtCodigo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CodigoAeronave"].Value);
-            this.dtpFechaAlta.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaAlta"].Value);
-            this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["NumeroAeronave"].Value);
-            this.txtModelo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Modelo"].Value);
-            this.txtMatricula.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Matricula"].Value);
-            this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
-            this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["TipoDeServicio"].Value);
-            this.cmbBajaFueraDeServicio.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["BajaPorFueraDeServicio"].Value);
-            this.dtFechaFueraDeServicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeFueraDeServicio"].Value);
-            this.dtFechaDeReinicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeReinicioDeServicio"].Value);
-            this.txtCantidadDeButacas.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CantidadButacas"].Value);
-            this.txtCantidadDeKG.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["KgDisponible"].Value);
+            //this.txtCodigo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Id"].Value);
+            //this.dtpFechaAlta.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaAlta"].Value);
+            //this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["NumeroAeronave"].Value);
+            //this.txtModelo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Modelo"].Value);
+            //this.txtMatricula.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Matricula"].Value);
+            //this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
+            //this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["TipoDeServicio"].Value);
+            //this.cmbBajaFueraDeServicio.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["BajaPorFueraDeServicio"].Value);
+            //this.dtFechaFueraDeServicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeFueraDeServicio"].Value);
+            //this.dtFechaDeReinicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeReinicioDeServicio"].Value);
+            //this.txtCantidadDeButacas.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CantidadButacas"].Value);
+            //this.txtCantidadDeKG.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["KgDisponible"].Value);
 
-            this.tabControl1.SelectedIndex = 1;
+            //this.tabControl1.SelectedIndex = 1;
 
-            btnEditar.Enabled = true;
+            //btnEditar.Enabled = true;
         }
 
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
@@ -184,7 +184,7 @@ namespace AerolineaFrba.Abm_Aeronave
         {
 
             return new Aeronave(Convert.ToInt32(txtCodigo.Text),dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
-                                       txtModelo.Text, txtMatricula.Text, txtFabricante.Text, txtTipoDeServicio.Text,
+                                       Convert.ToInt32(txtModelo.Text), txtMatricula.Text, Convert.ToInt32(txtFabricante.Text), Convert.ToInt32(txtTipoDeServicio.Text),
                                        cmbBajaFueraDeServicio.ValueMember,dtFechaFueraDeServicio.Value,dtFechaDeReinicio.Value,Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
         }
 

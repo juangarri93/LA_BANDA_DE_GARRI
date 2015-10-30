@@ -16,7 +16,7 @@ namespace AerolineaFrba.CapaADO
         public static void AgregarAeronave(Aeronave aeronave)
         {
 
-            executeProcedure("spinsertar_aeronave",1,aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
+            executeProcedure("LA_BANDA_DE_GARRI.spinsertar_aeronave", 1, aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
                              aeronave.Matricula,aeronave.Fabricante,aeronave.TipoDeServicio,aeronave.BajaPorFueraDeServicio,
                              aeronave.FechaDeFueraDeServicio,aeronave.FechaDeReinicioDeServicio,
                              aeronave.CantidadDeButacas,aeronave.KGDisponible);
@@ -28,7 +28,7 @@ namespace AerolineaFrba.CapaADO
         {
 
 
-            return retrieveDataTable("spmostrar_aeronave");
+            return retrieveDataTable("LA_BANDA_DE_GARRI.spmostrar_aeronave");
         }
 
 
