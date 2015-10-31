@@ -332,6 +332,11 @@ namespace AerolineaFrba.Abm_Aeronave
 
         }
 
+        private void txtTipoDeServicio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         
     } 
 }

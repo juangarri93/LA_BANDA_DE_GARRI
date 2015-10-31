@@ -80,10 +80,11 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 28);
+            this.tabControl1.Location = new System.Drawing.Point(16, 34);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(906, 365);
+            this.tabControl1.Size = new System.Drawing.Size(1208, 449);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -97,10 +98,11 @@
             this.tabPage1.Controls.Add(this.txtBuscar);
             this.tabPage1.Controls.Add(this.btnFiltroNumero);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(898, 339);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(1200, 420);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -108,9 +110,10 @@
             // 
             // btnBajaLogica
             // 
-            this.btnBajaLogica.Location = new System.Drawing.Point(161, 55);
+            this.btnBajaLogica.Location = new System.Drawing.Point(215, 68);
+            this.btnBajaLogica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBajaLogica.Name = "btnBajaLogica";
-            this.btnBajaLogica.Size = new System.Drawing.Size(104, 23);
+            this.btnBajaLogica.Size = new System.Drawing.Size(139, 28);
             this.btnBajaLogica.TabIndex = 11;
             this.btnBajaLogica.Text = "Baja Logica";
             this.btnBajaLogica.Click += new System.EventHandler(this.btnBajaLogica_Click);
@@ -118,9 +121,10 @@
             // checkBoxbajaLogica1
             // 
             this.checkBoxbajaLogica1.AutoSize = true;
-            this.checkBoxbajaLogica1.Location = new System.Drawing.Point(9, 59);
+            this.checkBoxbajaLogica1.Location = new System.Drawing.Point(12, 73);
+            this.checkBoxbajaLogica1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxbajaLogica1.Name = "checkBoxbajaLogica1";
-            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(104, 21);
             this.checkBoxbajaLogica1.TabIndex = 10;
             this.checkBoxbajaLogica1.Text = "Baja Logica";
             this.checkBoxbajaLogica1.UseVisualStyleBackColor = true;
@@ -128,18 +132,20 @@
             // 
             // btnFabricante
             // 
-            this.btnFabricante.Location = new System.Drawing.Point(623, 15);
+            this.btnFabricante.Location = new System.Drawing.Point(831, 18);
+            this.btnFabricante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFabricante.Name = "btnFabricante";
-            this.btnFabricante.Size = new System.Drawing.Size(104, 23);
+            this.btnFabricante.Size = new System.Drawing.Size(139, 28);
             this.btnFabricante.TabIndex = 9;
             this.btnFabricante.Text = "Filtro Fabricante";
             this.btnFabricante.Click += new System.EventHandler(this.btnFabricante_Click);
             // 
             // btnFiltroModelo
             // 
-            this.btnFiltroModelo.Location = new System.Drawing.Point(501, 15);
+            this.btnFiltroModelo.Location = new System.Drawing.Point(668, 18);
+            this.btnFiltroModelo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFiltroModelo.Name = "btnFiltroModelo";
-            this.btnFiltroModelo.Size = new System.Drawing.Size(104, 23);
+            this.btnFiltroModelo.Size = new System.Drawing.Size(139, 28);
             this.btnFiltroModelo.TabIndex = 8;
             this.btnFiltroModelo.Text = "Filtro Modelo";
             this.btnFiltroModelo.Click += new System.EventHandler(this.btnFiltroModelo_Click);
@@ -147,9 +153,10 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(432, 72);
+            this.lblTotal.Location = new System.Drawing.Point(576, 89);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(109, 13);
+            this.lblTotal.Size = new System.Drawing.Size(144, 17);
             this.lblTotal.TabIndex = 6;
             this.lblTotal.Text = "Cantidad Aeronaves :";
             // 
@@ -162,11 +169,12 @@
             this.dataListadoAeronaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataListadoAeronaves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1});
-            this.dataListadoAeronaves.Location = new System.Drawing.Point(6, 91);
+            this.dataListadoAeronaves.Location = new System.Drawing.Point(8, 112);
+            this.dataListadoAeronaves.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataListadoAeronaves.MultiSelect = false;
             this.dataListadoAeronaves.Name = "dataListadoAeronaves";
             this.dataListadoAeronaves.ReadOnly = true;
-            this.dataListadoAeronaves.Size = new System.Drawing.Size(767, 242);
+            this.dataListadoAeronaves.Size = new System.Drawing.Size(1023, 298);
             this.dataListadoAeronaves.TabIndex = 4;
             this.dataListadoAeronaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoAeronaves_CellContentClick);
             this.dataListadoAeronaves.DoubleClick += new System.EventHandler(this.dataListadoAeronaves_DoubleClick);
@@ -176,21 +184,23 @@
             this.dataGridViewCheckBoxColumn1.HeaderText = "Baja Logica";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Width = 69;
+            this.dataGridViewCheckBoxColumn1.Width = 88;
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(161, 18);
+            this.txtBuscar.Location = new System.Drawing.Point(215, 22);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(188, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(249, 22);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged_1);
             // 
             // btnFiltroNumero
             // 
-            this.btnFiltroNumero.Location = new System.Drawing.Point(379, 15);
+            this.btnFiltroNumero.Location = new System.Drawing.Point(505, 18);
+            this.btnFiltroNumero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFiltroNumero.Name = "btnFiltroNumero";
-            this.btnFiltroNumero.Size = new System.Drawing.Size(104, 23);
+            this.btnFiltroNumero.Size = new System.Drawing.Size(139, 28);
             this.btnFiltroNumero.TabIndex = 7;
             this.btnFiltroNumero.Text = "Filtro Numero";
             this.btnFiltroNumero.Click += new System.EventHandler(this.FiltroNumero_Click);
@@ -198,9 +208,10 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 19);
+            this.label2.Location = new System.Drawing.Point(8, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 28);
+            this.label2.Size = new System.Drawing.Size(199, 34);
             this.label2.TabIndex = 0;
             this.label2.Text = "Numero Aeronave :";
             this.label2.Click += new System.EventHandler(this.label2_Click_1);
@@ -208,10 +219,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(898, 339);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(1200, 420);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mantenimiento";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -245,9 +257,11 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.CodigoAeronave);
-            this.groupBox1.Location = new System.Drawing.Point(0, 6);
+            this.groupBox1.Location = new System.Drawing.Point(0, 7);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(899, 330);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1199, 406);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aeronaves";
@@ -256,152 +270,169 @@
             // 
             this.cmbBajaFueraDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.cmbBajaFueraDeServicio.FormattingEnabled = true;
-            this.cmbBajaFueraDeServicio.Location = new System.Drawing.Point(447, 89);
+            this.cmbBajaFueraDeServicio.Location = new System.Drawing.Point(596, 110);
+            this.cmbBajaFueraDeServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbBajaFueraDeServicio.Name = "cmbBajaFueraDeServicio";
-            this.cmbBajaFueraDeServicio.Size = new System.Drawing.Size(121, 21);
+            this.cmbBajaFueraDeServicio.Size = new System.Drawing.Size(160, 24);
             this.cmbBajaFueraDeServicio.TabIndex = 66;
             this.cmbBajaFueraDeServicio.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dtFechaFueraDeServicio
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 123);
+            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(596, 151);
+            this.dtFechaFueraDeServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtFechaFueraDeServicio.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
             this.dtFechaFueraDeServicio.Name = "dtFechaFueraDeServicio";
             this.dtFechaFueraDeServicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaFueraDeServicio.ShowUpDown = true;
-            this.dtFechaFueraDeServicio.Size = new System.Drawing.Size(121, 20);
+            this.dtFechaFueraDeServicio.Size = new System.Drawing.Size(160, 22);
             this.dtFechaFueraDeServicio.TabIndex = 65;
             this.dtFechaFueraDeServicio.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             // 
             // dtFechaDeReinicio
             // 
             this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaDeReinicio.Location = new System.Drawing.Point(447, 165);
+            this.dtFechaDeReinicio.Location = new System.Drawing.Point(596, 203);
+            this.dtFechaDeReinicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtFechaDeReinicio.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
             this.dtFechaDeReinicio.Name = "dtFechaDeReinicio";
             this.dtFechaDeReinicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaDeReinicio.ShowUpDown = true;
-            this.dtFechaDeReinicio.Size = new System.Drawing.Size(121, 20);
+            this.dtFechaDeReinicio.Size = new System.Drawing.Size(160, 22);
             this.dtFechaDeReinicio.TabIndex = 63;
             this.dtFechaDeReinicio.Value = new System.DateTime(2015, 10, 16, 0, 0, 0, 0);
             // 
             // dtpFechaAlta
             // 
             this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaAlta.Location = new System.Drawing.Point(130, 59);
+            this.dtpFechaAlta.Location = new System.Drawing.Point(173, 73);
+            this.dtpFechaAlta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 59, 0);
             this.dtpFechaAlta.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFechaAlta.ShowUpDown = true;
-            this.dtpFechaAlta.Size = new System.Drawing.Size(121, 20);
+            this.dtpFechaAlta.Size = new System.Drawing.Size(160, 22);
             this.dtpFechaAlta.TabIndex = 62;
             this.dtpFechaAlta.Value = new System.DateTime(2015, 1, 25, 23, 59, 59, 0);
             // 
             // txtCantidadDeKG
             // 
             this.txtCantidadDeKG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeKG.Location = new System.Drawing.Point(754, 56);
+            this.txtCantidadDeKG.Location = new System.Drawing.Point(1005, 69);
+            this.txtCantidadDeKG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCantidadDeKG.Name = "txtCantidadDeKG";
-            this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeKG.Size = new System.Drawing.Size(160, 22);
             this.txtCantidadDeKG.TabIndex = 37;
             // 
             // txtCantidadDeButacas
             // 
             this.txtCantidadDeButacas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeButacas.Location = new System.Drawing.Point(754, 27);
+            this.txtCantidadDeButacas.Location = new System.Drawing.Point(1005, 33);
+            this.txtCantidadDeButacas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCantidadDeButacas.Name = "txtCantidadDeButacas";
-            this.txtCantidadDeButacas.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeButacas.Size = new System.Drawing.Size(160, 22);
             this.txtCantidadDeButacas.TabIndex = 36;
             // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(589, 24);
+            this.label16.Location = new System.Drawing.Point(785, 30);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(159, 23);
+            this.label16.Size = new System.Drawing.Size(212, 28);
             this.label16.TabIndex = 35;
             this.label16.Text = "Cantidad de Butacas :";
             // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(292, 162);
+            this.label14.Location = new System.Drawing.Point(389, 199);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(139, 23);
+            this.label14.Size = new System.Drawing.Size(185, 28);
             this.label14.TabIndex = 32;
             this.label14.Text = "Fecha de reinicio  :";
             // 
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(257, 125);
+            this.label12.Location = new System.Drawing.Point(343, 154);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(174, 23);
+            this.label12.Size = new System.Drawing.Size(232, 28);
             this.label12.TabIndex = 29;
             this.label12.Text = "Fecha fuera de servicio :";
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(257, 91);
+            this.label10.Location = new System.Drawing.Point(343, 112);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(183, 23);
+            this.label10.Size = new System.Drawing.Size(244, 28);
             this.label10.TabIndex = 24;
             this.label10.Text = "Baja Fuera De Servicio :";
             // 
             // txtTipoDeServicio
             // 
             this.txtTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtTipoDeServicio.Location = new System.Drawing.Point(447, 56);
+            this.txtTipoDeServicio.Location = new System.Drawing.Point(596, 69);
+            this.txtTipoDeServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTipoDeServicio.Name = "txtTipoDeServicio";
-            this.txtTipoDeServicio.Size = new System.Drawing.Size(121, 20);
+            this.txtTipoDeServicio.Size = new System.Drawing.Size(160, 22);
             this.txtTipoDeServicio.TabIndex = 22;
+            this.txtTipoDeServicio.TextChanged += new System.EventHandler(this.txtTipoDeServicio_TextChanged);
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(303, 55);
+            this.label9.Location = new System.Drawing.Point(404, 68);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(137, 23);
+            this.label9.Size = new System.Drawing.Size(183, 28);
             this.label9.TabIndex = 21;
             this.label9.Text = "Tipo De Servicio :";
             // 
             // txtFabricante
             // 
             this.txtFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtFabricante.Location = new System.Drawing.Point(447, 24);
+            this.txtFabricante.Location = new System.Drawing.Point(596, 30);
+            this.txtFabricante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFabricante.Name = "txtFabricante";
-            this.txtFabricante.Size = new System.Drawing.Size(121, 20);
+            this.txtFabricante.Size = new System.Drawing.Size(160, 22);
             this.txtFabricante.TabIndex = 20;
             // 
             // txtMatricula
             // 
             this.txtMatricula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtMatricula.Location = new System.Drawing.Point(130, 162);
+            this.txtMatricula.Location = new System.Drawing.Point(173, 199);
+            this.txtMatricula.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtMatricula.Name = "txtMatricula";
-            this.txtMatricula.Size = new System.Drawing.Size(121, 20);
+            this.txtMatricula.Size = new System.Drawing.Size(160, 22);
             this.txtMatricula.TabIndex = 19;
             // 
             // txtModelo
             // 
             this.txtModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.txtModelo.Enabled = false;
-            this.txtModelo.Location = new System.Drawing.Point(130, 125);
+            this.txtModelo.Location = new System.Drawing.Point(173, 154);
+            this.txtModelo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(121, 20);
+            this.txtModelo.Size = new System.Drawing.Size(160, 22);
             this.txtModelo.TabIndex = 18;
             // 
             // txtNumeroAeronave
             // 
             this.txtNumeroAeronave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.txtNumeroAeronave.Enabled = false;
-            this.txtNumeroAeronave.Location = new System.Drawing.Point(130, 92);
+            this.txtNumeroAeronave.Location = new System.Drawing.Point(173, 113);
+            this.txtNumeroAeronave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNumeroAeronave.Name = "txtNumeroAeronave";
-            this.txtNumeroAeronave.Size = new System.Drawing.Size(121, 20);
+            this.txtNumeroAeronave.Size = new System.Drawing.Size(160, 22);
             this.txtNumeroAeronave.TabIndex = 17;
             this.txtNumeroAeronave.TextChanged += new System.EventHandler(this.txtNumeroAeronave_TextChanged);
             // 
@@ -409,27 +440,30 @@
             // 
             this.label8.Enabled = false;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(34, 92);
+            this.label8.Location = new System.Drawing.Point(45, 113);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 23);
+            this.label8.Size = new System.Drawing.Size(96, 28);
             this.label8.TabIndex = 16;
             this.label8.Text = "Numero :";
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 58);
+            this.label7.Location = new System.Drawing.Point(17, 71);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 23);
+            this.label7.Size = new System.Drawing.Size(129, 28);
             this.label7.TabIndex = 14;
             this.label7.Text = "Fecha Alta :";
             // 
             // btnCancelar
             // 
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(550, 213);
+            this.btnCancelar.Location = new System.Drawing.Point(733, 262);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(99, 50);
+            this.btnCancelar.Size = new System.Drawing.Size(132, 62);
             this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -438,9 +472,10 @@
             // btnEditar
             // 
             this.btnEditar.Enabled = false;
-            this.btnEditar.Location = new System.Drawing.Point(230, 213);
+            this.btnEditar.Location = new System.Drawing.Point(307, 262);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(99, 50);
+            this.btnEditar.Size = new System.Drawing.Size(132, 62);
             this.btnEditar.TabIndex = 12;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -449,9 +484,10 @@
             // btnGuardar
             // 
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(390, 213);
+            this.btnGuardar.Location = new System.Drawing.Point(520, 262);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(99, 50);
+            this.btnGuardar.Size = new System.Drawing.Size(132, 62);
             this.btnGuardar.TabIndex = 11;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -460,27 +496,30 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(337, 24);
+            this.label6.Location = new System.Drawing.Point(449, 30);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 23);
+            this.label6.Size = new System.Drawing.Size(125, 28);
             this.label6.TabIndex = 8;
             this.label6.Text = "Fabricante :";
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(13, 159);
+            this.label5.Location = new System.Drawing.Point(17, 196);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 23);
+            this.label5.Size = new System.Drawing.Size(133, 28);
             this.label5.TabIndex = 6;
             this.label5.Text = "Matricula  :";
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(634, 58);
+            this.label4.Location = new System.Drawing.Point(845, 71);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 23);
+            this.label4.Size = new System.Drawing.Size(152, 28);
             this.label4.TabIndex = 5;
             this.label4.Text = "Kg Disponible :";
             // 
@@ -488,36 +527,40 @@
             // 
             this.label3.Enabled = false;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(38, 125);
+            this.label3.Location = new System.Drawing.Point(51, 154);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 23);
+            this.label3.Size = new System.Drawing.Size(96, 28);
             this.label3.TabIndex = 2;
             this.label3.Text = "Modelo :";
             // 
             // txtCodigo
             // 
             this.txtCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCodigo.Location = new System.Drawing.Point(130, 24);
+            this.txtCodigo.Location = new System.Drawing.Point(173, 30);
+            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(121, 20);
+            this.txtCodigo.Size = new System.Drawing.Size(160, 22);
             this.txtCodigo.TabIndex = 1;
             this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // CodigoAeronave
             // 
             this.CodigoAeronave.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CodigoAeronave.Location = new System.Drawing.Point(38, 24);
+            this.CodigoAeronave.Location = new System.Drawing.Point(51, 30);
+            this.CodigoAeronave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CodigoAeronave.Name = "CodigoAeronave";
-            this.CodigoAeronave.Size = new System.Drawing.Size(72, 23);
+            this.CodigoAeronave.Size = new System.Drawing.Size(96, 28);
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
             // 
             // ABMBajaModificacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 395);
+            this.ClientSize = new System.Drawing.Size(1231, 486);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ABMBajaModificacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABMBajaModificacion";
