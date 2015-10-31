@@ -21,8 +21,22 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_aeronave') IS NOT NULL)
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_baja_ruta_aerea') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_baja_ruta_aerea;
- 
-  
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.speditar_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.speditar_aeronave;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_aeronave;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarFabricante_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarFabricante_aeronave;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarNumero_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarNumero_aeronave;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarModelo_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarModelo_aeronave;
+   
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas;
   
@@ -769,7 +783,7 @@ insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
 [Tipo_Servicio],[Baja_Fuera_Servicio],
 [Baja_Vida_Util],[Fecha_Fuera_Servicio],
 [Fecha_Reinicio],[Fecha_baja_definitiva],[Kg_Disponibles])
-values(@fechaAlta,@numeroAeronave,@modelo,@matricula, 
+values(@fechaAlta,@numeroAeronave,@modelo,@fabricante,@matricula, 
 @fabricante,@tipoDeServicio, @bajaPorFueraDeServicio,
 @FechaDeFueraDeServicio,@FechaDeReinicioDeServicio,'2050-01-01', @kgDisponible)
 
@@ -786,7 +800,7 @@ begin
 insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
 values(@aux*2,@tipo,1,@idAeronave)
 set @aux = @aux + 1
-
+end
 set @aux = 0
 
 set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Pasillo')
@@ -797,6 +811,7 @@ values(@aux*2+1,@tipo,1,@idAeronave)
 set @aux = @aux + 1
 end
 END
+go 
 
 --PROCEDIMIENTO BUSCAR NUMERO--
 create proc LA_BANDA_DE_GARRI.spbuscarNumero_aeronave
@@ -850,7 +865,6 @@ Baja_Vida_Util = @BajaPorVidaUtil,
 Fecha_Fuera_Servicio = @FechaDeFueraDeServicio,
 Fecha_Reinicio = @FechaDeReinicioDeServicio,
 Fecha_baja_definitiva = @FechaBajaDefinitiva,
-CantidadButacas = @CantidadButacas,
 Kg_Disponibles = @kgDisponible
 where Id = @codigo
 go
