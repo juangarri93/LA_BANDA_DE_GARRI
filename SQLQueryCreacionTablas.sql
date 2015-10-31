@@ -762,9 +762,8 @@ create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
 @bajaPorFueraDeServicio varchar(50),
 @FechaDeFueraDeServicio date ,
 @FechaDeReinicioDeServicio date ,
-@CantidadButaca int,
---@CantidadButacasVentana int,
---@CantidadButacasPasillo int, 
+@CantidadButacasVentana int,
+@CantidadButacasPasillo int, 
 @kgDisponible int)
 as
 BEGIN
@@ -777,7 +776,84 @@ values(@fechaAlta,@numeroAeronave,@modelo,@matricula,
 @fabricante,@tipoDeServicio, @bajaPorFueraDeServicio,
 @FechaDeFueraDeServicio,@FechaDeReinicioDeServicio,'2050-01-01', @kgDisponible)
 
---Aca iria while para butacas
+declare @idAeronave int
+set @idAeronave = (SELECT @@identity AS id)
 
+declare @aux int
+declare @tipo int
+set @aux = 1
+set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Ventana')
+
+while @aux <= @CantidadButacasVentana
+begin
+insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+values(@aux*2,@tipo,1,@idAeronave)
+set @aux = @aux + 1
+
+set @aux = 0
+
+set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Pasillo')
+while @aux < @CantidadButacasPasillo
+begin
+insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+values(@aux*2+1,@tipo,1,@idAeronave)
+set @aux = @aux + 1
+end
 END
-GO
+
+--PROCEDIMIENTO BUSCAR NUMERO--
+create proc LA_BANDA_DE_GARRI.spbuscarNumero_aeronave
+@numeroABuscar int
+as
+select * from LA_BANDA_DE_GARRI.Aeronave
+where Numero like '%' + @numeroABuscar + '%'
+go
+
+--PROCEDIMIENTO BUSCAR FABRICANTE--
+create proc LA_BANDA_DE_GARRI.spbuscarFabricante_aeronave
+@textoBuscar varchar(50)
+as
+select * from LA_BANDA_DE_GARRI.Aeronave
+where Fabricante like '%' + @textoBuscar + '%'
+go
+
+--PROCEDIMIENTO BUSCAR MODELO--
+create proc LA_BANDA_DE_GARRI.spbuscarModelo_aeronave
+@textoBuscar varchar(50)
+as
+select * from Aeronave
+where Modelo like '%' + @textoBuscar + '%'
+go
+
+--PROCEDIMIENTO EDITAR AERONAVE--
+create proc LA_BANDA_DE_GARRI.speditar_aeronave
+(@codigo int, 
+@fechaAlta  date,
+@numeroAeronave int, 
+@modelo int,
+@matricula varchar(50), 
+@fabricante int,
+@tipoDeServicio int, 
+@bajaPorFueraDeServicio varchar(50),
+@BajaPorVidaUtil varchar(50),
+@FechaDeFueraDeServicio date,
+@FechaDeReinicioDeServicio date ,
+@FechaBajaDefinitiva date,
+@CantidadButacas int, 
+@kgDisponible int)
+as
+update Aeronave set Fecha_alta = @fechaAlta,
+Numero = @numeroAeronave,
+Modelo = @modelo,
+Matricula = @matricula,
+Fabricante = @fabricante,
+Tipo_Servicio = @tipoDeServicio,
+Baja_Fuera_Servicio = @bajaPorFueraDeServicio,
+Baja_Vida_Util = @BajaPorVidaUtil,
+Fecha_Fuera_Servicio = @FechaDeFueraDeServicio,
+Fecha_Reinicio = @FechaDeReinicioDeServicio,
+Fecha_baja_definitiva = @FechaBajaDefinitiva,
+CantidadButacas = @CantidadButacas,
+Kg_Disponibles = @kgDisponible
+where Id = @codigo
+go
