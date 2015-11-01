@@ -203,10 +203,8 @@ PRIMARY KEY (id))
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Modelo](
 [id] int identity,
-[Fabricante] INT,
 [Nombre] nvarchar(255),
-PRIMARY KEY (id),
-CONSTRAINT [FK_Fabricante] FOREIGN KEY ([Fabricante]) REFERENCES [LA_BANDA_DE_GARRI].[Fabricante] ([Id])
+PRIMARY KEY (id)
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
@@ -228,6 +226,7 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [kg_disponibles_encomienda] numeric(18,0)
 PRIMARY KEY (id),
 CONSTRAINT [FK_Modelo] FOREIGN KEY ([Modelo]) REFERENCES [LA_BANDA_DE_GARRI].[Modelo] ([Id]),
+CONSTRAINT [FK_Fabricante] FOREIGN KEY (Fabricante) REFERENCES [LA_BANDA_DE_GARRI].Fabricante ([Id]),
 CONSTRAINT [FK_TipoServ] FOREIGN KEY ([Tipo_Servicio]) REFERENCES [LA_BANDA_DE_GARRI].[Tipo_Servicio] ([Id])
 )
 
@@ -411,10 +410,8 @@ GO
 		insert into LA_BANDA_DE_GARRI.Fabricante(Nombre)
 			select distinct gd_esquema.Maestra.Aeronave_Fabricante from gd_esquema.Maestra;
 
-		insert into LA_BANDA_DE_GARRI.Modelo(Fabricante, Nombre)
-			select distinct (Select LA_BANDA_DE_GARRI.Fabricante.id from LA_BANDA_DE_GARRI.Fabricante
-			where LA_BANDA_DE_GARRI.Fabricante.Nombre = gd_esquema.Maestra.Aeronave_Fabricante), 
-			 gd_esquema.Maestra.Aeronave_Modelo from gd_esquema.Maestra;
+		insert into LA_BANDA_DE_GARRI.Modelo(Nombre)
+			select distinct gd_esquema.Maestra.Aeronave_Modelo from gd_esquema.Maestra;
 
 		insert into LA_BANDA_DE_GARRI.Aeronave(Matricula, Modelo, Fabricante, Tipo_Servicio, Kg_Disponibles)
 			select distinct gd_esquema.Maestra.Aeronave_Matricula, 
