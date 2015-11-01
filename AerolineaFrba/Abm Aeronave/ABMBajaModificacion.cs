@@ -160,13 +160,13 @@ namespace AerolineaFrba.Abm_Aeronave
 
             try
             {
-                DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
-                MessageBox.Show("La Aeronave se agrego correctamente.");
-                deshabilitarTextBox();
-                limpiarTextBox();
-                btnGuardar.Enabled = false;
-                btnEditar.Enabled = true;
-                btnCancelar.Enabled = false;
+            //    DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
+            //    MessageBox.Show("La Aeronave se agrego correctamente.");
+            //    deshabilitarTextBox();
+            //    limpiarTextBox();
+            //    btnGuardar.Enabled = false;
+            //    btnEditar.Enabled = true;
+            //    btnCancelar.Enabled = false;
 
             }
             catch(Exception ex)
@@ -180,13 +180,13 @@ namespace AerolineaFrba.Abm_Aeronave
 
         }
 
-        private Aeronave cargarAerolineParaEditar()
-        {
+        //private Aeronave cargarAerolineParaEditar()
+        //{
 
-            return new Aeronave(Convert.ToInt32(txtCodigo.Text),dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
-                                       Convert.ToInt32(txtModelo.Text), txtMatricula.Text, Convert.ToInt32(txtFabricante.Text), Convert.ToInt32(txtTipoDeServicio.Text),
-                                       cmbBajaFueraDeServicio.ValueMember,dtFechaFueraDeServicio.Value,dtFechaDeReinicio.Value,Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
-        }
+        //    return new Aeronave(Convert.ToInt32(txtCodigo.Text),dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
+        //                               Convert.ToInt32(txtModelo.Text), txtMatricula.Text, Convert.ToInt32(txtFabricante.Text), Convert.ToInt32(txtTipoDeServicio.Text),
+        //                               cmbBajaFueraDeServicio.ValueMember, dtFechaFueraDeServicio.Value, dtFechaDeReinicio.Value, Convert.ToInt32(txtCantidadDeButacasPasillo.Text), Convert.ToInt32(txtCantidadButacasVentana.Text), Convert.ToInt32(txtCantidadDeKG.Text));              
+        //}
 
         private void btnEditar_Click(object sender, EventArgs e)
         {

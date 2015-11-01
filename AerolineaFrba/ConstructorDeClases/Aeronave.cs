@@ -24,13 +24,14 @@ namespace AerolineaFrba.ConstructorDeClases
         private DateTime _FechaDeFueraDeServicio;
         private DateTime _FechaDeReinicioDeServicio;
         private DateTime _FechaDeBajaDefinitiva;
-        private int _CantidadDeButacas;
+        private int _CantidadButacaPasillo;
+        private int _CantidadDeButacasVentana;
         private int _KGDisponible;
 
         public Aeronave(int codigoAeronave,DateTime fechaAlta,int numero,int modelo,
                         string matricula,int fabricante,int tipoDeServicio,string bajaPorFueraDeServicio,
                         DateTime fechaDeFueraDeServicio,DateTime fechaDeReinicioDeServicio,
-                        int cantidadButacas, int cantidadKG) 
+                        int cantidadButacaVentana,int cantidadButacaPasillo,int cantidadKG) 
         {
             CodigoAeronave = codigoAeronave;
             FechaAlta = fechaAlta;
@@ -42,7 +43,8 @@ namespace AerolineaFrba.ConstructorDeClases
             BajaPorFueraDeServicio = bajaPorFueraDeServicio;
             FechaDeFueraDeServicio = fechaDeFueraDeServicio;
             FechaDeReinicioDeServicio = fechaDeReinicioDeServicio;
-            CantidadDeButacas = cantidadButacas;
+            CantidadButacaVentana = cantidadButacaVentana;
+            CantidadButacaPasillo = cantidadButacaPasillo;
             KGDisponible = cantidadKG;
         }
 
@@ -58,10 +60,16 @@ namespace AerolineaFrba.ConstructorDeClases
           set { _KGDisponible = value; }
         }
 
-        public int CantidadDeButacas
+        public int CantidadButacaVentana
         {
-          get { return _CantidadDeButacas; }
-          set { _CantidadDeButacas = value; }
+            get { return _CantidadDeButacasVentana; }
+            set { _CantidadDeButacasVentana = value; }
+        }
+
+        public int CantidadButacaPasillo
+        {
+            get { return _CantidadButacaPasillo; }
+            set { _CantidadButacaPasillo = value; }
         }
 
         public DateTime FechaDeBajaDefinitiva

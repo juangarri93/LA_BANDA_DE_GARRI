@@ -25,6 +25,21 @@ namespace AerolineaFrba.Abm_Aeronave
         {
             this.Top = 0;
             this.Left = 0;
+            cargarComboBox();
+
+        }
+
+        private void cargarComboBox()
+        {
+            cbFabricante.DataSource = DAOAerolinea.getFabricante().DefaultView;
+            cbFabricante.DisplayMember = "Nombre";
+                
+            cbModelo.DataSource = DAOAerolinea.getModelo().DefaultView;
+            cbModelo.DisplayMember = "Nombre";
+            
+            cbTipoServicio.DataSource = DAOAerolinea.getTipoServicio().DefaultView;
+            cbTipoServicio.DisplayMember = "Tipo_Servicio";
+         
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -56,8 +71,8 @@ namespace AerolineaFrba.Abm_Aeronave
         {
 
             return new Aeronave(1,dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
-                                        Convert.ToInt32(txtModelo.Text), txtMatricula.Text, Convert.ToInt32(txtFabricante.Text), Convert.ToInt32(txtTipoDeServicio.Text),
-                                        "Habilitado", dtpFechaAlta.Value, dtpFechaAlta.Value,Convert.ToInt32(txtCantidadDeButacas.Text), Convert.ToInt32(txtCantidadDeKG.Text));
+                                        Convert.ToInt32(cbModelo.ValueMember),txtMatricula.Text, Convert.ToInt32(cbFabricante.ValueMember), Convert.ToInt32(cbTipoServicio.ValueMember),
+                                        "Habilitado", dtpFechaAlta.Value, dtpFechaAlta.Value,Convert.ToInt32(txtCantidadDeButacasPasillo.Text), Convert.ToInt32(txtCantidadButacasVentana.Text),Convert.ToInt32(txtCantidadDeKG.Text));
                                  
         }
 
@@ -71,12 +86,9 @@ namespace AerolineaFrba.Abm_Aeronave
         private void limpiar() 
         {
             txtNumeroAeronave.Text = "";
-            txtModelo.Text = "";
-            txtMatricula.Text = "";
-            txtFabricante.Text = "";
-            txtTipoDeServicio.Text = "";
-            txtCantidadDeButacas.Text = "";
-            txtCantidadDeKG.Text = "";
+            txtMatricula.Text = ""; 
+            txtCantidadDeButacasPasillo.Text = "";
+            txtCantidadButacasVentana.Text = "";
         
         
         }
