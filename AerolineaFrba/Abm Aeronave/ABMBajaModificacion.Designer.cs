@@ -280,16 +280,16 @@
             // dtFechaFueraDeServicio
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-<<<<<<< HEAD
+
             this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(596, 151);
             this.dtFechaFueraDeServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtFechaFueraDeServicio.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
-=======
+
             this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 123);
             this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtFechaFueraDeServicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
->>>>>>> origin/master
+
             this.dtFechaFueraDeServicio.Name = "dtFechaFueraDeServicio";
             this.dtFechaFueraDeServicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaFueraDeServicio.ShowUpDown = true;
@@ -300,16 +300,16 @@
             // dtFechaDeReinicio
             // 
             this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-<<<<<<< HEAD
+
             this.dtFechaDeReinicio.Location = new System.Drawing.Point(596, 203);
             this.dtFechaDeReinicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtFechaDeReinicio.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
-=======
+
             this.dtFechaDeReinicio.Location = new System.Drawing.Point(447, 165);
             this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtFechaDeReinicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
->>>>>>> origin/master
+
             this.dtFechaDeReinicio.Name = "dtFechaDeReinicio";
             this.dtFechaDeReinicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaDeReinicio.ShowUpDown = true;
@@ -320,16 +320,16 @@
             // dtpFechaAlta
             // 
             this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-<<<<<<< HEAD
+
             this.dtpFechaAlta.Location = new System.Drawing.Point(173, 73);
             this.dtpFechaAlta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 59, 0);
             this.dtpFechaAlta.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
-=======
+
             this.dtpFechaAlta.Location = new System.Drawing.Point(130, 59);
             this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtpFechaAlta.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
->>>>>>> origin/master
+
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFechaAlta.ShowUpDown = true;

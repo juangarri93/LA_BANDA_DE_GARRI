@@ -23,6 +23,7 @@ namespace AerolineaFrba.Generacion_Viaje
         {
             this.Top = 0;
             this.Left = 0;
+            cargarComboBox();
            
         }
 
@@ -44,12 +45,37 @@ namespace AerolineaFrba.Generacion_Viaje
         
         }
 
+        private void cargarComboBox()
+        {
+            cbAeronave.DataSource = DAOViaje.getAeronaves().DefaultView;
+            cbAeronave.DisplayMember = "Nombre";
+
+            
+
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             limpiar();
         }
 
-       
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbRutaAerea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGenerarViaje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+     
 
 
 

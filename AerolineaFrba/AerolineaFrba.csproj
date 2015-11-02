@@ -130,6 +130,7 @@
     <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\DAORuta.cs" />
     <Compile Include="CapaADO\DAOUsuario.cs" />
+    <Compile Include="CapaADO\DAOViaje.cs" />
     <Compile Include="CapaADO\SqlConnector.cs" />
     <Compile Include="Compra\Form1.cs">
       <SubType>Form</SubType>
@@ -142,6 +143,7 @@
     <Compile Include="ConstructorDeClases\Persona.cs" />
     <Compile Include="ConstructorDeClases\Rol.cs" />
     <Compile Include="ConstructorDeClases\Ruta.cs" />
+    <Compile Include="ConstructorDeClases\Viaje.cs" />
     <Compile Include="Consulta Millas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

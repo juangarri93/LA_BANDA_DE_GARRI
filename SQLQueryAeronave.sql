@@ -206,12 +206,12 @@ CREATE TABLE Viaje
 	id_Viaje int PRIMARY KEY NOT NULL identity,
 	fecha_salida datetime,
 	fecha_llegada datetime,
+		fecha_llegada_est datetime,
 	Codigo_Aeronave int foreign key references Aeronave(CodigoAeronave),
 	ruta_Aerea int foreign key references Ruta_Aerea(id_Ruta),
-	rutaaerea varchar(100),
-	butacas_disponibles int,
-	kg_disponibles int
+	habilitado varchar(50)
 )
+go
 
 --------------------------------------------------
 
@@ -587,3 +587,45 @@ as
 select * from Ruta_Aerea
 order by id_Ruta
 go
+
+
+---------------------------------------------------
+---para generar viaje
+--spMostrar_Aeronaves_sin_baja_util------
+CREATE PROC spMostrar_Aeronaves_sin_baja_util
+as
+select * from Aeronave
+where BajaPorVidaUtil = 'Habilitado'
+order by CodigoAeronave
+go
+
+--spMostrar_RutaAerea_sin_baja_util------
+CREATE PROC spMostrar_RutaAerea_sin_baja_util
+as
+select * from Ruta_Aerea
+where habilitado = 'Habilitado'
+order by id_Ruta
+go
+
+---spmostrar_Viajes----
+create proc spmostrar_Viajes
+as 
+select * from Viaje
+order by id_Viaje
+go
+----spinsertar_Viaje---
+
+CREATE PROC spinsertar_Viaje
+(@CodigoViaje int output,
+@FechaSalida datetime,
+@FechaLlegada datetime,
+@FechaLlegadaEstimada datetime,
+@Aeronave int,
+@Ruta int,
+@habilitado varchar(100)
+)
+as
+insert into Viaje(id_Viaje,fecha_salida,fecha_llegada, fecha_llegada_est, Codigo_Aeronave, ruta_Aerea, habilitado)
+values(@CodigoViaje,@FechaSalida,@FechaLlegada,@FechaLlegadaEstimada,@Aeronave,@Ruta,@habilitado)
+go
+

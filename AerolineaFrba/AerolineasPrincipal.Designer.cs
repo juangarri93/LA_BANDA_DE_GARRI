@@ -36,12 +36,13 @@
             this.btnRegistrosDeUsuarios = new System.Windows.Forms.Button();
             this.btnGenerarViaje = new System.Windows.Forms.Button();
             this.btnRegistroDeLlegadaDestino = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnABMAronaves
             // 
             this.btnABMAronaves.Location = new System.Drawing.Point(16, 116);
-            this.btnABMAronaves.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnABMAronaves.Margin = new System.Windows.Forms.Padding(4);
             this.btnABMAronaves.Name = "btnABMAronaves";
             this.btnABMAronaves.Size = new System.Drawing.Size(240, 44);
             this.btnABMAronaves.TabIndex = 0;
@@ -52,7 +53,7 @@
             // btnABMRol
             // 
             this.btnABMRol.Location = new System.Drawing.Point(16, 178);
-            this.btnABMRol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnABMRol.Margin = new System.Windows.Forms.Padding(4);
             this.btnABMRol.Name = "btnABMRol";
             this.btnABMRol.Size = new System.Drawing.Size(240, 44);
             this.btnABMRol.TabIndex = 1;
@@ -74,7 +75,7 @@
             // btnABM_Ciudad
             // 
             this.btnABM_Ciudad.Location = new System.Drawing.Point(16, 250);
-            this.btnABM_Ciudad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnABM_Ciudad.Margin = new System.Windows.Forms.Padding(4);
             this.btnABM_Ciudad.Name = "btnABM_Ciudad";
             this.btnABM_Ciudad.Size = new System.Drawing.Size(240, 44);
             this.btnABM_Ciudad.TabIndex = 9;
@@ -85,7 +86,7 @@
             // btnABMRutaAerea
             // 
             this.btnABMRutaAerea.Location = new System.Drawing.Point(16, 315);
-            this.btnABMRutaAerea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnABMRutaAerea.Margin = new System.Windows.Forms.Padding(4);
             this.btnABMRutaAerea.Name = "btnABMRutaAerea";
             this.btnABMRutaAerea.Size = new System.Drawing.Size(240, 44);
             this.btnABMRutaAerea.TabIndex = 10;
@@ -96,7 +97,7 @@
             // btnRegistrosDeUsuarios
             // 
             this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(376, 116);
-            this.btnRegistrosDeUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegistrosDeUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistrosDeUsuarios.Name = "btnRegistrosDeUsuarios";
             this.btnRegistrosDeUsuarios.Size = new System.Drawing.Size(240, 44);
             this.btnRegistrosDeUsuarios.TabIndex = 11;
@@ -107,7 +108,7 @@
             // btnGenerarViaje
             // 
             this.btnGenerarViaje.Location = new System.Drawing.Point(376, 178);
-            this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
             this.btnGenerarViaje.Size = new System.Drawing.Size(240, 44);
             this.btnGenerarViaje.TabIndex = 12;
@@ -118,18 +119,30 @@
             // btnRegistroDeLlegadaDestino
             // 
             this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(376, 250);
-            this.btnRegistroDeLlegadaDestino.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegistroDeLlegadaDestino.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistroDeLlegadaDestino.Name = "btnRegistroDeLlegadaDestino";
             this.btnRegistroDeLlegadaDestino.Size = new System.Drawing.Size(240, 44);
             this.btnRegistroDeLlegadaDestino.TabIndex = 13;
             this.btnRegistroDeLlegadaDestino.Text = "Registro De Llegada Destino";
             this.btnRegistroDeLlegadaDestino.UseVisualStyleBackColor = true;
+            this.btnRegistroDeLlegadaDestino.Click += new System.EventHandler(this.btnRegistroDeLlegadaDestino_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(376, 315);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(240, 44);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Compra de pasaje/encomienda";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // AerolineasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 420);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRegistroDeLlegadaDestino);
             this.Controls.Add(this.btnGenerarViaje);
             this.Controls.Add(this.btnRegistrosDeUsuarios);
@@ -138,7 +151,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnABMRol);
             this.Controls.Add(this.btnABMAronaves);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AerolineasPrincipal";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -157,6 +170,7 @@
         private System.Windows.Forms.Button btnRegistrosDeUsuarios;
         private System.Windows.Forms.Button btnGenerarViaje;
         private System.Windows.Forms.Button btnRegistroDeLlegadaDestino;
+        private System.Windows.Forms.Button button1;
 
     }
 }
