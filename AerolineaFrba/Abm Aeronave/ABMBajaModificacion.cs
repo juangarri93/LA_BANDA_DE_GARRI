@@ -23,10 +23,9 @@ namespace AerolineaFrba.Abm_Aeronave
         {
             dtpFechaAlta.Enabled = false;
             txtNumeroAeronave.Enabled = false;
-            txtModelo.Enabled = false;
-            txtMatricula.Enabled = false;
-            txtFabricante.Enabled = false;
-            txtTipoDeServicio.Enabled = false;
+            cbFabricante.Enabled = false;
+            cbModelo.Enabled = false;
+            cbTipoDeServicio.Enabled = false;
             cmbBajaFueraDeServicio.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
@@ -107,10 +106,10 @@ namespace AerolineaFrba.Abm_Aeronave
                 this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Numero"].Value);
             }
               
-            this.txtModelo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Modelo"].Value);
+         //   this.txtModelo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Modelo"].Value);
             this.txtMatricula.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Matricula"].Value);
-            this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
-            this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Tipo_Servicio"].Value);
+         //   this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
+         //   this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Tipo_Servicio"].Value);
 
             if (cantidad_butacas_ventana == "")
             {
@@ -229,7 +228,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             try
             {
-            //    DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
+            //   DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
             //    MessageBox.Show("La Aeronave se agrego correctamente.");
             //    deshabilitarTextBox();
             //    limpiarTextBox();
@@ -270,10 +269,10 @@ namespace AerolineaFrba.Abm_Aeronave
         {
             dtpFechaAlta.Enabled = true;
             txtNumeroAeronave.ReadOnly = false;
-            txtModelo.ReadOnly = false;
+            cbModelo.Enabled = true;
             txtMatricula.ReadOnly = false;
-            txtFabricante.ReadOnly = false;
-            txtTipoDeServicio.ReadOnly = false;
+            cbFabricante.Enabled = true;
+            cbTipoDeServicio.Enabled = true;
             cmbBajaFueraDeServicio.Enabled = true;
             dtFechaFueraDeServicio.Enabled = true;
             dtFechaDeReinicio.Enabled = true;
@@ -281,10 +280,7 @@ namespace AerolineaFrba.Abm_Aeronave
             txtCantidadDeKG.ReadOnly = false;
 
             txtNumeroAeronave.Enabled = true;
-            txtModelo.Enabled = true;
             txtMatricula.Enabled = true;
-            txtFabricante.Enabled = true;
-            txtTipoDeServicio.Enabled = true;
             txtCantidadDeButacasPasillo.Enabled = true;
             txtCantidadDeKG.Enabled = true;
 
@@ -300,6 +296,7 @@ namespace AerolineaFrba.Abm_Aeronave
             cmbBajaFueraDeServicio.Items.Add("");
             cmbBajaFueraDeServicio.Items.Add("Habilitado");
             cmbBajaFueraDeServicio.Items.Add("Deshabilitado");
+            cargarComboBox();
             btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;
             btnGuardar.Enabled = false;
@@ -325,12 +322,11 @@ namespace AerolineaFrba.Abm_Aeronave
             txtCodigo.Text = "";
             dtpFechaAlta.Enabled = false;
             txtNumeroAeronave.Text = "";
-            txtModelo.Text = "";
             txtMatricula.Text = "";
-            txtFabricante.Text = "";
-            txtTipoDeServicio.Text = "";
             cmbBajaFueraDeServicio.Items.Clear();
-
+            cbTipoDeServicio.Items.Clear();
+            cbFabricante.Items.Clear();
+            cbModelo.Items.Clear();
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
             txtCantidadDeButacasPasillo.Text= "";
@@ -342,7 +338,7 @@ namespace AerolineaFrba.Abm_Aeronave
             try
             {
                 DialogResult Opcion;
-                Opcion = MessageBox.Show("Realmente Desea dar de baja definitiva la aeronave", "Sistema de Aerolineas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                Opcion = MessageBox.Show("Realmente Desea dar de baja definitiva la aeronave", "Sistema de Aerolinea", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (Opcion == DialogResult.OK)
                 {
@@ -410,6 +406,24 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void txtTipoDeServicio_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void cbTipoDeServicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cargarComboBox()
+        {
+            cbFabricante.DataSource = DAOAerolinea.getFabricante().DefaultView;
+            cbFabricante.DisplayMember = "Nombre";
+
+            cbModelo.DataSource = DAOAerolinea.getModelo().DefaultView;
+            cbModelo.DisplayMember = "Nombre";
+
+            cbTipoDeServicio.DataSource = DAOAerolinea.getTipoServicio().DefaultView;
+            cbTipoDeServicio.DisplayMember = "Tipo_Servicio";
 
         }
 

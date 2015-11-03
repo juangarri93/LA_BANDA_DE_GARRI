@@ -54,11 +54,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtTipoDeServicio = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtFabricante = new System.Windows.Forms.TextBox();
             this.txtMatricula = new System.Windows.Forms.TextBox();
-            this.txtModelo = new System.Windows.Forms.TextBox();
             this.txtNumeroAeronave = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -71,6 +68,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
+            this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
+            this.cbModelo = new System.Windows.Forms.ComboBox();
+            this.cbFabricante = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -101,7 +101,7 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(898, 339);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
@@ -211,7 +211,7 @@
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(898, 339);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mantenimiento";
@@ -219,6 +219,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbFabricante);
+            this.groupBox1.Controls.Add(this.cbModelo);
+            this.groupBox1.Controls.Add(this.cbTipoDeServicio);
             this.groupBox1.Controls.Add(this.txtCantidadDeButacasVentana);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cmbBajaFueraDeServicio);
@@ -231,11 +234,8 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.txtTipoDeServicio);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txtFabricante);
             this.groupBox1.Controls.Add(this.txtMatricula);
-            this.groupBox1.Controls.Add(this.txtModelo);
             this.groupBox1.Controls.Add(this.txtNumeroAeronave);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -260,7 +260,7 @@
             // 
             this.txtCantidadDeButacasVentana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.txtCantidadDeButacasVentana.Location = new System.Drawing.Point(769, 55);
-            this.txtCantidadDeButacasVentana.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCantidadDeButacasVentana.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidadDeButacasVentana.Name = "txtCantidadDeButacasVentana";
             this.txtCantidadDeButacasVentana.Size = new System.Drawing.Size(118, 20);
             this.txtCantidadDeButacasVentana.TabIndex = 68;
@@ -336,7 +336,7 @@
             // 
             this.txtCantidadDeButacasPasillo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.txtCantidadDeButacasPasillo.Location = new System.Drawing.Point(769, 25);
-            this.txtCantidadDeButacasPasillo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCantidadDeButacasPasillo.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidadDeButacasPasillo.Name = "txtCantidadDeButacasPasillo";
             this.txtCantidadDeButacasPasillo.Size = new System.Drawing.Size(118, 20);
             this.txtCantidadDeButacasPasillo.TabIndex = 36;
@@ -377,15 +377,6 @@
             this.label10.TabIndex = 24;
             this.label10.Text = "Baja Fuera De Servicio :";
             // 
-            // txtTipoDeServicio
-            // 
-            this.txtTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtTipoDeServicio.Location = new System.Drawing.Point(446, 55);
-            this.txtTipoDeServicio.Name = "txtTipoDeServicio";
-            this.txtTipoDeServicio.Size = new System.Drawing.Size(121, 20);
-            this.txtTipoDeServicio.TabIndex = 22;
-            this.txtTipoDeServicio.TextChanged += new System.EventHandler(this.txtTipoDeServicio_TextChanged);
-            // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -395,14 +386,6 @@
             this.label9.TabIndex = 21;
             this.label9.Text = "Tipo De Servicio :";
             // 
-            // txtFabricante
-            // 
-            this.txtFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtFabricante.Location = new System.Drawing.Point(446, 24);
-            this.txtFabricante.Name = "txtFabricante";
-            this.txtFabricante.Size = new System.Drawing.Size(121, 20);
-            this.txtFabricante.TabIndex = 20;
-            // 
             // txtMatricula
             // 
             this.txtMatricula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -410,15 +393,6 @@
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.Size = new System.Drawing.Size(121, 20);
             this.txtMatricula.TabIndex = 19;
-            // 
-            // txtModelo
-            // 
-            this.txtModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtModelo.Enabled = false;
-            this.txtModelo.Location = new System.Drawing.Point(130, 125);
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(121, 20);
-            this.txtModelo.TabIndex = 18;
             // 
             // txtNumeroAeronave
             // 
@@ -535,6 +509,34 @@
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
             // 
+            // cbTipoDeServicio
+            // 
+            this.cbTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cbTipoDeServicio.FormattingEnabled = true;
+            this.cbTipoDeServicio.Location = new System.Drawing.Point(447, 56);
+            this.cbTipoDeServicio.Name = "cbTipoDeServicio";
+            this.cbTipoDeServicio.Size = new System.Drawing.Size(121, 21);
+            this.cbTipoDeServicio.TabIndex = 69;
+            this.cbTipoDeServicio.SelectedIndexChanged += new System.EventHandler(this.cbTipoDeServicio_SelectedIndexChanged);
+            // 
+            // cbModelo
+            // 
+            this.cbModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cbModelo.FormattingEnabled = true;
+            this.cbModelo.Location = new System.Drawing.Point(130, 125);
+            this.cbModelo.Name = "cbModelo";
+            this.cbModelo.Size = new System.Drawing.Size(121, 21);
+            this.cbModelo.TabIndex = 70;
+            // 
+            // cbFabricante
+            // 
+            this.cbFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cbFabricante.FormattingEnabled = true;
+            this.cbFabricante.Location = new System.Drawing.Point(446, 25);
+            this.cbFabricante.Name = "cbFabricante";
+            this.cbFabricante.Size = new System.Drawing.Size(121, 21);
+            this.cbFabricante.TabIndex = 71;
+            // 
             // ABMBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -573,11 +575,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTipoDeServicio;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtFabricante;
         private System.Windows.Forms.TextBox txtMatricula;
-        private System.Windows.Forms.TextBox txtModelo;
         private System.Windows.Forms.TextBox txtNumeroAeronave;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -601,6 +600,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.TextBox txtCantidadDeButacasVentana;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbModelo;
+        private System.Windows.Forms.ComboBox cbTipoDeServicio;
+        private System.Windows.Forms.ComboBox cbFabricante;
 
     }
 }
