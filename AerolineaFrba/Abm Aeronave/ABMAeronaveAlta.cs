@@ -50,11 +50,12 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 DAOAerolinea.AgregarAeronave(CargarAerolinea());
                 MessageBox.Show("La Aeronave se agrego correctamente.");
-                limpiar();
+               // limpiar();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error." + ex.Message);               
+                MessageBox.Show("Hubo un error." + ex.Message);
+                    
             }
         }
 
@@ -70,9 +71,19 @@ namespace AerolineaFrba.Abm_Aeronave
         private Aeronave CargarAerolinea() 
         {
 
-            return new Aeronave(1,dtpFechaAlta.Value, Convert.ToInt32(txtNumeroAeronave.Text),
-                                        Convert.ToInt32(cbModelo.ValueMember),txtMatricula.Text, Convert.ToInt32(cbFabricante.ValueMember), Convert.ToInt32(cbTipoServicio.ValueMember),
-                                        "Habilitado", dtpFechaAlta.Value, dtpFechaAlta.Value,Convert.ToInt32(txtCantidadDeButacasPasillo.Text), Convert.ToInt32(txtCantidadButacasVentana.Text),Convert.ToInt32(txtCantidadDeKG.Text));
+            return new Aeronave(1,
+                                dtpFECHA.Value, 
+                                Convert.ToInt32(txtNumeroAeronave.Text),
+                                (cbModelo.SelectedIndex + 1),
+                                txtMatricula.Text,
+                                (cbFabricante.SelectedIndex + 1),
+                                (cbTipoServicio.SelectedIndex + 1),
+                                "Habilitado",
+                                dtpFECHA.Value,
+                                dtpFECHA.Value,
+                                Convert.ToInt32(txtCantidadDeButacasPasillo.Text),
+                                Convert.ToInt32(txtCantidadButacasVentana.Text),
+                                Convert.ToInt32(txtCantidadDeKG.Text));
                                  
         }
 

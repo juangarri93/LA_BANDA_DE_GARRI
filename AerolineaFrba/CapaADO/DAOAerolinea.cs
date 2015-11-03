@@ -16,19 +16,22 @@ namespace AerolineaFrba.CapaADO
         public static void AgregarAeronave(Aeronave aeronave)
         {
 
-            executeProcedure("LA_BANDA_DE_GARRI.spinsertar_aeronave", 1, aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
-                             aeronave.Matricula, aeronave.Fabricante, aeronave.TipoDeServicio, aeronave.BajaPorFueraDeServicio,
-                             aeronave.FechaDeFueraDeServicio, aeronave.FechaDeReinicioDeServicio,
-                             aeronave.CantidadButacaPasillo, aeronave.CantidadButacaVentana,aeronave.KGDisponible);
+            executeProcedure("spinsertar_aeronave",1,aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
+                            aeronave.Matricula, aeronave.Fabricante, aeronave.TipoDeServicio, aeronave.CantidadButacaVentana,aeronave.CantidadButacaPasillo,aeronave.BajaPorFueraDeServicio,
+                             aeronave.BajaPorFueraDeServicio, aeronave.FechaDeFueraDeServicio, aeronave.FechaDeReinicioDeServicio, aeronave.FechaDeReinicioDeServicio,
+                             aeronave.KGDisponible);
+
+
+           // SqlConnector.executeProcedure("spinsertar_aeronave", 1, aeronave.NumeroAeronave);
 
         }
-
+        
         //Metodo Mostrar
         public static DataTable Mostrar()
         {
 
 
-            return retrieveDataTable("LA_BANDA_DE_GARRI.spmostrar_aeronave");
+            return retrieveDataTable("spmostrar_aeronave");
         }
 
 
@@ -67,19 +70,19 @@ namespace AerolineaFrba.CapaADO
 
         public static DataTable getFabricante()
         {
-            return retrieveDataTable("LA_BANDA_DE_GARRI.spmostrar_fabricante");
+            return retrieveDataTable("spmostrar_fabricante");
         }
 
 
 
         public static DataTable getModelo()
         {
-            return retrieveDataTable("LA_BANDA_DE_GARRI.spmostrar_modelo");
+            return retrieveDataTable("spmostrar_modelo");
         }
 
         public static DataTable getTipoServicio()
         {
-            return retrieveDataTable("LA_BANDA_DE_GARRI.spmostrar_tipo_servicio");
+            return retrieveDataTable("spmostrar_tipo_servicio");
         }
     }
 

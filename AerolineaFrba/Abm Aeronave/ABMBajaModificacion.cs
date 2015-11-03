@@ -30,7 +30,7 @@ namespace AerolineaFrba.Abm_Aeronave
             cmbBajaFueraDeServicio.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
-            txtCantidadDeButacas.Enabled = false;
+            txtCantidadDeButacasPasillo.Enabled = false;
             txtCantidadDeKG.Enabled = false;
         }
 
@@ -79,23 +79,92 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void dataListadoAeronaves_DoubleClick(object sender, EventArgs e)
         {
+            string fechaAlta = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_alta"].Value);
+            DateTime fechaActual = DateTime.Now;
 
-            //this.txtCodigo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Id"].Value);
-            //this.dtpFechaAlta.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaAlta"].Value);
-            //this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["NumeroAeronave"].Value);
-            //this.txtModelo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Modelo"].Value);
-            //this.txtMatricula.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Matricula"].Value);
-            //this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
-            //this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["TipoDeServicio"].Value);
-            //this.cmbBajaFueraDeServicio.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["BajaPorFueraDeServicio"].Value);
-            //this.dtFechaFueraDeServicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeFueraDeServicio"].Value);
-            //this.dtFechaDeReinicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["FechaDeReinicioDeServicio"].Value);
-            //this.txtCantidadDeButacas.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["CantidadButacas"].Value);
-            //this.txtCantidadDeKG.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["KgDisponible"].Value);
+            string numero = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Numero"].Value);
+            string cantidad_butacas_pasillo = this.txtCantidadDeButacasPasillo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Cantidad_Ventanas_Pasillo"].Value);
+            string cantidad_butacas_ventana = this.txtCantidadDeButacasVentana.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Cantidad_Butacas_Ventana"].Value);
 
-            //this.tabControl1.SelectedIndex = 1;
 
-            //btnEditar.Enabled = true;
+            this.txtCodigo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Id"].Value);
+
+            if (fechaAlta == "")
+            {
+                this.dtpFechaAlta.Value = fechaActual;
+            }
+            else 
+            {
+                this.dtpFechaAlta.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_alta"].Value);
+            }
+
+            if (numero == "")
+            {
+                this.txtNumeroAeronave.Text = "";
+            }
+            else 
+            {
+                this.txtNumeroAeronave.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Numero"].Value);
+            }
+              
+            this.txtModelo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Modelo"].Value);
+            this.txtMatricula.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Matricula"].Value);
+            this.txtFabricante.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fabricante"].Value);
+            this.txtTipoDeServicio.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Tipo_Servicio"].Value);
+
+            if (cantidad_butacas_ventana == "")
+            {
+                this.txtCantidadDeButacasVentana.Text = "";
+            }
+            else 
+            {
+                this.txtCantidadDeButacasVentana.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Cantidad_Butacas_Ventana"].Value);
+            }
+
+            if (cantidad_butacas_pasillo == "")
+            {
+                this.txtCantidadDeButacasPasillo.Text = "";
+            }
+            else 
+            {
+                this.txtCantidadDeButacasPasillo.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Cantidad_Ventanas_Pasillo"].Value);  
+            }
+
+            //this.cmbBajaFueraDeServicio.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Baja_Fuera_Servicio"].Value);
+
+            string fechaFueraServicio = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Fuera_Servicio"].Value);
+            if (fechaFueraServicio == "")
+            {
+                this.dtFechaFueraDeServicio.Value = fechaActual;
+            }
+            else 
+            {
+                this.dtFechaFueraDeServicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Fuera_Servicio"].Value);  
+            }
+
+            string fechaDeReinicio = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Fuera_Servicio"].Value);
+            if (fechaDeReinicio == "")
+            {
+                this.dtFechaDeReinicio.Value = fechaActual;
+            }
+            else
+            {
+                this.dtFechaDeReinicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Reinicio"].Value);
+            }
+          
+            string cantidadKG =  Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Kg_Disponibles"].Value);
+            if (cantidadKG == "")
+            {
+                this.txtCantidadDeKG.Text = "";
+            }
+            else 
+            {
+                this.txtCantidadDeKG.Text = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Kg_Disponibles"].Value); 
+            }
+           
+            this.tabControl1.SelectedIndex = 1;
+
+            btnEditar.Enabled = true;
         }
 
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
@@ -208,7 +277,7 @@ namespace AerolineaFrba.Abm_Aeronave
             cmbBajaFueraDeServicio.Enabled = true;
             dtFechaFueraDeServicio.Enabled = true;
             dtFechaDeReinicio.Enabled = true;
-            txtCantidadDeButacas.ReadOnly = false;
+            txtCantidadDeButacasPasillo.ReadOnly = false;
             txtCantidadDeKG.ReadOnly = false;
 
             txtNumeroAeronave.Enabled = true;
@@ -216,7 +285,7 @@ namespace AerolineaFrba.Abm_Aeronave
             txtMatricula.Enabled = true;
             txtFabricante.Enabled = true;
             txtTipoDeServicio.Enabled = true;
-            txtCantidadDeButacas.Enabled = true;
+            txtCantidadDeButacasPasillo.Enabled = true;
             txtCantidadDeKG.Enabled = true;
 
         }
@@ -264,7 +333,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
-            txtCantidadDeButacas.Text= "";
+            txtCantidadDeButacasPasillo.Text= "";
             txtCantidadDeKG.Text = "";
         }
 

@@ -42,12 +42,12 @@
             this.txtCantidadButacasVentana = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.cbModelo = new System.Windows.Forms.ComboBox();
             this.cbFabricante = new System.Windows.Forms.ComboBox();
             this.cbTipoServicio = new System.Windows.Forms.ComboBox();
             this.txtCantidadDeKG = new System.Windows.Forms.TextBox();
+            this.dtpFECHA = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -170,19 +170,6 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // dtpFechaAlta
-            // 
-            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaAlta.Location = new System.Drawing.Point(95, 56);
-            this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
-            this.dtpFechaAlta.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpFechaAlta.Name = "dtpFechaAlta";
-            this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtpFechaAlta.ShowUpDown = true;
-            this.dtpFechaAlta.Size = new System.Drawing.Size(116, 20);
-            this.dtpFechaAlta.TabIndex = 61;
-            this.dtpFechaAlta.Value = new System.DateTime(2015, 1, 25, 0, 0, 0, 0);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -223,17 +210,30 @@
             this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadDeKG.TabIndex = 66;
             // 
+            // dtpFECHA
+            // 
+            this.dtpFECHA.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFECHA.Location = new System.Drawing.Point(95, 59);
+            this.dtpFECHA.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
+            this.dtpFECHA.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtpFECHA.Name = "dtpFECHA";
+            this.dtpFECHA.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtpFECHA.ShowUpDown = true;
+            this.dtpFECHA.Size = new System.Drawing.Size(116, 20);
+            this.dtpFECHA.TabIndex = 67;
+            this.dtpFECHA.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            // 
             // ABMAeronaveAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 248);
+            this.Controls.Add(this.dtpFECHA);
             this.Controls.Add(this.txtCantidadDeKG);
             this.Controls.Add(this.cbTipoServicio);
             this.Controls.Add(this.cbFabricante);
             this.Controls.Add(this.cbModelo);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.dtpFechaAlta);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtCantidadButacasVentana);
@@ -273,11 +273,11 @@
         private System.Windows.Forms.TextBox txtCantidadButacasVentana;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.DateTimePicker dtpFechaAlta;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbModelo;
         private System.Windows.Forms.ComboBox cbFabricante;
         private System.Windows.Forms.ComboBox cbTipoServicio;
         private System.Windows.Forms.TextBox txtCantidadDeKG;
+        private System.Windows.Forms.DateTimePicker dtpFECHA;
     }
 }

@@ -47,7 +47,7 @@
             this.dtFechaDeReinicio = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             this.txtCantidadDeKG = new System.Windows.Forms.TextBox();
-            this.txtCantidadDeButacas = new System.Windows.Forms.TextBox();
+            this.txtCantidadDeButacasPasillo = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -69,6 +69,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCantidadDeButacasVentana = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -217,12 +219,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCantidadDeButacasVentana);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cmbBajaFueraDeServicio);
             this.groupBox1.Controls.Add(this.dtFechaFueraDeServicio);
             this.groupBox1.Controls.Add(this.dtFechaDeReinicio);
             this.groupBox1.Controls.Add(this.dtpFechaAlta);
             this.groupBox1.Controls.Add(this.txtCantidadDeKG);
-            this.groupBox1.Controls.Add(this.txtCantidadDeButacas);
+            this.groupBox1.Controls.Add(this.txtCantidadDeButacasPasillo);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label12);
@@ -304,27 +308,27 @@
             // txtCantidadDeKG
             // 
             this.txtCantidadDeKG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeKG.Location = new System.Drawing.Point(754, 56);
+            this.txtCantidadDeKG.Location = new System.Drawing.Point(752, 89);
             this.txtCantidadDeKG.Name = "txtCantidadDeKG";
             this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadDeKG.TabIndex = 37;
             // 
-            // txtCantidadDeButacas
+            // txtCantidadDeButacasPasillo
             // 
-            this.txtCantidadDeButacas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeButacas.Location = new System.Drawing.Point(754, 27);
-            this.txtCantidadDeButacas.Name = "txtCantidadDeButacas";
-            this.txtCantidadDeButacas.Size = new System.Drawing.Size(121, 20);
-            this.txtCantidadDeButacas.TabIndex = 36;
+            this.txtCantidadDeButacasPasillo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtCantidadDeButacasPasillo.Location = new System.Drawing.Point(752, 24);
+            this.txtCantidadDeButacasPasillo.Name = "txtCantidadDeButacasPasillo";
+            this.txtCantidadDeButacasPasillo.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeButacasPasillo.TabIndex = 36;
             // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(589, 24);
+            this.label16.Location = new System.Drawing.Point(574, 24);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(159, 23);
+            this.label16.Size = new System.Drawing.Size(191, 23);
             this.label16.TabIndex = 35;
-            this.label16.Text = "Cantidad de Butacas :";
+            this.label16.Text = "Cantidad de Butacas P:";
             // 
             // label14
             // 
@@ -477,7 +481,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(634, 58);
+            this.label4.Location = new System.Drawing.Point(632, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 23);
             this.label4.TabIndex = 5;
@@ -509,6 +513,23 @@
             this.CodigoAeronave.Size = new System.Drawing.Size(72, 23);
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(574, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 23);
+            this.label1.TabIndex = 67;
+            this.label1.Text = "Cantidad de Butacas V:";
+            // 
+            // txtCantidadDeButacasVentana
+            // 
+            this.txtCantidadDeButacasVentana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txtCantidadDeButacasVentana.Location = new System.Drawing.Point(752, 59);
+            this.txtCantidadDeButacasVentana.Name = "txtCantidadDeButacasVentana";
+            this.txtCantidadDeButacasVentana.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeButacasVentana.TabIndex = 68;
             // 
             // ABMBajaModificacion
             // 
@@ -543,7 +564,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtCantidadDeKG;
-        private System.Windows.Forms.TextBox txtCantidadDeButacas;
+        private System.Windows.Forms.TextBox txtCantidadDeButacasPasillo;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
@@ -574,6 +595,8 @@
         private System.Windows.Forms.Button btnBajaLogica;
         private System.Windows.Forms.CheckBox checkBoxbajaLogica1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.TextBox txtCantidadDeButacasVentana;
+        private System.Windows.Forms.Label label1;
 
     }
 }
