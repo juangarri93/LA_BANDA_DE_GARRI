@@ -12,6 +12,18 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ;
+  
+  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_Funcionalidades ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spMostrar_Funcionalidades ;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_rol ;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdardebaja_aerolinea') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spdardebaja_aerolinea;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_fabricante') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_fabricante;
 
@@ -763,7 +775,7 @@ BEGIN
 END
 GO
 
-create proc [LA_BANDA_DE_GARRI].[spmostrar_aeronave]
+create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
 as
 select * from LA_BANDA_DE_GARRI.Aeronave
 order by Aeronave.Id
@@ -777,7 +789,7 @@ GO
 --values(@numeroAeronave)
 --go
 
-create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
+create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 (@Id int output, 
 @fechaAlta  date,
 @numeroAeronave int,  
@@ -905,3 +917,65 @@ create proc LA_BANDA_DE_GARRI.spmostrar_tipo_servicio
 as
 select * from LA_BANDA_DE_GARRI.Tipo_Servicio
 go
+
+--------------------------------------------------
+
+-- Agregado Nico 03/11/2015--
+--PROCEDIMIENTO spdardebaja_aerolinea --
+create proc LA_BANDA_DE_GARRI.spdardebaja_aerolinea
+@CodigoAeronave int
+as
+update LA_BANDA_DE_GARRI.Aeronave Set Baja_Vida_Util = 'Deshabilitado',Fecha_baja_definitiva = getdate()
+where @CodigoAeronave = Id
+go
+
+-----------------------------------------------------------
+
+--PROCEDIMIENTO MOSTRAR TABLA FUNCIONALIDAD --> spMostrar_Funcionalidades --
+CREATE PROC LA_BANDA_DE_GARRI.spMostrar_Funcionalidades
+as
+select * from LA_BANDA_DE_GARRI.Funcionalidades
+order by Id
+go
+
+------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+
+--PROCEDIMIENTO INSERTAR ROL --> spinsertar_rol --
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_rol
+ (@id_rol int output,
+@rol varchar(100),
+@habilitado binary
+)
+as
+
+begin
+
+insert into LA_BANDA_DE_GARRI.Roles(Rol,Habilitado)
+values(@rol,@habilitado)
+
+declare @id_aux int
+select @id_aux = Id from LA_BANDA_DE_GARRI.Roles where @rol = Rol 
+
+return(@id_aux)
+
+end
+go
+
+----------------------------------------------------------------------------------------
+
+--Crear insertar rol-funcionalidad en tabla rol_funcionalidad--
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad 
+(@id_rol int,
+@id_funcionalidad int
+)
+
+as
+
+insert into LA_BANDA_DE_GARRI.Rol_Funcionalidad(Id_Rol,Id_Funcionalidad)
+values(@id_rol,@id_funcionalidad)
+
+go
+
+-------------------------------------------------------------------------------------------

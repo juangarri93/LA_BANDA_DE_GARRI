@@ -59,6 +59,8 @@ namespace AerolineaFrba.Abm_Aeronave
                 DataGridViewCheckBoxCell ChkEliminar = (DataGridViewCheckBoxCell)dataListadoAeronaves.Rows[e.RowIndex].Cells["dataGridViewCheckBoxColumn1"];
                 ChkEliminar.Value = !Convert.ToBoolean(ChkEliminar.Value);
             }
+
+            
         }
 
         //Metodo Mostrar
