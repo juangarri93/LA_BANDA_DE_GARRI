@@ -53,13 +53,13 @@ namespace AerolineaFrba.Abm_Ciudad
         private Ciudad CargarCiudad() 
         {
 
-            return new Ciudad(1, textNombre.Text, textPais.Text);
+            return new Ciudad(1, textNombre.Text);
                                  
         }
 
         private void limpiar()
         {
-            textPais.Text = "";
+          
             textNombre.Text = "";
 
         }

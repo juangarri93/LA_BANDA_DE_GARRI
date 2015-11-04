@@ -36,7 +36,7 @@
             this.btnRegistrosDeUsuarios = new System.Windows.Forms.Button();
             this.btnGenerarViaje = new System.Windows.Forms.Button();
             this.btnRegistroDeLlegadaDestino = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCompra = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnABMAronaves
@@ -127,22 +127,23 @@
             this.btnRegistroDeLlegadaDestino.UseVisualStyleBackColor = true;
             this.btnRegistroDeLlegadaDestino.Click += new System.EventHandler(this.btnRegistroDeLlegadaDestino_Click);
             // 
-            // button1
+            // btnCompra
             // 
-            this.button1.Location = new System.Drawing.Point(376, 315);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(240, 44);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Compra de pasaje/encomienda";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCompra.Location = new System.Drawing.Point(376, 315);
+            this.btnCompra.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCompra.Name = "btnCompra";
+            this.btnCompra.Size = new System.Drawing.Size(240, 44);
+            this.btnCompra.TabIndex = 14;
+            this.btnCompra.Text = "Compra de pasaje/encomienda";
+            this.btnCompra.UseVisualStyleBackColor = true;
+            this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
             // 
             // AerolineasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 420);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCompra);
             this.Controls.Add(this.btnRegistroDeLlegadaDestino);
             this.Controls.Add(this.btnGenerarViaje);
             this.Controls.Add(this.btnRegistrosDeUsuarios);
@@ -170,7 +171,7 @@
         private System.Windows.Forms.Button btnRegistrosDeUsuarios;
         private System.Windows.Forms.Button btnGenerarViaje;
         private System.Windows.Forms.Button btnRegistroDeLlegadaDestino;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCompra;
 
     }
 }

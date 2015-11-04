@@ -85,9 +85,9 @@ namespace AerolineaFrba.Abm_Ciudad
       
         private void dataListadoCiudades_DoubleClick(object sender, EventArgs e)
         {
-            this.txtCodigo.Text = Convert.ToString(this.dataListadoCiudades.CurrentRow.Cells["CodigoCiudad"].Value);
+            this.txtCodigo.Text = Convert.ToString(this.dataListadoCiudades.CurrentRow.Cells["Id"].Value);
             this.txtNomb.Text = Convert.ToString(this.dataListadoCiudades.CurrentRow.Cells["Nombre"].Value);
-            this.txtPais.Text = Convert.ToString(this.dataListadoCiudades.CurrentRow.Cells["Pais"].Value);
+   
             this.tabControl1.SelectedIndex = 1;
         }
  
@@ -95,7 +95,7 @@ namespace AerolineaFrba.Abm_Ciudad
          private Ciudad cargarCiudadParaEditar()
         {
 
-            return new Ciudad(Convert.ToInt32(txtCodigo.Text), txtNomb.Text, txtPais.Text);
+            return new Ciudad(Convert.ToInt32(txtCodigo.Text), txtNomb.Text);
         }
 
          private void btnGuardar_Click_1(object sender, EventArgs e) 
@@ -123,7 +123,7 @@ namespace AerolineaFrba.Abm_Ciudad
          private void limpiarTextBox()
          {
             txtCodigo.Text = "";
-            txtPais.Text = "";
+ 
             txtNomb.Text = "";
          }
 

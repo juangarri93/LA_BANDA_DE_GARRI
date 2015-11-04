@@ -12,14 +12,13 @@ namespace AerolineaFrba.ConstructorDeClases
     {
         private int _id_ciudad;
         private string _nombre;
-        private string _pais;
+
         private string _BajaPorVidaUtil;
 
-        public Ciudad(int codigoCiudad, string nombre,string  pais) 
+        public Ciudad(int codigoCiudad, string nombre) 
         {
             IdentificadorCiudad = codigoCiudad;
             Nombre =  nombre;
-            Pais = pais;
             _BajaPorVidaUtil = "Habilitado";
 
         }
@@ -44,10 +43,6 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _nombre = value; }
         }
 
-        public string Pais
-        {
-            get { return _pais; }
-            set { _pais = value; }
-        }
+      
     }
 }

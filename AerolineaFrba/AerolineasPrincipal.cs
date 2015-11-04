@@ -16,6 +16,7 @@ using AerolineaFrba.Canje_Millas;
 using AerolineaFrba.Herramientas;
 using AerolineaFrba.Registro_de_Usuario;
 using AerolineaFrba.Generacion_Viaje;
+using AerolineaFrba.Abm_Compra;
 
 namespace AerolineaFrba
 {
@@ -73,5 +74,13 @@ namespace AerolineaFrba
         {
 
         }
+
+        private void btnCompra_Click(object sender, EventArgs e)
+        {
+            var nuevaVentanaCompra = new AltaCompra();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCompra, this);
+        }
+
+       
     }
 }

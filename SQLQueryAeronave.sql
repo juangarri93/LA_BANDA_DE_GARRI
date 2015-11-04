@@ -636,3 +636,16 @@ insert into Viaje(id_Viaje,fecha_salida,fecha_llegada, fecha_llegada_est, Codigo
 values(@CodigoViaje,@FechaSalida,@FechaLlegada,@FechaLlegadaEstimada,@Aeronave,@Ruta,@habilitado)
 go
 
+
+------spbuscar_fechaOrigenDestino ---
+
+create proc spbuscar_fechaOrigenDestino(
+@FechaSalida datetime,
+@CiudadOrigen int,
+@CiudadDestino int
+)
+as 
+select * from Viaje 
+where fecha_salida = @FechaSalida and ruta_Aerea = (select id_Ruta from Ruta_Aerea where idCiudadOrigen = @CiudadOrigen and idCiudadDestino = @CiudadDestino)
+order by id_Viaje
+go

@@ -28,6 +28,11 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spmostrar_Viajes");
         }
 
+        public static DataTable Buscar(DateTime fecha, Ciudad origen, Ciudad destino)
+        {
+            return retrieveDataTable("spbuscar_fechaOrigenDestino",fecha,origen.IdentificadorCiudad,destino.IdentificadorCiudad);
+        }
+
         public static void AgregarViaje(Viaje viaje)
         {
             
