@@ -182,7 +182,7 @@ go
 CREATE TABLE dbo.Ciudad
    (CodigoCiudad int PRIMARY KEY NOT NULL identity ,
     Nombre varchar(50) NOT NULL,
-	Pais varchar(50) NOT NULL, 
+
 	BajaPorVidaUtil varchar(50) NOT NULL,
 	)
 go
@@ -367,12 +367,12 @@ go
 create proc spinsertar_ciudad
  (  @codigo int output,
 @nombre varchar(50),
-@pais varchar(50),
+
 @BajaPorVidaUtil varchar(50)
 )
 as
-insert into Ciudad(Nombre,Pais,BajaPorVidaUtil)
-values(@nombre, @pais,@BajaPorVidaUtil)
+insert into Ciudad(Nombre,BajaPorVidaUtil)
+values(@nombre, @BajaPorVidaUtil)
 go
 
 ----------------------------------------------------------------
@@ -381,10 +381,10 @@ go
 create proc speditar_ciudad
 ( @codigo int output,
 @nombre varchar(50),
-@pais varchar(50))
+)
 as
-update Ciudad set Nombre = @nombre,
-Pais = @pais 
+update Ciudad set Nombre = @nombre
+
 where CodigoCiudad = @codigo
 go
 
