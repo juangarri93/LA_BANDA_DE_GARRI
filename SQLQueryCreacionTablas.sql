@@ -231,7 +231,7 @@ PRIMARY KEY (id)
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Id] int identity,
-[Fecha_alta] datetime,
+[Fecha_alta] date,
 [Numero] int,
 [Matricula] varchar(255),
 [Modelo] int,
@@ -242,8 +242,8 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Baja_Fuera_Servicio] varchar(50),
 [Baja_Vida_Util] varchar(50),
 [Fecha_Reinicio] datetime,
-[Fecha_Fuera_Servicio] datetime,
-[Fecha_baja_definitiva] datetime,
+[Fecha_Fuera_Servicio] date,
+[Fecha_baja_definitiva] date,
 [Kg_Disponibles] int
 PRIMARY KEY (id),
 CONSTRAINT [FK_Modelo] FOREIGN KEY ([Modelo]) REFERENCES [LA_BANDA_DE_GARRI].[Modelo] ([Id]),
@@ -779,7 +779,7 @@ GO
 
 create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
 (@Id int output, 
-@fechaAlta  datetime,
+@fechaAlta  date,
 @numeroAeronave int,  
 @modelo int,
 @matricula varchar(255),
@@ -789,9 +789,9 @@ create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
 @CantidadButacasPasillo int, 
 @bajaPorFueraDeServicio varchar(50),
 @bajaPorVidaUtil varchar(50),
-@FechaDeFueraDeServicio datetime,
-@FechaDeReinicioDeServicio datetime,
-@FechaBajaDefinitiva datetime,
+@FechaDeFueraDeServicio date,
+@FechaDeReinicioDeServicio date,
+@FechaBajaDefinitiva date,
 @kgDisponible int)
 as
 --BEGIN
@@ -854,21 +854,21 @@ select * from Aeronave
 where Modelo like '%' + @textoBuscar + '%'
 go
 
+--Modificado por Nico 03/11/2015
 --PROCEDIMIENTO EDITAR AERONAVE--
 create proc LA_BANDA_DE_GARRI.speditar_aeronave
 (@codigo int, 
 @fechaAlta  date,
 @numeroAeronave int, 
-@modelo int,
-@matricula varchar(50), 
+@matricula varchar(50),
+@modelo int, 
 @fabricante int,
-@tipoDeServicio int, 
+@tipoDeServicio int,
+@CantidadButacasVentana int,
+@CantidadButacasPasillo int, 
 @bajaPorFueraDeServicio varchar(50),
-@BajaPorVidaUtil varchar(50),
 @FechaDeFueraDeServicio date,
-@FechaDeReinicioDeServicio date ,
-@FechaBajaDefinitiva date,
-@CantidadButacas int, 
+@FechaDeReinicioDeServicio date,
 @kgDisponible int)
 as
 update Aeronave set Fecha_alta = @fechaAlta,
@@ -877,31 +877,30 @@ Modelo = @modelo,
 Matricula = @matricula,
 Fabricante = @fabricante,
 Tipo_Servicio = @tipoDeServicio,
+Cantidad_Butacas_Ventana = @CantidadButacasVentana,
+Cantidad_Ventanas_Pasillo = @CantidadButacasPasillo,
 Baja_Fuera_Servicio = @bajaPorFueraDeServicio,
-Baja_Vida_Util = @BajaPorVidaUtil,
 Fecha_Fuera_Servicio = @FechaDeFueraDeServicio,
 Fecha_Reinicio = @FechaDeReinicioDeServicio,
-Fecha_baja_definitiva = @FechaBajaDefinitiva,
 Kg_Disponibles = @kgDisponible
 where Id = @codigo
 go
 
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
-
 create proc LA_BANDA_DE_GARRI.spmostrar_fabricante
 as
 select * from LA_BANDA_DE_GARRI.Fabricante
 go
 
 -------------------------------------------------
-
+-- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_modelo
 as
 select * from LA_BANDA_DE_GARRI.Modelo
 go
 
 -------------------------------------------------
-
+-- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_tipo_servicio
 as
 select * from LA_BANDA_DE_GARRI.Tipo_Servicio
