@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
+
 
 using AerolineaFrba.ConstructorDeClases;
 
@@ -20,6 +22,29 @@ namespace AerolineaFrba.CapaADO
             {
                 executeProcedure("spinsertar_rol_funcionalidad", rol.Codigo, funcionalidad + 1);
             }
+        }
+
+
+        public static Rol getRol(int id)
+        {
+            var table = retrieveDataTable("getRolId", id);
+            var rol = dataRowToRol(table.Rows[0]);
+
+            table = retrieveDataTable("getRolFunc", id);
+
+            var lista = (from DataRow fila in table.Rows select (Convert.ToInt32(fila["Id_Funcionalidad"])) - 1).ToList();
+            rol.Funcionalidades = lista;
+            return rol;
+        }
+
+        private static Rol dataRowToRol(DataRow dr)
+        {
+            return new Rol(Convert.ToInt32(dr["ID"]), dr["Rol"].ToString(), dr["Habilitado"].ToString() == "1");
+        }
+
+        public static DataTable getRol()
+        {
+            return retrieveDataTable("spmostrar_Rol");
         }
     }
 }

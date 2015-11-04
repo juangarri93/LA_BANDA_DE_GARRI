@@ -52,10 +52,10 @@ namespace AerolineaFrba.CapaADO
 
         public static void EditarAeronave(Aeronave aeronave)
         {
-            executeProcedure("speditar_aeronave", aeronave.CodigoAeronave, aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
-                            aeronave.Matricula, aeronave.Fabricante, aeronave.TipoDeServicio, aeronave.BajaPorFueraDeServicio,
-                            aeronave.BajaPorVidaUtil, aeronave.FechaDeFueraDeServicio, aeronave.FechaDeReinicioDeServicio, aeronave.FechaDeBajaDefinitiva,
-                            aeronave.CantidadButacaPasillo,aeronave.CantidadButacaVentana, aeronave.KGDisponible);
+            executeProcedure("speditar_aeronave", aeronave.CodigoAeronave, aeronave.FechaAlta, aeronave.NumeroAeronave,aeronave.Matricula,aeronave.Modelo,
+                            aeronave.Fabricante, aeronave.TipoDeServicio,aeronave.CantidadButacaVentana,aeronave.CantidadButacaPasillo, aeronave.BajaPorFueraDeServicio,
+                            aeronave.FechaDeFueraDeServicio, aeronave.FechaDeReinicioDeServicio,
+                            aeronave.KGDisponible);
         }
 
         public static void EliminarAeronave(Int32 codigoAeronave)

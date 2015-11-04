@@ -21,8 +21,8 @@ namespace AerolineaFrba.Abm_Rol
         private void mostarListaFuncionalidades()
         {
             Funcionalidades.DataSource = DAOFuncionalidades.getFuncionalidades().DefaultView;
-            Funcionalidades.DisplayMember = "nombre";
-            Funcionalidades.ValueMember = "id_funcionalidad";     
+            Funcionalidades.DisplayMember = "Nombre";
+            Funcionalidades.ValueMember = "Id";     
         }
 
         //Cargo y genero un nuevo rol a la lista de funcionalidades

@@ -12,6 +12,21 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Rol ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Rol ;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ;
+  
+  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_Funcionalidades ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spMostrar_Funcionalidades ;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_rol ;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdardebaja_aerolinea') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spdardebaja_aerolinea;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_fabricante') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_fabricante;
 
@@ -231,7 +246,7 @@ PRIMARY KEY (id)
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Id] int identity,
-[Fecha_alta] datetime,
+[Fecha_alta] date,
 [Numero] int,
 [Matricula] varchar(255),
 [Modelo] int,
@@ -242,8 +257,8 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Baja_Fuera_Servicio] varchar(50),
 [Baja_Vida_Util] varchar(50),
 [Fecha_Reinicio] datetime,
-[Fecha_Fuera_Servicio] datetime,
-[Fecha_baja_definitiva] datetime,
+[Fecha_Fuera_Servicio] date,
+[Fecha_baja_definitiva] date,
 [Kg_Disponibles] int
 PRIMARY KEY (id),
 CONSTRAINT [FK_Modelo] FOREIGN KEY ([Modelo]) REFERENCES [LA_BANDA_DE_GARRI].[Modelo] ([Id]),
@@ -763,23 +778,15 @@ BEGIN
 END
 GO
 
-create proc [LA_BANDA_DE_GARRI].[spmostrar_aeronave]
+create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
 as
 select * from LA_BANDA_DE_GARRI.Aeronave
 order by Aeronave.Id
 GO
 
---create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
---(@Id int output, 
---@numeroAeronave int)
---as
---insert into LA_BANDA_DE_GARRI.Aeronave([Numero] )
---values(@numeroAeronave)
---go
-
-create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
+create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 (@Id int output, 
-@fechaAlta  datetime,
+@fechaAlta  date,
 @numeroAeronave int,  
 @modelo int,
 @matricula varchar(255),
@@ -789,12 +796,16 @@ create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
 @CantidadButacasPasillo int, 
 @bajaPorFueraDeServicio varchar(50),
 @bajaPorVidaUtil varchar(50),
-@FechaDeFueraDeServicio datetime,
-@FechaDeReinicioDeServicio datetime,
-@FechaBajaDefinitiva datetime,
+@FechaDeFueraDeServicio date,
+@FechaDeReinicioDeServicio date,
+@FechaBajaDefinitiva date,
 @kgDisponible int)
 as
---BEGIN
+BEGIN
+
+declare @AuxMaxAnt int
+set @AuxMaxAnt = (SELECT MAX(id) FROM LA_BANDA_DE_GARRI.Aeronave)
+
 insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
 [Numero],[Matricula],[Modelo],[Fabricante],
 [Tipo_Servicio],[Cantidad_Butacas_Ventana],[Cantidad_Ventanas_Pasillo],[Baja_Fuera_Servicio],
@@ -804,30 +815,45 @@ values(null,@numeroAeronave,@matricula,@modelo,@fabricante,
 @tipoDeServicio,@CantidadButacasVentana,@CantidadButacasPasillo,null,
 null,null,null,null, @kgDisponible)
 
---declare @idAeronave int
---set @idAeronave = (SELECT @@identity AS id)
 
---declare @aux int
---declare @tipo int
---set @aux = 1
---set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Ventana')
+print('el id es:' + '@Id')
+declare @idAeronave int
+set @idAeronave = (SELECT MAX(id) FROM LA_BANDA_DE_GARRI.Aeronave)
 
---while @aux <= @CantidadButacasVentana
---begin
---insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
---values(@aux*2,@tipo,1,@idAeronave)
---set @aux = @aux + 1
---end
---set @aux = 0
+if(@idAeronave != @AuxMaxAnt)
+BEGIN
+declare @aux int
+declare @tipo int
+declare @aux2  int
 
---set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Pasillo')
---while @aux < @CantidadButacasPasillo
---begin
---insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
---values(@aux*2+1,@tipo,1,@idAeronave)
---set @aux = @aux + 1
---end
---END
+set @aux = 1
+set @aux2 = 0
+set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Ventanilla')
+
+ while (@aux <= @CantidadButacasVentana)
+
+ begin
+  set @aux2 = @aux*2
+  insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+  values(@aux2,@tipo,1,@idAeronave)
+  set @aux = @aux + 1
+
+ end
+
+set @aux = 0
+set @aux2 = 0
+
+set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Pasillo')
+
+ while (@aux < @CantidadButacasPasillo)
+ begin
+  set @aux2 = @aux*2+1
+  insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+  values(@aux2,@tipo,1,@idAeronave)
+  set @aux = @aux + 1
+ end
+ END --FIN IF
+END
 go 
 
 --PROCEDIMIENTO BUSCAR NUMERO--
@@ -854,21 +880,21 @@ select * from Aeronave
 where Modelo like '%' + @textoBuscar + '%'
 go
 
+--Modificado por Nico 03/11/2015
 --PROCEDIMIENTO EDITAR AERONAVE--
 create proc LA_BANDA_DE_GARRI.speditar_aeronave
 (@codigo int, 
 @fechaAlta  date,
 @numeroAeronave int, 
-@modelo int,
-@matricula varchar(50), 
+@matricula varchar(50),
+@modelo int, 
 @fabricante int,
-@tipoDeServicio int, 
+@tipoDeServicio int,
+@CantidadButacasVentana int,
+@CantidadButacasPasillo int, 
 @bajaPorFueraDeServicio varchar(50),
-@BajaPorVidaUtil varchar(50),
 @FechaDeFueraDeServicio date,
-@FechaDeReinicioDeServicio date ,
-@FechaBajaDefinitiva date,
-@CantidadButacas int, 
+@FechaDeReinicioDeServicio date,
 @kgDisponible int)
 as
 update Aeronave set Fecha_alta = @fechaAlta,
@@ -877,32 +903,101 @@ Modelo = @modelo,
 Matricula = @matricula,
 Fabricante = @fabricante,
 Tipo_Servicio = @tipoDeServicio,
+Cantidad_Butacas_Ventana = @CantidadButacasVentana,
+Cantidad_Ventanas_Pasillo = @CantidadButacasPasillo,
 Baja_Fuera_Servicio = @bajaPorFueraDeServicio,
-Baja_Vida_Util = @BajaPorVidaUtil,
 Fecha_Fuera_Servicio = @FechaDeFueraDeServicio,
 Fecha_Reinicio = @FechaDeReinicioDeServicio,
-Fecha_baja_definitiva = @FechaBajaDefinitiva,
 Kg_Disponibles = @kgDisponible
 where Id = @codigo
 go
 
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
-
 create proc LA_BANDA_DE_GARRI.spmostrar_fabricante
 as
 select * from LA_BANDA_DE_GARRI.Fabricante
 go
 
 -------------------------------------------------
-
+-- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_modelo
 as
 select * from LA_BANDA_DE_GARRI.Modelo
 go
 
 -------------------------------------------------
-
+-- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_tipo_servicio
 as
 select * from LA_BANDA_DE_GARRI.Tipo_Servicio
 go
+
+--------------------------------------------------
+
+-- Agregado Nico 03/11/2015--
+--PROCEDIMIENTO spdardebaja_aerolinea --
+create proc LA_BANDA_DE_GARRI.spdardebaja_aerolinea
+@CodigoAeronave int
+as
+update LA_BANDA_DE_GARRI.Aeronave Set Baja_Vida_Util = 'Deshabilitado',Fecha_baja_definitiva = getdate()
+where @CodigoAeronave = Id
+go
+
+-----------------------------------------------------------
+
+--PROCEDIMIENTO MOSTRAR TABLA FUNCIONALIDAD --> spMostrar_Funcionalidades --
+CREATE PROC LA_BANDA_DE_GARRI.spMostrar_Funcionalidades
+as
+select * from LA_BANDA_DE_GARRI.Funcionalidades
+order by Id
+go
+
+------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+
+--PROCEDIMIENTO INSERTAR ROL --> spinsertar_rol --
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_rol
+ (@id_rol int output,
+@rol varchar(100),
+@habilitado binary
+)
+as
+
+begin
+
+insert into LA_BANDA_DE_GARRI.Roles(Rol,Habilitado)
+values(@rol,@habilitado)
+
+declare @id_aux int
+select @id_aux = Id from LA_BANDA_DE_GARRI.Roles where @rol = Rol 
+
+return(@id_aux)
+
+end
+go
+
+----------------------------------------------------------------------------------------
+
+--Crear insertar rol-funcionalidad en tabla rol_funcionalidad--
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad 
+(@id_rol int,
+@id_funcionalidad int
+)
+
+as
+
+insert into LA_BANDA_DE_GARRI.Rol_Funcionalidad(Id_Rol,Id_Funcionalidad)
+values(@id_rol,@id_funcionalidad)
+
+go
+
+-------------------------------------------------------------------------------------------
+
+--Agregado Nico 04/11/2015--
+
+create proc LA_BANDA_DE_GARRI.spmostrar_Rol
+as
+select * from LA_BANDA_DE_GARRI.Roles
+order by Roles.Id
+GO

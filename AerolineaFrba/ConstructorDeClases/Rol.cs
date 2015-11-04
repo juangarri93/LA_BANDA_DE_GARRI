@@ -47,6 +47,13 @@ namespace AerolineaFrba.ConstructorDeClases
         
         }
 
+        public Rol(int cod, string nombre, bool habilitado)
+        {
+            Codigo = cod;
+            Nombre = nombre;
+            Habilitado = habilitado;
+        }
+
 
 
     }
