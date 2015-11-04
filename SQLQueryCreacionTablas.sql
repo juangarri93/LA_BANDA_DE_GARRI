@@ -12,6 +12,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Rol ') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Rol ;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ;
   
@@ -990,3 +993,11 @@ values(@id_rol,@id_funcionalidad)
 go
 
 -------------------------------------------------------------------------------------------
+
+--Agregado Nico 04/11/2015--
+
+create proc LA_BANDA_DE_GARRI.spmostrar_Rol
+as
+select * from LA_BANDA_DE_GARRI.Roles
+order by Roles.Id
+GO
