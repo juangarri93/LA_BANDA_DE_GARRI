@@ -781,14 +781,6 @@ select * from LA_BANDA_DE_GARRI.Aeronave
 order by Aeronave.Id
 GO
 
---create proc [LA_BANDA_DE_GARRI].[spinsertar_aeronave]
---(@Id int output, 
---@numeroAeronave int)
---as
---insert into LA_BANDA_DE_GARRI.Aeronave([Numero] )
---values(@numeroAeronave)
---go
-
 create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 (@Id int output, 
 @fechaAlta  date,
@@ -806,7 +798,11 @@ create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 @FechaBajaDefinitiva date,
 @kgDisponible int)
 as
---BEGIN
+BEGIN
+
+declare @AuxMaxAnt int
+set @AuxMaxAnt = (SELECT MAX(id) FROM LA_BANDA_DE_GARRI.Aeronave)
+
 insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
 [Numero],[Matricula],[Modelo],[Fabricante],
 [Tipo_Servicio],[Cantidad_Butacas_Ventana],[Cantidad_Ventanas_Pasillo],[Baja_Fuera_Servicio],
@@ -816,30 +812,45 @@ values(null,@numeroAeronave,@matricula,@modelo,@fabricante,
 @tipoDeServicio,@CantidadButacasVentana,@CantidadButacasPasillo,null,
 null,null,null,null, @kgDisponible)
 
---declare @idAeronave int
---set @idAeronave = (SELECT @@identity AS id)
 
---declare @aux int
---declare @tipo int
---set @aux = 1
---set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Ventana')
+print('el id es:' + '@Id')
+declare @idAeronave int
+set @idAeronave = (SELECT MAX(id) FROM LA_BANDA_DE_GARRI.Aeronave)
 
---while @aux <= @CantidadButacasVentana
---begin
---insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
---values(@aux*2,@tipo,1,@idAeronave)
---set @aux = @aux + 1
---end
---set @aux = 0
+if(@idAeronave != @AuxMaxAnt)
+BEGIN
+declare @aux int
+declare @tipo int
+declare @aux2  int
 
---set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Pasillo')
---while @aux < @CantidadButacasPasillo
---begin
---insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
---values(@aux*2+1,@tipo,1,@idAeronave)
---set @aux = @aux + 1
---end
---END
+set @aux = 1
+set @aux2 = 0
+set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Ventanilla')
+
+ while (@aux <= @CantidadButacasVentana)
+
+ begin
+  set @aux2 = @aux*2
+  insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+  values(@aux2,@tipo,1,@idAeronave)
+  set @aux = @aux + 1
+
+ end
+
+set @aux = 0
+set @aux2 = 0
+
+set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Pasillo')
+
+ while (@aux < @CantidadButacasPasillo)
+ begin
+  set @aux2 = @aux*2+1
+  insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
+  values(@aux2,@tipo,1,@idAeronave)
+  set @aux = @aux + 1
+ end
+ END --FIN IF
+END
 go 
 
 --PROCEDIMIENTO BUSCAR NUMERO--
