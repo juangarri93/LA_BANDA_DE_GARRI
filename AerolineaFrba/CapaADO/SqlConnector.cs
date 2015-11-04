@@ -27,14 +27,14 @@ namespace AerolineaFrba.CapaADO
             }
             catch (Exception ex)
             {
-                throw ex; 
+                throw ex;
             }
         }
-       
+
         //Ejecuta un stored procedure y devuelve un datatable con el resultado del mismo.
         // Procedimiento -> Nombre del stored procedure 
         //Argumentos que recibe el stored procedure
-        
+
         public static DataTable retrieveDataTable(string storedProcedure, params object[] parametros)
         {
             List<string> argumentos = _generateArguments(storedProcedure);
@@ -42,44 +42,44 @@ namespace AerolineaFrba.CapaADO
         }
 
         // Ejecuta un stored procedure y devuelve un datatable con el resultado del mismo.
-  
+
         public static DataTable retrieveDataTable(string procedure)
         {
             return _retrieveDataTable(procedure, null, null);
         }
 
         //Ejecuta un stored procedure con parametros
-  
+
         public static void executeProcedure(string procedure, params object[] values)
         {
             List<string> argumentos = _generateArguments(procedure);
             _executeProcedure(procedure, argumentos, values);
         }
 
-       
+
         /// Ejecuta un stored procedure sin parametros
-        
+
         public static void executeProcedure(string procedure)
         {
             _executeProcedure(procedure, null, null);
         }
 
-       
+
         /// Ejecuta una consulta (a partir de un stored procedure) y devuelve si encontró datos o no.
-       
+
         public static bool checkIfExists(string procedure, params object[] values)
         {
             List<string> argumentos = _generateArguments(procedure);
             return _checkIfExists(procedure, argumentos, values);
         }
-       
+
         /// Ejecuta una consulta (a partir de un stored procedure) y devuelve si encontró datos o no.
-        
+
         public static bool checkIfExists(string procedure)
         {
             return _checkIfExists(procedure, null, null);
         }
-       
+
         /// Ejecuta un stored procedure que devuelve un valor númerico y retorna dicho valor.
         public static int executeProcedureWithReturnValue(string procedure, params object[] values)
         {
@@ -97,7 +97,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI."+procedure; // Ver esto
+                cm.CommandText = procedure; // Ver esto
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -128,7 +128,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure;
+                cm.CommandText = procedure;
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -159,7 +159,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure;
+                cm.CommandText = procedure;
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -192,7 +192,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure;
+                cm.CommandText = procedure;
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -225,7 +225,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.Text;
-                cm.CommandText = "SELECT PARAMETER_NAME FROM information_schema.parameters WHERE SPECIFIC_SCHEMA='LA_BANDA_DE_GARRI' AND SPECIFIC_NAME='" + procedure + "'";
+                cm.CommandText = "SELECT PARAMETER_NAME FROM information_schema.parameters WHERE SPECIFIC_SCHEMA='dbo' AND SPECIFIC_NAME='" + procedure + "'";
                 dr = cm.ExecuteReader();
                 dt.Load(dr);
                 foreach (DataRow d in dt.Rows)

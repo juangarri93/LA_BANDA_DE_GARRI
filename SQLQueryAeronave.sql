@@ -615,6 +615,13 @@ order by id_Viaje
 go
 ----spinsertar_Viaje---
 
+/*se debe validar que la fecha sea mayor a la fecha actual--
+se tendrá que controlar que el servicio de la ruta concuerde 
+con el tipo de servicio que brinda la aeronave seleccionada.--
+al momento de seleccionar una aeronave esta deba estar disponible
+y no estar asignada previamente a otro viaje en la fecha que se está 
+ingresando*/
+
 CREATE PROC spinsertar_Viaje
 (@CodigoViaje int output,
 @FechaSalida datetime,

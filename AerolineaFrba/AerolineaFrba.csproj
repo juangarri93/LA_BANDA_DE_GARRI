@@ -126,20 +126,22 @@
     </Compile>
     <Compile Include="CapaADO\DAOAerolinea.cs" />
     <Compile Include="CapaADO\DAOCiudad.cs" />
+    <Compile Include="CapaADO\DAOCompra.cs" />
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
     <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\DAORuta.cs" />
     <Compile Include="CapaADO\DAOUsuario.cs" />
     <Compile Include="CapaADO\DAOViaje.cs" />
     <Compile Include="CapaADO\SqlConnector.cs" />
-    <Compile Include="Compra\Form1.cs">
+    <Compile Include="ABM Compra\AltaCompra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compra\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM Compra\AltaCompra.Designer.cs">
+      <DependentUpon>AltaCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="ConstructorDeClases\Aeronave.cs" />
     <Compile Include="ConstructorDeClases\Ciudad.cs" />
+    <Compile Include="ConstructorDeClases\Compra.cs" />
     <Compile Include="ConstructorDeClases\Persona.cs" />
     <Compile Include="ConstructorDeClases\Rol.cs" />
     <Compile Include="ConstructorDeClases\Ruta.cs" />

@@ -169,11 +169,14 @@
             this.cbAeronave.Name = "cbAeronave";
             this.cbAeronave.Size = new System.Drawing.Size(200, 24);
             this.cbAeronave.TabIndex = 80;
+            this.cbAeronave.SelectedIndexChanged += new System.EventHandler(this.cbAeronave_SelectedIndexChanged);
             // 
             // GenerarViaje
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(556, 485);
             this.Controls.Add(this.cbAeronave);
             this.Controls.Add(this.label4);

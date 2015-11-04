@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace AerolineaFrba.ConstructorDeClases
 {
-    class Viaje
+    public class Viaje
     {
         private DateTime _FechaSalida;
         private DateTime _FechaLlegada;
         private DateTime _FechaLlegadaEstimada;
-        private Aeronave _Aeronave;
-        private Ruta _Ruta;
+        private int _Aeronave;
+        private int _Ruta;
         private string _habilitado;
 
-        public Viaje(DateTime fechasalida, DateTime fechallegada, DateTime fechallegadaestimada, Aeronave aeronave, Ruta ruta , string habilitado)
+        public Viaje(DateTime fechasalida, DateTime fechallegada, DateTime fechallegadaestimada, int aeronave, int ruta, string habilitado)
         {
             if (ValidarDatos(fechasalida,fechallegada,fechallegadaestimada)==true)
             {
@@ -24,12 +24,19 @@ namespace AerolineaFrba.ConstructorDeClases
                 this._FechaLlegadaEstimada = fechallegadaestimada;
                 this._Aeronave = aeronave;
                 this._Ruta = ruta;
+                this._habilitado = habilitado;
             }
         }
-       
-        public bool ValidarDatos(DateTime fechasalida, DateTime fechallegada, DateTime fechallegadaestimada){
 
-            if (fechasalida <= fechallegada && fechasalida <= fechallegadaestimada)
+        public bool ValidarDatos(DateTime fechaSalida, DateTime fechaLlegada, DateTime fechaLlegadaEstimada)
+        {
+          
+            if ((fechaSalida.Year == fechaLlegada.Year) &&
+             (fechaSalida.Month == fechaLlegada.Month) &&
+             ((fechaLlegada.Day - fechaSalida.Day) <= 1) &&
+             ((fechaSalida.Year == fechaLlegadaEstimada.Year) &&
+             (fechaSalida.Month == fechaLlegadaEstimada.Month) &&
+             (fechaLlegadaEstimada.Day - fechaSalida.Day) <= 1)) 
             {
                 return true;
             }
@@ -66,14 +73,14 @@ namespace AerolineaFrba.ConstructorDeClases
         }
 
 
-        public Aeronave Aeronave
+        public int Aeronave
         {
             get { return _Aeronave; }
             set { _Aeronave = value; }
         }
 
 
-        public Ruta Ruta
+        public int Ruta
         {
             get { return _Ruta; }
             set { _Ruta = value; }

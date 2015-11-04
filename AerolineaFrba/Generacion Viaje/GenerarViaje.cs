@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using AerolineaFrba.ConstructorDeClases;
 using AerolineaFrba.CapaADO;
 
 namespace AerolineaFrba.Generacion_Viaje
@@ -17,12 +17,14 @@ namespace AerolineaFrba.Generacion_Viaje
         public GenerarViaje()
         {
             InitializeComponent();
+          
         }
 
         private void GenerarViaje_Load(object sender, EventArgs e)
         {
             this.Top = 0;
             this.Left = 0;
+            limpiar();
             cargarComboBox();
            
         }
@@ -40,7 +42,7 @@ namespace AerolineaFrba.Generacion_Viaje
             dtFechaLLegadaEstimada.Value = DateTime.Today;
             dtFechaLLegada.Value = DateTime.Today;
             dtFechaSalida.Value = DateTime.Today;
-            cbRutaAerea.ValueMember = null;
+            cbAeronave.ValueMember = null;
             cbRutaAerea.ValueMember = null;
         
         }
@@ -48,8 +50,9 @@ namespace AerolineaFrba.Generacion_Viaje
         private void cargarComboBox()
         {
             cbAeronave.DataSource = DAOViaje.getAeronaves().DefaultView;
-            cbAeronave.DisplayMember = "Nombre";
-
+            cbAeronave.DisplayMember = "NumeroAeronave";
+            cbRutaAerea.DataSource = DAOViaje.getRutaAerea().DefaultView;
+            cbRutaAerea.DisplayMember = "id_Ruta";
             
 
         }
@@ -70,7 +73,39 @@ namespace AerolineaFrba.Generacion_Viaje
 
         }
 
+
+        private Viaje CargarViaje()
+        {
+            return new Viaje(dtFechaSalida.Value, dtFechaLLegada.Value, dtFechaLLegadaEstimada.Value, Convert.ToInt32(cbAeronave.SelectedText), Convert.ToInt32(cbRutaAerea.SelectedText), "Habilitado");
+        }
+
         private void btnGenerarViaje_Click(object sender, EventArgs e)
+        {
+            // if (!ValidacionesAeronave()) return;
+            try
+            {
+                DAOViaje.AgregarViaje(CargarViaje());
+                MessageBox.Show("El Viaje se generó correctamente.");
+                 limpiar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error." + ex.Message);
+
+            }
+        }
+
+        private void dtFechaLLegadaEstimada_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbAeronave_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpFECHA_ValueChanged(object sender, EventArgs e)
         {
 
         }

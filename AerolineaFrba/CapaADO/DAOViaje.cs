@@ -30,6 +30,7 @@ namespace AerolineaFrba.CapaADO
 
         public static void AgregarViaje(Viaje viaje)
         {
+            
             executeProcedure("spinsertar_Viaje", 1, viaje.FechaSalida,viaje.FechaLlegada,viaje.FechaLlegadaEstimada,viaje.Aeronave,viaje.Ruta,viaje.Habilitado);
 
         }
