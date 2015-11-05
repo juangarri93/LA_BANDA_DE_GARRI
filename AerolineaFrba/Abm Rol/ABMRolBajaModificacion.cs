@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
+using AerolineaFrba.Herramientas;
 
 namespace AerolineaFrba.Abm_Rol
 {
@@ -17,7 +18,7 @@ namespace AerolineaFrba.Abm_Rol
     {
 
         private Rol _rol;
-
+        private int idSeleccionado;
         public ABMRolBajaModificacion()
         {
             InitializeComponent();
@@ -49,18 +50,7 @@ namespace AerolineaFrba.Abm_Rol
         }
 
 
-        private void mostarListaFuncionalidades()
-        {
-            Funcionalidades.DataSource = DAOFuncionalidades.getFuncionalidades().DefaultView;
-            Funcionalidades.DisplayMember = "Nombre";
-            Funcionalidades.ValueMember = "Id"; 
-
-            foreach (var func in _rol.Funcionalidades)
-            {
-                Funcionalidades.SetItemChecked(func, true);
-            }
-
-        }
+       
 
         private void CargarRol(int id)
         {
@@ -69,37 +59,18 @@ namespace AerolineaFrba.Abm_Rol
 
         private void ABMRolBajaModificacion_Load(object sender, EventArgs e)
         {
-            btnGuardar.Enabled = false;
-            Funcionalidades.Enabled = false;
-            cbNombre.DataSource = DAORol.getRol().DefaultView;
-            cbNombre.DisplayMember = "Rol";
-            mostarListaFuncionalidades();
+          
+          
           
         }
 
         private void EditarFuncionalidad_Click(object sender, EventArgs e)
         {
-            Funcionalidades.Enabled = true;
-            btnGuardar.Enabled = true;
 
-            try
-            {
-                DAORol.ActualizarRolFuncionalidad(GenerarRol());
-                MessageBox.Show("Rol modificado correctamente.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error." + ex.Message);
-            }
+
+            var ventanaBajaModificacionRol = new ModificarFuncionalidadParaUnRol(idSeleccionado);
+            FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRol, this);
                 
         }
-
-        //Genero un nuevo Rol con la lista de funcionalidades que son enteros --> Son los que selecciono
-        private Rol GenerarRol()
-        {
-            var lista = Funcionalidades.CheckedIndices.Cast<int>().ToList();
-            return new Rol(cbNombre.Text, lista);
-        }
-
     }
 }

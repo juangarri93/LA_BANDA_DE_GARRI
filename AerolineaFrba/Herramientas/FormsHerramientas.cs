@@ -30,5 +30,7 @@ namespace AerolineaFrba.Herramientas
 
                 MessageBox.Show(mensaje, "Sistema de Aerolinea", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+           
     }
 }

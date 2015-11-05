@@ -102,6 +102,12 @@
     <Compile Include="Abm Rol\ABMRolBajaModificacion.Designer.cs">
       <DependentUpon>ABMRolBajaModificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Rol\ModificarFuncionalidadParaUnRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Rol\ModificarFuncionalidadParaUnRol.Designer.cs">
+      <DependentUpon>ModificarFuncionalidadParaUnRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Ruta\ABMRuta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\ABMRolBajaModificacion.resx">
       <DependentUpon>ABMRolBajaModificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\ModificarFuncionalidadParaUnRol.resx">
+      <DependentUpon>ModificarFuncionalidadParaUnRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Ruta\ABMRuta.resx">
       <DependentUpon>ABMRuta.cs</DependentUpon>
