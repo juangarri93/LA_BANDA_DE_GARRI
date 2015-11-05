@@ -59,10 +59,10 @@ namespace AerolineaFrba.Abm_Compra
                     DataTable ciudadLevantadaDestino = DAOCiudad.buscarCiudad(cmbDestino.ValueMember);
                     DataRow rowOrigen = ciudadLevantadaOrigen.Rows[0];
                     DataRow rowDestino = ciudadLevantadaDestino.Rows[0];
-               //     Ciudad origen = new Ciudad(rowOrigen.Field<int>(0),rowOrigen.Field<string>("Nombre"));
-               //     Ciudad destino = new Ciudad(rowDestino.Field<int>(0),rowDestino.Field<string>("Nombre"));
+                    Ciudad origen = new Ciudad(rowOrigen.Field<int>(0), rowOrigen.Field<string>("Nombre"), rowOrigen.Field<Boolean>("Habilitada"));
+                    Ciudad destino = new Ciudad(rowDestino.Field<int>(0), rowDestino.Field<string>("Nombre"),rowDestino.Field<Boolean>("Habilitada"));
 
-               //     this.dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value, origen, destino);
+                    this.dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value, origen, destino);
                 }
                 catch (Exception ex)
                 {
