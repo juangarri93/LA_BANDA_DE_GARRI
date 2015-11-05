@@ -35,6 +35,7 @@
             this.cmbOrigen = new System.Windows.Forms.ComboBox();
             this.dtpFechaViaje = new System.Windows.Forms.DateTimePicker();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvCompra = new System.Windows.Forms.DataGridView();
@@ -42,7 +43,6 @@
             this.txtCantKG = new System.Windows.Forms.TextBox();
             this.btnComprar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.chkPasajes = new System.Windows.Forms.CheckBox();
             this.chkEncomienda = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompra)).BeginInit();
@@ -113,6 +113,12 @@
             this.shapeContainer1.TabIndex = 18;
             this.shapeContainer1.TabStop = false;
             // 
+            // rectangleShape2
+            // 
+            this.rectangleShape2.Location = new System.Drawing.Point(15, 336);
+            this.rectangleShape2.Name = "rectangleShape2";
+            this.rectangleShape2.Size = new System.Drawing.Size(321, 236);
+            // 
             // rectangleShape1
             // 
             this.rectangleShape1.Location = new System.Drawing.Point(16, 20);
@@ -137,6 +143,7 @@
             this.dgvCompra.RowTemplate.Height = 24;
             this.dgvCompra.Size = new System.Drawing.Size(682, 553);
             this.dgvCompra.TabIndex = 20;
+            this.dgvCompra.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompra_CellContentClick);
             // 
             // cantPasajes
             // 
@@ -174,12 +181,6 @@
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.Location = new System.Drawing.Point(15, 336);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(321, 236);
             // 
             // chkPasajes
             // 

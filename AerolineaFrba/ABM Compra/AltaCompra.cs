@@ -21,9 +21,9 @@ namespace AerolineaFrba.Abm_Compra
             cmbOrigen.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DisplayMember = "Nombre";
-            cmbDestino.ValueMember = "Id"; //cambiar a Id para la base original
+            cmbDestino.ValueMember = "CodigoCiudad"; //cambiar a Id para la base original
             cmbOrigen.DisplayMember = "Nombre";
-            cmbOrigen.ValueMember = "Id";
+            cmbOrigen.ValueMember = "CodigoCiudad";
             cantPasajes.Items.Add(1);
             cantPasajes.Items.Add(2);
             cantPasajes.Items.Add(3);
@@ -63,6 +63,7 @@ namespace AerolineaFrba.Abm_Compra
                     Ciudad destino = new Ciudad(rowDestino.Field<int>(0),rowDestino.Field<string>("Nombre"));
 
                     this.dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value, origen, destino);
+
                 }
                 catch (Exception ex)
                 {
@@ -70,5 +71,14 @@ namespace AerolineaFrba.Abm_Compra
                 }
             }
         }
+
+       
+
+        private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
     }
 }
