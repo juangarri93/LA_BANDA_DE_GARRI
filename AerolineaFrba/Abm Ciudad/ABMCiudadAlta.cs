@@ -52,8 +52,15 @@ namespace AerolineaFrba.Abm_Ciudad
         
         private Ciudad CargarCiudad() 
         {
+            
+            Boolean var = true;
 
-            return new Ciudad(1, textNombre.Text);
+            if (cbHabilitado.SelectedIndex == 1) var = true;
+
+            else var = false;
+
+
+            return new Ciudad(1, textNombre.Text,var);
                                  
         }
 
@@ -72,6 +79,15 @@ namespace AerolineaFrba.Abm_Ciudad
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             limpiar();
+        }
+
+        private void ABMCiudadAlta_Load(object sender, EventArgs e)
+        {
+            this.Top = 0;
+            this.Left = 0;
+            cbHabilitado.Items.Add("Deshabilitado");
+            cbHabilitado.Items.Add("Habilitado");
+            
         }
 
        

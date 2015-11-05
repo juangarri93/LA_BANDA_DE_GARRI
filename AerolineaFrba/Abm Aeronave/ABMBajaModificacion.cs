@@ -308,7 +308,6 @@ namespace AerolineaFrba.Abm_Aeronave
             this.Left = 0;
             Mostrar();
             btnBajaLogica.Enabled = false;
-            cmbBajaFueraDeServicio.Items.Add("");
             cmbBajaFueraDeServicio.Items.Add("Habilitado");
             cmbBajaFueraDeServicio.Items.Add("Deshabilitado");
             cargarComboBox();

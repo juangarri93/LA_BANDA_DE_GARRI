@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
+using AerolineaFrba.Herramientas;
 
 namespace AerolineaFrba.Abm_Rol
 {
@@ -17,7 +18,7 @@ namespace AerolineaFrba.Abm_Rol
     {
 
         private Rol _rol;
-
+        private int idSeleccionado;
         public ABMRolBajaModificacion()
         {
             InitializeComponent();
@@ -32,8 +33,15 @@ namespace AerolineaFrba.Abm_Rol
         {
             try
             {
-                //DAORol.EditarModificarRol(generarRol());
-                MessageBox.Show("Rol agregado correctamente.");
+
+                String nombreAnt = Convert.ToString(cbNombre.Text);
+
+                DAORol.EditarNombreRol(nombreAnt, txtNuevoRol.Text);
+                MessageBox.Show("Rol Modificado correctamente.");
+
+                cbNombre.DataSource = DAORol.getRol().DefaultView;
+                cbNombre.DisplayMember = "Rol";
+
             }
             catch (Exception ex) 
             {
@@ -42,18 +50,7 @@ namespace AerolineaFrba.Abm_Rol
         }
 
 
-        private void mostarListaFuncionalidades()
-        {
-            Funcionalidades.DataSource = DAOFuncionalidades.getFuncionalidades().DefaultView;
-            Funcionalidades.DisplayMember = "Nombre";
-            Funcionalidades.ValueMember = "Id"; 
-
-            foreach (var func in _rol.Funcionalidades)
-            {
-                Funcionalidades.SetItemChecked(func, true);
-            }
-
-        }
+       
 
         private void CargarRol(int id)
         {
@@ -62,11 +59,18 @@ namespace AerolineaFrba.Abm_Rol
 
         private void ABMRolBajaModificacion_Load(object sender, EventArgs e)
         {
-            cbNombre.DataSource = DAORol.getRol().DefaultView;
-            cbNombre.DisplayMember = "Rol";
-            Funcionalidades.Enabled = false;
-            mostarListaFuncionalidades();
+          
+          
+          
         }
 
+        private void EditarFuncionalidad_Click(object sender, EventArgs e)
+        {
+
+
+            var ventanaBajaModificacionRol = new ModificarFuncionalidadParaUnRol(idSeleccionado);
+            FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRol, this);
+                
+        }
     }
 }

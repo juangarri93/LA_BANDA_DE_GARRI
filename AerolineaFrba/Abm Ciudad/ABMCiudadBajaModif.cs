@@ -94,8 +94,8 @@ namespace AerolineaFrba.Abm_Ciudad
 
          private Ciudad cargarCiudadParaEditar()
         {
-
-            return new Ciudad(Convert.ToInt32(txtCodigo.Text), txtNomb.Text);
+            Boolean val = true;
+            return new Ciudad(Convert.ToInt32(txtCodigo.Text), txtNomb.Text,val);
         }
 
          private void btnGuardar_Click_1(object sender, EventArgs e) 

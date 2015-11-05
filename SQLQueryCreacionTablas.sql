@@ -12,7 +12,16 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures 
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Rol ') IS NOT NULL)
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.speliminar_funcionalidades_para_rol') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.speliminar_funcionalidades_para_rol;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_modificar_nombre_rol') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_modificar_nombre_rol;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_ciudad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Rol') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Rol ;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ') IS NOT NULL)
@@ -994,10 +1003,56 @@ go
 
 -------------------------------------------------------------------------------------------
 
---Agregado Nico 04/11/2015--
+--Agregado Nico 03/11/2015--
 
 create proc LA_BANDA_DE_GARRI.spmostrar_Rol
 as
 select * from LA_BANDA_DE_GARRI.Roles
 order by Roles.Id
 GO
+
+-----------------------------------------------------
+
+--Agregado Nico 04/11/2015--
+
+--PROCEDIMIENTO INSERTAR ciudad EN TABLA Ciudad--
+create proc  LA_BANDA_DE_GARRI.spinsertar_ciudad
+ (  @codigo int output,
+@nombre varchar(50),
+@BajaPorVidaUtil bit
+)
+as
+insert into  LA_BANDA_DE_GARRI.Ciudades(Nombre,Habilitada)
+values(@nombre,@BajaPorVidaUtil)
+go
+
+--PROCEDIMIENTO Modificar nombre rol --
+create proc LA_BANDA_DE_GARRI.spinsertar_modificar_nombre_rol
+(
+	 @nombreAnterior varchar(50),
+	 @nombreNuevo varchar(50)
+)
+as
+update LA_BANDA_DE_GARRI.Roles Set Rol =  @nombreNuevo
+where  @nombreAnterior = Rol
+go
+
+--PROCEDIMIENTO Eliminar Funcionalidades para un rol --
+create proc LA_BANDA_DE_GARRI.speliminar_funcionalidades_para_rol
+(@id_rol int
+)
+as
+if exists(select Id_Rol from LA_BANDA_DE_GARRI.Rol_Funcionalidad where Id_Rol = @id_rol)
+begin
+
+delete from LA_BANDA_DE_GARRI.Rol_Funcionalidad
+where Id_Rol = @id_rol
+
+declare @id_aux int
+select @id_aux = Id from LA_BANDA_DE_GARRI.Roles where @id_rol = Id
+
+return(@id_aux)
+
+end
+
+

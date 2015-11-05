@@ -97,7 +97,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure; // Ver esto
+                cm.CommandText = procedure; // Ver esto
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -128,7 +128,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure;
+                cm.CommandText = procedure;
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -159,7 +159,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure;
+                cm.CommandText = procedure;
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -192,7 +192,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure;
+                cm.CommandText = procedure;
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -225,7 +225,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.Text;
-                cm.CommandText = "SELECT PARAMETER_NAME FROM information_schema.parameters WHERE SPECIFIC_SCHEMA='LA_BANDA_DE_GARRI' AND SPECIFIC_NAME='" + procedure + "'";
+                cm.CommandText = "SELECT PARAMETER_NAME FROM information_schema.parameters WHERE SPECIFIC_SCHEMA='dbo' AND SPECIFIC_NAME='" + procedure + "'";
                 dr = cm.ExecuteReader();
                 dt.Load(dr);
                 foreach (DataRow d in dt.Rows)
