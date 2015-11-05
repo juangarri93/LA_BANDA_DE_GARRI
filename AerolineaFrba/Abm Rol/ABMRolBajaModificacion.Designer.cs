@@ -34,13 +34,16 @@
             this.BajaLogica = new System.Windows.Forms.Button();
             this.cbNombre = new System.Windows.Forms.ComboBox();
             this.EditarFuncionalidad = new System.Windows.Forms.Button();
+            this.labelNNR = new System.Windows.Forms.Label();
+            this.txtNuevoRol = new System.Windows.Forms.TextBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(331, 58);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 23);
+            this.button1.Size = new System.Drawing.Size(159, 53);
             this.button1.TabIndex = 13;
             this.button1.Text = "Editar Nombre";
             this.button1.UseVisualStyleBackColor = true;
@@ -65,9 +68,9 @@
             // 
             // BajaLogica
             // 
-            this.BajaLogica.Location = new System.Drawing.Point(331, 262);
+            this.BajaLogica.Location = new System.Drawing.Point(331, 230);
             this.BajaLogica.Name = "BajaLogica";
-            this.BajaLogica.Size = new System.Drawing.Size(129, 25);
+            this.BajaLogica.Size = new System.Drawing.Size(159, 57);
             this.BajaLogica.TabIndex = 19;
             this.BajaLogica.Text = "Baja Logica";
             this.BajaLogica.UseVisualStyleBackColor = true;
@@ -82,18 +85,47 @@
             // 
             // EditarFuncionalidad
             // 
-            this.EditarFuncionalidad.Location = new System.Drawing.Point(331, 159);
+            this.EditarFuncionalidad.Location = new System.Drawing.Point(331, 139);
             this.EditarFuncionalidad.Name = "EditarFuncionalidad";
-            this.EditarFuncionalidad.Size = new System.Drawing.Size(129, 25);
+            this.EditarFuncionalidad.Size = new System.Drawing.Size(159, 55);
             this.EditarFuncionalidad.TabIndex = 21;
             this.EditarFuncionalidad.Text = "Editar Funcionalidad";
             this.EditarFuncionalidad.UseVisualStyleBackColor = true;
+            this.EditarFuncionalidad.Click += new System.EventHandler(this.EditarFuncionalidad_Click);
+            // 
+            // labelNNR
+            // 
+            this.labelNNR.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNNR.Location = new System.Drawing.Point(298, 19);
+            this.labelNNR.Name = "labelNNR";
+            this.labelNNR.Size = new System.Drawing.Size(192, 29);
+            this.labelNNR.TabIndex = 22;
+            this.labelNNR.Text = "Nombre Nuevo Rol :";
+            // 
+            // txtNuevoRol
+            // 
+            this.txtNuevoRol.Location = new System.Drawing.Point(477, 20);
+            this.txtNuevoRol.Name = "txtNuevoRol";
+            this.txtNuevoRol.Size = new System.Drawing.Size(136, 20);
+            this.txtNuevoRol.TabIndex = 23;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(559, 139);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(147, 55);
+            this.btnGuardar.TabIndex = 24;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // ABMRolBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 331);
+            this.ClientSize = new System.Drawing.Size(763, 331);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.txtNuevoRol);
+            this.Controls.Add(this.labelNNR);
             this.Controls.Add(this.EditarFuncionalidad);
             this.Controls.Add(this.cbNombre);
             this.Controls.Add(this.BajaLogica);
@@ -104,6 +136,7 @@
             this.Text = "ABMRolBajaModificacion";
             this.Load += new System.EventHandler(this.ABMRolBajaModificacion_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -115,5 +148,8 @@
         private System.Windows.Forms.Button BajaLogica;
         private System.Windows.Forms.ComboBox cbNombre;
         private System.Windows.Forms.Button EditarFuncionalidad;
+        private System.Windows.Forms.Label labelNNR;
+        private System.Windows.Forms.TextBox txtNuevoRol;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }

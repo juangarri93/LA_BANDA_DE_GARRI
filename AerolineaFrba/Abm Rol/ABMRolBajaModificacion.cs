@@ -32,8 +32,15 @@ namespace AerolineaFrba.Abm_Rol
         {
             try
             {
-                //DAORol.EditarModificarRol(generarRol());
-                MessageBox.Show("Rol agregado correctamente.");
+
+                String nombreAnt = Convert.ToString(cbNombre.Text);
+
+                DAORol.EditarNombreRol(nombreAnt, txtNuevoRol.Text);
+                MessageBox.Show("Rol Modificado correctamente.");
+
+                cbNombre.DataSource = DAORol.getRol().DefaultView;
+                cbNombre.DisplayMember = "Rol";
+
             }
             catch (Exception ex) 
             {
@@ -62,10 +69,36 @@ namespace AerolineaFrba.Abm_Rol
 
         private void ABMRolBajaModificacion_Load(object sender, EventArgs e)
         {
+            btnGuardar.Enabled = false;
+            Funcionalidades.Enabled = false;
             cbNombre.DataSource = DAORol.getRol().DefaultView;
             cbNombre.DisplayMember = "Rol";
-            Funcionalidades.Enabled = false;
             mostarListaFuncionalidades();
+          
+        }
+
+        private void EditarFuncionalidad_Click(object sender, EventArgs e)
+        {
+            Funcionalidades.Enabled = true;
+            btnGuardar.Enabled = true;
+
+            try
+            {
+                DAORol.ActualizarRolFuncionalidad(GenerarRol());
+                MessageBox.Show("Rol modificado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error." + ex.Message);
+            }
+                
+        }
+
+        //Genero un nuevo Rol con la lista de funcionalidades que son enteros --> Son los que selecciono
+        private Rol GenerarRol()
+        {
+            var lista = Funcionalidades.CheckedIndices.Cast<int>().ToList();
+            return new Rol(cbNombre.Text, lista);
         }
 
     }

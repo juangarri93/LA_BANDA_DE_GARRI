@@ -46,5 +46,21 @@ namespace AerolineaFrba.CapaADO
         {
             return retrieveDataTable("spmostrar_Rol");
         }
+
+        public static void EditarNombreRol(String nombreRolAnterior, String nombreRolNuevo)
+        {
+            executeProcedure("spinsertar_modificar_nombre_rol", nombreRolAnterior, nombreRolNuevo);
+        }
+
+        public static void ActualizarRolFuncionalidad(Rol rol)
+        {
+            rol.Codigo = executeProcedureWithReturnValue("speliminar_funcionalidades_para_rol", rol.Codigo);
+
+            //Recibo el id del rol donde se inserto en la tabla rol para cargar las funcionalidades en la tabla
+            foreach (var funcionalidad in rol.Funcionalidades)
+            {
+                executeProcedure("spinsertar_rol_funcionalidad", rol.Codigo, funcionalidad + 1);
+            }
+        }
     }
 }
