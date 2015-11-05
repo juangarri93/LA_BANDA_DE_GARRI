@@ -12,7 +12,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures 
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Rol ') IS NOT NULL)
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_ciudad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Rol') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Rol ;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_rol_funcionalidad ') IS NOT NULL)
@@ -994,10 +997,25 @@ go
 
 -------------------------------------------------------------------------------------------
 
---Agregado Nico 04/11/2015--
+--Agregado Nico 03/11/2015--
 
 create proc LA_BANDA_DE_GARRI.spmostrar_Rol
 as
 select * from LA_BANDA_DE_GARRI.Roles
 order by Roles.Id
 GO
+
+-----------------------------------------------------
+
+--Agregado Nico 04/11/2015--
+
+--PROCEDIMIENTO INSERTAR ciudad EN TABLA Ciudad--
+create proc  LA_BANDA_DE_GARRI.spinsertar_ciudad
+ (  @codigo int output,
+@nombre varchar(50),
+@BajaPorVidaUtil bit
+)
+as
+insert into  LA_BANDA_DE_GARRI.Ciudades(Nombre,Habilitada)
+values(@nombre,@BajaPorVidaUtil)
+go

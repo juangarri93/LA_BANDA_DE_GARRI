@@ -16,7 +16,7 @@ namespace AerolineaFrba.CapaADO
         public static void AgregarCiudad(Ciudad ciudad)
         {
 
-            executeProcedure("spinsertar_ciudad", 1, ciudad.Nombre ,ciudad.BajaPorVidaUtil);
+            executeProcedure("spinsertar_ciudad", 1, ciudad.Nombre ,ciudad.Habilitado);
 
         }
 
