@@ -165,6 +165,7 @@
             this.btn_canjear_millas.TabIndex = 17;
             this.btn_canjear_millas.Text = "Canjear Millas";
             this.btn_canjear_millas.UseVisualStyleBackColor = true;
+            this.btn_canjear_millas.Click += new System.EventHandler(this.btn_canjear_millas_Click);
             // 
             // btn_consulta_millas
             // 
@@ -216,7 +217,7 @@
             this.Controls.Add(this.shapeContainer1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AerolineasPrincipal";
-            this.Text = "Form1";
+            this.Text = "Aerolineas FRBA";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -100,6 +100,12 @@ namespace AerolineaFrba
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCalcMillas, this);
         }
 
+        private void btn_canjear_millas_Click(object sender, EventArgs e)
+        {
+            var nuevaVentanaCanjearMillas = new CanjeMillas();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCanjearMillas, this);
+        }
+
        
     }
 }
