@@ -17,11 +17,11 @@ namespace AerolineaFrba.Abm_Rol
     public partial class ABMRolBajaModificacion : Form
     {
 
-        private Rol _rol;
-        private int idSeleccionado;
         public ABMRolBajaModificacion()
         {
             InitializeComponent();
+            cbNombre.DataSource = DAORol.getRol().DefaultView;
+            cbNombre.DisplayMember = "Rol";
         }
 
         private void dataListadoAeronaves_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -41,20 +41,13 @@ namespace AerolineaFrba.Abm_Rol
 
                 cbNombre.DataSource = DAORol.getRol().DefaultView;
                 cbNombre.DisplayMember = "Rol";
+                txtNuevoRol.Text = "";
 
             }
             catch (Exception ex) 
             {
                 MessageBox.Show("Hubo un error." + ex.Message);     
             }
-        }
-
-
-       
-
-        private void CargarRol(int id)
-        {
-            _rol = DAORol.getRol(id);
         }
 
         private void ABMRolBajaModificacion_Load(object sender, EventArgs e)
@@ -68,7 +61,7 @@ namespace AerolineaFrba.Abm_Rol
         {
 
 
-            var ventanaBajaModificacionRol = new ModificarFuncionalidadParaUnRol(idSeleccionado);
+            var ventanaBajaModificacionRol = new ModificarFuncionalidadParaUnRol(cbNombre.Text);
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRol, this);
                 
         }

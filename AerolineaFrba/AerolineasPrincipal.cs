@@ -17,6 +17,7 @@ using AerolineaFrba.Herramientas;
 using AerolineaFrba.Registro_de_Usuario;
 using AerolineaFrba.Generacion_Viaje;
 using AerolineaFrba.Abm_Compra;
+using AerolineaFrba.Login;
 
 namespace AerolineaFrba
 {
@@ -79,6 +80,17 @@ namespace AerolineaFrba
         {
             var nuevaVentanaCompra = new AltaCompra();
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCompra, this);
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
         }
 
        

@@ -25,12 +25,12 @@ namespace AerolineaFrba.CapaADO
         }
 
 
-        public static Rol getRol(int id)
+        public static Rol DameRol(String N)
         {
-            var table = retrieveDataTable("getRolId", id);
+            var table = retrieveDataTable("sptraer_Rol", N);
             var rol = dataRowToRol(table.Rows[0]);
 
-            table = retrieveDataTable("getRolFunc", id);
+            table = retrieveDataTable("sptraerRol_Funcionalidad", rol.Codigo);
 
             var lista = (from DataRow fila in table.Rows select (Convert.ToInt32(fila["Id_Funcionalidad"])) - 1).ToList();
             rol.Funcionalidades = lista;
@@ -60,6 +60,16 @@ namespace AerolineaFrba.CapaADO
             foreach (var funcionalidad in rol.Funcionalidades)
             {
                 executeProcedure("spinsertar_rol_funcionalidad", rol.Codigo, funcionalidad + 1);
+            }
+        }
+
+         public static void actualizarRol(Rol rol)
+        {
+            executeProcedure("speliminar_funcionalidades_para_rol", rol.Codigo);
+
+            foreach (var func in rol.Funcionalidades)
+            {
+                executeProcedure("spinsertar_rol_funcionalidad ", rol.Codigo, func + 1);
             }
         }
     }
