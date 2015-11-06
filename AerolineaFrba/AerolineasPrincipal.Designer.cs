@@ -46,10 +46,9 @@
             // 
             // btnABMAronaves
             // 
-            this.btnABMAronaves.Location = new System.Drawing.Point(16, 116);
-            this.btnABMAronaves.Margin = new System.Windows.Forms.Padding(4);
+            this.btnABMAronaves.Location = new System.Drawing.Point(12, 94);
             this.btnABMAronaves.Name = "btnABMAronaves";
-            this.btnABMAronaves.Size = new System.Drawing.Size(240, 44);
+            this.btnABMAronaves.Size = new System.Drawing.Size(180, 36);
             this.btnABMAronaves.TabIndex = 0;
             this.btnABMAronaves.Text = "ABM Aeronaves";
             this.btnABMAronaves.UseVisualStyleBackColor = true;
@@ -57,10 +56,9 @@
             // 
             // btnABMRol
             // 
-            this.btnABMRol.Location = new System.Drawing.Point(16, 178);
-            this.btnABMRol.Margin = new System.Windows.Forms.Padding(4);
+            this.btnABMRol.Location = new System.Drawing.Point(12, 145);
             this.btnABMRol.Name = "btnABMRol";
-            this.btnABMRol.Size = new System.Drawing.Size(240, 44);
+            this.btnABMRol.Size = new System.Drawing.Size(180, 36);
             this.btnABMRol.TabIndex = 1;
             this.btnABMRol.Text = "ABM Rol";
             this.btnABMRol.UseVisualStyleBackColor = true;
@@ -70,20 +68,18 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.Location = new System.Drawing.Point(206, 36);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(154, 29);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(215, 40);
+            this.lblTitulo.Size = new System.Drawing.Size(175, 32);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "AEROLINEA";
             this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // btnABM_Ciudad
             // 
-            this.btnABM_Ciudad.Location = new System.Drawing.Point(16, 250);
-            this.btnABM_Ciudad.Margin = new System.Windows.Forms.Padding(4);
+            this.btnABM_Ciudad.Location = new System.Drawing.Point(12, 203);
             this.btnABM_Ciudad.Name = "btnABM_Ciudad";
-            this.btnABM_Ciudad.Size = new System.Drawing.Size(240, 44);
+            this.btnABM_Ciudad.Size = new System.Drawing.Size(180, 36);
             this.btnABM_Ciudad.TabIndex = 9;
             this.btnABM_Ciudad.Text = "ABM Ciudad";
             this.btnABM_Ciudad.UseVisualStyleBackColor = true;
@@ -91,10 +87,9 @@
             // 
             // btnABMRutaAerea
             // 
-            this.btnABMRutaAerea.Location = new System.Drawing.Point(16, 315);
-            this.btnABMRutaAerea.Margin = new System.Windows.Forms.Padding(4);
+            this.btnABMRutaAerea.Location = new System.Drawing.Point(12, 256);
             this.btnABMRutaAerea.Name = "btnABMRutaAerea";
-            this.btnABMRutaAerea.Size = new System.Drawing.Size(240, 44);
+            this.btnABMRutaAerea.Size = new System.Drawing.Size(180, 36);
             this.btnABMRutaAerea.TabIndex = 10;
             this.btnABMRutaAerea.Text = "ABM Ruta Aerea";
             this.btnABMRutaAerea.UseVisualStyleBackColor = true;
@@ -102,10 +97,9 @@
             // 
             // btnRegistrosDeUsuarios
             // 
-            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(376, 116);
-            this.btnRegistrosDeUsuarios.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(282, 94);
             this.btnRegistrosDeUsuarios.Name = "btnRegistrosDeUsuarios";
-            this.btnRegistrosDeUsuarios.Size = new System.Drawing.Size(240, 44);
+            this.btnRegistrosDeUsuarios.Size = new System.Drawing.Size(180, 36);
             this.btnRegistrosDeUsuarios.TabIndex = 11;
             this.btnRegistrosDeUsuarios.Text = "Registro de Usuarios";
             this.btnRegistrosDeUsuarios.UseVisualStyleBackColor = true;
@@ -113,10 +107,9 @@
             // 
             // btnGenerarViaje
             // 
-            this.btnGenerarViaje.Location = new System.Drawing.Point(376, 178);
-            this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGenerarViaje.Location = new System.Drawing.Point(282, 145);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
-            this.btnGenerarViaje.Size = new System.Drawing.Size(240, 44);
+            this.btnGenerarViaje.Size = new System.Drawing.Size(180, 36);
             this.btnGenerarViaje.TabIndex = 12;
             this.btnGenerarViaje.Text = "Generar Viaje";
             this.btnGenerarViaje.UseVisualStyleBackColor = true;
@@ -124,10 +117,9 @@
             // 
             // btnRegistroDeLlegadaDestino
             // 
-            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(376, 250);
-            this.btnRegistroDeLlegadaDestino.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(282, 203);
             this.btnRegistroDeLlegadaDestino.Name = "btnRegistroDeLlegadaDestino";
-            this.btnRegistroDeLlegadaDestino.Size = new System.Drawing.Size(240, 44);
+            this.btnRegistroDeLlegadaDestino.Size = new System.Drawing.Size(180, 36);
             this.btnRegistroDeLlegadaDestino.TabIndex = 13;
             this.btnRegistroDeLlegadaDestino.Text = "Registro De Llegada Destino";
             this.btnRegistroDeLlegadaDestino.UseVisualStyleBackColor = true;
@@ -135,10 +127,9 @@
             // 
             // btnCompra
             // 
-            this.btnCompra.Location = new System.Drawing.Point(376, 315);
-            this.btnCompra.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCompra.Location = new System.Drawing.Point(282, 256);
             this.btnCompra.Name = "btnCompra";
-            this.btnCompra.Size = new System.Drawing.Size(240, 44);
+            this.btnCompra.Size = new System.Drawing.Size(180, 36);
             this.btnCompra.TabIndex = 14;
             this.btnCompra.Text = "Compra de pasaje/encomienda";
             this.btnCompra.UseVisualStyleBackColor = true;
@@ -147,10 +138,9 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(523, 11);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(392, 9);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(92, 17);
+            this.linkLabel1.Size = new System.Drawing.Size(70, 13);
             this.linkLabel1.TabIndex = 15;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Iniciar Sesion";
@@ -158,10 +148,9 @@
             // 
             // btn_canjear_millas
             // 
-            this.btn_canjear_millas.Location = new System.Drawing.Point(376, 384);
-            this.btn_canjear_millas.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_canjear_millas.Location = new System.Drawing.Point(282, 312);
             this.btn_canjear_millas.Name = "btn_canjear_millas";
-            this.btn_canjear_millas.Size = new System.Drawing.Size(240, 44);
+            this.btn_canjear_millas.Size = new System.Drawing.Size(180, 36);
             this.btn_canjear_millas.TabIndex = 17;
             this.btn_canjear_millas.Text = "Canjear Millas";
             this.btn_canjear_millas.UseVisualStyleBackColor = true;
@@ -169,10 +158,9 @@
             // 
             // btn_consulta_millas
             // 
-            this.btn_consulta_millas.Location = new System.Drawing.Point(16, 384);
-            this.btn_consulta_millas.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_consulta_millas.Location = new System.Drawing.Point(12, 312);
             this.btn_consulta_millas.Name = "btn_consulta_millas";
-            this.btn_consulta_millas.Size = new System.Drawing.Size(240, 44);
+            this.btn_consulta_millas.Size = new System.Drawing.Size(180, 36);
             this.btn_consulta_millas.TabIndex = 16;
             this.btn_consulta_millas.Text = "Consultar Millas";
             this.btn_consulta_millas.UseVisualStyleBackColor = true;
@@ -185,7 +173,7 @@
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(632, 466);
+            this.shapeContainer1.Size = new System.Drawing.Size(474, 379);
             this.shapeContainer1.TabIndex = 18;
             this.shapeContainer1.TabStop = false;
             // 
@@ -199,9 +187,9 @@
             // 
             // AerolineasPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 466);
+            this.ClientSize = new System.Drawing.Size(474, 379);
             this.Controls.Add(this.btn_canjear_millas);
             this.Controls.Add(this.btn_consulta_millas);
             this.Controls.Add(this.linkLabel1);
@@ -215,7 +203,6 @@
             this.Controls.Add(this.btnABMRol);
             this.Controls.Add(this.btnABMAronaves);
             this.Controls.Add(this.shapeContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AerolineasPrincipal";
             this.Text = "Aerolineas FRBA";
             this.Load += new System.EventHandler(this.Form1_Load);
