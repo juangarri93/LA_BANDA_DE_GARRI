@@ -97,7 +97,7 @@ namespace AerolineaFrba.CapaADO
             {
                 conexionSql(cn, cm);
                 cm.CommandType = CommandType.StoredProcedure;
-                cm.CommandText ="LA_BANDA_DE_GARRI." + procedure; // Ver esto
+                cm.CommandText = "LA_BANDA_DE_GARRI." + procedure; // Ver esto
                 if (_validateArgumentsAndParameters(args, values))
                 {
                     _loadSqlCommand(args, values, cm);
@@ -266,5 +266,43 @@ namespace AerolineaFrba.CapaADO
                 cm.Parameters.AddWithValue(args[i], values[i]);
             }
         }
+
+
+        public SqlDataReader executeProcedureWithOutput(String spName, Dictionary<String, Object> parameters, out SqlCommand cmd)
+        {
+           return _executeProcedureWithOutput(spName, parameters, out cmd);
+        }
+
+        public SqlDataReader _executeProcedureWithOutput(String spName, Dictionary<String, Object> parameters, out SqlCommand cmd)
+        {
+            SqlConnection cn = new SqlConnection();
+            SqlCommand cm = new SqlCommand();
+            SqlDataReader dr;
+            try
+            {
+                cmd = new SqlCommand(spName, cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                foreach (String paramKey in parameters.Keys)
+                {
+                    SqlParameter param = new SqlParameter("@" + paramKey, parameters[paramKey]);
+                    if (paramKey.Contains(" output"))
+                    {
+                        param.SqlDbType = SqlDbType.NVarChar;
+                        param.Size = 20;
+                        param.ParameterName = "@" + paramKey.Replace(" output", "");
+                        param.Direction = ParameterDirection.Output;
+                    }
+                    cmd.Parameters.Add(param);
+                }
+                dr = cmd.ExecuteReader();
+                return dr;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
     }
 }
