@@ -84,6 +84,12 @@
     <Compile Include="Abm Ciudad\ABMCiudadBajaModif.Designer.cs">
       <DependentUpon>ABMCiudadBajaModif.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Compra\DatosCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Compra\DatosCompra.Designer.cs">
+      <DependentUpon>DatosCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rol\ABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Compra\AltaCompra.resx">
       <DependentUpon>AltaCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Compra\DatosCompra.resx">
+      <DependentUpon>DatosCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\ABMRol.resx">
       <DependentUpon>ABMRol.cs</DependentUpon>

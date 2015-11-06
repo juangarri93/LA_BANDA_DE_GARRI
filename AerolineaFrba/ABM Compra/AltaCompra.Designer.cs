@@ -134,6 +134,7 @@
             this.btnBuscar.TabIndex = 19;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
             // 
             // dgvCompra
             // 
@@ -171,6 +172,7 @@
             this.btnComprar.TabIndex = 25;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // btnCancelar
             // 
@@ -181,6 +183,7 @@
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // chkPasajes
             // 
@@ -192,6 +195,7 @@
             this.chkPasajes.TabIndex = 27;
             this.chkPasajes.Text = "Pasajes a comprar";
             this.chkPasajes.UseVisualStyleBackColor = true;
+            this.chkPasajes.CheckedChanged += new System.EventHandler(this.chkPasajes_CheckedChanged);
             // 
             // chkEncomienda
             // 
@@ -203,6 +207,7 @@
             this.chkEncomienda.TabIndex = 28;
             this.chkEncomienda.Text = "Kgs a enviar por encomienda";
             this.chkEncomienda.UseVisualStyleBackColor = true;
+            this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);
             // 
             // AltaCompra
             // 

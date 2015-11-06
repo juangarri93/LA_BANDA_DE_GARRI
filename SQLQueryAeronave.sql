@@ -607,6 +607,15 @@ where habilitado = 'Habilitado'
 order by id_Ruta
 go
 
+--spMostrar_RutaAerea_esp------
+CREATE PROC spMostrar_RutaAerea_esp(
+@id int
+)
+as
+select * from Ruta_Aerea
+where habilitado = 'Habilitado' and id_Ruta = @id
+order by id_Ruta
+go
 ---spmostrar_Viajes----
 create proc spmostrar_Viajes
 as 
@@ -638,7 +647,7 @@ go
 
 
 ------spbuscar_fechaOrigenDestino ---
-
+/* no me esta andando bien*/
 create proc spbuscar_fechaOrigenDestino(
 @FechaSalida datetime,
 @CiudadOrigen int,
@@ -646,6 +655,6 @@ create proc spbuscar_fechaOrigenDestino(
 )
 as 
 select * from Viaje 
-where fecha_salida = @FechaSalida and ruta_Aerea = (select id_Ruta from Ruta_Aerea where idCiudadOrigen = @CiudadOrigen and idCiudadDestino = @CiudadDestino)
+where fecha_salida = @FechaSalida and ruta_Aerea = (select id_Ruta from Ruta_Aerea where idCiudadOrigen = @CiudadOrigen and idCiudadDestino = @CiudadDestino and habilitado = 'Habilitado' )
 order by id_Viaje
 go

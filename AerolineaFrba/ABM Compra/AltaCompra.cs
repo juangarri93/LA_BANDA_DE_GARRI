@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
+using AerolineaFrba.Herramientas;
+using AerolineaFrba.ABM_Compra;
 
 namespace AerolineaFrba.Abm_Compra
 {
@@ -44,8 +46,14 @@ namespace AerolineaFrba.Abm_Compra
 
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+
+        private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void btnBuscar_Click_1(object sender, EventArgs e)
+      {
             if (dtpFechaViaje.Value.Date < DateTime.Now.Date)
                 MessageBox.Show("Fecha incorrecta");
             else if (cmbDestino.SelectedValue == cmbOrigen.SelectedValue)
@@ -55,14 +63,14 @@ namespace AerolineaFrba.Abm_Compra
             {
                 try
                 {
-                    DataTable ciudadLevantadaOrigen = DAOCiudad.buscarCiudad(cmbOrigen.ValueMember);
+                    /*DataTable ciudadLevantadaOrigen = DAOCiudad.buscarCiudad(cmbOrigen.ValueMember);
                     DataTable ciudadLevantadaDestino = DAOCiudad.buscarCiudad(cmbDestino.ValueMember);
                     DataRow rowOrigen = ciudadLevantadaOrigen.Rows[0];
                     DataRow rowDestino = ciudadLevantadaDestino.Rows[0];
                     Ciudad origen = new Ciudad(rowOrigen.Field<int>(0), rowOrigen.Field<string>("Nombre"), rowOrigen.Field<Boolean>("Habilitada"));
                     Ciudad destino = new Ciudad(rowDestino.Field<int>(0), rowDestino.Field<string>("Nombre"),rowDestino.Field<Boolean>("Habilitada"));
-
-                    this.dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value, origen, destino);
+                    */
+                   this.dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value,cmbOrigen.SelectedText,cmbDestino.SelectedText);
 
                 }
                 catch (Exception ex)
@@ -72,13 +80,52 @@ namespace AerolineaFrba.Abm_Compra
             }
         }
 
-       
 
-        private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnComprar_Click(object sender, EventArgs e)
         {
+
+            
+            try
+            {
+                int kgs = chkEncomienda.Checked ? Convert.ToInt32(txtCantKG.Text) : 0;
+                int pasajes = chkPasajes.Checked ? (cantPasajes.SelectedIndex) : 0;
+
+                if (kgs + pasajes > 0)
+                {
+                    var ventanaDatosUsuario = new DatosCompra();
+                    FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
+                }
+                else MessageBox.Show("Debe ingresar una cantidad valida de pasajes y/o encomiendas");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error." + ex.Message);
+            }
 
         }
 
+        private void chkPasajes_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
 
+        private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCantKG.Enabled = chkEncomienda.Checked;
+            txtCantKG.Text = "0";
+        }
+
+        private void dgvCompra_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dgvCompra.Columns[e.ColumnIndex].Name == "Id")
+            {
+                this.dgvCompra.Columns[e.ColumnIndex].Visible = false;
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

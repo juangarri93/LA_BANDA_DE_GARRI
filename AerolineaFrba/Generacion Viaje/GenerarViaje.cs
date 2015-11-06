@@ -76,7 +76,11 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private Viaje CargarViaje()
         {
-            return new Viaje(Convert.ToDateTime(dtFechaSalida.Value), Convert.ToDateTime(dtFechaLLegada.Value), Convert.ToDateTime(dtFechaLLegadaEstimada.Value), Convert.ToInt32(cbAeronave.SelectedText), Convert.ToInt32(cbRutaAerea.SelectedText), "Habilitado");
+
+            /* Convert.ToDateTime(fecha.ToString("yyyy-MM-dd"));
+             return new Viaje(Convert.ToDateTime(dtFechaSalida.Value.ToString("yyyy-MM-dd")), Convert.ToDateTime(dtFechaLLegada.Value.ToString("yyyy-MM-dd")), Convert.ToDateTime(dtFechaLLegadaEstimada.Value.ToString("yyyy-MM-dd")), Convert.ToInt32(cbAeronave.SelectedText), Convert.ToInt32(cbAeronave.SelectedText), "Habilitado");*/
+
+            return new Viaje(dtFechaSalida.Value, dtFechaLLegada.Value, dtFechaLLegadaEstimada.Value, Convert.ToInt32(cbAeronave.SelectedText), Convert.ToInt32(cbRutaAerea.SelectedText), "Habilitado");
         }
 
         private void btnGenerarViaje_Click(object sender, EventArgs e)
@@ -94,25 +98,6 @@ namespace AerolineaFrba.Generacion_Viaje
 
             }
         }
-
-        private void dtFechaLLegadaEstimada_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbAeronave_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpFECHA_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-     
-
-
-
+ 
     }
 }

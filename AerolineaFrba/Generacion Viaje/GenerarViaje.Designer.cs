@@ -36,11 +36,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGenerarViaje = new System.Windows.Forms.Button();
-            this.dtFechaSalida = new System.Windows.Forms.DateTimePicker();
-            this.dtFechaLLegada = new System.Windows.Forms.DateTimePicker();
             this.dtFechaLLegadaEstimada = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.cbAeronave = new System.Windows.Forms.ComboBox();
+            this.dtFechaSalida = new System.Windows.Forms.DateTimePicker();
+            this.dtFechaLLegada = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -125,24 +125,6 @@
             this.btnGenerarViaje.UseVisualStyleBackColor = true;
             this.btnGenerarViaje.Click += new System.EventHandler(this.btnGenerarViaje_Click);
             // 
-            // dtFechaSalida
-            // 
-            this.dtFechaSalida.AllowDrop = true;
-            this.dtFechaSalida.Location = new System.Drawing.Point(332, 100);
-            this.dtFechaSalida.Name = "dtFechaSalida";
-            this.dtFechaSalida.Size = new System.Drawing.Size(200, 22);
-            this.dtFechaSalida.TabIndex = 76;
-            this.dtFechaSalida.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // dtFechaLLegada
-            // 
-            this.dtFechaLLegada.AllowDrop = true;
-            this.dtFechaLLegada.Location = new System.Drawing.Point(332, 165);
-            this.dtFechaLLegada.Name = "dtFechaLLegada";
-            this.dtFechaLLegada.Size = new System.Drawing.Size(200, 22);
-            this.dtFechaLLegada.TabIndex = 77;
-            this.dtFechaLLegada.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
             // dtFechaLLegadaEstimada
             // 
             this.dtFechaLLegadaEstimada.AllowDrop = true;
@@ -169,7 +151,22 @@
             this.cbAeronave.Name = "cbAeronave";
             this.cbAeronave.Size = new System.Drawing.Size(200, 24);
             this.cbAeronave.TabIndex = 80;
-            this.cbAeronave.SelectedIndexChanged += new System.EventHandler(this.cbAeronave_SelectedIndexChanged);
+            // 
+            // dtFechaSalida
+            // 
+            this.dtFechaSalida.Location = new System.Drawing.Point(284, 100);
+            this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtFechaSalida.Name = "dtFechaSalida";
+            this.dtFechaSalida.Size = new System.Drawing.Size(248, 22);
+            this.dtFechaSalida.TabIndex = 81;
+            // 
+            // dtFechaLLegada
+            // 
+            this.dtFechaLLegada.Location = new System.Drawing.Point(284, 165);
+            this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtFechaLLegada.Name = "dtFechaLLegada";
+            this.dtFechaLLegada.Size = new System.Drawing.Size(248, 22);
+            this.dtFechaLLegada.TabIndex = 82;
             // 
             // GenerarViaje
             // 
@@ -177,12 +174,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(556, 485);
+            this.ClientSize = new System.Drawing.Size(567, 485);
+            this.Controls.Add(this.dtFechaLLegada);
+            this.Controls.Add(this.dtFechaSalida);
             this.Controls.Add(this.cbAeronave);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dtFechaLLegadaEstimada);
-            this.Controls.Add(this.dtFechaLLegada);
-            this.Controls.Add(this.dtFechaSalida);
             this.Controls.Add(this.btnGenerarViaje);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label6);
@@ -209,10 +206,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGenerarViaje;
-        private System.Windows.Forms.DateTimePicker dtFechaSalida;
-        private System.Windows.Forms.DateTimePicker dtFechaLLegada;
         private System.Windows.Forms.DateTimePicker dtFechaLLegadaEstimada;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbAeronave;
+        private System.Windows.Forms.DateTimePicker dtFechaSalida;
+        private System.Windows.Forms.DateTimePicker dtFechaLLegada;
     }
 }
