@@ -79,6 +79,7 @@ namespace AerolineaFrba.Abm_Ciudad
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             limpiar();
+            this.Hide();
         }
 
         private void ABMCiudadAlta_Load(object sender, EventArgs e)

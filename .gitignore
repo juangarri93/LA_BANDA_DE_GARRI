@@ -9,7 +9,6 @@
 *.v11.suo
 *.suo
 *.config
-SqlConnector.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
