@@ -23,11 +23,13 @@ namespace AerolineaFrba.Abm_Rol
             set { _rol = value; }
         }
 
-        public ModificarFuncionalidadParaUnRol(int idSeleccionado)
+        public ModificarFuncionalidadParaUnRol(String Nombre)
         {
             InitializeComponent();
             labelMuestraNombre.Text = "capeon";
-           // CargarRol(idSeleccionado);
+            CargarRol(Nombre);
+            MessageBox.Show("El nombre del Rol es" + Rol.Nombre);
+            MessageBox.Show("El id del Rol es" + Convert.ToString(Rol.Codigo));
            // mostarListaFuncionalidades();
         }
 
@@ -56,9 +58,14 @@ namespace AerolineaFrba.Abm_Rol
             return new Rol(Rol.Nombre, lista);
         }
 
-        private void CargarRol(int id)
+        private void CargarRol(String N)
         {
-            Rol = DAORol.getRol(id);
+            Rol = DAORol.DameRol(N);
+        }
+
+        private void ModificarFuncionalidadParaUnRol_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

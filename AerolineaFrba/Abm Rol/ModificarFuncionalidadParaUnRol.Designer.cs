@@ -30,7 +30,7 @@
         {
             this.Funcionalidades = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Guardar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.labelMuestraNombre = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -52,14 +52,14 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Nombre Rol :";
             // 
-            // Guardar
+            // btnGuardar
             // 
-            this.Guardar.Location = new System.Drawing.Point(369, 198);
-            this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(127, 48);
-            this.Guardar.TabIndex = 21;
-            this.Guardar.Text = "button1";
-            this.Guardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(369, 198);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(127, 48);
+            this.btnGuardar.TabIndex = 21;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // labelMuestraNombre
             // 
@@ -76,11 +76,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 262);
             this.Controls.Add(this.labelMuestraNombre);
-            this.Controls.Add(this.Guardar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Funcionalidades);
             this.Name = "ModificarFuncionalidadParaUnRol";
-            this.Text = "ModificarFuncionalidadParaUnRol";
+            this.Text = "4";
+            this.Load += new System.EventHandler(this.ModificarFuncionalidadParaUnRol_Load);
             this.ResumeLayout(false);
 
         }
@@ -89,7 +90,7 @@
 
         private System.Windows.Forms.CheckedListBox Funcionalidades;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Guardar;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label labelMuestraNombre;
     }
 }
