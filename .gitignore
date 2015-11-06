@@ -9,10 +9,6 @@
 *.v11.suo
 *.suo
 *.config
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -75,15 +71,11 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 *.v11.suo
 *.suo
 *.config
->>>>>>> c2d9121662fb8059e315e21304429fe9d1b3e9a6
-=======
->>>>>>> origin/master
+
 
 # Chutzpah Test files
 _Chutzpah*

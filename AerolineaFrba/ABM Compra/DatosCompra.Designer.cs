@@ -46,7 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtFechaNac = new System.Windows.Forms.DateTimePicker();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnFinalizar = new System.Windows.Forms.Button();
+            this.btnButacas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lineShape1
@@ -215,22 +215,23 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnFinalizar
+            // btnButacas
             // 
-            this.btnFinalizar.Location = new System.Drawing.Point(364, 385);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(137, 47);
-            this.btnFinalizar.TabIndex = 39;
-            this.btnFinalizar.Text = "Finalizar Compra";
-            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnButacas.Location = new System.Drawing.Point(364, 385);
+            this.btnButacas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnButacas.Name = "btnButacas";
+            this.btnButacas.Size = new System.Drawing.Size(137, 47);
+            this.btnButacas.TabIndex = 39;
+            this.btnButacas.Text = "Seleccionar Butacas";
+            this.btnButacas.UseVisualStyleBackColor = true;
+            this.btnButacas.Click += new System.EventHandler(this.btnButacas_Click);
             // 
             // DatosCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 465);
-            this.Controls.Add(this.btnFinalizar);
+            this.Controls.Add(this.btnButacas);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dtFechaNac);
             this.Controls.Add(this.label3);
@@ -275,6 +276,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtFechaNac;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnFinalizar;
+        private System.Windows.Forms.Button btnButacas;
     }
 }
