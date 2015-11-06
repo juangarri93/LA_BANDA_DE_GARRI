@@ -18,6 +18,7 @@ using AerolineaFrba.Registro_de_Usuario;
 using AerolineaFrba.Generacion_Viaje;
 using AerolineaFrba.Abm_Compra;
 using AerolineaFrba.Login;
+using AerolineaFrba.Consulta_Millas;
 
 namespace AerolineaFrba
 {
@@ -91,6 +92,12 @@ namespace AerolineaFrba
         {
             LoginWindow login = new LoginWindow();
             login.Show();
+        }
+
+        private void btn_consulta_millas_Click(object sender, EventArgs e)
+        {
+            var nuevaVentanaCalcMillas = new ConsultaMillas();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCalcMillas, this);
         }
 
        

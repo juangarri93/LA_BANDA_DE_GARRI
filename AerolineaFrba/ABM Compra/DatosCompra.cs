@@ -48,6 +48,16 @@ namespace AerolineaFrba.ABM_Compra
             this.Hide();
         }
 
+        private void btnButacas_Click(object sender, EventArgs e)
+        {
+            var ventanaButacas = new Butacas();
+            FormsHerramientas.mostrarVentanaNueva(ventanaButacas, this);
+            this.Hide();
+        }
+
+       
+       
+
       
     }
 }

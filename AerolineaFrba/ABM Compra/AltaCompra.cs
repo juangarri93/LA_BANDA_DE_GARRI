@@ -11,6 +11,7 @@ using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
 using AerolineaFrba.Herramientas;
 using AerolineaFrba.ABM_Compra;
+using System.Text.RegularExpressions;
 
 namespace AerolineaFrba.Abm_Compra
 {
@@ -80,29 +81,44 @@ namespace AerolineaFrba.Abm_Compra
             }
         }
 
+        private bool EsNumero(string cadena)
+        {
+            var regex = new Regex(@"^-*[0-9,\.]+$");
+            return regex.IsMatch(cadena); 
+        }
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
 
-            
             try
             {
-                int kgs = chkEncomienda.Checked ? Convert.ToInt32(txtCantKG.Text) : 0;
-                int pasajes = chkPasajes.Checked ? (cantPasajes.SelectedIndex) : 0;
-
-                if (kgs + pasajes > 0)
+                if (EsNumero(txtCantKG.Text))
                 {
-                    var ventanaDatosUsuario = new DatosCompra();
-                    FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
+                    int kgs = chkEncomienda.Checked ? Convert.ToInt32(txtCantKG.Text) : 0;
+               
+                                
+                    
+                    int pasajes = chkPasajes.Checked ? (cantPasajes.SelectedIndex) : 0;
+
+                    if (kgs + pasajes > 0)
+                    {
+                        var ventanaDatosUsuario = new DatosCompra();
+                        FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
+                    }
+                    else MessageBox.Show("Debe ingresar una cantidad valida de pasajes y/o encomiendas");
+            
                 }
-                else MessageBox.Show("Debe ingresar una cantidad valida de pasajes y/o encomiendas");
+                else MessageBox.Show("El número ingresado es inválido.");
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error." + ex.Message);
             }
+             
 
-        }
+            
+      }
 
         private void chkPasajes_CheckedChanged(object sender, EventArgs e)
         {

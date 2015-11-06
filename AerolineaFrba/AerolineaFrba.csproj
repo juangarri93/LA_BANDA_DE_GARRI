@@ -84,6 +84,12 @@
     <Compile Include="Abm Ciudad\ABMCiudadBajaModif.Designer.cs">
       <DependentUpon>ABMCiudadBajaModif.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Compra\Butacas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Compra\Butacas.Designer.cs">
+      <DependentUpon>Butacas.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Compra\DatosCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,7 @@
     <Compile Include="CapaADO\DAOCiudad.cs" />
     <Compile Include="CapaADO\DAOCompra.cs" />
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
+    <Compile Include="CapaADO\DAOMillas.cs" />
     <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\DAORuta.cs" />
     <Compile Include="CapaADO\DAOUsuario.cs" />
@@ -156,15 +163,16 @@
     <Compile Include="ConstructorDeClases\Aeronave.cs" />
     <Compile Include="ConstructorDeClases\Ciudad.cs" />
     <Compile Include="ConstructorDeClases\Compra.cs" />
+    <Compile Include="ConstructorDeClases\Millas.cs" />
     <Compile Include="ConstructorDeClases\Persona.cs" />
     <Compile Include="ConstructorDeClases\Rol.cs" />
     <Compile Include="ConstructorDeClases\Ruta.cs" />
     <Compile Include="ConstructorDeClases\Viaje.cs" />
-    <Compile Include="Consulta Millas\Form1.cs">
+    <Compile Include="Consulta Millas\ConsultaMillas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consulta Millas\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Consulta Millas\ConsultaMillas.Designer.cs">
+      <DependentUpon>ConsultaMillas.cs</DependentUpon>
     </Compile>
     <Compile Include="Devolucion\Form1.cs">
       <SubType>Form</SubType>
@@ -246,6 +254,9 @@
     <EmbeddedResource Include="ABM Compra\AltaCompra.resx">
       <DependentUpon>AltaCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Compra\Butacas.resx">
+      <DependentUpon>Butacas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Compra\DatosCompra.resx">
       <DependentUpon>DatosCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AerolineasPrincipal.resx">
       <DependentUpon>AerolineasPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consulta Millas\ConsultaMillas.resx">
+      <DependentUpon>ConsultaMillas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generacion Viaje\GenerarViaje.resx">
       <DependentUpon>GenerarViaje.cs</DependentUpon>
