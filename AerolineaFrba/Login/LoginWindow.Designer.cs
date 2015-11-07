@@ -70,7 +70,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(126, 20);
             this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textUser_TextChanged);
             // 
             // textBox2
             // 
@@ -78,6 +78,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(126, 20);
             this.textBox2.TabIndex = 4;
+            this.textBox2.TextChanged += new System.EventHandler(this.textPass_TextChanged);
             // 
             // LoginWindow
             // 
@@ -91,6 +92,7 @@
             this.Controls.Add(this.button1);
             this.Name = "LoginWindow";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.LoginWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
