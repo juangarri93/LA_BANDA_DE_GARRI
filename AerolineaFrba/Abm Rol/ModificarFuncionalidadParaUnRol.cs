@@ -53,7 +53,8 @@ namespace AerolineaFrba.Abm_Rol
         private Rol GenerarRol()
         {
             var lista = Funcionalidades.CheckedIndices.Cast<int>().ToList();
-            return new Rol(Rol.Nombre, lista);
+            Rol.Funcionalidades = lista;
+            return Rol;
         }
 
         private void CargarRol(String N)
@@ -64,6 +65,19 @@ namespace AerolineaFrba.Abm_Rol
         private void ModificarFuncionalidadParaUnRol_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DAORol.actualizarRol(GenerarRol());
+                MessageBox.Show("Rol agregado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error." + ex.Message);
+            }
         }
 
     }

@@ -62,5 +62,15 @@ namespace AerolineaFrba.CapaADO
                 executeProcedure("spinsertar_rol_funcionalidad", rol.Codigo, funcionalidad + 1);
             }
         }
+
+         public static void actualizarRol(Rol rol)
+        {
+            executeProcedure("speliminar_funcionalidades_para_rol", rol.Codigo);
+
+            foreach (var func in rol.Funcionalidades)
+            {
+                executeProcedure("spinsertar_rol_funcionalidad ", rol.Codigo, func + 1);
+            }
+        }
     }
 }
