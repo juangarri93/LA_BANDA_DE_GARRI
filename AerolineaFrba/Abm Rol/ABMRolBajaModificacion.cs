@@ -41,6 +41,7 @@ namespace AerolineaFrba.Abm_Rol
 
                 cbNombre.DataSource = DAORol.getRol().DefaultView;
                 cbNombre.DisplayMember = "Rol";
+                txtNuevoRol.Text = "";
 
             }
             catch (Exception ex) 

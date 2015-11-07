@@ -26,11 +26,9 @@ namespace AerolineaFrba.Abm_Rol
         public ModificarFuncionalidadParaUnRol(String Nombre)
         {
             InitializeComponent();
-            labelMuestraNombre.Text = "capeon";
+            labelMuestraNombre.Text = Nombre;
             CargarRol(Nombre);
-            MessageBox.Show("El nombre del Rol es" + Rol.Nombre);
-            MessageBox.Show("El id del Rol es" + Convert.ToString(Rol.Codigo));
-           // mostarListaFuncionalidades();
+            mostarListaFuncionalidades();
         }
 
         private void Funcionalidades_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,7 +42,7 @@ namespace AerolineaFrba.Abm_Rol
             Funcionalidades.DisplayMember = "Nombre";
             Funcionalidades.ValueMember = "Id";
 
-            foreach (var func in _rol.Funcionalidades)
+            foreach (var func in Rol.Funcionalidades)
             {
                 Funcionalidades.SetItemChecked(func, true);
             }

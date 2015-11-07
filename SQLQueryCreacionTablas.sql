@@ -12,6 +12,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sptraer_Rol') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sptraer_Rol;
 
@@ -1059,7 +1062,7 @@ return(@id_aux)
 end
 go
 
--- Agregado Nico 06/11/2015 --
+-- Agregado Nico 05/11/2015 --
 --PROCEDIMIENTO Para mandar un rol a C# --
 
 create proc LA_BANDA_DE_GARRI.sptraer_Rol
@@ -1069,4 +1072,15 @@ create proc LA_BANDA_DE_GARRI.sptraer_Rol
 as
 
 select * from LA_BANDA_DE_GARRI.Roles where @Rol_Nombre = Rol
+go
+
+--Agregado Nico 06/11/2015--
+--Procecimiento para mandar las funcionalidades de un rol a C#--
+
+create proc LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad
+(
+@rol_id int
+)
+as
+select * from LA_BANDA_DE_GARRI.Rol_Funcionalidad where Id_Rol = @rol_id
 go

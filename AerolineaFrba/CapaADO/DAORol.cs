@@ -30,10 +30,10 @@ namespace AerolineaFrba.CapaADO
             var table = retrieveDataTable("sptraer_Rol", N);
             var rol = dataRowToRol(table.Rows[0]);
 
-          //table = retrieveDataTable("getRolFunc", id);
+            table = retrieveDataTable("sptraerRol_Funcionalidad", rol.Codigo);
 
-          // var lista = (from DataRow fila in table.Rows select (Convert.ToInt32(fila["Id_Funcionalidad"])) - 1).ToList();
-          //  rol.Funcionalidades = lista;
+            var lista = (from DataRow fila in table.Rows select (Convert.ToInt32(fila["Id_Funcionalidad"])) - 1).ToList();
+            rol.Funcionalidades = lista;
             return rol;
         }
 
