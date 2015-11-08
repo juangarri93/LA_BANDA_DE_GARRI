@@ -36,18 +36,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(270, 145);
+            this.label1.Location = new System.Drawing.Point(11, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 17);
+            this.label1.Size = new System.Drawing.Size(120, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Acá va lo de seleccionar butacas......";
+            this.label1.Text = "Seleccione sus butacas";
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(242, 504);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVolver.Location = new System.Drawing.Point(182, 410);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(136, 47);
+            this.btnVolver.Size = new System.Drawing.Size(102, 38);
             this.btnVolver.TabIndex = 3;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -55,10 +55,9 @@
             // 
             // btnPago
             // 
-            this.btnPago.Location = new System.Drawing.Point(386, 504);
-            this.btnPago.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPago.Location = new System.Drawing.Point(290, 410);
             this.btnPago.Name = "btnPago";
-            this.btnPago.Size = new System.Drawing.Size(137, 47);
+            this.btnPago.Size = new System.Drawing.Size(103, 38);
             this.btnPago.TabIndex = 4;
             this.btnPago.Text = "Pagar";
             this.btnPago.UseVisualStyleBackColor = true;
@@ -66,12 +65,13 @@
             // 
             // Butacas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 592);
+            this.ClientSize = new System.Drawing.Size(588, 481);
             this.Controls.Add(this.btnPago);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Butacas";
             this.Text = "Butacas";
             this.ResumeLayout(false);

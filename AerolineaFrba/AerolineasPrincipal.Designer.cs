@@ -180,10 +180,10 @@
             // lineShape1
             // 
             this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 313;
-            this.lineShape1.X2 = 312;
-            this.lineShape1.Y1 = 116;
-            this.lineShape1.Y2 = 440;
+            this.lineShape1.X1 = 237;
+            this.lineShape1.X2 = 238;
+            this.lineShape1.Y1 = 83;
+            this.lineShape1.Y2 = 368;
             // 
             // AerolineasPrincipal
             // 
