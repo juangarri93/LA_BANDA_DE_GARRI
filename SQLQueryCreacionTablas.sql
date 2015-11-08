@@ -10,10 +10,32 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_servicio_es_valido') IS NOT NULL)
   
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcalcular_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spcalcular_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sprestar_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sprestar_millas;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbaja_millas;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarMillas_cliente') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarMillas_cliente;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_millas') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spmostrar_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_ciudad;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad;
   
@@ -124,8 +146,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol') IS NOT NULL)
   
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_ciudades') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_ciudades;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_viajes') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_viajes;
 
@@ -1040,8 +1064,10 @@ go
 
 -------------------------------------------------
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
-
-
+create proc LA_BANDA_DE_GARRI.spmostrar_modelo
+as
+select * from LA_BANDA_DE_GARRI.Modelo
+go
 -------------------------------------------------
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_tipo_servicio
@@ -1185,4 +1211,96 @@ create proc LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad
 )
 as
 select * from LA_BANDA_DE_GARRI.Rol_Funcionalidad where Id_Rol = @rol_id
+go
+
+--PROCEDIMIENTO MOSTRAR TABLA Ciudad--
+create proc LA_BANDA_DE_GARRI.spmostrar_ciudad
+as
+select * from LA_BANDA_DE_GARRI.Ciudades
+order by Id
+go
+
+
+--Procedimiento insertar millas--
+create proc LA_BANDA_DE_GARRI.spinsertar_millas
+(
+	@id int output,
+	@id_cliente int,
+	@cantMillas int,
+	@fechaExp datetime 
+)
+as
+insert into  LA_BANDA_DE_GARRI.Millas(Id_cliente,Cantidad,Validez_Hasta)
+values(@id_cliente,@cantMillas,@fechaExp)
+go
+
+--Procedimiento spmostrar_millas --
+CREATE PROC  LA_BANDA_DE_GARRI.spmostrar_millas
+as
+select * from LA_BANDA_DE_GARRI.Millas
+order by Id_cliente
+GO
+
+--Procedimiento spbuscarMillas_cliente --
+create proc LA_BANDA_DE_GARRI.spbuscarMillas_cliente
+(
+@dniCliente int
+)
+as
+BEGIN
+
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dniCliente
+
+select * from LA_BANDA_DE_GARRI.Millas where Id_cliente = @id_cliente
+END
+go
+
+--Procedimiento spbaja_millas--
+create proc LA_BANDA_DE_GARRI.spbaja_millas
+(
+@dni_cliente int
+)
+as
+BEGIN
+
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dni_cliente
+
+delete from LA_BANDA_DE_GARRI.Millas where Id_cliente = @id_cliente
+END
+go
+
+--PROCEDURE sprestar_millas", dni_cliente, cantidad);--
+create proc LA_BANDA_DE_GARRI.sprestar_millas
+(
+@dni_cliente int,
+@cantidad int,
+@producto_elegido int,
+@fechaActual datetime
+)
+as
+
+insert into  LA_BANDA_DE_GARRI.Canje_Millas(DNI,Producto_elegido,Cantidad,Fecha)
+values(@dni_cliente,@producto_elegido,@cantidad,@fechaActual)
+
+go
+
+--PROCEDURE spcalcular_millas", dni_cliente--
+create proc LA_BANDA_DE_GARRI.spcalcular_millas
+(
+@dni_cliente int
+)
+as
+begin
+
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dni_cliente
+
+declare @sumaDeMillas int
+
+select @sumaDeMillas = (select SUM(Cantidad) FROM LA_BANDA_DE_GARRI.Millas
+where  @id_cliente = Id_cliente and (select DATEDIFF(day,Validez_Hasta,GETDATE())) <= 365)
+
+end
 go
