@@ -15,6 +15,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_premio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_premio;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcalcular_millas') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spcalcular_millas;
 
@@ -368,7 +371,8 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Productos] (
 [Id] INT IDENTITY(1,1),
 [Descripcion] NVARCHAR(255),
 [Stock] int,
-CONSTRAINT [PK_Productos] PRIMARY KEY ([Id])
+CONSTRAINT [PK_Productos] PRIMARY KEY ([Id]),
+[Cantidad_Millas] int
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Canje_Millas] (
@@ -1304,3 +1308,19 @@ where  @id_cliente = Id_cliente and (select DATEDIFF(day,Validez_Hasta,GETDATE()
 
 end
 go
+
+-- PROCEDIMIENTO executeProcedure("spinsertar_premio", 1 ,premio.Nombre,premio.Cantidad,premio.Cantidad_millas);
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_premio
+(
+@idPremio int output,
+@nombrePremio varchar(100),
+@cantidadPremio int,
+@cantidadMillas int
+)
+as
+insert into  LA_BANDA_DE_GARRI.Productos(Descripcion,Stock,Cantidad_Millas)
+values(@nombrePremio,@cantidadPremio,@cantidadMillas)
+
+go
+
+--PROCEDIMIENTO 
