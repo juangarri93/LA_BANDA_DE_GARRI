@@ -15,7 +15,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
-IF (OBJECT_ID('LA_BANDA_DE_GARRI. sprestar_premio') IS NOT NULL)
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_compra') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_compra;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sprestar_premio') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI. sprestar_premio;
 
  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_premio') IS NOT NULL)
@@ -1428,3 +1431,11 @@ if not exists(select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre an
 
 end
 go
+
+-- PROCEDIMIENTO spmostrar_compra--
+--create proc spmostrar_compra
+--as
+--select * from LA_BANDA_DE_GARRI.compra
+--where @nombre = Descripcion
+--order by Id
+--go

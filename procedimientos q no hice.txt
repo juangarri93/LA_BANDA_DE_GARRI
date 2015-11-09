@@ -2,8 +2,6 @@
 
 Comprac
 
-return retrieveDataTable("spmostrar_compra");
 return retrieveDataTable("spbuscar_compra", textoBuscar);
-executeProcedure("speditar_compra", 1, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.FechaDeViaje, compra.Origen, compra.Destino, compra.CantidadPasajes, compra.CantidadKG, compra.ViajeSeleccionado);
-executeProcedure("speliminar_compra", id);
+
 executeProcedure("spbaja_compra", id);
