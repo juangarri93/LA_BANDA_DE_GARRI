@@ -1378,3 +1378,53 @@ update LA_BANDA_DE_GARRI.Productos
 	set Stock = @cantidadActualizada - 1
 	where Id = @ID_PREMIO
 END
+
+--PROCEDIMIENTO spinsertar_compra--
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
+(
+@ID_compra int output,
+@idviajeSeleccionado int,
+@nombre varchar(100),
+@apellido varchar(100),
+@dni varchar(100),
+@direccion varchar(100),
+@telefono numeric(18,0),
+@email varchar(100),
+@fechaNac date,
+@cantidadPasaje int,
+@cantidadKG int,
+@fechaCompra date,
+@Importe int,
+@Tipo_Pago int,
+@idButaca int
+)
+as
+begin
+
+declare @idCliente int
+declare @idAeronave int
+
+if not exists(select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	begin
+
+		insert into  LA_BANDA_DE_GARRI.Clientes(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
+		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechaNac)
+
+	end
+		
+	SET @idCliente = (select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	SET @idAeronave = (select * from LA_BANDA_DE_GARRI.Viajes where @idviajeSeleccionado = Id)
+
+	insert into  LA_BANDA_DE_GARRI.Pago(Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+	values(@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+
+	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Aeronave,KG)
+	values(@idCliente,@idviajeSeleccionado,@idButaca,@idAeronave,@cantidadKG)
+
+	
+	--update LA_BANDA_DE_GARRI.Viaje_Butaca
+	--set 
+	--where Id = @ID_PREMIO
+
+end
+go
