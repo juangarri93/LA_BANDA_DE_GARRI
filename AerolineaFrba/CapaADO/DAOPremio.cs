@@ -23,7 +23,7 @@ namespace AerolineaFrba.CapaADO
 
         public static DataTable buscarPremio(string nombre)
         {
-            return retrieveDataTable("spmostrar_premios", nombre);
+            return retrieveDataTable("spmostrar_premios_nombre", nombre);
         }
 
         public static void darDeBajapremio(int id_Premio)

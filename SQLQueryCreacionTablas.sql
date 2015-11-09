@@ -15,6 +15,12 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_premios_nombre') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_premios_nombre;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_premios') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_premios;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_premio') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_premio;
 
@@ -1323,4 +1329,20 @@ values(@nombrePremio,@cantidadPremio,@cantidadMillas)
 
 go
 
---PROCEDIMIENTO 
+--PROCEDIMIENTO spmostrar_premios --
+create proc LA_BANDA_DE_GARRI.spmostrar_premios
+as
+select * from LA_BANDA_DE_GARRI.Productos
+order by Id
+go
+
+--PROCEDIMIENTO spmostrar_premios", nombre--
+create proc LA_BANDA_DE_GARRI.spmostrar_premios_nombre
+(
+@nombre varchar(100)
+)
+as
+select * from LA_BANDA_DE_GARRI.Productos
+where @nombre = Descripcion
+order by Id
+go
