@@ -15,6 +15,45 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_compra') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_compra;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sprestar_premio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI. sprestar_premio;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_premio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbaja_premio;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_premios_nombre') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_premios_nombre;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_premios') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_premios;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_premio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_premio;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcalcular_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spcalcular_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sprestar_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sprestar_millas;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbaja_millas;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarMillas_cliente') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarMillas_cliente;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_millas') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spmostrar_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_millas;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_ciudad;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad;
   
@@ -125,8 +164,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cambiar_nombre_rol') IS NOT NULL)
   
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_ciudades') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_ciudades;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_viajes') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_viajes;
 
@@ -346,7 +387,8 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Productos] (
 [Id] INT IDENTITY(1,1),
 [Descripcion] NVARCHAR(255),
 [Stock] int,
-CONSTRAINT [PK_Productos] PRIMARY KEY ([Id])
+CONSTRAINT [PK_Productos] PRIMARY KEY ([Id]),
+[Cantidad_Millas] int
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Canje_Millas] (
@@ -1053,8 +1095,10 @@ go
 
 -------------------------------------------------
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
-
-
+create proc LA_BANDA_DE_GARRI.spmostrar_modelo
+as
+select * from LA_BANDA_DE_GARRI.Modelo
+go
 -------------------------------------------------
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_tipo_servicio
@@ -1199,3 +1243,211 @@ create proc LA_BANDA_DE_GARRI.sptraerRol_Funcionalidad
 as
 select * from LA_BANDA_DE_GARRI.Rol_Funcionalidad where Id_Rol = @rol_id
 go
+
+--PROCEDIMIENTO MOSTRAR TABLA Ciudad--
+create proc LA_BANDA_DE_GARRI.spmostrar_ciudad
+as
+select * from LA_BANDA_DE_GARRI.Ciudades
+order by Id
+go
+
+
+--Procedimiento insertar millas--
+create proc LA_BANDA_DE_GARRI.spinsertar_millas
+(
+	@id int output,
+	@id_cliente int,
+	@cantMillas int,
+	@fechaExp datetime 
+)
+as
+insert into  LA_BANDA_DE_GARRI.Millas(Id_cliente,Cantidad,Validez_Hasta)
+values(@id_cliente,@cantMillas,@fechaExp)
+go
+
+--Procedimiento spmostrar_millas --
+CREATE PROC  LA_BANDA_DE_GARRI.spmostrar_millas
+as
+select * from LA_BANDA_DE_GARRI.Millas
+order by Id_cliente
+GO
+
+--Procedimiento spbuscarMillas_cliente --
+create proc LA_BANDA_DE_GARRI.spbuscarMillas_cliente
+(
+@dniCliente int
+)
+as
+BEGIN
+
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dniCliente
+
+select * from LA_BANDA_DE_GARRI.Millas where Id_cliente = @id_cliente
+END
+go
+
+--Procedimiento spbaja_millas--
+create proc LA_BANDA_DE_GARRI.spbaja_millas
+(
+@dni_cliente int
+)
+as
+BEGIN
+
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dni_cliente
+
+delete from LA_BANDA_DE_GARRI.Millas where Id_cliente = @id_cliente
+END
+go
+
+--PROCEDURE sprestar_millas", dni_cliente, cantidad);--
+create proc LA_BANDA_DE_GARRI.sprestar_millas
+(
+@dni_cliente int,
+@cantidad int,
+@producto_elegido int,
+@fechaActual datetime
+)
+as
+
+insert into  LA_BANDA_DE_GARRI.Canje_Millas(DNI,Producto_elegido,Cantidad,Fecha)
+values(@dni_cliente,@producto_elegido,@cantidad,@fechaActual)
+
+go
+
+--PROCEDURE spcalcular_millas", dni_cliente--
+create proc LA_BANDA_DE_GARRI.spcalcular_millas
+(
+@dni_cliente int
+)
+as
+begin
+
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dni_cliente
+
+declare @sumaDeMillas int
+
+select @sumaDeMillas = (select SUM(Cantidad) FROM LA_BANDA_DE_GARRI.Millas
+where  @id_cliente = Id_cliente and (select DATEDIFF(day,Validez_Hasta,GETDATE())) <= 365)
+
+end
+go
+
+-- PROCEDIMIENTO executeProcedure("spinsertar_premio", 1 ,premio.Nombre,premio.Cantidad,premio.Cantidad_millas);
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_premio
+(
+@idPremio int output,
+@nombrePremio varchar(100),
+@cantidadPremio int,
+@cantidadMillas int
+)
+as
+insert into  LA_BANDA_DE_GARRI.Productos(Descripcion,Stock,Cantidad_Millas)
+values(@nombrePremio,@cantidadPremio,@cantidadMillas)
+
+go
+
+--PROCEDIMIENTO spmostrar_premios --
+create proc LA_BANDA_DE_GARRI.spmostrar_premios
+as
+select * from LA_BANDA_DE_GARRI.Productos
+order by Id
+go
+
+--PROCEDIMIENTO spmostrar_premios", nombre--
+create proc LA_BANDA_DE_GARRI.spmostrar_premios_nombre
+(
+@nombre varchar(100)
+)
+as
+select * from LA_BANDA_DE_GARRI.Productos
+where @nombre = Descripcion
+order by Id
+go
+
+--PROCEDIMIENTO spbaja_premio", id_Premio)--
+CREATE PROC LA_BANDA_DE_GARRI.spbaja_premio
+(
+@id_premio int
+)
+as
+delete from LA_BANDA_DE_GARRI.Productos where Id = @id_premio
+go
+
+--PROCEDIMIENTO sprestar_premio id_Premio, cantidad)--
+CREATE PROC LA_BANDA_DE_GARRI. sprestar_premio
+(
+@ID_PREMIO int,
+@cantidad int
+)
+as
+begin
+
+declare @cantidadActualizada int
+set @cantidadActualizada = (select Stock from LA_BANDA_DE_GARRI.Productos where @ID_PREMIO = Id) - 1
+
+update LA_BANDA_DE_GARRI.Productos
+	set Stock = @cantidadActualizada - 1
+	where Id = @ID_PREMIO
+END
+
+--PROCEDIMIENTO spinsertar_compra--
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
+(
+@ID_compra int output,
+@idviajeSeleccionado int,
+@nombre varchar(100),
+@apellido varchar(100),
+@dni varchar(100),
+@direccion varchar(100),
+@telefono numeric(18,0),
+@email varchar(100),
+@fechaNac date,
+@cantidadPasaje int,
+@cantidadKG int,
+@fechaCompra date,
+@Importe int,
+@Tipo_Pago int,
+@idButaca int
+)
+as
+begin
+
+declare @idCliente int
+declare @idAeronave int
+
+if not exists(select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	begin
+
+		insert into  LA_BANDA_DE_GARRI.Clientes(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
+		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechaNac)
+
+	end
+		
+	SET @idCliente = (select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	SET @idAeronave = (select * from LA_BANDA_DE_GARRI.Viajes where @idviajeSeleccionado = Id)
+
+	insert into  LA_BANDA_DE_GARRI.Pago(Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+	values(@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+
+	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Aeronave,KG)
+	values(@idCliente,@idviajeSeleccionado,@idButaca,@idAeronave,@cantidadKG)
+
+	
+	--update LA_BANDA_DE_GARRI.Viaje_Butaca
+	--set 
+	--where Id = @ID_PREMIO
+
+end
+go
+
+-- PROCEDIMIENTO spmostrar_compra--
+--create proc spmostrar_compra
+--as
+--select * from LA_BANDA_DE_GARRI.compra
+--where @nombre = Descripcion
+--order by Id
+--go

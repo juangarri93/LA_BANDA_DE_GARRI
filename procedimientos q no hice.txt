@@ -1,20 +1,7 @@
-Millas:
-executeProcedure("spinsertar_millas", 1, millas.Id_Cliente, millas.Cantidad, millas.Fecha_Exp);
-retrieveDataTable("spmostrar_millas");
-retrieveDataTable("spbuscarMillas_cliente", dni_cliente);
-executeProcedure("spbaja_millas", dni_cliente);
-executeProcedure("sprestar_millas", dni_cliente, cantidad);
-executeProcedureWithReturnValue("spcalcular_millas", dni_cliente);
-Premios:
-executeProcedure("spinsertar_premio", 1 ,premio.Nombre,premio.Cantidad,premio.Cantidad_millas);
-return retrieveDataTable("spmostrar_premios");
-return retrieveDataTable("spmostrar_premios", nombre);
-executeProcedure("spbaja_premio", id_Premio);
-return executeProcedureWithReturnValue("sprestar_premio", id_Premio, cantidad)
+
+
 Comprac
-executeProcedure("spinsertar_compra", 1, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.FechaDeViaje,compra.Origen,compra.Destino,compra.CantidadPasajes,compra.CantidadKG,compra.ViajeSeleccionado,compra.Estado);
-return retrieveDataTable("spmostrar_compra");
+
 return retrieveDataTable("spbuscar_compra", textoBuscar);
-executeProcedure("speditar_compra", 1, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.FechaDeViaje, compra.Origen, compra.Destino, compra.CantidadPasajes, compra.CantidadKG, compra.ViajeSeleccionado);
-executeProcedure("speliminar_compra", id);
+
 executeProcedure("spbaja_compra", id);

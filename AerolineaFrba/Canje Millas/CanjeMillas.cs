@@ -106,6 +106,8 @@ namespace AerolineaFrba.Canje_Millas
                 {
                     DAOPremio.InsertarCanje(premio);
                     MessageBox.Show("Canje realizado con exito");
+                    DAOMillas.restarMillas(dni, millas_necesarias);
+
                     // limpiar();
                 }
                 catch (Exception ex)
