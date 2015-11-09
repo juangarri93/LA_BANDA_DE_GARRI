@@ -15,6 +15,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcalcular_millas') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spcalcular_millas;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sprestar_millas') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sprestar_millas;
 
@@ -1061,8 +1064,10 @@ go
 
 -------------------------------------------------
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
-
-
+create proc LA_BANDA_DE_GARRI.spmostrar_modelo
+as
+select * from LA_BANDA_DE_GARRI.Modelo
+go
 -------------------------------------------------
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
 create proc LA_BANDA_DE_GARRI.spmostrar_tipo_servicio
@@ -1281,5 +1286,21 @@ values(@dni_cliente,@producto_elegido,@cantidad,@fechaActual)
 
 go
 
+--PROCEDURE spcalcular_millas", dni_cliente--
+create proc LA_BANDA_DE_GARRI.spcalcular_millas
+(
+@dni_cliente int
+)
+as
+begin
 
+declare @id_cliente int
+select @id_cliente = Id from LA_BANDA_DE_GARRI.Clientes where dni = @dni_cliente
 
+declare @sumaDeMillas int
+
+select @sumaDeMillas = (select SUM(Cantidad) FROM LA_BANDA_DE_GARRI.Millas
+where  @id_cliente = Id_cliente and (select DATEDIFF(day,Validez_Hasta,GETDATE())) <= 365)
+
+end
+go
