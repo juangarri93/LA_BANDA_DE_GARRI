@@ -595,34 +595,32 @@ GO
 			from gd_esquema.Maestra m				
 	
 		insert into [LA_BANDA_DE_GARRI].[Pasaje_Encomienda](Id_Cliente,Id_Viaje,Id_Butaca,Id_Aeronave,KG)
-		select  (select C.Id from LA_BANDA_DE_GARRI.Clientes c 
-		where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
-		(select V.Id from LA_BANDA_DE_GARRI.Viajes V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
-and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
-(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
-where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.Tipo_Servicio)= m.Tipo_Servicio 
-and (select c.nombre from LA_BANDA_DE_GARRI.Ciudades C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
-and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudades C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
-(Select B.Id from LA_BANDA_DE_GARRI.Butaca B
-where B.nro = m.Butaca_Nro and b.aeronave_id=a.Id),			
-A.id,
-m.Paquete_KG
-from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula		
+			select  (select C.Id from LA_BANDA_DE_GARRI.Clientes c 
+			where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
+			(select V.Id from LA_BANDA_DE_GARRI.Viajes V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
+			and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
+			(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
+			where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.Tipo_Servicio)= m.Tipo_Servicio 
+			and (select c.nombre from LA_BANDA_DE_GARRI.Ciudades C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
+			and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudades C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
+			(Select B.Id from LA_BANDA_DE_GARRI.Butaca B
+			where B.nro = m.Butaca_Nro and b.aeronave_id=a.Id),			
+			A.id,
+			m.Paquete_KG
+			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula		
 
 
-		--insert into LA_BANDA_DE_GARRI.[Viaje_Butaca](id_Butaca ,id_Viaje, libre) 
-		--	select B.Id,
-		--	V.Id,
-		--	(select 0 from gd_esquema.Maestra m where B.Nro = m.Butaca_Nro and m.Aeronave_Matricula=(select a.Matricula
-		--	 from LA_BANDA_DE_GARRI.Aeronave A where a.Id=b.Aeronave_id) 
-		--	 and m.FechaSalida=v.Fecha_salida 
-		--	 and m.Ruta_Codigo=(select R.Codigo from LA_BANDA_DE_GARRI.Ruta_Aerea R where r.Ciudad_Destino = m.Ruta_Ciudad_Destino and r.Ciudad_Origen=m.Ruta_Ciudad_Origen 
-		--	 and r.Tipo_Servicio=(select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where t.id=r.Tipo_Servicio))) 
-		--	from LA_BANDA_DE_GARRI.Viajes V
-		--	join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
-			
+		insert into LA_BANDA_DE_GARRI.[Viaje_Butaca](id_Butaca ,id_Viaje, libre) 
+			select B.Id,
+			V.Id,
+			case 
+			 when (select top 1 0 from [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] P where P.Id_Viaje=V.Id and P.Id_Butaca=B.Id) = 0 then 0
+			 else 1 
+			END
+			from LA_BANDA_DE_GARRI.Viajes V
+			join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
+
 commit tran trn_migracion_datos
-
 GO
 
 --STORED PROCEDURES
@@ -1393,6 +1391,7 @@ update LA_BANDA_DE_GARRI.Productos
 	set Stock = @cantidadActualizada - 1
 	where Id = @ID_PREMIO
 END
+go
 
 --PROCEDIMIENTO spinsertar_compra--
 CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
@@ -1427,8 +1426,8 @@ if not exists(select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre an
 
 	end
 		
-	SET @idCliente = (select * from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
-	SET @idAeronave = (select * from LA_BANDA_DE_GARRI.Viajes where @idviajeSeleccionado = Id)
+	SET @idCliente = (select Clientes.Id from LA_BANDA_DE_GARRI.Clientes where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	SET @idAeronave = (select Viajes.Id_Aeronave from LA_BANDA_DE_GARRI.Viajes where @idviajeSeleccionado = Id)
 
 	insert into  LA_BANDA_DE_GARRI.Pago(Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
 	values(@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
