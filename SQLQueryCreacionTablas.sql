@@ -10,6 +10,7 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_servicio_es_valido') IS NOT NULL)
   
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
@@ -302,9 +303,10 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Viajes] (
 [Fecha_llegada] DATETIME,
 [Fecha_llegada_estimada] DATETIME,
 [Id_Aeronave] INT,
-[Codigo_Ruta_Aerea] NUMERIC(18,0),
+[Codigo_Ruta_Aerea] int,
 CONSTRAINT [PK_Viajes] PRIMARY KEY ([Id]),
-CONSTRAINT [FK_Aeronave] FOREIGN KEY ([Id_Aeronave]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id])
+CONSTRAINT [FK_Aeronave] FOREIGN KEY ([Id_Aeronave]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id]),
+CONSTRAINT [FK_CODIGORUTA] FOREIGN KEY ([Codigo_Ruta_Aerea]) REFERENCES [LA_BANDA_DE_GARRI].Ruta_Aerea ([Id])
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Clientes] (
@@ -401,7 +403,8 @@ CONSTRAINT [FK_Pasaje_Encomienda] FOREIGN KEY ([Id_Pasaje_Encomienda]) REFERENCE
 create table [LA_BANDA_DE_GARRI].[Viaje_Butaca] (
 [Id] INT IDENTITY, 
 [id_Viaje] INT, 
-[id_Butaca] INT
+[id_Butaca] INT,
+libre bit DEFAULT 1 NOT NULL,
 CONSTRAINT [PK_Viaje_Butaca] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_ViajeIntermedio] FOREIGN KEY ([id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viajes] ([Id]),
 CONSTRAINT [FK_ButacaIntermedio] FOREIGN KEY ([id_Butaca]) REFERENCES [LA_BANDA_DE_GARRI].[Butaca] ([Id])
@@ -510,7 +513,7 @@ GO
 			gd_esquema.Maestra.Butaca_Piso,
 			(Select LA_BANDA_DE_GARRI.Aeronave.Id from LA_BANDA_DE_GARRI.Aeronave
 			where LA_BANDA_DE_GARRI.Aeronave.Matricula = gd_esquema.Maestra.Aeronave_Matricula)
-			 from gd_esquema.Maestra;
+			 from gd_esquema.Maestra where gd_esquema.Maestra.Butaca_Tipo != '0';
 
 		insert into LA_BANDA_DE_GARRI.Clientes(Nombre, Apellido, dni, direccion, telefono, mail, fecha_nacimiento)
 			select distinct m.Cli_Nombre, m.Cli_Apellido, m.Cli_Dni, m.Cli_Dir, m.Cli_Telefono, m.Cli_Mail, m.Cli_Fecha_Nac
@@ -548,23 +551,33 @@ GO
 			(Select R.Id from LA_BANDA_DE_GARRI.Ruta_Aerea R
 			where R.Codigo = m.Ruta_Codigo and r.Ciudad_Origen=(select c.Id from LA_BANDA_DE_GARRI.Ciudades C where c.Nombre=m.Ruta_Ciudad_Origen))			
 			from gd_esquema.Maestra m				
-		
+	
 		insert into [LA_BANDA_DE_GARRI].[Pasaje_Encomienda](Id_Cliente,Id_Viaje,Id_Butaca,Id_Aeronave,KG)
-			select distinct (select C.Id from LA_BANDA_DE_GARRI.Clientes C where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac),
-			(select V.Id from LA_BANDA_DE_GARRI.Viajes V where V.Fecha_salida=m.FechaSalida 
-			and (select A.Matricula from LA_BANDA_DE_GARRI.Aeronave A where A.Id=V.Id_Aeronave)=m.Aeronave_Matricula),
-			(select B.Id from LA_BANDA_DE_GARRI.Butaca B where b.Nro=m.Butaca_Nro 
-			and m.Aeronave_Matricula=(select A.Matricula from LA_BANDA_DE_GARRI.Aeronave A where A.Id=B.Aeronave_id)),
-			(Select LA_BANDA_DE_GARRI.Aeronave.Id from LA_BANDA_DE_GARRI.Aeronave
-			where LA_BANDA_DE_GARRI.Aeronave.Matricula = m.Aeronave_Matricula),
-			m.Paquete_KG
-		    from gd_esquema.Maestra m				
+		select  (select C.Id from LA_BANDA_DE_GARRI.Clientes c 
+		where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
+		(select V.Id from LA_BANDA_DE_GARRI.Viajes V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
+and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
+(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
+where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.Tipo_Servicio)= m.Tipo_Servicio 
+and (select c.nombre from LA_BANDA_DE_GARRI.Ciudades C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
+and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudades C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
+(Select B.Id from LA_BANDA_DE_GARRI.Butaca B
+where B.nro = m.Butaca_Nro and b.aeronave_id=a.Id),			
+A.id,
+m.Paquete_KG
+from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula		
 
-		insert into LA_BANDA_DE_GARRI.[Viaje_Butaca](id_Butaca ,id_Viaje) 
-			select B.Id,
-			V.Id
-			from LA_BANDA_DE_GARRI.Viajes V
-			join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
+
+		--insert into LA_BANDA_DE_GARRI.[Viaje_Butaca](id_Butaca ,id_Viaje, libre) 
+		--	select B.Id,
+		--	V.Id,
+		--	(select 0 from gd_esquema.Maestra m where B.Nro = m.Butaca_Nro and m.Aeronave_Matricula=(select a.Matricula
+		--	 from LA_BANDA_DE_GARRI.Aeronave A where a.Id=b.Aeronave_id) 
+		--	 and m.FechaSalida=v.Fecha_salida 
+		--	 and m.Ruta_Codigo=(select R.Codigo from LA_BANDA_DE_GARRI.Ruta_Aerea R where r.Ciudad_Destino = m.Ruta_Ciudad_Destino and r.Ciudad_Origen=m.Ruta_Ciudad_Origen 
+		--	 and r.Tipo_Servicio=(select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where t.id=r.Tipo_Servicio))) 
+		--	from LA_BANDA_DE_GARRI.Viajes V
+		--	join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
 			
 commit tran trn_migracion_datos
 
