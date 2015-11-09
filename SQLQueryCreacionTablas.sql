@@ -15,6 +15,12 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI. sprestar_premio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI. sprestar_premio;
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_premio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbaja_premio;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_premios_nombre') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_premios_nombre;
 
@@ -1346,3 +1352,29 @@ select * from LA_BANDA_DE_GARRI.Productos
 where @nombre = Descripcion
 order by Id
 go
+
+--PROCEDIMIENTO spbaja_premio", id_Premio)--
+CREATE PROC LA_BANDA_DE_GARRI.spbaja_premio
+(
+@id_premio int
+)
+as
+delete from LA_BANDA_DE_GARRI.Productos where Id = @id_premio
+go
+
+--PROCEDIMIENTO sprestar_premio id_Premio, cantidad)--
+CREATE PROC LA_BANDA_DE_GARRI. sprestar_premio
+(
+@ID_PREMIO int,
+@cantidad int
+)
+as
+begin
+
+declare @cantidadActualizada int
+set @cantidadActualizada = (select Stock from LA_BANDA_DE_GARRI.Productos where @ID_PREMIO = Id) - 1
+
+update LA_BANDA_DE_GARRI.Productos
+	set Stock = @cantidadActualizada - 1
+	where Id = @ID_PREMIO
+END
