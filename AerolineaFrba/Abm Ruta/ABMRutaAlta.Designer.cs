@@ -222,6 +222,7 @@
             this.Controls.Add(this.txtTipoServicio);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMRutaAlta";
             this.Text = "ABMRutaAlta";
             this.Load += new System.EventHandler(this.ABMRutaAlta_Load);

@@ -40,8 +40,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btn_canjear_millas = new System.Windows.Forms.Button();
             this.btn_consulta_millas = new System.Windows.Forms.Button();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.SuspendLayout();
             // 
             // btnABMAronaves
@@ -166,29 +164,18 @@
             this.btn_consulta_millas.UseVisualStyleBackColor = true;
             this.btn_consulta_millas.Click += new System.EventHandler(this.btn_consulta_millas_Click);
             // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(474, 379);
-            this.shapeContainer1.TabIndex = 18;
-            this.shapeContainer1.TabStop = false;
+
             // 
             // lineShape1
             // 
-            this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 237;
-            this.lineShape1.X2 = 238;
-            this.lineShape1.Y1 = 83;
-            this.lineShape1.Y2 = 368;
+         
             // 
+
             // AerolineasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(474, 379);
             this.Controls.Add(this.btn_canjear_millas);
             this.Controls.Add(this.btn_consulta_millas);
@@ -202,7 +189,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnABMRol);
             this.Controls.Add(this.btnABMAronaves);
-            this.Controls.Add(this.shapeContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "AerolineasPrincipal";
             this.Text = "Aerolineas FRBA";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -225,8 +212,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btn_canjear_millas;
         private System.Windows.Forms.Button btn_consulta_millas;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
 
     }
 }

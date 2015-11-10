@@ -25,7 +25,7 @@ namespace AerolineaFrba.CapaADO
 
         public static DataTable Mostrar()
         {
-            return retrieveDataTable("spmostrar_Ruta");
+            return retrieveDataTable("spmostrar_Ruta_Aerea");
         }
 
         internal static void EditarRuta(object p)
