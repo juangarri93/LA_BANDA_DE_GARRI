@@ -221,6 +221,9 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Rol]', 'U') IS NOT NULL
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave];
 
+ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria];
+  
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Modelo]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Modelo];
 
@@ -327,10 +330,7 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Id_Tipo_Servicio] int,
 [Cantidad_Butacas_Ventana] int,
 [Cantidad_Ventanas_Pasillo] int,
-[Baja_Fuera_Servicio] varchar(50),
 [Baja_Vida_Util] varchar(50),
-[Fecha_Reinicio] datetime,
-[Fecha_Fuera_Servicio] date,
 [Fecha_baja_definitiva] date,
 [Kg_Disponibles] int
 PRIMARY KEY (id),
@@ -338,6 +338,16 @@ CONSTRAINT [FK_Modelo] FOREIGN KEY ([Modelo]) REFERENCES [LA_BANDA_DE_GARRI].[Mo
 CONSTRAINT [FK_Fabricante] FOREIGN KEY (Fabricante) REFERENCES [LA_BANDA_DE_GARRI].Fabricante ([Id]),
 CONSTRAINT [FK_TipoServ] FOREIGN KEY ([Id_Tipo_Servicio]) REFERENCES [LA_BANDA_DE_GARRI].[Tipo_Servicio] ([Id])
 )
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria](
+[id_Aeronave] int,
+[Baja_Fuera_Servicio] varchar(50),
+[Fecha_Fuera_Servicio] datetime,
+[Fecha_Reinicio] datetime,
+PRIMARY KEY (id_Aeronave),
+CONSTRAINT [FK_Aeronave] FOREIGN KEY ([id_Aeronave]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id]),
+)
+
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Viaje] (
 [Id] INT IDENTITY (1,1),
