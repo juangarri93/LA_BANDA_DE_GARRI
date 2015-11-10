@@ -17,16 +17,18 @@ namespace AerolineaFrba.Abm_Compra
 {
     public partial class AltaCompra : Form
     {
+        Compra compraActual;
         public AltaCompra()
         {
+            this.compraActual = new Compra();
             InitializeComponent();
 
             cmbOrigen.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DisplayMember = "Nombre";
-            cmbDestino.ValueMember = "CodigoCiudad"; //cambiar a Id para la base original
+            cmbDestino.ValueMember = "Id"; //cambiar a Id para la base original
             cmbOrigen.DisplayMember = "Nombre";
-            cmbOrigen.ValueMember = "CodigoCiudad";
+            cmbOrigen.ValueMember = "Id";
             cantPasajes.Items.Add(1);
             cantPasajes.Items.Add(2);
             cantPasajes.Items.Add(3);
@@ -51,6 +53,24 @@ namespace AerolineaFrba.Abm_Compra
         private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgvCompra_DoubleClick(object sender, EventArgs e)
+        {
+            // string fechaAlta = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_alta"].Value);
+            
+            Viaje viajeSeleccionado = new Viaje();
+            viajeSeleccionado.Id = Convert.ToInt32(this.dgvCompra.CurrentRow.Cells["Id"].Value);           
+            viajeSeleccionado.Aeronave = Convert.ToInt32(this.dgvCompra.CurrentRow.Cells["Id_Aernoave"].Value);
+            viajeSeleccionado.Ruta = Convert.ToInt32(this.dgvCompra.CurrentRow.Cells["Codigo_Ruta_aerea"].Value);
+            viajeSeleccionado.FechaLlegada = Convert.ToDateTime(this.dgvCompra.CurrentRow.Cells["fecha_llegada"].Value);
+            viajeSeleccionado.FechaSalida = Convert.ToDateTime(this.dgvCompra.CurrentRow.Cells["fecha_salida"].Value);
+            viajeSeleccionado.FechaLlegadaEstimada = Convert.ToDateTime(this.dgvCompra.CurrentRow.Cells["fecha_llegada_estimada"].Value);
+
+            this.compraActual.ViajeSeleccionado = viajeSeleccionado.Id;
+            this.compraActual.FechaDeViaje = this.dtpFechaViaje.Value;
+            
+        
         }
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
@@ -102,7 +122,10 @@ namespace AerolineaFrba.Abm_Compra
 
                     if (kgs + pasajes > 0)
                     {
-                        var ventanaDatosUsuario = new DatosCompra();
+                        this.compraActual.CantidadKG = kgs;
+                        this.compraActual.CantidadPasajes = pasajes;
+
+                        var ventanaDatosUsuario = new DatosCompra(compraActual);
                         FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
                     }
                     else MessageBox.Show("Debe ingresar una cantidad valida de pasajes y/o encomiendas");

@@ -24,6 +24,10 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _viajeSeleccionado;
         private string _estado;
 
+
+        public Compra() { }
+
+
         public Compra(int idCompra, string nombre, string apellido, int dni, string direccion, int telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado)
         {
             this._idCompra = idCompra;
@@ -41,6 +45,7 @@ namespace AerolineaFrba.ConstructorDeClases
             this._cantidadKG = cantidadKG;
             this._viajeSeleccionado = viajeSeleccionado;
             this._estado = estado;
+
 
         }
 

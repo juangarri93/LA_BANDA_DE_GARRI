@@ -149,6 +149,8 @@
             this.dgvCompra.Size = new System.Drawing.Size(512, 449);
             this.dgvCompra.TabIndex = 20;
             this.dgvCompra.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompra_CellContentClick);
+            this.dgvCompra.DoubleClick += new System.EventHandler(this.dgvCompra_DoubleClick);
+           
             // 
             // cantPasajes
             // 
