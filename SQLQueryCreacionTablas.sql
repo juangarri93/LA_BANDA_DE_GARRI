@@ -729,7 +729,7 @@ begin
 			set @check_fallidos = (select intentos_fallidos from LA_BANDA_DE_GARRI.Usuarios where username = @username_enviado)
 			if (@check_fallidos >= 3)
 				begin
-						update LA_BANDA_DE_GARRI.Login
+						update LA_BANDA_DE_GARRI.Usuarios
 							set habilitado = 0
 							where username = @username_enviado
 
