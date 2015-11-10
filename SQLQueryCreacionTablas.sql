@@ -345,7 +345,7 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria](
 [Fecha_Fuera_Servicio] datetime,
 [Fecha_Reinicio] datetime,
 PRIMARY KEY (id_Aeronave),
-CONSTRAINT [FK_Aeronave] FOREIGN KEY ([id_Aeronave]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id]),
+CONSTRAINT [FK_Aeronave_Baja_Temporaria] FOREIGN KEY ([id_Aeronave]) REFERENCES [LA_BANDA_DE_GARRI].[Aeronave] ([Id]),
 )
 
 
