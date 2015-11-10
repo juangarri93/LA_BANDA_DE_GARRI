@@ -1453,3 +1453,40 @@ go
 --where @nombre = Descripcion
 --order by Id
 --go
+
+
+/* --top 5 destinos con mas pasajes comprados
+select top 5 c.id, c.Nombre, count(p.Id)
+from LA_BANDA_DE_GARRI.Ciudad c
+join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
+join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
+join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
+where p.KG != 0
+group by c.id, c.Nombre
+order by 3 desc
+
+-- top 5 destinos con pasajes mas cancelados
+select top 5 c.id, c.Nombre, count(d.Id_Pasaje_Encomienda)
+from LA_BANDA_DE_GARRI.Ciudad c
+join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
+join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
+join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
+join LA_BANDA_DE_GARRI.Devolucion d on (d.Id_Pasaje_Encomienda = p.Id)
+where p.KG != 0
+group by c.id, c.Nombre
+order by 3 desc
+
+-- top 5 aeronaves con mayor cantidad dias fuera de servicio
+select top 5 a.id_Aeronave, sum(DATEDIFF(day,a.Fecha_Fuera_Servicio,a.Fecha_Reinicio))
+from LA_BANDA_DE_GARRI.Aeronave_Baja_Temporaria a
+group by a.id_Aeronave
+order by 2 desc
+-- habria que ver que datos de aeronave hay que mostrar y hacer el join con la tabla Aeronave y traerlos
+
+-- top 5 clientes con mas puntos acumulados
+-- No dice nada si hay que restarle los canjeados o los vencidos, ese es el total
+select top 5 c.Id, c.Nombre, c.Apellido, cantidad_millas=sum(m.Cantidad) 
+from LA_BANDA_DE_GARRI.Millas m
+join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)
+group by c.id, c.Nombre, c.Apellido
+order by 4 desc */
