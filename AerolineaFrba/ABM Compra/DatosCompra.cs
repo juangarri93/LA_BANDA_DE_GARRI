@@ -59,7 +59,7 @@ namespace AerolineaFrba.ABM_Compra
 
         private void btnButacas_Click(object sender, EventArgs e)
         {
-            var ventanaButacas = new Butacas();
+            var ventanaButacas = new Butacas(this.compraActual);
             FormsHerramientas.mostrarVentanaNueva(ventanaButacas, this);
             this.Hide();
         }
@@ -71,7 +71,7 @@ namespace AerolineaFrba.ABM_Compra
                 usuarios=DAOUsuario.buscarUsuario(this.txtDni.Text);
                 UsuariosRegistrados = this.crearListaDeUsuarios();
 
-                if (UsuariosRegistrados.i != null)
+                if (UsuariosRegistrados != null)
                 {
                   
                 }
