@@ -36,17 +36,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-<<<<<<< HEAD
+
             this.label1.Location = new System.Drawing.Point(202, 118);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(183, 13);
-=======
+
             this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 13);
->>>>>>> 77ad7b2649199a449c5de4b1ff901250abdc9008
+
             this.label1.TabIndex = 0;
             this.label1.Text = "Seleccione sus butacas";
             // 
@@ -78,12 +78,12 @@
             this.Controls.Add(this.btnPago);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label1);
-<<<<<<< HEAD
+
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-=======
+
             this.Margin = new System.Windows.Forms.Padding(2);
->>>>>>> 77ad7b2649199a449c5de4b1ff901250abdc9008
+
             this.Name = "Butacas";
             this.Text = "Butacas";
             this.ResumeLayout(false);
