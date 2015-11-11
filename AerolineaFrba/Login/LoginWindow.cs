@@ -32,6 +32,8 @@ namespace AerolineaFrba.Login
         private void button1_Click(object sender, EventArgs e)
         {
             login = new Login();
+            login.UserName = TxtBox_userName.Text;
+            login.Password = TxtBox_password.Text;
 
             try
             {
