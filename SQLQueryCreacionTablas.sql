@@ -484,6 +484,9 @@ GO
  begin tran trn_migracion_datos
         
 		insert into LA_BANDA_DE_GARRI.Rol(Rol,Habilitado)
+            values('Administrador General',1)		
+
+		insert into LA_BANDA_DE_GARRI.Rol(Rol,Habilitado)
             values('Administrador',1)
 
         insert into LA_BANDA_DE_GARRI.Rol(Rol,Habilitado)
@@ -527,23 +530,22 @@ GO
 
 		insert into LA_BANDA_DE_GARRI.Funcionalidad(Nombre)
             values('Listado Estadístico')
-
+		
 -- el hash de w23e --> e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7
 		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('gonza', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)					
+            values('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)		
 
 		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('garri', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
+            values('gonza', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)					
 
 		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('lucas', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
+            values('garri', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)
 
 		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)
+            values('lucas', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)
 
 		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)			
-
+            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)
 			
 		insert into LA_BANDA_DE_GARRI.Ciudad(Nombre)
 			select distinct master.Ruta_Ciudad_Origen
@@ -652,6 +654,38 @@ GO
 commit tran trn_migracion_datos
 GO
 
+--transaccion para insertar funcionalidad en los roles
+begin tran insertar_funcionalidades
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Rol'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Listado Estadístico'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Canje de millas'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Consulta de millas de pasajero frecuente'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Devolucion/Cancelacion de pasaje y/o encomienda'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Compra de pasaje/encomienda'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Registro de Llegada a Destino'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Generar Viaje'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Aeronave'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Ruta Aerea'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Registro de Usuario'
+	
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Rol'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Listado Estadístico'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Canje de millas'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Consulta de millas de pasajero frecuente'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Devolucion/Cancelacion de pasaje y/o encomienda'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Compra de pasaje/encomienda'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Registro de Llegada a Destino'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Generar Viaje'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Aeronave'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Ruta Aerea'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Registro de Usuario'
+	
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Cliente',@func = 'Canje de millas'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Cliente',@func = 'Consulta de millas de pasajero frecuente'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Cliente',@func = 'Compra de pasaje/encomienda'
+commit tran insertar_funcionalidades
+
+go
 --STORED PROCEDURES
 --ABM ROL
 
