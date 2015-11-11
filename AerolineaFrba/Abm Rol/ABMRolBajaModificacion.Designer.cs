@@ -111,6 +111,7 @@
             this.Controls.Add(this.BajaLogica);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMRolBajaModificacion";
             this.Text = "ABMRolBajaModificacion";
             this.Load += new System.EventHandler(this.ABMRolBajaModificacion_Load);

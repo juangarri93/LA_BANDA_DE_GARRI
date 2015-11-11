@@ -248,7 +248,9 @@
             this.Controls.Add(this.txtNumeroAeronave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMAeronaveAlta";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABMAeronaveAlta";
             this.Load += new System.EventHandler(this.ABMAeronaveAlta_Load);

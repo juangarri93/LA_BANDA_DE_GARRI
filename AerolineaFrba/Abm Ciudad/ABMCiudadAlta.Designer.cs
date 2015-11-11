@@ -116,6 +116,7 @@
             this.Controls.Add(this.textNombre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMCiudadAlta";
             this.Text = "ABMCiudad";
             this.Load += new System.EventHandler(this.ABMCiudadAlta_Load);

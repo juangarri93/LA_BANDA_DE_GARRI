@@ -37,21 +37,18 @@
             // 
             this.lbTitulo.AutoSize = true;
             this.lbTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.lbTitulo.Location = new System.Drawing.Point(125, 45);
-            this.lbTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTitulo.Location = new System.Drawing.Point(94, 37);
             this.lbTitulo.Name = "lbTitulo";
-            this.lbTitulo.Size = new System.Drawing.Size(218, 39);
+            this.lbTitulo.Size = new System.Drawing.Size(173, 31);
             this.lbTitulo.TabIndex = 8;
             this.lbTitulo.Text = "ABM Usuario";
- 
             // 
             // btnBaja
             // 
             this.btnBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnBaja.Location = new System.Drawing.Point(122, 211);
-            this.btnBaja.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBaja.Location = new System.Drawing.Point(92, 171);
             this.btnBaja.Name = "btnBaja";
-            this.btnBaja.Size = new System.Drawing.Size(221, 78);
+            this.btnBaja.Size = new System.Drawing.Size(166, 63);
             this.btnBaja.TabIndex = 11;
             this.btnBaja.Text = "Baja / Modificación";
             this.btnBaja.UseVisualStyleBackColor = true;
@@ -60,10 +57,9 @@
             // btnAlta
             // 
             this.btnAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnAlta.Location = new System.Drawing.Point(122, 103);
-            this.btnAlta.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAlta.Location = new System.Drawing.Point(92, 84);
             this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(221, 78);
+            this.btnAlta.Size = new System.Drawing.Size(166, 63);
             this.btnAlta.TabIndex = 10;
             this.btnAlta.Text = "Alta";
             this.btnAlta.UseVisualStyleBackColor = true;
@@ -71,13 +67,15 @@
             // 
             // ABMUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 367);
+            this.ClientSize = new System.Drawing.Size(348, 298);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.lbTitulo);
-            this.Name = "ABMAltaUsuario";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "ABMUsuario";
             this.Text = "ABMAltaUsuario";
             this.Load += new System.EventHandler(this.ABMUsuario_Load);
             this.ResumeLayout(false);

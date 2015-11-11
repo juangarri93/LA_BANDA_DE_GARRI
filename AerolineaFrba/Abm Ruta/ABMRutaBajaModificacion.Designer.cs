@@ -269,6 +269,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtTipoServicio);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMRutaBajaModificacion";
             this.Text = "ABMRutaBajaModificacion";
             this.Load += new System.EventHandler(this.ABMRutaBajaModificacion_Load);

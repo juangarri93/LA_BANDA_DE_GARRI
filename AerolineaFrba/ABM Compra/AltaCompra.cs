@@ -24,9 +24,9 @@ namespace AerolineaFrba.Abm_Compra
             cmbOrigen.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DisplayMember = "Nombre";
-            cmbDestino.ValueMember = "CodigoCiudad"; //cambiar a Id para la base original
+            cmbDestino.ValueMember = "Id"; //cambiar a Id para la base original
             cmbOrigen.DisplayMember = "Nombre";
-            cmbOrigen.ValueMember = "CodigoCiudad";
+            cmbOrigen.ValueMember = "Id";
             cantPasajes.Items.Add(1);
             cantPasajes.Items.Add(2);
             cantPasajes.Items.Add(3);

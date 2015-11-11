@@ -49,21 +49,18 @@
             this.filtrarDNI.Controls.Add(this.btnConsultarMillas);
             this.filtrarDNI.Controls.Add(this.txtDni);
             this.filtrarDNI.Controls.Add(this.lDni);
-            this.filtrarDNI.Location = new System.Drawing.Point(35, 29);
-            this.filtrarDNI.Margin = new System.Windows.Forms.Padding(4);
+            this.filtrarDNI.Location = new System.Drawing.Point(26, 24);
             this.filtrarDNI.Name = "filtrarDNI";
-            this.filtrarDNI.Padding = new System.Windows.Forms.Padding(4);
-            this.filtrarDNI.Size = new System.Drawing.Size(710, 86);
+            this.filtrarDNI.Size = new System.Drawing.Size(532, 70);
             this.filtrarDNI.TabIndex = 6;
             this.filtrarDNI.TabStop = false;
             this.filtrarDNI.Text = "Ingrese DNI";
             // 
             // btnConsultarMillas
             // 
-            this.btnConsultarMillas.Location = new System.Drawing.Point(547, 34);
-            this.btnConsultarMillas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConsultarMillas.Location = new System.Drawing.Point(410, 28);
             this.btnConsultarMillas.Name = "btnConsultarMillas";
-            this.btnConsultarMillas.Size = new System.Drawing.Size(116, 32);
+            this.btnConsultarMillas.Size = new System.Drawing.Size(87, 26);
             this.btnConsultarMillas.TabIndex = 7;
             this.btnConsultarMillas.Text = "Consultar Millas";
             this.btnConsultarMillas.UseVisualStyleBackColor = true;
@@ -71,19 +68,17 @@
             // 
             // txtDni
             // 
-            this.txtDni.Location = new System.Drawing.Point(157, 39);
-            this.txtDni.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDni.Location = new System.Drawing.Point(118, 32);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(353, 22);
+            this.txtDni.Size = new System.Drawing.Size(266, 20);
             this.txtDni.TabIndex = 1;
             // 
             // lDni
             // 
             this.lDni.AutoSize = true;
-            this.lDni.Location = new System.Drawing.Point(103, 39);
-            this.lDni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lDni.Location = new System.Drawing.Point(77, 32);
             this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(31, 17);
+            this.lDni.Size = new System.Drawing.Size(26, 13);
             this.lDni.TabIndex = 0;
             this.lDni.Text = "DNI";
             // 
@@ -94,31 +89,28 @@
             this.dtvMillas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtvMillas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtvMillas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtvMillas.Location = new System.Drawing.Point(35, 123);
-            this.dtvMillas.Margin = new System.Windows.Forms.Padding(4);
+            this.dtvMillas.Location = new System.Drawing.Point(26, 100);
             this.dtvMillas.MultiSelect = false;
             this.dtvMillas.Name = "dtvMillas";
             this.dtvMillas.ReadOnly = true;
-            this.dtvMillas.Size = new System.Drawing.Size(710, 306);
+            this.dtvMillas.Size = new System.Drawing.Size(532, 249);
             this.dtvMillas.TabIndex = 7;
             // 
             // lTotalViajes
             // 
             this.lTotalViajes.AutoSize = true;
             this.lTotalViajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTotalViajes.Location = new System.Drawing.Point(11, 28);
-            this.lTotalViajes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lTotalViajes.Location = new System.Drawing.Point(8, 23);
             this.lTotalViajes.Name = "lTotalViajes";
-            this.lTotalViajes.Size = new System.Drawing.Size(125, 20);
+            this.lTotalViajes.Size = new System.Drawing.Size(102, 16);
             this.lTotalViajes.TabIndex = 8;
             this.lTotalViajes.Text = "Total de Viajes:";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(329, 28);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLimpiar.Location = new System.Drawing.Point(247, 23);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(111, 39);
+            this.btnLimpiar.Size = new System.Drawing.Size(83, 32);
             this.btnLimpiar.TabIndex = 10;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -126,10 +118,9 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(567, 28);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalir.Location = new System.Drawing.Point(425, 23);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(111, 39);
+            this.btnSalir.Size = new System.Drawing.Size(83, 32);
             this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -139,19 +130,17 @@
             // 
             this.lMillas.AutoSize = true;
             this.lMillas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lMillas.Location = new System.Drawing.Point(11, 53);
-            this.lMillas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lMillas.Location = new System.Drawing.Point(8, 43);
             this.lMillas.Name = "lMillas";
-            this.lMillas.Size = new System.Drawing.Size(123, 20);
+            this.lMillas.Size = new System.Drawing.Size(99, 16);
             this.lMillas.TabIndex = 12;
             this.lMillas.Text = "Total de Millas:";
             // 
             // btnCanjear
             // 
-            this.btnCanjear.Location = new System.Drawing.Point(448, 28);
-            this.btnCanjear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCanjear.Location = new System.Drawing.Point(336, 23);
             this.btnCanjear.Name = "btnCanjear";
-            this.btnCanjear.Size = new System.Drawing.Size(111, 39);
+            this.btnCanjear.Size = new System.Drawing.Size(83, 32);
             this.btnCanjear.TabIndex = 13;
             this.btnCanjear.Text = "Canjear Millas";
             this.btnCanjear.UseVisualStyleBackColor = true;
@@ -163,23 +152,23 @@
             this.groupBox1.Controls.Add(this.lTotalViajes);
             this.groupBox1.Controls.Add(this.btnSalir);
             this.groupBox1.Controls.Add(this.btnLimpiar);
-            this.groupBox1.Location = new System.Drawing.Point(35, 437);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(26, 355);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(710, 86);
+            this.groupBox1.Size = new System.Drawing.Size(532, 70);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sus Millas";
             // 
             // ConsultaMillas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 539);
+            this.ClientSize = new System.Drawing.Size(585, 438);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dtvMillas);
             this.Controls.Add(this.filtrarDNI);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ConsultaMillas";
             this.Text = "Consulta de Millas";
             this.filtrarDNI.ResumeLayout(false);

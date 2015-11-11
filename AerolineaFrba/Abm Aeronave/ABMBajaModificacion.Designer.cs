@@ -42,6 +42,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbFabricante = new System.Windows.Forms.ComboBox();
+            this.cbModelo = new System.Windows.Forms.ComboBox();
+            this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
             this.txtCantidadDeButacasVentana = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbBajaFueraDeServicio = new System.Windows.Forms.ComboBox();
@@ -68,9 +71,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
-            this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
-            this.cbModelo = new System.Windows.Forms.ComboBox();
-            this.cbFabricante = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -256,6 +256,34 @@
             this.groupBox1.Text = "Aeronaves";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // cbFabricante
+            // 
+            this.cbFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cbFabricante.FormattingEnabled = true;
+            this.cbFabricante.Location = new System.Drawing.Point(446, 25);
+            this.cbFabricante.Name = "cbFabricante";
+            this.cbFabricante.Size = new System.Drawing.Size(121, 21);
+            this.cbFabricante.TabIndex = 71;
+            // 
+            // cbModelo
+            // 
+            this.cbModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cbModelo.FormattingEnabled = true;
+            this.cbModelo.Location = new System.Drawing.Point(130, 125);
+            this.cbModelo.Name = "cbModelo";
+            this.cbModelo.Size = new System.Drawing.Size(121, 21);
+            this.cbModelo.TabIndex = 70;
+            // 
+            // cbTipoDeServicio
+            // 
+            this.cbTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.cbTipoDeServicio.FormattingEnabled = true;
+            this.cbTipoDeServicio.Location = new System.Drawing.Point(447, 56);
+            this.cbTipoDeServicio.Name = "cbTipoDeServicio";
+            this.cbTipoDeServicio.Size = new System.Drawing.Size(121, 21);
+            this.cbTipoDeServicio.TabIndex = 69;
+            this.cbTipoDeServicio.SelectedIndexChanged += new System.EventHandler(this.cbTipoDeServicio_SelectedIndexChanged);
+            // 
             // txtCantidadDeButacasVentana
             // 
             this.txtCantidadDeButacasVentana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -288,21 +316,10 @@
             // dtFechaFueraDeServicio
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-
-            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(596, 151);
-            this.dtFechaFueraDeServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtFechaFueraDeServicio.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
-
-            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 123);
-            this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
-            this.dtFechaFueraDeServicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
-
-
             this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 128);
+            this.dtFechaFueraDeServicio.Margin = new System.Windows.Forms.Padding(4);
             this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtFechaFueraDeServicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
-
             this.dtFechaFueraDeServicio.Name = "dtFechaFueraDeServicio";
             this.dtFechaFueraDeServicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaFueraDeServicio.ShowUpDown = true;
@@ -313,22 +330,10 @@
             // dtFechaDeReinicio
             // 
             this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-
-
-            this.dtFechaDeReinicio.Location = new System.Drawing.Point(596, 203);
-            this.dtFechaDeReinicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtFechaDeReinicio.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
-
             this.dtFechaDeReinicio.Location = new System.Drawing.Point(447, 165);
+            this.dtFechaDeReinicio.Margin = new System.Windows.Forms.Padding(4);
             this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtFechaDeReinicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
-
-
-            this.dtFechaDeReinicio.Location = new System.Drawing.Point(447, 165);
-            this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
-            this.dtFechaDeReinicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
-
             this.dtFechaDeReinicio.Name = "dtFechaDeReinicio";
             this.dtFechaDeReinicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtFechaDeReinicio.ShowUpDown = true;
@@ -339,22 +344,10 @@
             // dtpFechaAlta
             // 
             this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-
-
-            this.dtpFechaAlta.Location = new System.Drawing.Point(173, 73);
-            this.dtpFechaAlta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 59, 0);
-            this.dtpFechaAlta.MinDate = new System.DateTime(2014, 1, 25, 23, 59, 0, 0);
-
-            this.dtpFechaAlta.Location = new System.Drawing.Point(130, 59);
-            this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
-            this.dtpFechaAlta.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
-
-
             this.dtpFechaAlta.Location = new System.Drawing.Point(130, 56);
+            this.dtpFechaAlta.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaAlta.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtpFechaAlta.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
-
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFechaAlta.ShowUpDown = true;
@@ -547,40 +540,13 @@
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
             // 
-            // cbTipoDeServicio
-            // 
-            this.cbTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.cbTipoDeServicio.FormattingEnabled = true;
-            this.cbTipoDeServicio.Location = new System.Drawing.Point(447, 56);
-            this.cbTipoDeServicio.Name = "cbTipoDeServicio";
-            this.cbTipoDeServicio.Size = new System.Drawing.Size(121, 21);
-            this.cbTipoDeServicio.TabIndex = 69;
-            this.cbTipoDeServicio.SelectedIndexChanged += new System.EventHandler(this.cbTipoDeServicio_SelectedIndexChanged);
-            // 
-            // cbModelo
-            // 
-            this.cbModelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.cbModelo.FormattingEnabled = true;
-            this.cbModelo.Location = new System.Drawing.Point(130, 125);
-            this.cbModelo.Name = "cbModelo";
-            this.cbModelo.Size = new System.Drawing.Size(121, 21);
-            this.cbModelo.TabIndex = 70;
-            // 
-            // cbFabricante
-            // 
-            this.cbFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.cbFabricante.FormattingEnabled = true;
-            this.cbFabricante.Location = new System.Drawing.Point(446, 25);
-            this.cbFabricante.Name = "cbFabricante";
-            this.cbFabricante.Size = new System.Drawing.Size(121, 21);
-            this.cbFabricante.TabIndex = 71;
-            // 
             // ABMBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 395);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMBajaModificacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABMBajaModificacion";
