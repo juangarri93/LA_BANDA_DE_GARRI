@@ -14,6 +14,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fncEstaOcupada;
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
+  DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
+  
 --Dropeo las procedures 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_compra') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_compra;
@@ -168,6 +171,19 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea') IS NOT NULL)
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_viajes') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_viajes;
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_comprados') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_comprados;  
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelados') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelados;   
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_aeronave_fuera_servicio') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_estadistico_aeronave_fuera_servicio;    
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados; 
+
+  
 --Dropeo las tablas
   
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Usuario]', 'U') IS NOT NULL
@@ -1445,39 +1461,85 @@ go
 --order by Id
 --go
 
+create function LA_BANDA_DE_GARRI.fn_en_semestre (@semestre int, @fecha DATETIME) returns BIT
+as
+	begin
+		if Month(@fecha) < 7 and @semestre = 1
+			begin
+				return 1
+			end
 
-/* --top 5 destinos con mas pasajes comprados
-select top 5 c.id, c.Nombre, count(p.Id)
-from LA_BANDA_DE_GARRI.Ciudad c
-join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
-join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
-join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
-where p.KG != 0
-group by c.id, c.Nombre
-order by 3 desc
+		if Month(@fecha) > 6 and @semestre = 2
+			begin
+				return 1
+			end
 
--- top 5 destinos con pasajes mas cancelados
-select top 5 c.id, c.Nombre, count(d.Id_Pasaje_Encomienda)
-from LA_BANDA_DE_GARRI.Ciudad c
-join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
-join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
-join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
-join LA_BANDA_DE_GARRI.Devolucion d on (d.Id_Pasaje_Encomienda = p.Id)
-where p.KG != 0
-group by c.id, c.Nombre
-order by 3 desc
+		return 0
+	end
+GO
+
+--top 5 destinos con mas pasajes comprados
+create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_comprados (@anio numeric(4,0), @semestre int)
+as
+begin
+	select top 5 c.id, c.Nombre, count(p.Id)
+	from LA_BANDA_DE_GARRI.Ciudad c
+	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
+	join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
+	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
+	join LA_BANDA_DE_GARRI.Pago pa on(pa.Id_viaje = p.Id_Viaje)
+	where p.KG != 0
+	and year(pa.Fecha_compra) = @anio 
+	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, pa.Fecha_compra) = 1
+	group by c.id, c.Nombre
+	order by 3 desc
+end
+
+go
+
+-- top 5 destinos con mas pasajes cancelados
+create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelados (@anio numeric(4,0), @semestre int)
+as
+	select top 5 c.id, c.Nombre, count(d.Id_Pasaje_Encomienda)
+	from LA_BANDA_DE_GARRI.Ciudad c
+	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
+	join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
+	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
+	join LA_BANDA_DE_GARRI.Devolucion d on (d.Id_Pasaje_Encomienda = p.Id)
+	where p.KG != 0
+	and year(d.Fecha_Devolucion) = @anio
+	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, d.Fecha_Devolucion) = 1
+	group by c.id, c.Nombre
+	order by 3 desc
+end
+
+go
 
 -- top 5 aeronaves con mayor cantidad dias fuera de servicio
-select top 5 a.id_Aeronave, sum(DATEDIFF(day,a.Fecha_Fuera_Servicio,a.Fecha_Reinicio))
-from LA_BANDA_DE_GARRI.Aeronave_Baja_Temporaria a
-group by a.id_Aeronave
-order by 2 desc
 -- habria que ver que datos de aeronave hay que mostrar y hacer el join con la tabla Aeronave y traerlos
+create procedure LA_BANDA_DE_GARRI.sp_estadistico_aeronave_fuera_servicio (@anio numeric(4,0), @semestre int)
+as
+	select top 5 a.id_Aeronave, sum(DATEDIFF(day,a.Fecha_Fuera_Servicio,a.Fecha_Reinicio))
+	from LA_BANDA_DE_GARRI.Aeronave_Baja_Temporaria a
+	where year(a.Fecha_Fuera_Servicio) = @anio
+	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, a.Fecha_Fuera_Servicio) = 1
+	group by a.id_Aeronave
+	order by 2 desc
+end
+
+go
 
 -- top 5 clientes con mas puntos acumulados
--- No dice nada si hay que restarle los canjeados o los vencidos, ese es el total
-select top 5 c.Id, c.Nombre, c.Apellido, cantidad_millas=sum(m.Cantidad) 
-from LA_BANDA_DE_GARRI.Millas m
-join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)
-group by c.id, c.Nombre, c.Apellido
-order by 4 desc */
+create procedure LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados (@anio numeric(4,0), @semestre int)
+as
+
+	select top 5 c.Id, c.Nombre, c.Apellido, cantidad_millas=sum(m.Cantidad) 
+	from LA_BANDA_DE_GARRI.Millas m
+	join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)
+	where year(m.Validez_Hasta) = @anio
+	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, a.Fecha_Fuera_Servicio) = 1
+	group by c.id, c.Nombre, c.Apellido
+	order by 4 desc 
+end
+
+go
