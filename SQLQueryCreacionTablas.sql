@@ -217,7 +217,10 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Funcionalidad]', 'U') IS NOT NULL
 
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Rol]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Rol];
-
+  
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave];
+  
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Modelo]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Modelo];
 
@@ -226,9 +229,6 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Fabricante]', 'U') IS NOT NULL
 
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Tipo_Servicio];
-  
-IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave]', 'U') IS NOT NULL
-  DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave_];
 
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria];
@@ -972,10 +972,7 @@ create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 @tipoDeServicio int,
 @CantidadButacasVentana int,
 @CantidadButacasPasillo int, 
-@bajaPorFueraDeServicio varchar(50),
 @bajaPorVidaUtil varchar(50),
-@FechaDeFueraDeServicio date,
-@FechaDeReinicioDeServicio date,
 @FechaBajaDefinitiva date,
 @kgDisponible int)
 as
@@ -986,12 +983,12 @@ set @AuxMaxAnt = (SELECT MAX(id) FROM LA_BANDA_DE_GARRI.Aeronave)
 
 insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
 [Numero],[Matricula],[Modelo],[Fabricante],
-[Id_Tipo_Servicio],[Cantidad_Butacas_Ventana],[Cantidad_Ventanas_Pasillo],[Baja_Fuera_Servicio],
-[Baja_Vida_Util],[Fecha_Reinicio],[Fecha_Fuera_Servicio],
+[Id_Tipo_Servicio],[Cantidad_Butacas_Ventana],[Cantidad_Ventanas_Pasillo],
+[Baja_Vida_Util], 
 [Fecha_baja_definitiva],[Kg_Disponibles])
 values(null,@numeroAeronave,@matricula,@modelo,@fabricante,
 @tipoDeServicio,@CantidadButacasVentana,@CantidadButacasPasillo,null,
-null,null,null,null, @kgDisponible)
+null, @kgDisponible)
 
 
 print('el id es:' + '@Id')
@@ -1070,9 +1067,6 @@ create proc LA_BANDA_DE_GARRI.speditar_aeronave
 @tipoDeServicio int,
 @CantidadButacasVentana int,
 @CantidadButacasPasillo int, 
-@bajaPorFueraDeServicio varchar(50),
-@FechaDeFueraDeServicio date,
-@FechaDeReinicioDeServicio date,
 @kgDisponible int)
 as
 update Aeronave set Fecha_alta = @fechaAlta,
@@ -1083,9 +1077,6 @@ Fabricante = @fabricante,
 Id_Tipo_Servicio = @tipoDeServicio,
 Cantidad_Butacas_Ventana = @CantidadButacasVentana,
 Cantidad_Ventanas_Pasillo = @CantidadButacasPasillo,
-Baja_Fuera_Servicio = @bajaPorFueraDeServicio,
-Fecha_Fuera_Servicio = @FechaDeFueraDeServicio,
-Fecha_Reinicio = @FechaDeReinicioDeServicio,
 Kg_Disponibles = @kgDisponible
 where Id = @codigo
 go
