@@ -127,6 +127,7 @@
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(281, 20);
             this.txtDni.TabIndex = 27;
+            this.txtDni.TextChanged += new System.EventHandler(this.txtDni_TextChanged);
             // 
             // label5
             // 
@@ -234,7 +235,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.shapeContainer1);
+<<<<<<< HEAD
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+=======
+>>>>>>> 77ad7b2649199a449c5de4b1ff901250abdc9008
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DatosCompra";
             this.Text = "DatosCompra";

@@ -164,6 +164,28 @@
             this.btn_consulta_millas.UseVisualStyleBackColor = true;
             this.btn_consulta_millas.Click += new System.EventHandler(this.btn_consulta_millas_Click);
             // 
+<<<<<<< HEAD
+=======
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(474, 379);
+            this.shapeContainer1.TabIndex = 18;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // lineShape1
+            // 
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 237;
+            this.lineShape1.X2 = 238;
+            this.lineShape1.Y1 = 83;
+            this.lineShape1.Y2 = 368;
+            // 
+>>>>>>> 77ad7b2649199a449c5de4b1ff901250abdc9008
             // AerolineasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
