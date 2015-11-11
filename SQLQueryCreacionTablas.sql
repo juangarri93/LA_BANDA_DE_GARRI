@@ -532,20 +532,20 @@ GO
             values('Listado Estadístico')
 		
 -- el hash de w23e --> e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7
-		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1)		
+		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, intentos_fallidos, habilitado, Id_Rol)
+            values('admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 0, 1, 1)		
 
-		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('gonza', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)					
+		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, intentos_fallidos, habilitado, Id_Rol)
+            values('gonza', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 0, 1, 2)					
 
-		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('garri', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)
+		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, intentos_fallidos, habilitado, Id_Rol)
+            values('garri', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 0, 1, 2)
 
-		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('lucas', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)
+		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, intentos_fallidos, habilitado, Id_Rol)
+            values('lucas', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 0, 1, 2)
 
-		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, Id_Rol)
-            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 2)
+		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, intentos_fallidos, habilitado, Id_Rol)
+            values('nico', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 0, 1, 2)
 			
 		insert into LA_BANDA_DE_GARRI.Ciudad(Nombre)
 			select distinct master.Ruta_Ciudad_Origen
