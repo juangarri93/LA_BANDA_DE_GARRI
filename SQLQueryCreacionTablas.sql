@@ -1573,7 +1573,7 @@ begin
 	from LA_BANDA_DE_GARRI.Millas m
 	join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)
 	where year(m.Validez_Hasta) = @anio
-	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, a.Fecha_Fuera_Servicio) = 1
+	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, m.Validez_Hasta) = 1
 	group by c.id, c.Nombre, c.Apellido
 	order by 4 desc 
 end
