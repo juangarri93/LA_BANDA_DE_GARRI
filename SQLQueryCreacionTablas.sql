@@ -233,7 +233,10 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Funcionalidad]', 'U') IS NOT NULL
 
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Rol]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Rol];
-  
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria];
+   
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave];
   
@@ -245,10 +248,7 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Fabricante]', 'U') IS NOT NULL
 
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Tipo_Servicio];
-
-IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria]', 'U') IS NOT NULL
-  DROP TABLE [LA_BANDA_DE_GARRI].[Aeronave_Baja_Temporaria];
-  
+ 
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ciudad]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Ciudad];
 go
@@ -654,6 +654,14 @@ GO
 commit tran trn_migracion_datos
 GO
 
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_agregar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
+BEGIN
+		INSERT INTO LA_BANDA_DE_GARRI.Rol_Funcionalidad(Id_Rol, Id_Funcionalidad)
+		VALUES ((SELECT Id FROM LA_BANDA_DE_GARRI.Rol WHERE Rol = @rol),
+		        (SELECT Id FROM LA_BANDA_DE_GARRI.Funcionalidad WHERE Nombre = @func))
+END
+GO
+
 --transaccion para insertar funcionalidad en los roles
 begin tran insertar_funcionalidades
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Rol'
@@ -726,15 +734,6 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_agregar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
-BEGIN
-		INSERT INTO LA_BANDA_DE_GARRI.Rol_Funcionalidad(Id_Rol, Id_Funcionalidad)
-		VALUES ((SELECT Id FROM LA_BANDA_DE_GARRI.Rol WHERE Rol = @rol),
-		        (SELECT Id FROM LA_BANDA_DE_GARRI.Funcionalidad WHERE Nombre = @func))
-END
-
-GO
-
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_eliminar_funcionalidad(@rol nvarchar(255), @func nvarchar(255)) AS
 BEGIN
 		delete from LA_BANDA_DE_GARRI.Rol_Funcionalidad
@@ -744,13 +743,12 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol NVARCHAR(255), @nuevo_nombre NVARCHAR(255), @estado BIT) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol NVARCHAR(255), @estado BIT) AS
 BEGIN
 	update LA_BANDA_DE_GARRI.Rol
 	set Habilitado = @estado
 	where Rol = @rol
 END
-
 GO
 
 --LOGIN
@@ -1065,7 +1063,6 @@ set @tipo = (select id from LA_BANDA_DE_GARRI.Tipo_Butaca where Tipo = 'Ventanil
   insert into LA_BANDA_DE_GARRI.Butaca(Nro,Tipo,Piso,Aeronave_id)
   values(@aux2,@tipo,1,@idAeronave)
   set @aux = @aux + 1
-
  end
 
 set @aux = 0
@@ -1537,6 +1534,7 @@ go
 -- top 5 destinos con mas pasajes cancelados
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelados (@anio numeric(4,0), @semestre int)
 as
+begin
 	select top 5 c.id, c.Nombre, count(d.Id_Pasaje_Encomienda)
 	from LA_BANDA_DE_GARRI.Ciudad c
 	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
@@ -1556,6 +1554,7 @@ go
 -- habria que ver que datos de aeronave hay que mostrar y hacer el join con la tabla Aeronave y traerlos
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_aeronave_fuera_servicio (@anio numeric(4,0), @semestre int)
 as
+begin
 	select top 5 a.id_Aeronave, sum(DATEDIFF(day,a.Fecha_Fuera_Servicio,a.Fecha_Reinicio))
 	from LA_BANDA_DE_GARRI.Aeronave_Baja_Temporaria a
 	where year(a.Fecha_Fuera_Servicio) = @anio
@@ -1569,7 +1568,7 @@ go
 -- top 5 clientes con mas puntos acumulados
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados (@anio numeric(4,0), @semestre int)
 as
-
+begin
 	select top 5 c.Id, c.Nombre, c.Apellido, cantidad_millas=sum(m.Cantidad) 
 	from LA_BANDA_DE_GARRI.Millas m
 	join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)
