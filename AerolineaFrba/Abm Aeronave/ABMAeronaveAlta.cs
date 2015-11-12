@@ -50,7 +50,7 @@ namespace AerolineaFrba.Abm_Aeronave
             {
                 DAOAerolinea.AgregarAeronave(CargarAerolinea());
                 MessageBox.Show("La Aeronave se agrego correctamente.");
-               // limpiar();
+                limpiar();
             }
             catch (Exception ex)
             {
@@ -97,10 +97,11 @@ namespace AerolineaFrba.Abm_Aeronave
         private void limpiar() 
         {
             txtNumeroAeronave.Text = "";
+            dtpFECHA.Value = DateTime.Today;
             txtMatricula.Text = ""; 
             txtCantidadDeButacasPasillo.Text = "";
             txtCantidadButacasVentana.Text = "";
-        
+            txtCantidadDeKG.Text = "";
         
         }
 

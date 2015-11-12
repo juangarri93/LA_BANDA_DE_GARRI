@@ -91,6 +91,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnGuardar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ABMRolAlta";
             this.Text = "ABMRolAlta";
             this.Load += new System.EventHandler(this.ABMRolAlta_Load);

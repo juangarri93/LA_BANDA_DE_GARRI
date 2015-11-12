@@ -10,13 +10,22 @@ using System.Windows.Forms;
 using AerolineaFrba.Registro_de_Usuario;
 using AerolineaFrba.ConstructorDeClases;
 using AerolineaFrba.Herramientas;
+using AerolineaFrba.CapaADO;
+
+using System.Text.RegularExpressions;
 
 namespace AerolineaFrba.ABM_Compra
 {
     public partial class DatosCompra : Form
     {
-        public DatosCompra()
+        DataTable usuarios;
+        Compra compraActual;
+
+        private List<Persona> UsuariosRegistrados;
+
+        public DatosCompra(Compra compra)
         {
+            this.compraActual = compra;
             InitializeComponent();
         }
 
@@ -50,13 +59,58 @@ namespace AerolineaFrba.ABM_Compra
 
         private void btnButacas_Click(object sender, EventArgs e)
         {
-            var ventanaButacas = new Butacas();
+            var ventanaButacas = new Butacas(this.compraActual);
             FormsHerramientas.mostrarVentanaNueva(ventanaButacas, this);
             this.Hide();
         }
 
-       
-       
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+            if (EsNumero(this.txtDni.Text))
+            {
+                usuarios=DAOUsuario.buscarUsuario(this.txtDni.Text);
+                UsuariosRegistrados = this.crearListaDeUsuarios();
+
+                if (UsuariosRegistrados != null)
+                {
+                  
+                }
+
+            }
+
+        }
+
+
+        private bool EsNumero(string cadena)
+        {
+            var regex = new Regex(@"^-*[0-9,\.]+$");
+            return regex.IsMatch(cadena);
+        }
+
+        private List<Persona> crearListaDeUsuarios()
+        {
+            List<Persona> lista = new List<Persona>(usuarios.Rows.Count);
+
+            foreach (DataRow row in usuarios.Rows)
+            {
+                //la talba premios viene asi: int id,string nombre, int stock, int costomillas
+                var values = row.ItemArray;
+                Persona persona = new Persona();
+                persona.Id = (int)values[0];
+                persona.Nombre = (string)values[1];
+                persona.Apellido = (string)values[2];
+                persona.Dni = (int)values[3];
+                persona.Direccion = (string)values[4];
+                persona.Telefono = (int)values[5];
+                persona.Email = (string)values[6];
+                persona.FechaNac = (DateTime)values[7];
+
+                lista.Add(persona);
+            }
+
+            return lista;
+        }
+ 
 
       
     }

@@ -74,6 +74,7 @@
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.lbTitulo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMRol";
             this.Text = "Form1";
             this.ResumeLayout(false);

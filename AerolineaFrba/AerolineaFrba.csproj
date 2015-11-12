@@ -202,7 +202,7 @@
     <Compile Include="Listado Estadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Login.cs" />
+    <Compile Include="CapaADO\Login.cs" />
     <Compile Include="Login\LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +285,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AerolineasPrincipal.resx">
       <DependentUpon>AerolineasPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Canje Millas\CanjeMillas.resx">
       <DependentUpon>CanjeMillas.cs</DependentUpon>

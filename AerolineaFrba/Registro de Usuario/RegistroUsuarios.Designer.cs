@@ -50,125 +50,112 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 64);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 28);
+            this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre :";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textNombre
             // 
-            this.textNombre.Location = new System.Drawing.Point(304, 64);
-            this.textNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.textNombre.Location = new System.Drawing.Point(228, 52);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(492, 22);
+            this.textNombre.Size = new System.Drawing.Size(370, 20);
             this.textNombre.TabIndex = 1;
             this.textNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 42);
+            this.label2.Size = new System.Drawing.Size(150, 34);
             this.label2.TabIndex = 2;
             this.label2.Text = "¡Resgístrese!";
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 117);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 28);
+            this.label3.Size = new System.Drawing.Size(100, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "Apellido :";
             // 
             // textApellido
             // 
-            this.textApellido.Location = new System.Drawing.Point(304, 117);
-            this.textApellido.Margin = new System.Windows.Forms.Padding(4);
+            this.textApellido.Location = new System.Drawing.Point(228, 95);
             this.textApellido.Name = "textApellido";
-            this.textApellido.Size = new System.Drawing.Size(492, 22);
+            this.textApellido.Size = new System.Drawing.Size(370, 20);
             this.textApellido.TabIndex = 4;
             this.textApellido.TextChanged += new System.EventHandler(this.textApellido_TextChanged);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 170);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(12, 138);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 28);
+            this.label4.Size = new System.Drawing.Size(100, 23);
             this.label4.TabIndex = 5;
             this.label4.Text = "D.N.I :";
             // 
             // textDNI
             // 
-            this.textDNI.Location = new System.Drawing.Point(305, 175);
-            this.textDNI.Margin = new System.Windows.Forms.Padding(4);
+            this.textDNI.Location = new System.Drawing.Point(229, 142);
             this.textDNI.Name = "textDNI";
-            this.textDNI.Size = new System.Drawing.Size(492, 22);
+            this.textDNI.Size = new System.Drawing.Size(370, 20);
             this.textDNI.TabIndex = 6;
             this.textDNI.TextChanged += new System.EventHandler(this.textDNI_TextChanged);
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 219);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(12, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 28);
+            this.label5.Size = new System.Drawing.Size(100, 23);
             this.label5.TabIndex = 7;
             this.label5.Text = "Dirección :";
             // 
             // textDir
             // 
-            this.textDir.Location = new System.Drawing.Point(304, 225);
-            this.textDir.Margin = new System.Windows.Forms.Padding(4);
+            this.textDir.Location = new System.Drawing.Point(228, 183);
             this.textDir.Name = "textDir";
-            this.textDir.Size = new System.Drawing.Size(492, 22);
+            this.textDir.Size = new System.Drawing.Size(370, 20);
             this.textDir.TabIndex = 8;
             this.textDir.TextChanged += new System.EventHandler(this.textDir_TextChanged);
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 328);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(12, 266);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 28);
+            this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 9;
             this.label6.Text = "Email :";
             // 
             // textMail
             // 
-            this.textMail.Location = new System.Drawing.Point(304, 333);
-            this.textMail.Margin = new System.Windows.Forms.Padding(4);
+            this.textMail.Location = new System.Drawing.Point(228, 271);
             this.textMail.Name = "textMail";
-            this.textMail.Size = new System.Drawing.Size(492, 22);
+            this.textMail.Size = new System.Drawing.Size(370, 20);
             this.textMail.TabIndex = 10;
             this.textMail.TextChanged += new System.EventHandler(this.textMail_TextChanged);
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(16, 380);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(12, 309);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(263, 28);
+            this.label7.Size = new System.Drawing.Size(197, 23);
             this.label7.TabIndex = 11;
             this.label7.Text = "Fecha de Nacimiento :";
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(637, 423);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Location = new System.Drawing.Point(478, 344);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(160, 58);
+            this.btnCancelar.Size = new System.Drawing.Size(120, 47);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -176,10 +163,9 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(305, 423);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAceptar.Location = new System.Drawing.Point(229, 344);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(160, 58);
+            this.btnAceptar.Size = new System.Drawing.Size(120, 47);
             this.btnAceptar.TabIndex = 13;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -188,42 +174,39 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(16, 277);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(12, 225);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(133, 28);
+            this.label8.Size = new System.Drawing.Size(100, 23);
             this.label8.TabIndex = 15;
             this.label8.Text = "Teléfono :";
             // 
             // textTel
             // 
-            this.textTel.Location = new System.Drawing.Point(304, 277);
-            this.textTel.Margin = new System.Windows.Forms.Padding(4);
+            this.textTel.Location = new System.Drawing.Point(228, 225);
             this.textTel.Name = "textTel";
-            this.textTel.Size = new System.Drawing.Size(492, 22);
+            this.textTel.Size = new System.Drawing.Size(370, 20);
             this.textTel.TabIndex = 16;
             this.textTel.TextChanged += new System.EventHandler(this.textTel_TextChanged);
             // 
             // dtpFechaNac
             // 
             this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(305, 380);
-            this.dtpFechaNac.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFechaNac.Location = new System.Drawing.Point(229, 309);
             this.dtpFechaNac.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtpFechaNac.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtpFechaNac.Name = "dtpFechaNac";
             this.dtpFechaNac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFechaNac.ShowUpDown = true;
-            this.dtpFechaNac.Size = new System.Drawing.Size(153, 22);
+            this.dtpFechaNac.Size = new System.Drawing.Size(116, 20);
             this.dtpFechaNac.TabIndex = 62;
             this.dtpFechaNac.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtpFechaNac.ValueChanged += new System.EventHandler(this.dtpFechaNac_ValueChanged);
             // 
             // RegistroUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1152, 521);
+            this.ClientSize = new System.Drawing.Size(864, 423);
             this.Controls.Add(this.dtpFechaNac);
             this.Controls.Add(this.textTel);
             this.Controls.Add(this.label8);
@@ -241,7 +224,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textNombre);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "RegistroUsuarios";
             this.Text = "Mantenimiento Usuarios";
             this.ResumeLayout(false);

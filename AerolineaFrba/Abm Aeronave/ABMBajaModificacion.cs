@@ -239,6 +239,7 @@ namespace AerolineaFrba.Abm_Aeronave
                  btnGuardar.Enabled = false;
                  btnEditar.Enabled = true;
                  btnCancelar.Enabled = false;
+                 this.Mostrar();
 
             }
             catch(Exception ex)
@@ -435,6 +436,11 @@ namespace AerolineaFrba.Abm_Aeronave
 
             cbTipoDeServicio.DataSource = DAOAerolinea.getTipoServicio().DefaultView;
             cbTipoDeServicio.DisplayMember = "Tipo_Servicio";
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
         }
 
