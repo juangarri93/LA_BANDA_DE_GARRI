@@ -48,6 +48,7 @@
             this.cbTipoServicio = new System.Windows.Forms.ComboBox();
             this.txtCantidadDeKG = new System.Windows.Forms.TextBox();
             this.dtpFECHA = new System.Windows.Forms.DateTimePicker();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -223,11 +224,22 @@
             this.dtpFECHA.TabIndex = 67;
             this.dtpFECHA.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(560, 189);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(127, 33);
+            this.btnVolver.TabIndex = 68;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // ABMAeronaveAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 248);
+            this.ClientSize = new System.Drawing.Size(699, 248);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dtpFECHA);
             this.Controls.Add(this.txtCantidadDeKG);
             this.Controls.Add(this.cbTipoServicio);
@@ -281,5 +293,6 @@
         private System.Windows.Forms.ComboBox cbTipoServicio;
         private System.Windows.Forms.TextBox txtCantidadDeKG;
         private System.Windows.Forms.DateTimePicker dtpFECHA;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

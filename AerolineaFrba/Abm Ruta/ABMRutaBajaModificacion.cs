@@ -189,5 +189,10 @@ namespace AerolineaFrba.Abm_Ruta
         {
             return new Ruta(Convert.ToInt32(txtCodigoRuta.Text), txtTipoServicio.Text, cbOrigen.SelectedIndex + 1, cbDestino.SelectedIndex + 1, Convert.ToInt32(txtPrecioKG.Text), Convert.ToInt32(txtPrecioBase.Text), "papa");
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

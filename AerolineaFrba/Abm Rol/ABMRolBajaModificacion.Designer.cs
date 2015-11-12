@@ -35,11 +35,12 @@
             this.EditarFuncionalidad = new System.Windows.Forms.Button();
             this.labelNNR = new System.Windows.Forms.Label();
             this.txtNuevoRol = new System.Windows.Forms.TextBox();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(144, 134);
+            this.button1.Location = new System.Drawing.Point(41, 126);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(159, 53);
             this.button1.TabIndex = 13;
@@ -99,11 +100,22 @@
             this.txtNuevoRol.Size = new System.Drawing.Size(136, 20);
             this.txtNuevoRol.TabIndex = 23;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(243, 126);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(159, 53);
+            this.btnVolver.TabIndex = 24;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // ABMRolBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 331);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.txtNuevoRol);
             this.Controls.Add(this.labelNNR);
             this.Controls.Add(this.EditarFuncionalidad);
@@ -129,5 +141,6 @@
         private System.Windows.Forms.Button EditarFuncionalidad;
         private System.Windows.Forms.Label labelNNR;
         private System.Windows.Forms.TextBox txtNuevoRol;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

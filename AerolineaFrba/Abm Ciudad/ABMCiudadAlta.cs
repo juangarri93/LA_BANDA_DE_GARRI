@@ -91,6 +91,11 @@ namespace AerolineaFrba.Abm_Ciudad
             
         }
 
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
        
     }
 

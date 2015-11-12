@@ -49,6 +49,7 @@
             this.txtCodigoRuta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbHabilitado = new System.Windows.Forms.ComboBox();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -244,11 +245,22 @@
             this.cbHabilitado.Size = new System.Drawing.Size(148, 21);
             this.cbHabilitado.TabIndex = 80;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(502, 311);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(127, 33);
+            this.btnVolver.TabIndex = 81;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // ABMRutaBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 332);
+            this.ClientSize = new System.Drawing.Size(947, 356);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.cbHabilitado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCodigoRuta);
@@ -302,5 +314,6 @@
         private System.Windows.Forms.TextBox txtCodigoRuta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbHabilitado;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

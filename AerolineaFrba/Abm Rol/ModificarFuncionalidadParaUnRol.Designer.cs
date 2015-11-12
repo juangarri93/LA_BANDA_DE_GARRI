@@ -33,6 +33,7 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.labelMuestraNombre = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Funcionalidades
@@ -55,7 +56,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(299, 135);
+            this.btnGuardar.Location = new System.Drawing.Point(299, 101);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(127, 48);
             this.btnGuardar.TabIndex = 21;
@@ -74,18 +75,29 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(485, 135);
+            this.btnCancelar.Location = new System.Drawing.Point(485, 101);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(127, 48);
             this.btnCancelar.TabIndex = 23;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(388, 184);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(127, 48);
+            this.btnVolver.TabIndex = 24;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // ModificarFuncionalidadParaUnRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 262);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.labelMuestraNombre);
             this.Controls.Add(this.btnGuardar);
@@ -105,5 +117,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label labelMuestraNombre;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

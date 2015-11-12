@@ -71,6 +71,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -90,6 +91,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnVolver);
             this.tabPage1.Controls.Add(this.btnBajaLogica);
             this.tabPage1.Controls.Add(this.checkBoxbajaLogica1);
             this.tabPage1.Controls.Add(this.btnFabricante);
@@ -541,6 +543,15 @@
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(763, 16);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(104, 23);
+            this.btnVolver.TabIndex = 12;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // ABMBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,6 +619,7 @@
         private System.Windows.Forms.ComboBox cbModelo;
         private System.Windows.Forms.ComboBox cbTipoDeServicio;
         private System.Windows.Forms.ComboBox cbFabricante;
+        private System.Windows.Forms.Button btnVolver;
 
     }
 }
