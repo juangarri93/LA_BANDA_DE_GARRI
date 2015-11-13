@@ -76,5 +76,10 @@ namespace AerolineaFrba.Abm_Ruta
             limpiar();
         }
 
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
     }
 }
