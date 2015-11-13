@@ -14,13 +14,13 @@ namespace AerolineaFrba.CapaADO
     {
         public static DataTable getAeronaves()
         {
-            return retrieveDataTable("spMostrar_Aeronaves_sin_baja_util");
+            return retrieveDataTable("spmostrar_aeronave");
         }
 
 
         public static DataTable getRutaAerea()
         {
-            return retrieveDataTable("spMostrar_RutaAerea_sin_baja_util");
+            return retrieveDataTable("spMostrar_Ruta_Aerea");
         }
 
         public static DataTable getRutaAereaEspecifica(int id)

@@ -61,13 +61,16 @@ namespace AerolineaFrba.Abm_Ciudad
         
         private void Mostrar()
         {
+
             this.dataListadoCiudades.DataSource = DAOCiudad.Mostrar();
             this.OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListadoCiudades.Rows.Count); 
+
         }
 
         private void OcultarColumnas()
         {
+
             this.dataListadoCiudades.Columns[0].Visible = false;
             this.dataListadoCiudades.Columns[1].Visible = true;
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListadoCiudades.Rows.Count);
