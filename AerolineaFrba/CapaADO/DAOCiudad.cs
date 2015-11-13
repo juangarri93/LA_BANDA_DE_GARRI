@@ -23,7 +23,7 @@ namespace AerolineaFrba.CapaADO
         //Metodo Mostrar
         public static DataTable Mostrar()
         {
-              return retrieveDataTable("spmostrar_ciudad");
+            return retrieveDataTable("spmostrar_ciudades");
         }
 
         public static DataTable buscarCiudad(string textoBuscar)

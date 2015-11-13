@@ -48,6 +48,7 @@ namespace AerolineaFrba.Abm_Aeronave
             // if (!ValidacionesAeronave()) return;
             try
             {
+                if (!Validaciones()) return;
                 DAOAerolinea.AgregarAeronave(CargarAerolinea());
                 MessageBox.Show("La Aeronave se agrego correctamente.");
                 limpiar();
@@ -62,9 +63,43 @@ namespace AerolineaFrba.Abm_Aeronave
         
 
 
-        private bool ValidacionesAeronave()
+        private bool Validaciones()
         {
+          
+            if (txtNumeroAeronave.Text == "")
+            {
+                MessageBox.Show("NO INGRESO NUMERO DE AERONAVE");
+                return true;
+
+            }
+
+            int numero = Convert.ToInt32(txtNumeroAeronave.Text);
+
+            if (numero < 0)
+            {
+                MessageBox.Show("EL NUMERO INGRESADO ES NEGATIVO");
+                return true;
+            }
+
+            if(txtMatricula.Text == "")
+            {
+                MessageBox.Show("NO INGRESO EL NUMERO DE MATRICULA");
+                return true;
+            }
+
+            if(txtCantidadButacasVentana.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA CANTIDAD DE BUTACAS VENTANA");
+                return true;
+            }
+
+            int butacasVentana = Convert.ToInt32(txtCantidadButacasVentana.Text);
+
+            if(butacasVentana > 0)
+            {
             
+            }
+
             return false;
         }
 
