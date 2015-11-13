@@ -35,6 +35,7 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.cbHabilitado = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -104,11 +105,22 @@
             this.label3.TabIndex = 56;
             this.label3.Text = "Habilitado :";
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(386, 174);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(127, 33);
+            this.btnVolver.TabIndex = 57;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // ABMCiudadAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 237);
+            this.ClientSize = new System.Drawing.Size(525, 237);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbHabilitado);
             this.Controls.Add(this.btnCancelar);
@@ -134,5 +146,6 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.ComboBox cbHabilitado;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

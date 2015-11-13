@@ -65,5 +65,10 @@ namespace AerolineaFrba.Abm_Rol
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRol, this);
                 
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

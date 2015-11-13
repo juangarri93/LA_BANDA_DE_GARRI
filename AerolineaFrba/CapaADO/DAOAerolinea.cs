@@ -17,8 +17,8 @@ namespace AerolineaFrba.CapaADO
         {
 
             executeProcedure("spinsertar_aeronave",1,aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Modelo,
-                            aeronave.Matricula, aeronave.Fabricante, aeronave.TipoDeServicio, aeronave.CantidadButacaVentana,aeronave.CantidadButacaPasillo,aeronave.BajaPorFueraDeServicio,
-                             aeronave.BajaPorFueraDeServicio, aeronave.FechaDeFueraDeServicio, aeronave.FechaDeReinicioDeServicio, aeronave.FechaDeReinicioDeServicio,
+                            aeronave.Matricula, aeronave.Fabricante, aeronave.TipoDeServicio, aeronave.CantidadButacaVentana,aeronave.CantidadButacaPasillo,
+                             aeronave.BajaPorFueraDeServicio,aeronave.FechaDeFueraDeServicio,
                              aeronave.KGDisponible);
 
 
