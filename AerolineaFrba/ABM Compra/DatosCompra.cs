@@ -179,6 +179,9 @@ namespace AerolineaFrba.ABM_Compra
             try
             {
                 DAOCompra.AgregarCompra(compraActual);
+                DAOPago.AgregarPago(CrearPago());
+                MessageBox.Show("Felicitaciones has realizado tu compra");
+                this.Hide();
             }
 
             catch (Exception ex)
@@ -188,7 +191,14 @@ namespace AerolineaFrba.ABM_Compra
              
         }
 
-      
+
+        private Pago CrearPago()
+        {
+            Pago pago = new Pago();
+
+            //llenar campos
+            return pago;
+        }
  
 
       
