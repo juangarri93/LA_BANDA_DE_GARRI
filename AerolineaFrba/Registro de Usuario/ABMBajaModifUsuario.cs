@@ -14,7 +14,7 @@ namespace AerolineaFrba.Registro_de_Usuario
 {
     public partial class ABMBajaModifUsuario : Form
     {
-  
+  /*
 
         public ABMBajaModifUsuario()
         {
@@ -266,6 +266,7 @@ namespace AerolineaFrba.Registro_de_Usuario
                 this.dataListadoUsuarios.Columns[0].Visible = false;
             }
         }
-
+        */
     }
+    
 }

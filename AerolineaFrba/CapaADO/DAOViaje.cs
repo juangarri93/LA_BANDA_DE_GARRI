@@ -37,15 +37,15 @@ namespace AerolineaFrba.CapaADO
         {
             DataTable ro = DAOCiudad.buscarCiudad(origen1);
             DataTable rd = DAOCiudad.buscarCiudad(destino1);
-            return retrieveDataTable("spbuscar_fechaOrigenDestino", fecha, ro.Rows[0].Field<int>("CodigoCiudad"), rd.Rows[0].Field<int>("CodigoCiudad"));
+            return retrieveDataTable("spbuscar_fechaOrigenDestino", fecha, ro.Rows[0].Field<int>("Id"), rd.Rows[0].Field<int>("Id"));
              
            // return retrieveDataTable("spbuscar_fechaOrigenDestino",fecha,origen ,destino );
         }
 
         public static void AgregarViaje(Viaje viaje)
         {
-            /*executeProcedure("spinsertar_Viaje", 1, Convert.ToDateTime(viaje.FechaSalida.ToString("yyyy-MM-dd")), Convert.ToDateTime(viaje.FechaLlegada.ToString("yyyy-MM-dd")), Convert.ToDateTime(viaje.FechaLlegadaEstimada.ToString("yyyy-MM-dd")), viaje.Aeronave, viaje.Ruta, viaje.Habilitado);*/
-            executeProcedure("spinsertar_Viaje", 1, viaje.FechaSalida, viaje.FechaLlegada, viaje.FechaLlegadaEstimada, viaje.Aeronave, viaje.Ruta, viaje.Habilitado);
+
+            executeProcedure("sp_generar_viaje",viaje.Ruta, viaje.Aeronave, viaje.FechaSalida, viaje.FechaLlegada, viaje.FechaLlegadaEstimada,  viaje.Habilitado);
 
         }
 

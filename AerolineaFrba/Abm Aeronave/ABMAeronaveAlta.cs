@@ -180,6 +180,11 @@ namespace AerolineaFrba.Abm_Aeronave
             this.Hide();
         }
 
+        private void dtpFECHA_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }

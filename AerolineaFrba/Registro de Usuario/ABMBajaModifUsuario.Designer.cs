@@ -111,7 +111,7 @@
             this.label9.Size = new System.Drawing.Size(72, 23);
             this.label9.TabIndex = 83;
             this.label9.Text = "Codigo ";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+//            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // txtCodigo
             // 
@@ -120,7 +120,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(121, 20);
             this.txtCodigo.TabIndex = 82;
-            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
+         //   this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // textMail
             // 
@@ -128,7 +128,7 @@
             this.textMail.Name = "textMail";
             this.textMail.Size = new System.Drawing.Size(196, 20);
             this.textMail.TabIndex = 81;
-            this.textMail.TextChanged += new System.EventHandler(this.textMail_TextChanged);
+        //    this.textMail.TextChanged += new System.EventHandler(this.textMail_TextChanged);
             // 
             // textTel
             // 
@@ -136,7 +136,7 @@
             this.textTel.Name = "textTel";
             this.textTel.Size = new System.Drawing.Size(196, 20);
             this.textTel.TabIndex = 80;
-            this.textTel.TextChanged += new System.EventHandler(this.textTel_TextChanged);
+         //   this.textTel.TextChanged += new System.EventHandler(this.textTel_TextChanged);
             // 
             // textDir
             // 
@@ -144,7 +144,7 @@
             this.textDir.Name = "textDir";
             this.textDir.Size = new System.Drawing.Size(196, 20);
             this.textDir.TabIndex = 79;
-            this.textDir.TextChanged += new System.EventHandler(this.textDir_TextChanged);
+           // this.textDir.TextChanged += new System.EventHandler(this.textDir_TextChanged);
             // 
             // textDni
             // 
@@ -152,7 +152,7 @@
             this.textDni.Name = "textDni";
             this.textDni.Size = new System.Drawing.Size(196, 20);
             this.textDni.TabIndex = 78;
-            this.textDni.TextChanged += new System.EventHandler(this.textDni_TextChanged);
+          //  this.textDni.TextChanged += new System.EventHandler(this.textDni_TextChanged);
             // 
             // textApellido
             // 
@@ -160,7 +160,7 @@
             this.textApellido.Name = "textApellido";
             this.textApellido.Size = new System.Drawing.Size(196, 20);
             this.textApellido.TabIndex = 77;
-            this.textApellido.TextChanged += new System.EventHandler(this.textApellido_TextChanged);
+          //  this.textApellido.TextChanged += new System.EventHandler(this.textApellido_TextChanged);
             // 
             // dtpFechaNac
             // 
@@ -174,7 +174,7 @@
             this.dtpFechaNac.Size = new System.Drawing.Size(116, 20);
             this.dtpFechaNac.TabIndex = 76;
             this.dtpFechaNac.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
-            this.dtpFechaNac.ValueChanged += new System.EventHandler(this.dtpFechaNac_ValueChanged);
+           // this.dtpFechaNac.ValueChanged += new System.EventHandler(this.dtpFechaNac_ValueChanged);
             // 
             // label8
             // 
@@ -236,7 +236,7 @@
             this.textNombre.Name = "textNombre";
             this.textNombre.Size = new System.Drawing.Size(196, 20);
             this.textNombre.TabIndex = 64;
-            this.textNombre.TextChanged += new System.EventHandler(this.textNombre_TextChanged);
+          //  this.textNombre.TextChanged += new System.EventHandler(this.textNombre_TextChanged);
             // 
             // label1
             // 
@@ -264,7 +264,7 @@
             this.btnCancelar.TabIndex = 35;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+          //  this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -274,7 +274,7 @@
             this.btnGuardar.TabIndex = 34;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+        //    this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dataListadoUsuarios
             // 
@@ -291,8 +291,8 @@
             this.dataListadoUsuarios.ReadOnly = true;
             this.dataListadoUsuarios.Size = new System.Drawing.Size(563, 242);
             this.dataListadoUsuarios.TabIndex = 33;
-            this.dataListadoUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoUsuarios_CellContentClick);
-            this.dataListadoUsuarios.DoubleClick += new System.EventHandler(this.dataListadoUsuarios_DoubleClick);
+           // this.dataListadoUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoUsuarios_CellContentClick);
+          //  this.dataListadoUsuarios.DoubleClick += new System.EventHandler(this.dataListadoUsuarios_DoubleClick);
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -308,7 +308,7 @@
             this.botonBajaLogica.Size = new System.Drawing.Size(104, 23);
             this.botonBajaLogica.TabIndex = 13;
             this.botonBajaLogica.Text = "Baja Logica";
-            this.botonBajaLogica.Click += new System.EventHandler(this.botonBajaLogica_Click);
+         //   this.botonBajaLogica.Click += new System.EventHandler(this.botonBajaLogica_Click);
             // 
             // txtBuscar
             // 
@@ -316,7 +316,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(266, 20);
             this.txtBuscar.TabIndex = 31;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+           // this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // checkBoxbajaLogica1
             // 
@@ -327,7 +327,7 @@
             this.checkBoxbajaLogica1.TabIndex = 12;
             this.checkBoxbajaLogica1.Text = "Baja Logica";
             this.checkBoxbajaLogica1.UseVisualStyleBackColor = true;
-            this.checkBoxbajaLogica1.CheckedChanged += new System.EventHandler(this.checkBoxbajaLogica1_CheckedChanged);
+          //  this.checkBoxbajaLogica1.CheckedChanged += new System.EventHandler(this.checkBoxbajaLogica1_CheckedChanged);
             // 
             // btnEditar
             // 
@@ -337,7 +337,7 @@
             this.btnEditar.TabIndex = 21;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+          //  this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // ABMBajaModifUsuario
             // 
@@ -349,7 +349,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ABMBajaModifUsuario";
             this.Text = "ABMBajaModifUsuario";
-            this.Load += new System.EventHandler(this.ABMBajaModifUsuario_Load);
+         //   this.Load += new System.EventHandler(this.ABMBajaModifUsuario_Load);
             this.ABMBajaYModifUser.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

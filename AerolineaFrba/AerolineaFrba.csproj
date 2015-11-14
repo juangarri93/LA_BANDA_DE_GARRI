@@ -146,6 +146,7 @@
       <DependentUpon>CanjeMillas.cs</DependentUpon>
     </Compile>
     <Compile Include="CapaADO\DAOAerolinea.cs" />
+    <Compile Include="CapaADO\DAOButaca.cs" />
     <Compile Include="CapaADO\DAOCiudad.cs" />
     <Compile Include="CapaADO\DAOCompra.cs" />
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
@@ -163,6 +164,7 @@
     </Compile>
     <Compile Include="CapaADO\SqlConnector.cs" />
     <Compile Include="ConstructorDeClases\Aeronave.cs" />
+    <Compile Include="ConstructorDeClases\Butaca.cs" />
     <Compile Include="ConstructorDeClases\Ciudad.cs" />
     <Compile Include="ConstructorDeClases\Compra.cs" />
     <Compile Include="ConstructorDeClases\Millas.cs" />

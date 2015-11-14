@@ -35,7 +35,7 @@ namespace AerolineaFrba.Registro_de_Usuario
             {
 
 
-                DAOUsuario.AgregarUsuario(CargarUsuario());
+              //  DAOUsuario.AgregarUsuario(CargarUsuario());
                 MessageBox.Show("El Usuario se agregó correctamente.");
                 limpiar();
             }
@@ -73,6 +73,7 @@ namespace AerolineaFrba.Registro_de_Usuario
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            this.Hide();
             limpiar();
         }
 

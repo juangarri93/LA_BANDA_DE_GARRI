@@ -76,11 +76,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private Viaje CargarViaje()
         {
-
-            /* Convert.ToDateTime(fecha.ToString("yyyy-MM-dd"));
-             return new Viaje(Convert.ToDateTime(dtFechaSalida.Value.ToString("yyyy-MM-dd")), Convert.ToDateTime(dtFechaLLegada.Value.ToString("yyyy-MM-dd")), Convert.ToDateTime(dtFechaLLegadaEstimada.Value.ToString("yyyy-MM-dd")), Convert.ToInt32(cbAeronave.SelectedText), Convert.ToInt32(cbAeronave.SelectedText), "Habilitado");*/
-
-            return new Viaje(dtFechaSalida.Value, dtFechaLLegada.Value, dtFechaLLegadaEstimada.Value, Convert.ToInt32(cbAeronave.SelectedText), Convert.ToInt32(cbRutaAerea.SelectedText), "Habilitado");
+            return new Viaje(dtFechaSalida.Value, dtFechaLLegada.Value, dtFechaLLegadaEstimada.Value, cbAeronave.SelectedText, Convert.ToInt32(cbRutaAerea.SelectedText), "Habilitado");
         }
 
         private void btnGenerarViaje_Click(object sender, EventArgs e)

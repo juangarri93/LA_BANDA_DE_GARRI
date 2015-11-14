@@ -207,6 +207,8 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_aeronave_fuera_servicio') IS NOT
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados; 
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino; 
   
 --Dropeo las tablas
   
@@ -928,9 +930,13 @@ CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@ruta_aerea numeric(18,0),
 													@aeronave NVARCHAR(255), 
 													@fecha_salida DATETIME, 
 													@fecha_llegada DATETIME,
+													@fecha_llegada_estimada DATETIME,
 													@resultado varchar(100) output) AS
 BEGIN
-		
+	DECLARE @id_aeronave INT;
+	set id_aeronave = (select Id from LA_BANDA_DE_GARRI.Aeronaves 
+	where Matricula = @aeronave)	
+	
 	if(LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea, @aeronave) = 0)
 		begin
 			set @resultado = 'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
@@ -943,8 +949,9 @@ BEGIN
 			return	
 		end
 		
-	insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
-	values(@fecha_salida, @fecha_llegada, @aeronave, @ruta_aerea)
+	
+	insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @aeronave, @ruta_aerea)
 	
 END
 go
@@ -1030,6 +1037,17 @@ BEGIN
 
 END
 GO
+
+create proc LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino(
+@FechaSalida datetime,
+@CiudadOrigen int,
+@CiudadDestino int
+)
+as 
+select * from LA_BANDA_DE_GARRI.Viaje 
+where Fecha_salida = @FechaSalida and Codigo_Ruta_Aerea = (select Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Habilitada = 'Habilitado' )
+order by LA_BANDA_DE_GARRI.Viaje.Id
+go
 
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
 as

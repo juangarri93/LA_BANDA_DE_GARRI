@@ -12,7 +12,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private DateTime _FechaSalida;
         private DateTime _FechaLlegada;
         private DateTime _FechaLlegadaEstimada;
-        private int _Aeronave;
+        private string _Aeronave;
         private int _Ruta;
         private string _habilitado;
 
@@ -21,7 +21,7 @@ namespace AerolineaFrba.ConstructorDeClases
             this.Habilitado = "Habilitado";
         }
 
-        public Viaje(DateTime fechasalida, DateTime fechallegada, DateTime fechallegadaestimada, int aeronave, int ruta, string habilitado)
+        public Viaje(DateTime fechasalida, DateTime fechallegada, DateTime fechallegadaestimada, string aeronave, int ruta, string habilitado)
         {
             if (ValidarDatos(fechasalida,fechallegada,fechallegadaestimada)==true)
             {
@@ -85,7 +85,7 @@ namespace AerolineaFrba.ConstructorDeClases
         }
 
 
-        public int Aeronave
+        public string Aeronave
         {
             get { return _Aeronave; }
             set { _Aeronave = value; }

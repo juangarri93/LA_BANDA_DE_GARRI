@@ -18,14 +18,14 @@ namespace AerolineaFrba.ABM_Compra
 {
     public partial class DatosCompra : Form
     {
-        DataTable usuarios;
-        Compra compraActual;
+        private DataTable usuarios;
+        private  Compra compraActual;
 
         private List<Persona> UsuariosRegistrados;
 
         public DatosCompra(Compra compra)
         {
-            this.compraActual = compra;
+            compraActual = compra;
             InitializeComponent();
         }
 
@@ -57,11 +57,69 @@ namespace AerolineaFrba.ABM_Compra
             this.Hide();
         }
 
+        private bool estaTodoLLeno()
+        {
+            if (txtDni.Text != "" &&
+            txtApellido.Text != "" &&
+            txtDireccion.Text != "" &&
+            txtMail.Text != "" &&
+            txtNombre.Text != "" &&
+            txtTelefono.Text != "")
+                return true;
+            else return false;
+        }
+
+        private void completarCompra()
+        {
+            /*private int _idCompra;
+        private string _nombre;se cargo ahora
+        private string _apellido;se cargo ahora
+        private int _dni;se cargo ahora
+        private string _direccion;se cargo ahora
+        private int _telefono;se cargo ahora
+        private string _email;se cargo ahora
+        private DateTime _fechaNac;se cargo ahora
+        private DateTime _fechaDeViaje; se cargo antes
+        private int _origen; se cargo antes
+        private int _destino; se cargo antes
+        private int _cantidadPasajes; se cargo antes
+        private int _cantidadKG; se cargo antes
+        private int _viajeSeleccionado; se cargo antes
+        private string _estado; 
+             * */
+
+            compraActual.Apellido = txtApellido.Text;
+            compraActual.Nombre = txtNombre.Text;
+            compraActual.Dni = Convert.ToInt32(txtDni.Text);
+            compraActual.Direccion = txtDireccion.Text;
+            compraActual.Email = txtMail.Text;
+            compraActual.Telefono = Convert.ToInt32(txtTelefono.Text);
+            compraActual.FechaNac = dtFechaNac.Value;
+
+
+
+        }
         private void btnButacas_Click(object sender, EventArgs e)
         {
-            var ventanaButacas = new Butacas(this.compraActual);
-            FormsHerramientas.mostrarVentanaNueva(ventanaButacas, this);
-            this.Hide();
+            if (estaTodoLLeno())
+            {
+                completarCompra();
+                var ventanaButacas = new Butacas(this.compraActual);
+                FormsHerramientas.mostrarVentanaNueva(ventanaButacas, this);
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar todos los datos obligatorios");
+                
+            }
+        }
+
+        public Boolean IsEmpty (List<Persona> source)
+        {
+            if (source == null)
+                return true;  
+            return !source.Any();
         }
 
         private void txtDni_TextChanged(object sender, EventArgs e)
@@ -71,9 +129,9 @@ namespace AerolineaFrba.ABM_Compra
                 usuarios=DAOUsuario.buscarUsuario(this.txtDni.Text);
                 UsuariosRegistrados = this.crearListaDeUsuarios();
 
-                if (UsuariosRegistrados != null)
+                if (!IsEmpty(UsuariosRegistrados))
                 {
-                  
+                    Autocompletar(UsuariosRegistrados.ElementAt(0));
                 }
 
             }
@@ -110,6 +168,27 @@ namespace AerolineaFrba.ABM_Compra
 
             return lista;
         }
+
+        private void btnCancelar_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DAOCompra.AgregarCompra(compraActual);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error." + ex.Message);
+            }
+             
+        }
+
+      
  
 
       

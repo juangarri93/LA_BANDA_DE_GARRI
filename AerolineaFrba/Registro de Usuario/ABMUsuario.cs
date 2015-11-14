@@ -36,8 +36,8 @@ namespace AerolineaFrba.Registro_de_Usuario
         private void btnBaja_Click(object sender, EventArgs e)
         {
 
-            var ventanaBajaUsuarios = new ABMBajaModifUsuario();
-            FormsHerramientas.mostrarVentanaNueva(ventanaBajaUsuarios, this);
+           // var ventanaBajaUsuarios = new ABMBajaModifUsuario();
+           // FormsHerramientas.mostrarVentanaNueva(ventanaBajaUsuarios, this);
         }
     }
 }

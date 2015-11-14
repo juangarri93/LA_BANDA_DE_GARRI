@@ -20,7 +20,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _Habilitado = value; }
         }
 
-     
+        public Ciudad(){}
         public Ciudad(int codigoCiudad, string nombre,Boolean habilitado) 
         {
             IdentificadorCiudad = codigoCiudad;
