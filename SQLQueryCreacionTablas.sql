@@ -18,6 +18,18 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures 
+IF (OBJECT_ID(' LA_BANDA_DE_GARRI.speditar_Ruta') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.speditar_Ruta;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sptraerCiudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sptraerCiudad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_Ruta') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_Ruta;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_Ciudad_sin_baja_util') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spMostrar_Ciudad_sin_baja_util;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscar_ciudad') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscar_ciudad;
 
@@ -1629,4 +1641,79 @@ create proc LA_BANDA_DE_GARRI.spbuscar_ciudad
 as
 select * from LA_BANDA_DE_GARRI.Ciudad
 where Nombre like '%' + @nombre  + '%'
+go
+
+create proc LA_BANDA_DE_GARRI.spMostrar_Ciudad_sin_baja_util
+as
+select * from LA_BANDA_DE_GARRI.Ciudad
+where Habilitada = 1
+go
+
+--create proc LA_BANDA_DE_GARRI.spinsertar_Ruta
+
+--PROCEDIMIENTO spinsertar_Ruta--
+CREATE PROC   LA_BANDA_DE_GARRI.spinsertar_Ruta
+(@id int output,
+@CodigoRuta int ,
+@TipoServicio int,
+@CiudadOrigen varchar(100),
+@CiudadDestino varchar(100),
+@PrecioKG int,
+@PrecioBase int,
+@habilitado varchar(100)
+)
+as
+begin
+
+declare @idCiudadOrigen int
+declare @idCiudadDestino int
+
+set @idCiudadOrigen = (select Id from LA_BANDA_DE_GARRI.Ciudad where @CiudadOrigen = Nombre)
+set @idCiudadDestino = (select Id from LA_BANDA_DE_GARRI.Ciudad where @CiudadDestino = Nombre)
+
+insert into  LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo,Id_Tipo_Servicio,Ciudad_Origen,Ciudad_Destino,Precio_base_pasaje,Precio_base_kg,Habilitada)
+values(@CodigoRuta,@TipoServicio, @idCiudadOrigen,@idCiudadDestino,@PrecioBase,@PrecioKG,@habilitado)
+
+end
+go
+
+
+--PROCEDIMIENTO sptraerCiudad --> LO USO PARA COMBOBO IMPORTANTE--
+create proc LA_BANDA_DE_GARRI.sptraerCiudad
+(
+@idCiudad int
+)
+as
+select * from LA_BANDA_DE_GARRI.Ciudad where Id = @idCiudad
+go
+
+CREATE PROC  LA_BANDA_DE_GARRI.speditar_Ruta
+(@id int ,
+@CodigoRuta numeric(18,0),
+@TipoServicio int,
+@CiudadOrigen varchar(100),
+@CiudadDestino varchar(100),
+@PrecioKG numeric(18,2),
+@PrecioBase numeric(18,2),
+@habilitado binary
+)
+as
+begin
+
+declare @idCiudadOrigen int
+declare @idCiudadDestino int
+
+set @idCiudadOrigen = (select Id from LA_BANDA_DE_GARRI.Ciudad where @CiudadOrigen = Nombre)
+set @idCiudadDestino = (select Id from LA_BANDA_DE_GARRI.Ciudad where @CiudadDestino = Nombre)
+
+update LA_BANDA_DE_GARRI.Ruta_Aerea
+		set Codigo = @CodigoRuta,
+		Id_Tipo_Servicio = @TipoServicio,
+		Ciudad_Origen = @idCiudadOrigen,
+		Ciudad_Destino = @idCiudadDestino,
+		Precio_base_kg = @PrecioKG,
+		Precio_base_pasaje = @PrecioBase,
+		Habilitada = @habilitado
+		where Id = @id
+end
 go

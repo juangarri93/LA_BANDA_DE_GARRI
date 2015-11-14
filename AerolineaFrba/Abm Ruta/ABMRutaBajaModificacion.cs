@@ -32,13 +32,14 @@ namespace AerolineaFrba.Abm_Ruta
 
         public void limpiar()
         {
+            txtId.Text = "";
             txtCodigoRuta.Text = "";
-            txtTipoServicio.Text = "";
-            cbOrigen.ValueMember = null;
-            cbDestino.ValueMember = null;
+            cbTipoDeServicio.ValueMember = null;
+            cbOrigen.SelectedIndex = 0;
+            cbDestino.SelectedIndex = 0;
             txtPrecioKG.Text = "";
             txtPrecioBase.Text = "";
-            cbHabilitado.ValueMember = null;
+            cbHabilitado.SelectedIndex = 0;
         }
 
         //Metodo Mostrar
@@ -50,22 +51,30 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void ABMRutaBajaModificacion_Load(object sender, EventArgs e)
         {
+
+            txtId.ReadOnly = true;
             txtCodigoRuta.ReadOnly = true;
             deshabilitarTextBox();
             btnCancelar.Enabled = false;
             btnGuardar.Enabled = false;
-            cbHabilitado.Items.Add("");
-            cbHabilitado.Items.Add("Habilitado");
+          
             cbHabilitado.Items.Add("Deshabilitado");
+            cbHabilitado.Items.Add("Habilitado");
+
+            cbTipoDeServicio.DataSource = DAOAerolinea.getTipoServicio().DefaultView;
+            cbTipoDeServicio.DisplayMember = "Tipo_Servicio";
+
             this.dataGridView.Columns[0].Visible = false;
             Mostrar();
+
+            cargarComboBox();
         }
 
         private void deshabilitarTextBox()
         {
 
             txtCodigoRuta.Enabled = false;
-            txtTipoServicio.Enabled = false;
+            cbTipoDeServicio.Enabled = false;
             cbOrigen.Enabled = false;
             cbDestino.Enabled = false;
             txtPrecioKG.Enabled = false;
@@ -78,7 +87,7 @@ namespace AerolineaFrba.Abm_Ruta
             btnCancelar.Enabled = true;
             btnGuardar.Enabled = true;
             btnEditar.Enabled = false;
-            soloLectura();
+            txtCodigoRuta.ReadOnly = false;
             habilitarTextBox();
 
         }
@@ -86,7 +95,7 @@ namespace AerolineaFrba.Abm_Ruta
         private void soloLectura()
         {
           
-            txtTipoServicio.ReadOnly = true;
+            cbTipoDeServicio.Enabled = false;
             cbOrigen.Enabled = false;
             cbDestino.Enabled = false;
             txtPrecioKG.ReadOnly = true;
@@ -96,11 +105,13 @@ namespace AerolineaFrba.Abm_Ruta
 
         private void habilitarTextBox()
         {
-      
-            txtTipoServicio.Enabled = true;
+            txtCodigoRuta.Enabled  = true;
+            cbTipoDeServicio.Enabled = true;
             txtPrecioKG.Enabled = true;
             txtPrecioBase.Enabled = true;
-            cbHabilitado.Enabled = false;
+            cbHabilitado.Enabled = true;
+            cbOrigen.Enabled = true;
+            cbDestino.Enabled = true;
         }
 
         private void btnBajaLogica_Click(object sender, EventArgs e)
@@ -108,41 +119,36 @@ namespace AerolineaFrba.Abm_Ruta
             
         }
 
-        private void checkBoxbajaLogica1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxbajaLogica1.Checked)
-            {
-                btnBajaLogica.Enabled = true;
-                this.dataGridView.Columns[0].Visible = true;
-            }
-            else
-            {
-                btnBajaLogica.Enabled = false;
-                this.dataGridView.Columns[0].Visible = false;
-            }
-        }
+       
 
         private void dataGridView_DoubleClick(object sender, EventArgs e)
         {
+            this.txtId.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["Id"].Value);
+            this.txtCodigoRuta.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["Codigo"].Value);
+            this.cbTipoDeServicio.SelectedIndex = Convert.ToInt32(this.dataGridView.CurrentRow.Cells["Id_Tipo_Servicio"].Value) - 1;
+            this.txtPrecioBase.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["Precio_base_pasaje"].Value);
+            this.txtPrecioKG.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["Precio_base_kg"].Value);
 
-            habilitarModificacion();
+            string posicioncbOrigen = DAORuta.obtenerCiudad(Convert.ToInt32(this.dataGridView.CurrentRow.Cells["Ciudad_Origen"].Value));
+            string posicioncbDestino = DAORuta.obtenerCiudad(Convert.ToInt32(this.dataGridView.CurrentRow.Cells["Ciudad_Destino"].Value));
 
-            this.txtCodigoRuta.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["id_Ruta"].Value);
-            this.txtTipoServicio.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["tipo_servicio"].Value);
-            this.txtPrecioBase.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["precio_base_pasaje"].Value);
-            this.txtPrecioKG.Text = Convert.ToString(this.dataGridView.CurrentRow.Cells["precio_base_kg"].Value);
-            this.cbHabilitado.ValueMember = Convert.ToString(this.dataGridView.CurrentRow.Cells["habilitado"].Value);
-            this.cbOrigen.ValueMember = Convert.ToString(this.dataGridView.CurrentRow.Cells["idCiudadOrigen"].Value);
-            this.cbDestino.ValueMember = Convert.ToString(this.dataGridView.CurrentRow.Cells["idCiudadDestino"].Value);
-           
-            cargarComboBox();
-          
+            if (Convert.ToBoolean(dataGridView.CurrentRow.Cells["habilitada"].Value) == true)
+            {
+                this.cbHabilitado.SelectedIndex = this.cbHabilitado.FindString("Habilitado");
+            }
+            else 
+            {
+                this.cbHabilitado.SelectedIndex = this.cbHabilitado.FindString("Deshabilitado");
+            }
+ 
+            this.cbOrigen.SelectedIndex = this.cbOrigen.FindString(posicioncbOrigen);
+            this.cbDestino.SelectedIndex = this.cbDestino.FindString(posicioncbDestino);      
         }
 
         private void habilitarModificacion()
         {
         
-            txtTipoServicio.ReadOnly = false;
+            cbTipoDeServicio.Enabled = true;
             cbOrigen.Enabled = true;
             cbDestino.Enabled = true;
             txtPrecioKG.ReadOnly = false;
@@ -160,9 +166,20 @@ namespace AerolineaFrba.Abm_Ruta
 
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
+     
 
+        private Ruta cargarAerolineParaEditar()
+        {
+            return new Ruta(Convert.ToInt32(txtId.Text), Convert.ToInt32(txtCodigoRuta.Text), cbTipoDeServicio.SelectedIndex + 1, cbOrigen.Text, cbDestino.Text, Convert.ToDecimal(txtPrecioKG.Text), Convert.ToDecimal(txtPrecioBase.Text), cbHabilitado.SelectedIndex);
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 DAORuta.EditarRuta(cargarAerolineParaEditar());
@@ -172,6 +189,7 @@ namespace AerolineaFrba.Abm_Ruta
                 btnGuardar.Enabled = false;
                 btnEditar.Enabled = true;
                 btnCancelar.Enabled = false;
+                Mostrar();
 
             }
             catch (Exception ex)
@@ -180,19 +198,16 @@ namespace AerolineaFrba.Abm_Ruta
                 MessageBox.Show("Hubo un error." + ex.Message);
 
             }
+        }
 
-
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
 
-        private Ruta cargarAerolineParaEditar()
+        private void Id_Click(object sender, EventArgs e)
         {
-            return new Ruta(Convert.ToInt32(txtCodigoRuta.Text), txtTipoServicio.Text, cbOrigen.SelectedIndex + 1, cbDestino.SelectedIndex + 1, Convert.ToInt32(txtPrecioKG.Text), Convert.ToInt32(txtPrecioBase.Text), "papa");
-        }
 
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
     }
 }

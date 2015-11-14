@@ -9,14 +9,15 @@ namespace AerolineaFrba.ConstructorDeClases
     public class Ruta
     {
         private int _CodigoRuta;
-        private string _TipoServicio;    
-        private int _CiudadOrigen;
-        private int _CiudadDestino;
-        private int _PrecioKG;
-        private int _PrecioBase;
-        private string _habilitado;
+        private int _TipoServicio;    
+        private string _CiudadOrigen;
+        private string _CiudadDestino;
+        private decimal _PrecioKG;
+        private decimal _PrecioBase;
+        private int _habilitado;
+        private int _id;
 
-        public Ruta(int codigoRuta, string tipoDeServicio, int ciudadOrigen, int ciudadDestino, int precioKG, int precioBase,string habilitado)
+        public Ruta(int id,int codigoRuta, int tipoDeServicio, string ciudadOrigen, string ciudadDestino, decimal precioKG, decimal precioBase,int habilitado)
         {
             // TODO: Complete member initialization
             this.CodigoRuta = codigoRuta;
@@ -26,9 +27,16 @@ namespace AerolineaFrba.ConstructorDeClases
             this.PrecioKG = precioKG;
             this.PrecioBase = precioBase;
             this.Habilitado = habilitado;
+            this.Id = id;
         }
 
-        public string Habilitado
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        public int Habilitado
         {
             get { return _habilitado; }
             set { _habilitado = value; }
@@ -40,31 +48,31 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _CodigoRuta = value; }
         }
 
-        public string TipoServicio
+        public int TipoServicio
         {
             get { return _TipoServicio; }
             set { _TipoServicio = value; }
         }
 
-        public int CiudadOrigen
+        public string CiudadOrigen
         {
             get { return _CiudadOrigen; }
             set { _CiudadOrigen = value; }
         }
 
-        public int CiudadDestino
+        public string CiudadDestino
         {
             get { return _CiudadDestino; }
             set { _CiudadDestino = value; }
         }
 
-        public int PrecioKG
+        public decimal PrecioKG
         {
             get { return _PrecioKG; }
             set { _PrecioKG = value; }
         }
 
-        public int PrecioBase
+        public decimal PrecioBase
         {
             get { return _PrecioBase; }
             set { _PrecioBase = value; }

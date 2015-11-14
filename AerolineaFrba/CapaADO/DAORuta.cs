@@ -19,7 +19,7 @@ namespace AerolineaFrba.CapaADO
 
         public static void AgregarRuta(Ruta ruta)
         {
-            executeProcedure("spinsertar_Ruta", 1,ruta.TipoServicio,ruta.CiudadOrigen,ruta.CiudadDestino,ruta.PrecioKG,ruta.PrecioBase,ruta.Habilitado);
+            executeProcedure("spinsertar_Ruta", 1,ruta.CodigoRuta,ruta.TipoServicio,ruta.CiudadOrigen,ruta.CiudadDestino,ruta.PrecioKG,ruta.PrecioBase,ruta.Habilitado);
             
         }
 
@@ -28,9 +28,37 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spmostrar_Ruta_Aerea");
         }
 
-        internal static void EditarRuta(object p)
+       public static void EditarRuta(Ruta ruta)
         {
-            throw new NotImplementedException();
+
+            bool flag = false;
+
+            if(ruta.Habilitado == 1)
+            {
+                flag = true;
+            }else
+            {
+                flag = false;
+            }
+            executeProcedure("speditar_Ruta", ruta.Id, ruta.CodigoRuta, ruta.TipoServicio, ruta.CiudadOrigen, ruta.CiudadDestino, ruta.PrecioKG, ruta.PrecioBase, flag);
+        }
+
+        public static string obtenerCiudad(int idCiudad)
+        {
+            string resultado = "";
+
+            var table = retrieveDataTable("sptraerCiudad", idCiudad);
+
+            var ciudad = dataRowToRol(table.Rows[0]);
+
+            resultado = ciudad.Nombre;
+
+            return resultado;
+        }
+
+        private static Ciudad dataRowToRol(DataRow dr)
+        {
+            return new Ciudad(Convert.ToInt32(dr["Id"]), dr["Nombre"].ToString(), dr["Habilitada"].ToString() == "1");
         }
     }
 }
