@@ -33,7 +33,7 @@ namespace AerolineaFrba.CapaADO
 
         public static void EditarCiudad(Ciudad ciudad)
         {
-            executeProcedure("speditar_ciudad", 1, ciudad.Nombre );
+            executeProcedure("speditar_ciudad", ciudad.IdentificadorCiudad, ciudad.Nombre,ciudad.Habilitado);
         }
 
         public static void EliminarCiudad(Int32 codigoCiudad)
@@ -41,9 +41,9 @@ namespace AerolineaFrba.CapaADO
             executeProcedure("speliminar_ciudad", codigoCiudad);
         }
         
-        public static void darDeBajaCiudad(int Codigo)
+        public static void darDeBajaCiudad(int Codigo,bool habilitado)
         {
-            executeProcedure("spbaja_ciudad", Codigo);
+            executeProcedure("spbaja_ciudad", Codigo,habilitado);
         }
 
     }

@@ -39,11 +39,9 @@
             this.btnFiltroNombre = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtPais = new System.Windows.Forms.TextBox();
             this.txtNomb = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -63,16 +61,14 @@
             this.tabPage1.Controls.Add(this.btnFiltroNombre);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.txtCodigo);
-            this.tabPage1.Controls.Add(this.txtPais);
             this.tabPage1.Controls.Add(this.txtNomb);
             this.tabPage1.Controls.Add(this.txtNombre);
             this.tabPage1.Controls.Add(this.btnEditar);
-            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.lblTotal);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(898, 339);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
@@ -128,9 +124,9 @@
             // 
             this.botonBajaLogica.Location = new System.Drawing.Point(161, 63);
             this.botonBajaLogica.Name = "botonBajaLogica";
-            this.botonBajaLogica.Size = new System.Drawing.Size(104, 23);
+            this.botonBajaLogica.Size = new System.Drawing.Size(198, 23);
             this.botonBajaLogica.TabIndex = 13;
-            this.botonBajaLogica.Text = "Baja Logica";
+            this.botonBajaLogica.Text = "Habilitar-Deshabilitar";
             this.botonBajaLogica.Click += new System.EventHandler(this.botonBajaLogica_Click);
             // 
             // txtBuscar
@@ -146,9 +142,9 @@
             this.checkBoxbajaLogica1.AutoSize = true;
             this.checkBoxbajaLogica1.Location = new System.Drawing.Point(9, 67);
             this.checkBoxbajaLogica1.Name = "checkBoxbajaLogica1";
-            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(122, 17);
             this.checkBoxbajaLogica1.TabIndex = 12;
-            this.checkBoxbajaLogica1.Text = "Baja Logica";
+            this.checkBoxbajaLogica1.Text = "Habilitar-Deshabilitar";
             this.checkBoxbajaLogica1.UseVisualStyleBackColor = true;
             this.checkBoxbajaLogica1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -180,15 +176,6 @@
             this.txtCodigo.TabIndex = 29;
             this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
-            // txtPais
-            // 
-            this.txtPais.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtPais.Location = new System.Drawing.Point(691, 157);
-            this.txtPais.Name = "txtPais";
-            this.txtPais.Size = new System.Drawing.Size(121, 20);
-            this.txtPais.TabIndex = 25;
-            this.txtPais.TextChanged += new System.EventHandler(this.txtPais_TextChanged);
-            // 
             // txtNomb
             // 
             this.txtNomb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -217,15 +204,6 @@
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(599, 157);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 23);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Pais:";
             // 
             // lblTotal
             // 
@@ -283,11 +261,9 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TextBox txtPais;
         private System.Windows.Forms.TextBox txtNomb;
         private System.Windows.Forms.Label txtNombre;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCodigo;
      
         private System.Windows.Forms.Label label1;

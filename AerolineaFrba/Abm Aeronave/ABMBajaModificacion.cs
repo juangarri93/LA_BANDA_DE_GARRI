@@ -12,6 +12,8 @@ namespace AerolineaFrba.Abm_Aeronave
         private bool IsFiltroNumeroAeronave = false;
         private bool IsFiltroModelo = false;
         private bool IsFiltroFabricante = false;
+        bool flagBajaFueraServicio = false;
+        int habilitado = 0;
   
         public ABMBajaModificacion()
         {      
@@ -27,9 +29,6 @@ namespace AerolineaFrba.Abm_Aeronave
             cbModelo.Enabled = false;
             txtMatricula.Enabled = false;
             cbTipoDeServicio.Enabled = false;
-            cmbBajaFueraDeServicio.Enabled = false;
-            dtFechaFueraDeServicio.Enabled = false;
-            dtFechaDeReinicio.Enabled = false;
             txtCantidadDeButacasVentana.Enabled = false;
             txtCantidadDeButacasPasillo.Enabled = false;
             txtCantidadDeKG.Enabled = false;
@@ -135,26 +134,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             //this.cmbBajaFueraDeServicio.ValueMember = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Baja_Fuera_Servicio"].Value);
 
-            string fechaFueraServicio = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Fuera_Servicio"].Value);
-            if (fechaFueraServicio == "")
-            {
-                this.dtFechaFueraDeServicio.Value = fechaActual;
-            }
-            else 
-            {
-                this.dtFechaFueraDeServicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Fuera_Servicio"].Value);  
-            }
-
-            string fechaDeReinicio = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Fuera_Servicio"].Value);
-            if (fechaDeReinicio == "")
-            {
-                this.dtFechaDeReinicio.Value = fechaActual;
-            }
-            else
-            {
-                this.dtFechaDeReinicio.Value = Convert.ToDateTime(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_Reinicio"].Value);
-            }
-          
+         
             string cantidadKG =  Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Kg_Disponibles"].Value);
             if (cantidadKG == "")
             {
@@ -232,6 +212,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             try
             {
+                 if (Validaciones()) return;
                  DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
                  MessageBox.Show("La Aeronave se agrego correctamente.");
                  deshabilitarTextBox();
@@ -253,6 +234,98 @@ namespace AerolineaFrba.Abm_Aeronave
 
         }
 
+        private bool Validaciones()
+        {
+
+            if (txtNumeroAeronave.Text == "")
+            {
+                MessageBox.Show("NO INGRESO NUMERO DE AERONAVE");
+                return true;
+
+            }
+
+            int numero = Convert.ToInt32(txtNumeroAeronave.Text);
+
+            if (numero < 0)
+            {
+                MessageBox.Show("EL NUMERO INGRESADO ES NEGATIVO");
+                return true;
+            }
+
+            if (txtMatricula.Text == "")
+            {
+                MessageBox.Show("NO INGRESO EL NUMERO DE MATRICULA");
+                return true;
+            }
+
+            if (txtCantidadDeButacasVentana.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA CANTIDAD DE BUTACAS VENTANA");
+                return true;
+            }
+
+            int butacasVentana = Convert.ToInt32(txtCantidadDeButacasVentana.Text);
+
+            if (butacasVentana < 0)
+            {
+                MessageBox.Show("La CANTIDAD DE BUTACAS VENTANA NO PUEDEN SER UN VALOR MENOR O IGUAL A CERO");
+                return true;
+            }
+
+            if (txtCantidadDeButacasPasillo.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA CANTIDAD DE BUTACAS PASILLO");
+                return true;
+            }
+
+            int butacasPasillo = Convert.ToInt32(txtCantidadDeButacasPasillo.Text);
+
+            if (butacasPasillo < 0)
+            {
+                MessageBox.Show("La CANTIDAD DE BUTACAS PASILLO NO PUEDEN SER UN VALOR MENOR O IGUAL A CERO");
+                return true;
+            }
+
+            if (txtCantidadDeKG.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA CANTIDAD DE KG DISPONIBLES");
+                return true;
+            }
+
+            int cantidadKG = Convert.ToInt32(txtCantidadDeKG.Text);
+
+            if (cantidadKG < 0)
+            {
+                MessageBox.Show("LA CANTIDAD DE KG DISPONIBLES NO PUEDE SER UN VALOR MENOR O IGUAL A CERO");
+                return true;
+            }
+
+            if (dtpFechaAlta.Value == DateTime.MinValue)
+            {
+                MessageBox.Show("LA FECHA DE ALTA DE SERVICIO NO ES VALIDA");
+                return true;
+            }
+
+            if (flagBajaFueraServicio == true) 
+            {
+                if (dtFechaFueraDeServicio.Value == DateTime.MinValue) 
+                {
+                    MessageBox.Show("LA FECHA DE FUERA DE SERVICIO NO ES VALIDA");
+                    return true;
+                }
+
+                if (dtFechaDeReinicio.Value == DateTime.MinValue)
+                {
+                    MessageBox.Show("LA FECHA DE FUERA DE REINICIO NO ES VALIDA");
+                    return true;
+                }
+            
+            }
+
+            return false;
+        }
+
+
         private Aeronave cargarAerolineParaEditar()
         {
 
@@ -268,7 +341,8 @@ namespace AerolineaFrba.Abm_Aeronave
                                 dtFechaDeReinicio.Value,
                                 Convert.ToInt32(txtCantidadDeButacasVentana.Text),
                                 Convert.ToInt32(txtCantidadDeButacasPasillo.Text),
-                                Convert.ToInt32(txtCantidadDeKG.Text));
+                                Convert.ToInt32(txtCantidadDeKG.Text),
+                                habilitado);
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -288,16 +362,13 @@ namespace AerolineaFrba.Abm_Aeronave
             txtMatricula.ReadOnly = false;
             cbFabricante.Enabled = true;
             cbTipoDeServicio.Enabled = true;
-            cmbBajaFueraDeServicio.Enabled = true;
-            dtFechaFueraDeServicio.Enabled = true;
-            dtFechaDeReinicio.Enabled = true;
             txtCantidadDeButacasPasillo.ReadOnly = false;
             txtCantidadDeButacasVentana.ReadOnly = false;
             txtCantidadDeKG.ReadOnly = false;
-            txtCantidadDeButacasVentana.Enabled = true;
+            txtCantidadDeButacasVentana.Enabled = false;
             txtNumeroAeronave.Enabled = true;
             txtMatricula.Enabled = true;
-            txtCantidadDeButacasPasillo.Enabled = true;
+            txtCantidadDeButacasPasillo.Enabled = false;
             txtCantidadDeKG.Enabled = true;
 
         }
@@ -315,7 +386,14 @@ namespace AerolineaFrba.Abm_Aeronave
             btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;
             btnGuardar.Enabled = false;
-            deshabilitarTextBox(); 
+            deshabilitarTextBox();
+            cmbBajaFueraDeServicio.Enabled = false;
+            dtFechaFueraDeServicio.Enabled = false;
+            dtFechaDeReinicio.Enabled = false;
+            dtpFechaAlta.Value = DateTime.MinValue;
+            dtFechaFueraDeServicio.Value = DateTime.MinValue;
+            dtFechaDeReinicio.Value = DateTime.MinValue;
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -447,6 +525,24 @@ namespace AerolineaFrba.Abm_Aeronave
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btnEditarBFS_Click(object sender, EventArgs e)
+        {
+            cmbBajaFueraDeServicio.Enabled = true;
+            dtFechaFueraDeServicio.Enabled = true;
+            dtFechaDeReinicio.Enabled =  true;
+            flagBajaFueraServicio = true;
+            habilitado = 1;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cmbBajaFueraDeServicio.Enabled = false;
+            dtFechaFueraDeServicio.Enabled = false;
+            dtFechaDeReinicio.Enabled = false;
+            flagBajaFueraServicio = false;
+            habilitado = 0;
         }
 
         

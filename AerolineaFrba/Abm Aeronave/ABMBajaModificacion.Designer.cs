@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.btnBajaLogica = new System.Windows.Forms.Button();
             this.checkBoxbajaLogica1 = new System.Windows.Forms.CheckBox();
             this.btnFabricante = new System.Windows.Forms.Button();
@@ -71,7 +72,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.CodigoAeronave = new System.Windows.Forms.Label();
-            this.btnVolver = new System.Windows.Forms.Button();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.btnEditarBFS = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -109,6 +113,15 @@
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(763, 16);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(104, 23);
+            this.btnVolver.TabIndex = 12;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // btnBajaLogica
             // 
@@ -222,6 +235,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnEditarBFS);
             this.groupBox1.Controls.Add(this.cbFabricante);
             this.groupBox1.Controls.Add(this.cbModelo);
             this.groupBox1.Controls.Add(this.cbTipoDeServicio);
@@ -251,6 +266,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.CodigoAeronave);
+            this.groupBox1.Controls.Add(this.shapeContainer1);
             this.groupBox1.Location = new System.Drawing.Point(0, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(899, 330);
@@ -263,7 +279,7 @@
             // 
             this.cbFabricante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.cbFabricante.FormattingEnabled = true;
-            this.cbFabricante.Location = new System.Drawing.Point(446, 25);
+            this.cbFabricante.Location = new System.Drawing.Point(429, 25);
             this.cbFabricante.Name = "cbFabricante";
             this.cbFabricante.Size = new System.Drawing.Size(121, 21);
             this.cbFabricante.TabIndex = 71;
@@ -281,7 +297,7 @@
             // 
             this.cbTipoDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.cbTipoDeServicio.FormattingEnabled = true;
-            this.cbTipoDeServicio.Location = new System.Drawing.Point(447, 56);
+            this.cbTipoDeServicio.Location = new System.Drawing.Point(430, 56);
             this.cbTipoDeServicio.Name = "cbTipoDeServicio";
             this.cbTipoDeServicio.Size = new System.Drawing.Size(121, 21);
             this.cbTipoDeServicio.TabIndex = 69;
@@ -290,7 +306,7 @@
             // txtCantidadDeButacasVentana
             // 
             this.txtCantidadDeButacasVentana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeButacasVentana.Location = new System.Drawing.Point(769, 55);
+            this.txtCantidadDeButacasVentana.Location = new System.Drawing.Point(433, 123);
             this.txtCantidadDeButacasVentana.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidadDeButacasVentana.Name = "txtCantidadDeButacasVentana";
             this.txtCantidadDeButacasVentana.Size = new System.Drawing.Size(118, 20);
@@ -299,7 +315,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(586, 56);
+            this.label1.Location = new System.Drawing.Point(261, 127);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(186, 19);
@@ -310,7 +326,7 @@
             // 
             this.cmbBajaFueraDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.cmbBajaFueraDeServicio.FormattingEnabled = true;
-            this.cmbBajaFueraDeServicio.Location = new System.Drawing.Point(446, 91);
+            this.cmbBajaFueraDeServicio.Location = new System.Drawing.Point(757, 27);
             this.cmbBajaFueraDeServicio.Name = "cmbBajaFueraDeServicio";
             this.cmbBajaFueraDeServicio.Size = new System.Drawing.Size(121, 21);
             this.cmbBajaFueraDeServicio.TabIndex = 66;
@@ -319,7 +335,7 @@
             // dtFechaFueraDeServicio
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(447, 128);
+            this.dtFechaFueraDeServicio.Location = new System.Drawing.Point(758, 65);
             this.dtFechaFueraDeServicio.Margin = new System.Windows.Forms.Padding(4);
             this.dtFechaFueraDeServicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtFechaFueraDeServicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
@@ -333,7 +349,7 @@
             // dtFechaDeReinicio
             // 
             this.dtFechaDeReinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaDeReinicio.Location = new System.Drawing.Point(447, 165);
+            this.dtFechaDeReinicio.Location = new System.Drawing.Point(758, 97);
             this.dtFechaDeReinicio.Margin = new System.Windows.Forms.Padding(4);
             this.dtFechaDeReinicio.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtFechaDeReinicio.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
@@ -361,15 +377,15 @@
             // txtCantidadDeKG
             // 
             this.txtCantidadDeKG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeKG.Location = new System.Drawing.Point(769, 89);
+            this.txtCantidadDeKG.Location = new System.Drawing.Point(433, 157);
             this.txtCantidadDeKG.Name = "txtCantidadDeKG";
-            this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidadDeKG.Size = new System.Drawing.Size(118, 20);
             this.txtCantidadDeKG.TabIndex = 37;
             // 
             // txtCantidadDeButacasPasillo
             // 
             this.txtCantidadDeButacasPasillo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.txtCantidadDeButacasPasillo.Location = new System.Drawing.Point(769, 25);
+            this.txtCantidadDeButacasPasillo.Location = new System.Drawing.Point(433, 93);
             this.txtCantidadDeButacasPasillo.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidadDeButacasPasillo.Name = "txtCantidadDeButacasPasillo";
             this.txtCantidadDeButacasPasillo.Size = new System.Drawing.Size(118, 20);
@@ -378,7 +394,7 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(589, 24);
+            this.label16.Location = new System.Drawing.Point(264, 93);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(183, 23);
             this.label16.TabIndex = 35;
@@ -387,7 +403,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(292, 162);
+            this.label14.Location = new System.Drawing.Point(574, 62);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(139, 23);
             this.label14.TabIndex = 32;
@@ -396,7 +412,7 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(257, 125);
+            this.label12.Location = new System.Drawing.Point(574, 99);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(174, 23);
             this.label12.TabIndex = 29;
@@ -405,7 +421,7 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(257, 91);
+            this.label10.Location = new System.Drawing.Point(574, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(183, 23);
             this.label10.TabIndex = 24;
@@ -414,7 +430,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(303, 55);
+            this.label9.Location = new System.Drawing.Point(264, 59);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(137, 23);
             this.label9.TabIndex = 21;
@@ -459,7 +475,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(550, 213);
+            this.btnCancelar.Location = new System.Drawing.Point(433, 213);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(99, 50);
             this.btnCancelar.TabIndex = 13;
@@ -470,9 +486,9 @@
             // btnEditar
             // 
             this.btnEditar.Enabled = false;
-            this.btnEditar.Location = new System.Drawing.Point(230, 213);
+            this.btnEditar.Location = new System.Drawing.Point(38, 213);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(99, 50);
+            this.btnEditar.Size = new System.Drawing.Size(213, 84);
             this.btnEditar.TabIndex = 12;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -481,7 +497,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(390, 213);
+            this.btnGuardar.Location = new System.Drawing.Point(302, 213);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(99, 50);
             this.btnGuardar.TabIndex = 11;
@@ -492,7 +508,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(337, 24);
+            this.label6.Location = new System.Drawing.Point(264, 25);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 23);
             this.label6.TabIndex = 8;
@@ -510,7 +526,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(613, 89);
+            this.label4.Location = new System.Drawing.Point(264, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 23);
             this.label4.TabIndex = 5;
@@ -543,20 +559,50 @@
             this.CodigoAeronave.TabIndex = 0;
             this.CodigoAeronave.Text = "Codigo :";
             // 
-            // btnVolver
+            // shapeContainer1
             // 
-            this.btnVolver.Location = new System.Drawing.Point(763, 16);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(104, 23);
-            this.btnVolver.TabIndex = 12;
-            this.btnVolver.Text = "Volver";
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            this.shapeContainer1.Location = new System.Drawing.Point(3, 16);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(893, 311);
+            this.shapeContainer1.TabIndex = 72;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // lineShape1
+            // 
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 557;
+            this.lineShape1.X2 = 558;
+            this.lineShape1.Y1 = -24;
+            this.lineShape1.Y2 = 311;
+            // 
+            // btnEditarBFS
+            // 
+            this.btnEditarBFS.Location = new System.Drawing.Point(604, 157);
+            this.btnEditarBFS.Name = "btnEditarBFS";
+            this.btnEditarBFS.Size = new System.Drawing.Size(99, 50);
+            this.btnEditarBFS.TabIndex = 73;
+            this.btnEditarBFS.Text = "Habilitar baja fuera de servicio";
+            this.btnEditarBFS.UseVisualStyleBackColor = true;
+            this.btnEditarBFS.Click += new System.EventHandler(this.btnEditarBFS_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(743, 157);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 50);
+            this.button1.TabIndex = 74;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ABMBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 395);
+            this.ClientSize = new System.Drawing.Size(1056, 395);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMBajaModificacion";
@@ -620,6 +666,10 @@
         private System.Windows.Forms.ComboBox cbTipoDeServicio;
         private System.Windows.Forms.ComboBox cbFabricante;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEditarBFS;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
 
     }
 }

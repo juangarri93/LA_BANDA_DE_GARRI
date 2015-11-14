@@ -45,10 +45,10 @@ namespace AerolineaFrba.Abm_Aeronave
         private void btnAceptar_Click(object sender, EventArgs e)
         {
            
-            // if (!ValidacionesAeronave()) return;
+          
             try
             {
-                if (!Validaciones()) return;
+                if (Validaciones()) return;
                 DAOAerolinea.AgregarAeronave(CargarAerolinea());
                 MessageBox.Show("La Aeronave se agrego correctamente.");
                 limpiar();
@@ -95,9 +95,44 @@ namespace AerolineaFrba.Abm_Aeronave
 
             int butacasVentana = Convert.ToInt32(txtCantidadButacasVentana.Text);
 
-            if(butacasVentana > 0)
+            if(butacasVentana < 0)
             {
-            
+                MessageBox.Show("La CANTIDAD DE BUTACAS VENTANA NO PUEDEN SER UN VALOR MENOR O IGUAL A CERO");
+                return true;
+            }
+
+            if (txtCantidadDeButacasPasillo.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA CANTIDAD DE BUTACAS PASILLO");
+                return true;
+            }
+
+            int butacasPasillo = Convert.ToInt32(txtCantidadDeButacasPasillo.Text);
+
+            if (butacasPasillo < 0)
+            {
+                MessageBox.Show("La CANTIDAD DE BUTACAS PASILLO NO PUEDEN SER UN VALOR MENOR O IGUAL A CERO");
+                return true;
+            }
+
+            if (txtCantidadDeKG.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA CANTIDAD DE KG DISPONIBLES");
+                return true;
+            }
+
+            int cantidadKG = Convert.ToInt32(txtCantidadDeKG.Text);
+
+            if (cantidadKG < 0)
+            {
+                MessageBox.Show("La CANTIDAD DE KG DISPONIBLES NO PUEDE SER UN VALOR MENOR O IGUAL A CERO");
+                return true;
+            }
+
+            if (dtpFECHA.Value == DateTime.MinValue)
+            {
+                MessageBox.Show("LA FECHA DE ALTA DE SERVICIO NO ES VALIDA");
+                return true;
             }
 
             return false;
@@ -118,7 +153,7 @@ namespace AerolineaFrba.Abm_Aeronave
                                 dtpFECHA.Value,
                                 Convert.ToInt32(txtCantidadDeButacasPasillo.Text),
                                 Convert.ToInt32(txtCantidadButacasVentana.Text),
-                                Convert.ToInt32(txtCantidadDeKG.Text));
+                                Convert.ToInt32(txtCantidadDeKG.Text),0);
                                  
         }
 

@@ -27,11 +27,12 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _CantidadButacaPasillo;
         private int _CantidadDeButacasVentana;
         private int _KGDisponible;
+        private int _FlagBajaFueraServicio;
 
         public Aeronave(int codigoAeronave,DateTime fechaAlta,int numero,int modelo,
                         string matricula,int fabricante,int tipoDeServicio,string bajaPorFueraDeServicio,
                         DateTime fechaDeFueraDeServicio,DateTime fechaDeReinicioDeServicio,
-                        int cantidadButacaVentana,int cantidadButacaPasillo,int cantidadKG) 
+                        int cantidadButacaVentana, int cantidadButacaPasillo, int cantidadKG,int flagBajaFueraServicio) 
         {
             CodigoAeronave = codigoAeronave;
             FechaAlta = fechaAlta;
@@ -46,6 +47,13 @@ namespace AerolineaFrba.ConstructorDeClases
             CantidadButacaVentana = cantidadButacaVentana;
             CantidadButacaPasillo = cantidadButacaPasillo;
             KGDisponible = cantidadKG;
+            FlagBajaFueraServicio = flagBajaFueraServicio;
+        }
+
+        public int FlagBajaFueraServicio
+        {
+            get { return _FlagBajaFueraServicio; }
+            set { _FlagBajaFueraServicio = value; }
         }
 
         public int CodigoAeronave

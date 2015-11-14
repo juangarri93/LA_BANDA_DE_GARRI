@@ -18,6 +18,15 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscar_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscar_ciudad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbaja_ciudad;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.speditar_ciudad') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.speditar_ciudad;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_compra') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_compra;
 
@@ -1117,7 +1126,11 @@ create proc LA_BANDA_DE_GARRI.speditar_aeronave
 @tipoDeServicio int,
 @CantidadButacasVentana int,
 @CantidadButacasPasillo int, 
-@kgDisponible int)
+@kgDisponible int,
+@bajaFueraDeServicio varchar(50),
+@fechaFueraDeServicio date,
+@fechaFueraReinicio date,
+@habilitadoFueraDeServicio int)
 as
 update Aeronave set Fecha_alta = @fechaAlta,
 Numero = @numeroAeronave,
@@ -1129,6 +1142,13 @@ Cantidad_Butacas_Ventana = @CantidadButacasVentana,
 Cantidad_Ventanas_Pasillo = @CantidadButacasPasillo,
 Kg_Disponibles = @kgDisponible
 where Id = @codigo
+
+	if @habilitadoFueraDeServicio = 1
+		begin
+
+		insert into Aeronave_Baja_Temporaria(id_Aeronave,Baja_Fuera_Servicio,Fecha_Fuera_Servicio,Fecha_Reinicio)
+			values(@codigo,@bajaFueraDeServicio,@fechaFueraDeServicio,@fechaFueraReinicio)
+		end
 go
 
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
@@ -1578,4 +1598,35 @@ begin
 	order by 4 desc 
 end
 
+go
+
+--Fecha 14/11/2015 Nico --
+-- Procedimiento Editar Ciudad --
+
+create proc LA_BANDA_DE_GARRI.speditar_ciudad
+(
+@idCiudad int,
+@Nombre varchar(255),
+@habilitada bit
+)
+as
+update LA_BANDA_DE_GARRI.Ciudad
+	set Nombre = @Nombre,
+	Habilitada = @habilitada
+	where Id = @idCiudad
+go
+
+create proc LA_BANDA_DE_GARRI.spbaja_ciudad
+(@CodigoCiudad int,
+@habilitado bit)
+as
+update LA_BANDA_DE_GARRI.Ciudad Set Habilitada = @habilitado
+where Id = @CodigoCiudad
+go
+
+create proc LA_BANDA_DE_GARRI.spbuscar_ciudad
+@nombre varchar(100)
+as
+select * from LA_BANDA_DE_GARRI.Ciudad
+where Nombre like '%' + @nombre  + '%'
 go

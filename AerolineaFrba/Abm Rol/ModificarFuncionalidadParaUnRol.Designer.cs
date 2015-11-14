@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.labelMuestraNombre = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -73,18 +72,9 @@
             this.labelMuestraNombre.TabIndex = 22;
             this.labelMuestraNombre.Text = "Nombre Rol";
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(485, 101);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(127, 48);
-            this.btnCancelar.TabIndex = 23;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(388, 184);
+            this.btnVolver.Location = new System.Drawing.Point(485, 101);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(127, 48);
             this.btnVolver.TabIndex = 24;
@@ -98,7 +88,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 262);
             this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.labelMuestraNombre);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
@@ -116,7 +105,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label labelMuestraNombre;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnVolver;
     }
 }

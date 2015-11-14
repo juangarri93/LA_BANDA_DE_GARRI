@@ -26,7 +26,6 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void deshabilitarTextBox()
         {
-            txtPais.Enabled = false;
             txtNomb.Enabled = false;
             txtCodigo.Enabled = false;
         }
@@ -204,7 +203,7 @@ namespace AerolineaFrba.Abm_Ciudad
         private void habilitarTextBox()
         {
             txtNomb.Enabled = true;
-            txtPais.Enabled = true;
+          
 
         }
       
@@ -233,14 +232,27 @@ namespace AerolineaFrba.Abm_Ciudad
 
                 if (Opcion == DialogResult.OK)
                 {
-                    int Codigo;
+                    int Codigo = 0;
+                    bool habilitado = false;
 
                     foreach (DataGridViewRow row in dataListadoCiudades.Rows)
                     {
                         if (Convert.ToBoolean(row.Cells[0].Value))
                         {
                             Codigo = Convert.ToInt32(row.Cells[1].Value);
-                            DAOCiudad.darDeBajaCiudad(Codigo);
+
+                            habilitado = Convert.ToBoolean(row.Cells[3].Value);
+
+                            if (habilitado == true)
+                            {
+                                habilitado = false;
+                            }
+                            else 
+                            {
+                                habilitado = true;
+                            }
+                        
+                            DAOCiudad.darDeBajaCiudad(Codigo, habilitado);
 
 
                         }
