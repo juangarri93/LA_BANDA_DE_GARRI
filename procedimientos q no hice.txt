@@ -1,19 +1,4 @@
+solo me faltaria hacer este:
 
-
-Comprac
-
-return retrieveDataTable("spbuscar_compra", textoBuscar);
-
-executeProcedure("spbaja_compra", id);
-
-
-
-15/11 procedimientos que estaban y no estan mas :/ y nuevos q no hice:
-
-return retrieveDataTable("sp_butacas_libres", id_viaje); (int)
-executeProcedure("spmarcar_butaca_ocupada", butaca.Id); (int)
-executeProcedure("spinsertar_cliente", 1, cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Direccion, cliente.Telefono, cliente.Email, cliente.FechaNac, flag, cliente.Rol);
-retrieveDataTable("spmostrar_clientes");
-retrieveDataTable("spmostrar_clientes_pordni", dni);
-executeProcedure("spinsertar_pago", 1, pago.Pnr, pago.Id_viaje, pago.Id_cliente, pago.Importe, pago.Fecha_compra, pago.Tipo_pago);
-retrieveDataTable("spMostrar_RutaAerea_esp",id);(int)
+executeProcedure("spmarcar_butaca_ocupada", butaca.Id); (int)retrieveDataTable("spmostrar_clientes");
+ 

@@ -92,7 +92,7 @@ namespace AerolineaFrba.ABM_Compra
 
             compraActual.Apellido = txtApellido.Text;
             compraActual.Nombre = txtNombre.Text;
-            compraActual.Dni = Convert.ToInt32(txtDni.Text);
+            compraActual.Dni = Convert.ToDecimal(txtDni.Text);
             compraActual.Direccion = txtDireccion.Text;
             compraActual.Email = txtMail.Text;
             compraActual.Telefono = Convert.ToInt32(txtTelefono.Text);

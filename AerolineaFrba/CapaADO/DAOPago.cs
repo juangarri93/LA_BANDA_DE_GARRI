@@ -13,7 +13,7 @@ namespace AerolineaFrba.CapaADO
 
         public static void AgregarPago(Pago pago)
         {
-            executeProcedure("spinsertar_pago", 1, pago.Pnr, pago.Id_viaje, pago.Id_cliente, pago.Importe, pago.Fecha_compra, pago.Tipo_pago);
+            executeProcedure("spinsertar_pago", pago.Pnr, pago.Id_viaje, pago.Id_cliente, pago.Importe, pago.Fecha_compra, pago.Tipo_pago);
         }
 
     }

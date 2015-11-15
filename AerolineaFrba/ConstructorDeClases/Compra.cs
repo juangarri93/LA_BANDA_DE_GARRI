@@ -11,7 +11,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _idCompra;
         private string _nombre;
         private string _apellido;
-        private int _dni;
+        private decimal _dni;
         private string _direccion;
         private int _telefono;
         private string _email;
@@ -28,7 +28,7 @@ namespace AerolineaFrba.ConstructorDeClases
         public Compra() { }
 
 
-        public Compra(int idCompra, string nombre, string apellido, int dni, string direccion, int telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado)
+        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, int telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado)
         {
             this._idCompra = idCompra;
             this._nombre = nombre;
@@ -67,7 +67,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _apellido = value; }
         }
 
-        public int Dni
+        public decimal Dni
         {
             get { return _dni; }
             set { _dni = value; }

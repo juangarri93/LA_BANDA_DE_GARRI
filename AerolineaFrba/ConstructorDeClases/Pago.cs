@@ -9,7 +9,7 @@ namespace AerolineaFrba.ConstructorDeClases
     class Pago
     {
 
-        int _id;
+     
         int _pnr;
         int _id_viaje;
         int _id_cliente;
@@ -31,12 +31,7 @@ namespace AerolineaFrba.ConstructorDeClases
         }
 
 
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+ 
 
 
         public int Pnr

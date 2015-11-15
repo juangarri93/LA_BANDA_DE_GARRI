@@ -23,9 +23,9 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spMostrar_Ruta_Aerea");
         }
 
-        public static DataTable getRutaAereaEspecifica(int id)
+        public static DataTable getViajeEspecifico(int id)
         {
-            return retrieveDataTable("spMostrar_RutaAerea_esp",id);
+            return retrieveDataTable("spMostrar_viaje_esp",id);
         }
 
         public static DataTable Mostrar()

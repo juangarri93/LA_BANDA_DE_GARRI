@@ -209,6 +209,20 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados')
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino; 
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sspinsertar_cliente') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.sspinsertar_cliente; 
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_clientes_pordni') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_clientes_pordni; 
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_pago') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_pago; 
+ 
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_viaje_esp') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.spMostrar_viaje_esp; 
+
+
   
 --Dropeo las tablas
   
@@ -278,6 +292,9 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ciudad]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Ciudad];
 go
+
+
+
 --Dropeo el schema
 
 IF EXISTS (SELECT * FROM sys.schemas WHERE name = 'LA_BANDA_DE_GARRI')
@@ -1746,19 +1763,53 @@ where Habilitado = 1
 order by Rol.Id
 GO
 
---CREATE PROC LA_BANDA_DE_GARRI.spinsertar_usuario
---(
---	@CodigoPersona int output,
---    @Nombre varchar(50),
---	@Apellido varchar(50), 
---	@Dni int,
---	@Direccion varchar(50),
---	@Telefono int,
---	@Email varchar(50),
---	@FechaNac date,
---	@estado varchar(50)
---	)
---as
---insert into LA_BANDA_DE_GARRI.Usuario(Username,Apellido,Dni,Direccion,Telefono,Email,Fechanac,Estado)
---values(@Nombre,@Apellido,@Dni,@Direccion,@Telefono,@Email,@FechaNac,@estado)
---go
+
+---agregado por lucas 15/11- --
+
+CREATE PROC [LA_BANDA_DE_GARRI].["spinsertar_cliente"]
+(
+@codigo int output,
+@nombre varchar(50),
+@apellido varchar(50),
+@dni int,
+@direccion varchar(50),
+@telefono varchar(50),
+@email varchar(50),
+@fechanac datetime
+)
+as insert into  LA_BANDA_DE_GARRI.Cliente(Id,Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
+values (@codigo,@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechanac)
+go
+
+
+CREATE proc [LA_BANDA_DE_GARRI].["spmostrar_clientes_pordni"] 
+(@dni numeric(18,0))
+as
+select * from LA_BANDA_DE_GARRI.Cliente
+where @dni = dni
+order by Id
+go
+
+
+CREATE proc [LA_BANDA_DE_GARRI].["spinsertar_pago"]
+(
+@codigo int output,
+@pnr int,
+@id_viaje int,
+@id_cliente int,
+@importe numeric(18,2),
+@fechacompra datetime,
+@tipo_pago char)
+as insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+values (@pnr,@id_viaje,@id_cliente,@importe,@fechacompra,@tipo_pago)
+go
+
+
+CREATE proc [LA_BANDA_DE_GARRI].["spMostrar_viaje_esp"](
+@id int
+)
+as
+select * from LA_BANDA_DE_GARRI.Ruta_Aerea
+where Id = id 
+order by Id
+go

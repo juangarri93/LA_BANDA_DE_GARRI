@@ -23,7 +23,7 @@ namespace AerolineaFrba.CapaADO
                 flag = false;
             }
 
-            executeProcedure("spinsertar_cliente", 1, cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Direccion, cliente.Telefono, cliente.Email, cliente.FechaNac, flag, cliente.Rol);
+            executeProcedure("spinsertar_cliente", 1, cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Direccion, cliente.Telefono, cliente.Email, cliente.FechaNac);
 
         }
 
@@ -33,7 +33,7 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spmostrar_clientes");
         }
 
-        public static DataTable buscarClientePorDni(int dni)
+        public static DataTable buscarClientePorDni(decimal dni)
         {
             return retrieveDataTable("spmostrar_clientes_pordni", dni);
         }
