@@ -18,7 +18,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures 
-IF (OBJECT_ID(' LA_BANDA_DE_GARRI.speditar_Ruta') IS NOT NULL)
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_RolHabilitados') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spmostrar_RolHabilitados;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.speditar_Ruta') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.speditar_Ruta;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sptraerCiudad') IS NOT NULL)
@@ -1717,3 +1720,27 @@ update LA_BANDA_DE_GARRI.Ruta_Aerea
 		where Id = @id
 end
 go
+
+create proc LA_BANDA_DE_GARRI.spmostrar_RolHabilitados
+as
+select * from LA_BANDA_DE_GARRI.Rol
+where Habilitado = 1
+order by Rol.Id
+GO
+
+--CREATE PROC LA_BANDA_DE_GARRI.spinsertar_usuario
+--(
+--	@CodigoPersona int output,
+--    @Nombre varchar(50),
+--	@Apellido varchar(50), 
+--	@Dni int,
+--	@Direccion varchar(50),
+--	@Telefono int,
+--	@Email varchar(50),
+--	@FechaNac date,
+--	@estado varchar(50)
+--	)
+--as
+--insert into LA_BANDA_DE_GARRI.Usuario(Username,Apellido,Dni,Direccion,Telefono,Email,Fechanac,Estado)
+--values(@Nombre,@Apellido,@Dni,@Direccion,@Telefono,@Email,@FechaNac,@estado)
+--go

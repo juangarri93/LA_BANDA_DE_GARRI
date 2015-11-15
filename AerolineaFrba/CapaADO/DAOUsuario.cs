@@ -17,8 +17,18 @@ namespace AerolineaFrba.CapaADO
         
         public static void AgregarUsuario(Persona usuario)
         {
+            bool flag = false;
 
-            executeProcedure("spinsertar_usuario", 1, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Direccion, usuario.Telefono, usuario.Email, usuario.FechaNac, usuario.Estado);
+            if (usuario.Estado == "Habilitado")
+            {
+                flag = true;
+            }
+            else 
+            {
+                flag = false;
+            }
+
+            executeProcedure("spinsertar_usuario", 1, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Direccion, usuario.Telefono, usuario.Email, usuario.FechaNac, flag,usuario.Rol);
 
         }
 
@@ -48,6 +58,11 @@ namespace AerolineaFrba.CapaADO
               executeProcedure("spbaja_usuario", Dni);
         }
 
+
+        public static DataTable getPerfilRol()
+        {
+            return retrieveDataTable("spmostrar_RolHabilitados");
+        }
     }
     
 

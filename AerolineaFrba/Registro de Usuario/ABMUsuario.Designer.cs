@@ -46,22 +46,23 @@
             // btnBaja
             // 
             this.btnBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnBaja.Location = new System.Drawing.Point(92, 171);
+            this.btnBaja.Location = new System.Drawing.Point(92, 211);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(166, 63);
             this.btnBaja.TabIndex = 11;
             this.btnBaja.Text = "Baja / Modificación";
             this.btnBaja.UseVisualStyleBackColor = true;
+            this.btnBaja.Visible = false;
             this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
             // 
             // btnAlta
             // 
             this.btnAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnAlta.Location = new System.Drawing.Point(92, 84);
+            this.btnAlta.Location = new System.Drawing.Point(92, 124);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(166, 63);
             this.btnAlta.TabIndex = 10;
-            this.btnAlta.Text = "Alta";
+            this.btnAlta.Text = "Registrar Usuarios";
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
@@ -74,7 +75,7 @@
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.lbTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ABMUsuario";
             this.Text = "ABMAltaUsuario";
             this.Load += new System.EventHandler(this.ABMUsuario_Load);

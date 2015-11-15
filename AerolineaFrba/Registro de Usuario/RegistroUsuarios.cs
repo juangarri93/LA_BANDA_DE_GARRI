@@ -90,7 +90,7 @@ namespace AerolineaFrba.Registro_de_Usuario
         private Persona CargarUsuario()
         {
              
-            return new Persona(1, textNombre.Text, textApellido.Text, Convert.ToInt32(textDNI.Text), textDir.Text, Convert.ToInt32(textTel.Text), textMail.Text, dtpFechaNac.Value);
+            return new Persona(1, textNombre.Text, textApellido.Text, Convert.ToInt32(textDNI.Text), textDir.Text, Convert.ToInt32(textTel.Text), textMail.Text, dtpFechaNac.Value,cbPerfil.Text);
 
         }
 
@@ -104,6 +104,12 @@ namespace AerolineaFrba.Registro_de_Usuario
             textTel.Text = "";
 
 
+        }
+
+        private void RegistroUsuarios_Load(object sender, EventArgs e)
+        {
+            cbPerfil.DataSource = DAOUsuario.getPerfilRol().DefaultView;
+            cbPerfil.DisplayMember = "Rol";
         }
 
         
