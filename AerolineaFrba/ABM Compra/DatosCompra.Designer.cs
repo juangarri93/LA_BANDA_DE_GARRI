@@ -45,16 +45,16 @@
             this.lbTitulo = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.cmbTC_Cuotas = new System.Windows.Forms.ComboBox();
-            this.cmbTC_Tipo = new System.Windows.Forms.ComboBox();
-            this.txtTC_Venc = new System.Windows.Forms.TextBox();
-            this.txtTC_Numero = new System.Windows.Forms.TextBox();
+            this.cmbCuotas = new System.Windows.Forms.ComboBox();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.txtVenc = new System.Windows.Forms.TextBox();
+            this.txtNum = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.rdbTarjeta = new System.Windows.Forms.RadioButton();
-            this.rdbEfectivo = new System.Windows.Forms.RadioButton();
+            this.rbTarjeta = new System.Windows.Forms.RadioButton();
+            this.rbEfectivo = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
@@ -218,39 +218,39 @@
             this.dtFechaNac.Size = new System.Drawing.Size(320, 22);
             this.dtFechaNac.TabIndex = 37;
             // 
-            // cmbTC_Cuotas
+            // cmbCuotas
             // 
-            this.cmbTC_Cuotas.FormattingEnabled = true;
-            this.cmbTC_Cuotas.Location = new System.Drawing.Point(127, 553);
-            this.cmbTC_Cuotas.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTC_Cuotas.Name = "cmbTC_Cuotas";
-            this.cmbTC_Cuotas.Size = new System.Drawing.Size(132, 24);
-            this.cmbTC_Cuotas.TabIndex = 60;
+            this.cmbCuotas.FormattingEnabled = true;
+            this.cmbCuotas.Location = new System.Drawing.Point(137, 553);
+            this.cmbCuotas.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbCuotas.Name = "cmbCuotas";
+            this.cmbCuotas.Size = new System.Drawing.Size(372, 24);
+            this.cmbCuotas.TabIndex = 60;
             // 
-            // cmbTC_Tipo
+            // cmbTipo
             // 
-            this.cmbTC_Tipo.FormattingEnabled = true;
-            this.cmbTC_Tipo.Location = new System.Drawing.Point(127, 521);
-            this.cmbTC_Tipo.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTC_Tipo.Name = "cmbTC_Tipo";
-            this.cmbTC_Tipo.Size = new System.Drawing.Size(132, 24);
-            this.cmbTC_Tipo.TabIndex = 59;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(137, 521);
+            this.cmbTipo.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(372, 24);
+            this.cmbTipo.TabIndex = 59;
             // 
-            // txtTC_Venc
+            // txtVenc
             // 
-            this.txtTC_Venc.Location = new System.Drawing.Point(127, 488);
-            this.txtTC_Venc.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTC_Venc.Name = "txtTC_Venc";
-            this.txtTC_Venc.Size = new System.Drawing.Size(132, 22);
-            this.txtTC_Venc.TabIndex = 58;
+            this.txtVenc.Location = new System.Drawing.Point(137, 491);
+            this.txtVenc.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVenc.Name = "txtVenc";
+            this.txtVenc.Size = new System.Drawing.Size(372, 22);
+            this.txtVenc.TabIndex = 58;
             // 
-            // txtTC_Numero
+            // txtNum
             // 
-            this.txtTC_Numero.Location = new System.Drawing.Point(127, 456);
-            this.txtTC_Numero.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTC_Numero.Name = "txtTC_Numero";
-            this.txtTC_Numero.Size = new System.Drawing.Size(132, 22);
-            this.txtTC_Numero.TabIndex = 57;
+            this.txtNum.Location = new System.Drawing.Point(137, 456);
+            this.txtNum.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNum.Name = "txtNum";
+            this.txtNum.Size = new System.Drawing.Size(372, 22);
+            this.txtNum.TabIndex = 57;
             // 
             // label13
             // 
@@ -292,29 +292,29 @@
             this.label8.TabIndex = 53;
             this.label8.Text = "Numero";
             // 
-            // rdbTarjeta
+            // rbTarjeta
             // 
-            this.rdbTarjeta.AutoSize = true;
-            this.rdbTarjeta.Location = new System.Drawing.Point(31, 412);
-            this.rdbTarjeta.Margin = new System.Windows.Forms.Padding(4);
-            this.rdbTarjeta.Name = "rdbTarjeta";
-            this.rdbTarjeta.Size = new System.Drawing.Size(74, 21);
-            this.rdbTarjeta.TabIndex = 52;
-            this.rdbTarjeta.TabStop = true;
-            this.rdbTarjeta.Text = "Tarjeta";
-            this.rdbTarjeta.UseVisualStyleBackColor = true;
+            this.rbTarjeta.AutoSize = true;
+            this.rbTarjeta.Location = new System.Drawing.Point(189, 412);
+            this.rbTarjeta.Margin = new System.Windows.Forms.Padding(4);
+            this.rbTarjeta.Name = "rbTarjeta";
+            this.rbTarjeta.Size = new System.Drawing.Size(74, 21);
+            this.rbTarjeta.TabIndex = 52;
+            this.rbTarjeta.TabStop = true;
+            this.rbTarjeta.Text = "Tarjeta";
+            this.rbTarjeta.UseVisualStyleBackColor = true;
             // 
-            // rdbEfectivo
+            // rbEfectivo
             // 
-            this.rdbEfectivo.AutoSize = true;
-            this.rdbEfectivo.Location = new System.Drawing.Point(345, 412);
-            this.rdbEfectivo.Margin = new System.Windows.Forms.Padding(4);
-            this.rdbEfectivo.Name = "rdbEfectivo";
-            this.rdbEfectivo.Size = new System.Drawing.Size(79, 21);
-            this.rdbEfectivo.TabIndex = 51;
-            this.rdbEfectivo.TabStop = true;
-            this.rdbEfectivo.Text = "Efectivo";
-            this.rdbEfectivo.UseVisualStyleBackColor = true;
+            this.rbEfectivo.AutoSize = true;
+            this.rbEfectivo.Location = new System.Drawing.Point(299, 412);
+            this.rbEfectivo.Margin = new System.Windows.Forms.Padding(4);
+            this.rbEfectivo.Name = "rbEfectivo";
+            this.rbEfectivo.Size = new System.Drawing.Size(79, 21);
+            this.rbEfectivo.TabIndex = 51;
+            this.rbEfectivo.TabStop = true;
+            this.rbEfectivo.Text = "Efectivo";
+            this.rbEfectivo.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -364,16 +364,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 677);
-            this.Controls.Add(this.cmbTC_Cuotas);
-            this.Controls.Add(this.cmbTC_Tipo);
-            this.Controls.Add(this.txtTC_Venc);
-            this.Controls.Add(this.txtTC_Numero);
+            this.Controls.Add(this.cmbCuotas);
+            this.Controls.Add(this.cmbTipo);
+            this.Controls.Add(this.txtVenc);
+            this.Controls.Add(this.txtNum);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.rdbTarjeta);
-            this.Controls.Add(this.rdbEfectivo);
+            this.Controls.Add(this.rbTarjeta);
+            this.Controls.Add(this.rbEfectivo);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancelar);
@@ -422,16 +422,16 @@
         private System.Windows.Forms.Label lbTitulo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtFechaNac;
-        private System.Windows.Forms.ComboBox cmbTC_Cuotas;
-        private System.Windows.Forms.ComboBox cmbTC_Tipo;
-        private System.Windows.Forms.TextBox txtTC_Venc;
-        private System.Windows.Forms.TextBox txtTC_Numero;
+        private System.Windows.Forms.ComboBox cmbCuotas;
+        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.TextBox txtVenc;
+        private System.Windows.Forms.TextBox txtNum;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RadioButton rdbTarjeta;
-        private System.Windows.Forms.RadioButton rdbEfectivo;
+        private System.Windows.Forms.RadioButton rbTarjeta;
+        private System.Windows.Forms.RadioButton rbEfectivo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnConfirmar;

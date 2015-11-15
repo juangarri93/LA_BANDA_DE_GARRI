@@ -18,10 +18,11 @@ namespace AerolineaFrba.ABM_Compra
 {
     public partial class DatosCompra : Form
     {
-        private DataTable usuarios;
+        private DataTable clientes;
         private  Compra compraActual;
-
-        private List<Persona> UsuariosRegistrados;
+        private Persona clienteActual;
+        private bool existe=false;
+        private List<Persona> ClientesRegistrados;
 
         public DatosCompra(Compra compra)
         {
@@ -42,6 +43,7 @@ namespace AerolineaFrba.ABM_Compra
 
         public void Autocompletar(Persona cliente)
         {
+            existe = true;
             txtNombre.Text = cliente.Nombre;
             txtApellido.Text = cliente.Apellido;
             txtDni.Text = cliente.Dni.ToString();
@@ -126,13 +128,15 @@ namespace AerolineaFrba.ABM_Compra
         {
             if (EsNumero(this.txtDni.Text))
             {
-                usuarios=DAOUsuario.buscarUsuario(this.txtDni.Text);
-                UsuariosRegistrados = this.crearListaDeUsuarios();
+                clientes = DAOCliente.buscarClientePorDni(Convert.ToInt32(this.txtDni.Text));
+                ClientesRegistrados = this.crearListaDeUsuarios();
 
-                if (!IsEmpty(UsuariosRegistrados))
+                if (!IsEmpty(ClientesRegistrados))
                 {
-                    Autocompletar(UsuariosRegistrados.ElementAt(0));
+                    clienteActual = ClientesRegistrados.ElementAt(0);
+                    Autocompletar(clienteActual);
                 }
+                
 
             }
 
@@ -147,9 +151,9 @@ namespace AerolineaFrba.ABM_Compra
 
         private List<Persona> crearListaDeUsuarios()
         {
-            List<Persona> lista = new List<Persona>(usuarios.Rows.Count);
+            List<Persona> lista = new List<Persona>(clientes.Rows.Count);
 
-            foreach (DataRow row in usuarios.Rows)
+            foreach (DataRow row in clientes.Rows)
             {
                 //la talba premios viene asi: int id,string nombre, int stock, int costomillas
                 var values = row.ItemArray;
@@ -178,6 +182,7 @@ namespace AerolineaFrba.ABM_Compra
         {
             try
             {
+                DAOCliente.AgregarCliente(clienteActual);
                 DAOCompra.AgregarCompra(compraActual);
                 DAOPago.AgregarPago(CrearPago());
                 MessageBox.Show("Felicitaciones has realizado tu compra");
@@ -195,8 +200,63 @@ namespace AerolineaFrba.ABM_Compra
         private Pago CrearPago()
         {
             Pago pago = new Pago();
+            decimal precioBasePasaje=0;
+            decimal precioBaseKG=0;
+            int id_usuario= 0;
 
-            //llenar campos
+                /*
+            int _id;
+            int _pnr;
+            int _id_viaje;
+            int _id_cliente;
+            int _importe;
+            DateTime _fecha_compra;
+            char _tipo_pago;*/
+
+
+            DataTable viaje = DAOViaje.getRutaAereaEspecifica(pago.Id_viaje);
+            if(viaje!=null){
+
+                DataRow rowviaje = viaje.Rows[0];
+                int id_ruta = rowviaje.Field<int>("Codigo_Ruta_Aerea");
+                DataTable ruta = DAORuta.MostrarRutaEspecifica(id_ruta);
+                if (ruta != null)
+                {
+                    DataRow rowruta = ruta.Rows[0];
+                    precioBasePasaje = rowruta.Field<decimal>("Precio_base_pasaje");
+                    precioBaseKG = rowruta.Field<decimal>("Precio_base_kg");
+
+                }
+                
+            }
+          
+            pago.Pnr = Convert.ToInt32(txtNum.Text);
+            pago.Id_viaje = compraActual.ViajeSeleccionado;
+            pago.Importe =(( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes))+ (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG)));
+           
+            DataTable usuario = DAOCliente.buscarClientePorDni(compraActual.Dni);
+            if (usuario != null)
+            {
+                DataRow rowsuario = usuario.Rows[0];
+                id_usuario = rowsuario.Field<int>("Id");
+                
+            }
+
+            pago.Id_cliente = id_usuario;
+            pago.Fecha_compra = DateTime.Now;
+            bool pagoT = rbTarjeta.Checked ? true : false;
+
+
+
+            bool pagoEfe = rbEfectivo.Checked ? true : false;
+
+
+            if (pagoT)
+                pago.Tipo_pago = 'T';
+            else if (pagoEfe)
+                pago.Tipo_pago = 'E';
+
+
             return pago;
         }
  

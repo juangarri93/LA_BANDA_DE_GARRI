@@ -28,6 +28,11 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spmostrar_Ruta_Aerea");
         }
 
+        public static DataTable MostrarRutaEspecifica(int id)
+        {
+            return retrieveDataTable("spmostrar_Ruta_Aerea_Esp",id);
+        }
+
        public static void EditarRuta(Ruta ruta)
         {
 

@@ -90,7 +90,6 @@ namespace AerolineaFrba.Abm_Ciudad
             this.txtCodigo.Text = Convert.ToString(this.dataListadoCiudades.CurrentRow.Cells["Id"].Value);
             this.txtNomb.Text = Convert.ToString(this.dataListadoCiudades.CurrentRow.Cells["Nombre"].Value);
    
-            this.tabControl1.SelectedIndex = 1;
         }
  
 

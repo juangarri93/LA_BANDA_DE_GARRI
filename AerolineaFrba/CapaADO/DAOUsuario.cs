@@ -38,9 +38,9 @@ namespace AerolineaFrba.CapaADO
               return retrieveDataTable("spmostrar_usuario");
         }
 
-        public static DataTable buscarUsuario(string textoBuscar)
+        public static DataTable buscarUsuarioPorDni(int dni)
         {
-            return retrieveDataTable("spbuscar_usuario", textoBuscar);
+            return retrieveDataTable("spbuscar_usuario_pordni", dni);
         }
 
         public static void EditarUsuario(Persona usuario)

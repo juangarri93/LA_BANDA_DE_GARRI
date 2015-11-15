@@ -148,9 +148,11 @@
     <Compile Include="CapaADO\DAOAerolinea.cs" />
     <Compile Include="CapaADO\DAOButaca.cs" />
     <Compile Include="CapaADO\DAOCiudad.cs" />
+    <Compile Include="CapaADO\DAOCliente.cs" />
     <Compile Include="CapaADO\DAOCompra.cs" />
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
     <Compile Include="CapaADO\DAOMillas.cs" />
+    <Compile Include="CapaADO\DAOPago.cs" />
     <Compile Include="CapaADO\DAOPremio.cs" />
     <Compile Include="CapaADO\DAORol.cs" />
     <Compile Include="CapaADO\DAORuta.cs" />
@@ -168,6 +170,7 @@
     <Compile Include="ConstructorDeClases\Ciudad.cs" />
     <Compile Include="ConstructorDeClases\Compra.cs" />
     <Compile Include="ConstructorDeClases\Millas.cs" />
+    <Compile Include="ConstructorDeClases\Pago.cs" />
     <Compile Include="ConstructorDeClases\Persona.cs" />
     <Compile Include="ConstructorDeClases\Premio.cs" />
     <Compile Include="ConstructorDeClases\Rol.cs" />
