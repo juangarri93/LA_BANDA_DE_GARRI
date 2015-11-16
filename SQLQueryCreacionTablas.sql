@@ -2,12 +2,7 @@ USE [GD2C2015]
 GO
 
 --Dropeo las functions
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible') IS NOT NULL)
-  DROP FUNCTION LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible;
-  
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_servicio_es_valido') IS NOT NULL)
-  DROP FUNCTION LA_BANDA_DE_GARRI.fn_servicio_es_valido;
-  
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_validar_stock') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_validar_stock;
 
@@ -899,75 +894,59 @@ GO
 --ABM AERONAVES
 
 
-CREATE function [LA_BANDA_DE_GARRI].[fn_aeronave_esta_disponible](@aeronave VARCHAR(255), @fecha_salida DATETIME) RETURNS INT as
-BEGIN
-	DECLARE @cantidad INT;
-	
-	select @cantidad = count(*) 
-	from LA_BANDA_DE_GARRI.Viaje
-	where Id_Aeronave = (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave)
-	and Fecha_salida = @fecha_salida
-	
-		if(@cantidad <> 0)
-		begin
-			return 0
-		end
-	return 1
 
-END
-
-create function LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea NUMERIC(18,0),@aeronave VARCHAR(255))RETURNS INT as
-begin
-	
-	DECLARE @tipo_servicio_ruta int
-	DECLARE @tipo_servicio_aeronave int;
-	
-	set @tipo_servicio_ruta = (select Id_Tipo_Servicio from LA_BANDA_DE_GARRI.Ruta_aerea
-	where Codigo = @ruta_aerea)
-	
-	set @tipo_servicio_aeronave = (select Id_Tipo_Servicio
-	from LA_BANDA_DE_GARRI.Aeronave
-	where Matricula = @aeronave)
-	
-	if(@tipo_servicio_ruta = @tipo_servicio_aeronave)
-		begin
-			return 1
-		end
-	return 0
-end
-
-GO--GENERAR VIAJE --actualizado 15/11
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@Id int output,
+--GENERAR VIAJE --actualizado 15/11
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@id_viaje int output,
 													@ruta_aerea numeric(18,0), 
 													@aeronave VARCHAR(255), 
 													@fecha_salida DATETIME, 
 													@fecha_llegada DATETIME,
-													@fecha_llegada_estimada DATETIME) AS
+													@fecha_llegada_estimada DATETIME)
+													 AS
+
 BEGIN
 	DECLARE @id_aeronave INT;
 
-	set @id_aeronave= (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave)
+	 select @id_aeronave = Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave
 	
 	DECLARE @id_ruta INT;
-	set @id_ruta= (select Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Codigo = @ruta_aerea)
+	select  @id_ruta = Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Codigo = @ruta_aerea
 	
-	if(LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea, @aeronave) = 0)
+	DECLARE @tipo_servicio_ruta int
+	DECLARE @tipo_servicio_aeronave int;
+	
+	select @tipo_servicio_ruta =  Id_Tipo_Servicio from LA_BANDA_DE_GARRI.Ruta_aerea
+	where Codigo = @ruta_aerea 
+	
+	select @tipo_servicio_aeronave = Id_Tipo_Servicio
+	from LA_BANDA_DE_GARRI.Aeronave
+	where Matricula = @aeronave 
+	
+	if(@tipo_servicio_ruta <> @tipo_servicio_aeronave)
 		begin
-			--set @Id = 0 --'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
-			return	0
+			return(0)--'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
+			 
 		end
 	
-	if(LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave, @fecha_salida) = 0)
-		begin
-			--set @Id = 1 --'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
-			return 0
-		end
+		DECLARE @cantidad INT;
+	
+		select @cantidad = count(*) 
+		from LA_BANDA_DE_GARRI.Viaje
+		where Id_Aeronave = (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave)
+		and Fecha_salida = @fecha_salida 
+	
+		if(@cantidad = 0)
+			begin
+				return(1) --'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
+			
+			end
 		
-	else
-		begin
-			insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
-			values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
-		 end
+	 
+	insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
+	return(2)
+		  
+	 
 END
 go
 

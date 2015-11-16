@@ -44,9 +44,7 @@ namespace AerolineaFrba.CapaADO
 
         public static int AgregarViaje(Viaje viaje)
         {
-
-            int resultado = 2;
-            return executeProcedureWithReturnValue("sp_generar_viaje",1, viaje.Ruta, viaje.Aeronave, viaje.FechaSalida, viaje.FechaLlegada, viaje.FechaLlegadaEstimada, resultado);
+             return executeProcedureWithReturnValue("sp_generar_viaje",viaje.Id, viaje.Ruta, viaje.Aeronave, viaje.FechaSalida, viaje.FechaLlegada, viaje.FechaLlegadaEstimada);
               
         }
 
