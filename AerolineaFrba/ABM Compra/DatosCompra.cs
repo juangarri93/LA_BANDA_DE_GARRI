@@ -214,7 +214,7 @@ namespace AerolineaFrba.ABM_Compra
             char _tipo_pago;*/
 
 
-            DataTable viaje = DAOViaje.getRutaAereaEspecifica(pago.Id_viaje);
+            DataTable viaje = DAOViaje.getViajeEspecifico(pago.Id_viaje);
             if(viaje!=null){
 
                 DataRow rowviaje = viaje.Rows[0];

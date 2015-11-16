@@ -42,11 +42,12 @@ namespace AerolineaFrba.CapaADO
            // return retrieveDataTable("spbuscar_fechaOrigenDestino",fecha,origen ,destino );
         }
 
-        public static void AgregarViaje(Viaje viaje)
+        public static int AgregarViaje(Viaje viaje)
         {
 
-            executeProcedure("sp_generar_viaje",viaje.Ruta, viaje.Aeronave, viaje.FechaSalida, viaje.FechaLlegada, viaje.FechaLlegadaEstimada,  viaje.Habilitado);
-
+            int resultado = 2;
+            return executeProcedureWithReturnValue("sp_generar_viaje",1, viaje.Ruta, viaje.Aeronave, viaje.FechaSalida, viaje.FechaLlegada, viaje.FechaLlegadaEstimada, resultado);
+              
         }
 
 

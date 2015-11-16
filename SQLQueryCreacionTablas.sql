@@ -898,80 +898,79 @@ GO
 
 --ABM AERONAVES
 
-create function LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea NUMERIC(18,0),@aeronave NVARCHAR(255))RETURNS INT as
-begin
-	
-	DECLARE @tipo_servicio_ruta NVARCHAR(255);
-	DECLARE @tipo_servicio_aeronave NVARCHAR(255);
-	
-	select @tipo_servicio_ruta = Id_Tipo_Servicio 
-	from LA_BANDA_DE_GARRI.Ruta_aerea
-	where Codigo = @ruta_aerea
-	
-	select @tipo_servicio_aeronave = Id_Tipo_Servicio
-	from LA_BANDA_DE_GARRI.Aeronave
-	where matricula = @aeronave
-	
-	if(@tipo_servicio_ruta <> @tipo_servicio_aeronave)
-		begin
-			return 0;
-		end;
-	return 1;
-end
 
-GO
-
-
-create function LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave NVARCHAR(255), @fecha_salida DATETIME) RETURNS INT as
+CREATE function [LA_BANDA_DE_GARRI].[fn_aeronave_esta_disponible](@aeronave VARCHAR(255), @fecha_salida DATETIME) RETURNS INT as
 BEGIN
 	DECLARE @cantidad INT;
 	
 	select @cantidad = count(*) 
 	from LA_BANDA_DE_GARRI.Viaje
-	where Id_Aeronave = @aeronave
+	where Id_Aeronave = (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave)
 	and Fecha_salida = @fecha_salida
 	
 		if(@cantidad <> 0)
 		begin
-			return 0;
-		end;
-	return 1;
+			return 0
+		end
+	return 1
 
 END
 
-GO
+create function LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea NUMERIC(18,0),@aeronave VARCHAR(255))RETURNS INT as
+begin
+	
+	DECLARE @tipo_servicio_ruta int
+	DECLARE @tipo_servicio_aeronave int;
+	
+	set @tipo_servicio_ruta = (select Id_Tipo_Servicio from LA_BANDA_DE_GARRI.Ruta_aerea
+	where Codigo = @ruta_aerea)
+	
+	set @tipo_servicio_aeronave = (select Id_Tipo_Servicio
+	from LA_BANDA_DE_GARRI.Aeronave
+	where Matricula = @aeronave)
+	
+	if(@tipo_servicio_ruta = @tipo_servicio_aeronave)
+		begin
+			return 1
+		end
+	return 0
+end
 
-
---GENERAR VIAJE
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@ruta_aerea numeric(18,0), 
-													@aeronave NVARCHAR(255), 
+GO--GENERAR VIAJE --actualizado 15/11
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@Id int output,
+													@ruta_aerea numeric(18,0), 
+													@aeronave VARCHAR(255), 
 													@fecha_salida DATETIME, 
 													@fecha_llegada DATETIME,
-													@fecha_llegada_estimada DATETIME,
-													@resultado varchar(100) output) AS
+													@fecha_llegada_estimada DATETIME) AS
 BEGIN
 	DECLARE @id_aeronave INT;
-	set id_aeronave = (select Id from LA_BANDA_DE_GARRI.Aeronaves 
-	where Matricula = @aeronave)	
+
+	set @id_aeronave= (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave)
+	
+	DECLARE @id_ruta INT;
+	set @id_ruta= (select Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Codigo = @ruta_aerea)
 	
 	if(LA_BANDA_DE_GARRI.fn_servicio_es_valido(@ruta_aerea, @aeronave) = 0)
 		begin
-			set @resultado = 'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
-			return	
+			--set @Id = 0 --'EL SERVICIO DE LA RUTA AEREA NO COINCIDE CON EL DE LA AERONAVE'
+			return	0
 		end
 	
 	if(LA_BANDA_DE_GARRI.fn_aeronave_esta_disponible(@aeronave, @fecha_salida) = 0)
 		begin
-			set @resultado = 'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
-			return	
+			--set @Id = 1 --'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
+			return 0
 		end
 		
-	
-	insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
-	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @aeronave, @ruta_aerea)
-	
+	else
+		begin
+			insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+			values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
+		 end
 END
 go
+
 
 --REGISTRO LLEGADA A DESTINO
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@fecha_llegada DATETIME, @aeronave NVARCHAR(255), @origen int, @destino int) AS

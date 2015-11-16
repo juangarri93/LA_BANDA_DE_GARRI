@@ -85,9 +85,10 @@
             // 
             // cbRutaAerea
             // 
+            this.cbRutaAerea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRutaAerea.FormattingEnabled = true;
             this.cbRutaAerea.Location = new System.Drawing.Point(332, 290);
-            this.cbRutaAerea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRutaAerea.Margin = new System.Windows.Forms.Padding(4);
             this.cbRutaAerea.Name = "cbRutaAerea";
             this.cbRutaAerea.Size = new System.Drawing.Size(200, 24);
             this.cbRutaAerea.TabIndex = 71;
@@ -106,7 +107,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(69, 418);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(176, 42);
             this.btnCancelar.TabIndex = 73;
@@ -117,7 +118,7 @@
             // btnGenerarViaje
             // 
             this.btnGenerarViaje.Location = new System.Drawing.Point(315, 418);
-            this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
             this.btnGenerarViaje.Size = new System.Drawing.Size(176, 42);
             this.btnGenerarViaje.TabIndex = 75;
@@ -137,12 +138,14 @@
             // 
             // cbAeronave
             // 
+            this.cbAeronave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAeronave.FormattingEnabled = true;
             this.cbAeronave.Location = new System.Drawing.Point(332, 351);
-            this.cbAeronave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAeronave.Margin = new System.Windows.Forms.Padding(4);
             this.cbAeronave.Name = "cbAeronave";
             this.cbAeronave.Size = new System.Drawing.Size(200, 24);
             this.cbAeronave.TabIndex = 80;
+            this.cbAeronave.SelectedIndexChanged += new System.EventHandler(this.cbAeronave_SelectedIndexChanged);
             // 
             // dtFechaSalida
             // 
@@ -204,7 +207,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GenerarViaje";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.GenerarViaje_Load);
