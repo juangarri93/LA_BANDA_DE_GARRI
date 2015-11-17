@@ -47,6 +47,7 @@
             // 
             // cmbDestino
             // 
+            this.cmbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDestino.FormattingEnabled = true;
             this.cmbDestino.Location = new System.Drawing.Point(29, 185);
             this.cmbDestino.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -83,6 +84,7 @@
             // 
             // cmbOrigen
             // 
+            this.cmbOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrigen.FormattingEnabled = true;
             this.cmbOrigen.Location = new System.Drawing.Point(29, 114);
             this.cmbOrigen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

@@ -33,11 +33,10 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spmostrar_Viajes");
         }
 
-        public static DataTable Buscar(DateTime fecha, string origen1, string destino1)
+        public static DataTable Buscar(DateTime fecha, int origen1, int destino1)
         {
-            DataTable ro = DAOCiudad.buscarCiudad(origen1);
-            DataTable rd = DAOCiudad.buscarCiudad(destino1);
-            return retrieveDataTable("spbuscar_fechaOrigenDestino", fecha, ro.Rows[0].Field<int>("Id"), rd.Rows[0].Field<int>("Id"));
+
+            return retrieveDataTable("spbuscar_fechaOrigenDestino", fecha, origen1, destino1);
              
            // return retrieveDataTable("spbuscar_fechaOrigenDestino",fecha,origen ,destino );
         }

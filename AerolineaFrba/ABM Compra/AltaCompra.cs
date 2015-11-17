@@ -102,9 +102,22 @@ namespace AerolineaFrba.Abm_Compra
             {
                 try
                 {
-                     
-                    
-                   this.dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value,cmbOrigen.SelectedText,cmbDestino.SelectedText);
+                    DataTable ciudadorigen = DAOCiudad.buscarCiudad(this.cmbOrigen.Text);
+                    DataTable ciudaddestino = DAOCiudad.buscarCiudad(this.cmbDestino.Text);
+
+                    DataRow row = ciudadorigen.Rows[0];
+                    Ciudad o = new Ciudad();
+                    o.IdentificadorCiudad = Convert.ToInt32(row["Id"]);
+                    o.Nombre = (string)row["Nombre"];
+                    o.Habilitado = (bool)row["Habilitada"];
+
+                    DataRow row2 = ciudaddestino.Rows[0];
+                    Ciudad o2 = new Ciudad();
+                    o2.IdentificadorCiudad = Convert.ToInt32(row2["Id"]);
+                    o2.Nombre = (string)row2["Nombre"];
+                    o2.Habilitado = (bool)row2["Habilitada"];
+
+                    dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value,  o.IdentificadorCiudad,  o2.IdentificadorCiudad);
 
                 }
                 catch (Exception ex)
