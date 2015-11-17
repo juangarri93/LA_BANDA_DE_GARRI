@@ -894,7 +894,6 @@ GO
 --ABM AERONAVES
 
 
-
 --GENERAR VIAJE --actualizado 15/11
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@id_viaje int output,
 													@ruta_aerea numeric(18,0), 
@@ -941,14 +940,24 @@ BEGIN
 			
 			end
 		
-	 
-	insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+	declare @existe_id int
+	 select @existe_id = Id from LA_BANDA_DE_GARRI.Viaje where
+	 Fecha_salida = @fecha_salida and Fecha_llegada = @fecha_llegada and Fecha_llegada_estimada = @fecha_llegada_estimada and Id_Aeronave = @id_aeronave and Codigo_Ruta_Aerea = @id_ruta
+
+	 if(@existe_id is null)
+	 begin
+	 insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
 	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
 	return(2)
-		  
+	end
+	else
+	begin
+	return(1)
+	end
 	 
 END
 go
+
 
 
 --REGISTRO LLEGADA A DESTINO
@@ -1031,7 +1040,8 @@ BEGIN
 	values(@dni, @producto, @cant, @fecha_canje)
 
 END
-GO
+GO 
+
 
 create proc LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino(
 @FechaSalida datetime,
@@ -1039,7 +1049,8 @@ create proc LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino(
 @CiudadDestino int
 )
 as
-begin  
+begin 
+ 
 declare @idCodigo int
  select @idCodigo = Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Ruta_Aerea.Habilitada ='True' 
 select * from LA_BANDA_DE_GARRI.Viaje 
@@ -1047,6 +1058,7 @@ where Fecha_salida = @FechaSalida and Codigo_Ruta_Aerea = @idCodigo
 order by LA_BANDA_DE_GARRI.Viaje.Id
 end
 go
+
 
 
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave

@@ -23,7 +23,8 @@ namespace AerolineaFrba.Abm_Compra
         {
             this.compraActual = new Compra();
             InitializeComponent();
-
+            this.dtpFechaViaje.Format = DateTimePickerFormat.Custom;
+            this.dtpFechaViaje.CustomFormat = "dd-MM-yy";
             cmbOrigen.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DataSource = DAOCiudad.Mostrar();
             cmbDestino.DisplayMember = "Nombre";

@@ -20,6 +20,8 @@ namespace AerolineaFrba.Generacion_Viaje
 
         public GenerarViaje()
         {
+            
+ 
             InitializeComponent();
           
         }

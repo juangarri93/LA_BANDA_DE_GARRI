@@ -94,6 +94,7 @@
             // 
             // dtpFechaViaje
             // 
+            this.dtpFechaViaje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaViaje.Location = new System.Drawing.Point(29, 52);
             this.dtpFechaViaje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpFechaViaje.Name = "dtpFechaViaje";
@@ -117,6 +118,7 @@
             this.dgvCompra.Location = new System.Drawing.Point(355, 20);
             this.dgvCompra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCompra.Name = "dgvCompra";
+            this.dgvCompra.ReadOnly = true;
             this.dgvCompra.RowTemplate.Height = 24;
             this.dgvCompra.Size = new System.Drawing.Size(683, 553);
             this.dgvCompra.TabIndex = 20;

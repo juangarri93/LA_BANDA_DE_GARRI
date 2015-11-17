@@ -66,10 +66,10 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 225);
+            this.label3.Location = new System.Drawing.Point(16, 210);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(309, 37);
+            this.label3.Size = new System.Drawing.Size(177, 65);
             this.label3.TabIndex = 67;
             this.label3.Text = "Fecha Llegada Estimada :";
             // 
@@ -87,7 +87,7 @@
             // 
             this.cbRutaAerea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRutaAerea.FormattingEnabled = true;
-            this.cbRutaAerea.Location = new System.Drawing.Point(332, 290);
+            this.cbRutaAerea.Location = new System.Drawing.Point(187, 290);
             this.cbRutaAerea.Margin = new System.Windows.Forms.Padding(4);
             this.cbRutaAerea.Name = "cbRutaAerea";
             this.cbRutaAerea.Size = new System.Drawing.Size(200, 24);
@@ -97,7 +97,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(193, 23);
+            this.label6.Location = new System.Drawing.Point(115, 23);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(173, 37);
@@ -106,7 +106,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(69, 418);
+            this.btnCancelar.Location = new System.Drawing.Point(21, 418);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(176, 42);
@@ -117,7 +117,7 @@
             // 
             // btnGenerarViaje
             // 
-            this.btnGenerarViaje.Location = new System.Drawing.Point(315, 418);
+            this.btnGenerarViaje.Location = new System.Drawing.Point(211, 418);
             this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
             this.btnGenerarViaje.Size = new System.Drawing.Size(176, 42);
@@ -140,7 +140,7 @@
             // 
             this.cbAeronave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAeronave.FormattingEnabled = true;
-            this.cbAeronave.Location = new System.Drawing.Point(332, 351);
+            this.cbAeronave.Location = new System.Drawing.Point(187, 351);
             this.cbAeronave.Margin = new System.Windows.Forms.Padding(4);
             this.cbAeronave.Name = "cbAeronave";
             this.cbAeronave.Size = new System.Drawing.Size(200, 24);
@@ -149,42 +149,30 @@
             // 
             // dtFechaSalida
             // 
-            this.dtFechaSalida.Location = new System.Drawing.Point(332, 100);
-            this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(4);
-            this.dtFechaSalida.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtFechaSalida.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtFechaSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFechaSalida.Location = new System.Drawing.Point(240, 95);
+            this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaSalida.Name = "dtFechaSalida";
-            this.dtFechaSalida.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtFechaSalida.ShowUpDown = true;
-            this.dtFechaSalida.Size = new System.Drawing.Size(200, 22);
-            this.dtFechaSalida.TabIndex = 83;
-            this.dtFechaSalida.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtFechaSalida.Size = new System.Drawing.Size(110, 22);
+            this.dtFechaSalida.TabIndex = 86;
             // 
             // dtFechaLLegada
             // 
-            this.dtFechaLLegada.Location = new System.Drawing.Point(332, 165);
-            this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(4);
-            this.dtFechaLLegada.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtFechaLLegada.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtFechaLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFechaLLegada.Location = new System.Drawing.Point(240, 165);
+            this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaLLegada.Name = "dtFechaLLegada";
-            this.dtFechaLLegada.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtFechaLLegada.ShowUpDown = true;
-            this.dtFechaLLegada.Size = new System.Drawing.Size(200, 22);
-            this.dtFechaLLegada.TabIndex = 84;
-            this.dtFechaLLegada.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtFechaLLegada.Size = new System.Drawing.Size(110, 22);
+            this.dtFechaLLegada.TabIndex = 87;
             // 
             // dtFechaLLegadaEstimada
             // 
-            this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(332, 230);
-            this.dtFechaLLegadaEstimada.Margin = new System.Windows.Forms.Padding(4);
-            this.dtFechaLLegadaEstimada.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
-            this.dtFechaLLegadaEstimada.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtFechaLLegadaEstimada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(240, 230);
+            this.dtFechaLLegadaEstimada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaLLegadaEstimada.Name = "dtFechaLLegadaEstimada";
-            this.dtFechaLLegadaEstimada.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtFechaLLegadaEstimada.ShowUpDown = true;
-            this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(200, 22);
-            this.dtFechaLLegadaEstimada.TabIndex = 85;
-            this.dtFechaLLegadaEstimada.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
+            this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(110, 22);
+            this.dtFechaLLegadaEstimada.TabIndex = 88;
             // 
             // GenerarViaje
             // 
@@ -192,7 +180,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(567, 485);
+            this.ClientSize = new System.Drawing.Size(418, 485);
             this.Controls.Add(this.dtFechaLLegadaEstimada);
             this.Controls.Add(this.dtFechaLLegada);
             this.Controls.Add(this.dtFechaSalida);
