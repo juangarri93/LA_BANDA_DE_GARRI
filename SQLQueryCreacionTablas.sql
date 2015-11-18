@@ -1038,10 +1038,14 @@ create proc LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino(
 @CiudadOrigen int,
 @CiudadDestino int
 )
-as 
+as
+begin 
+declare @idCodigo int
+set @idCodigo = (select Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Habilitada = 'Habilitado' )
 select * from LA_BANDA_DE_GARRI.Viaje 
-where Fecha_salida = @FechaSalida and Codigo_Ruta_Aerea = (select Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Habilitada = 'Habilitado' )
+where Fecha_salida = @FechaSalida and Codigo_Ruta_Aerea = @idCodigo
 order by LA_BANDA_DE_GARRI.Viaje.Id
+end
 go
 
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
