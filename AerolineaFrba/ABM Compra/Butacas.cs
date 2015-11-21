@@ -33,7 +33,7 @@ namespace AerolineaFrba.ABM_Compra
             butacas = DAOButaca.ButacasLibres(this._compraActual.ViajeSeleccionado);
             CrearListaDeButacasLibres();
             listaDeSeleccionadas = new List<Butaca>();
-           
+            
             InitializeComponent();
             
         }
@@ -95,11 +95,21 @@ namespace AerolineaFrba.ABM_Compra
 
                     label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
                     this.listaDeSeleccionadas.Add(seleccionada);
-                    DAOButaca.MarcarComoOcupada(seleccionada);
+                  
                     this.CrearListaDeButacasLibres();
-                    this.restan--;
-                    label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
-                    limpiar();
+                   
+                    if (restan > 0)
+                    {
+                        this.restan--;
+                        label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+                        
+                    }
+                    else
+                    {
+                        label5.Text = "Ya no quedan butacas por seleccionar.";
+                        
+                        return;
+                    }
                 }
                 else
                 {
@@ -128,6 +138,7 @@ namespace AerolineaFrba.ABM_Compra
         {
             if (listaDeSeleccionadas.Count()!=0)
             {
+                _compraActual.ButacasSeleccionadas = listaDeSeleccionadas;
                 this.Hide();
                 var ventanafin = new DatosCompra(_compraActual);
                 FormsHerramientas.mostrarVentanaNueva(ventanafin, this);

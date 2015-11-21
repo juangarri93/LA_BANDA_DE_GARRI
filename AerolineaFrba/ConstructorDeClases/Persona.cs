@@ -14,18 +14,17 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _idPersona;
         private string _nombre;
         private string _apellido;
-        private int _dni;
+        private decimal _dni;
         private string _direccion;
-        private int _telefono;
+        private decimal _telefono;
         private string _email;
         private DateTime _fechaNac;
-        private string _estado;
-        private string _contraseña;
-        private string _rol;
+       
 
         
         public Persona() { }
-        public Persona(int idpersona, string nombre, string apellido, int dni, string direccion, int telefono, string email, DateTime fechanac,string rol) {
+        public Persona(int idpersona, string nombre, string apellido, decimal dni, string direccion, decimal telefono, string email, DateTime fechanac, string rol)
+        {
 
             Id = idpersona;
             Nombre = nombre;
@@ -35,22 +34,11 @@ namespace AerolineaFrba.ConstructorDeClases
             Telefono = telefono;
             Email = email;
             FechaNac = fechanac;
-            Estado = "Habilitado";
-            Rol = rol;
+            
 
         }
 
-        public string Rol
-        {
-            get { return _rol; }
-            set { _rol = value; }
-        }
-
-        public string Estado
-        {
-            get { return _estado; }
-            set { _estado = value; }
-        } 
+      
         public int Id
         {
             get { return _idPersona; }
@@ -69,7 +57,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _apellido = value; }
         }
 
-        public int Dni
+        public decimal Dni
         {
             get { return _dni; }
             set { _dni = value; }
@@ -81,7 +69,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _direccion = value; }
         }
 
-        public int Telefono
+        public decimal Telefono
         {
             get { return _telefono; }
             set { _telefono = value; }
@@ -93,12 +81,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _email = value; }
         }
 
-        public string Contraseña
-        {
-            get { return _contraseña; }
-            set { _contraseña = value; }
-
-        }
+       
         public DateTime FechaNac
         {
             get { return _fechaNac; }

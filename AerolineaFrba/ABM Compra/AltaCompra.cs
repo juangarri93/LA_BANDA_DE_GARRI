@@ -87,8 +87,9 @@ namespace AerolineaFrba.Abm_Compra
        
                 this.compraActual.Origen = o.IdentificadorCiudad;
                 this.compraActual.Destino = o2.IdentificadorCiudad;
-            
-             
+
+                MessageBox.Show("Ha seleccionado el viaje numero: " + Convert.ToString(this.compraActual.ViajeSeleccionado));
+                lblViaje.Text = "Viaje número: " + Convert.ToString(this.compraActual.ViajeSeleccionado);
         }
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
@@ -196,6 +197,11 @@ namespace AerolineaFrba.Abm_Compra
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

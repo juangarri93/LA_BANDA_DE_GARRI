@@ -21,13 +21,29 @@ namespace AerolineaFrba.ABM_Compra
         private DataTable clientes;
         private  Compra compraActual;
         private Persona clienteActual;
-        private bool existe=false;
+        private bool existe;
         private List<Persona> ClientesRegistrados;
 
         public DatosCompra(Compra compra)
         {
+            clientes = DAOCliente.buscarClientes();
+
+            if (clientes != null)
+            {
+                ClientesRegistrados = this.crearListaDeUsuarios();
+            }
+ 
             compraActual = compra;
+ 
+
             InitializeComponent();
+            cmbTipo.Items.Add("T");
+            cmbTipo.Items.Add("E");
+            cmbCuotas.Items.Add(1);
+            cmbCuotas.Items.Add(3);
+            cmbCuotas.Items.Add(6);
+            cmbCuotas.Items.Add(9);
+            cmbCuotas.Items.Add(12);
         }
 
         public void BorrarTodo()
@@ -59,62 +75,76 @@ namespace AerolineaFrba.ABM_Compra
             this.Hide();
         }
 
+
+
+     
         private bool estaTodoLLeno()
         {
-            if (txtDni.Text != "" &&
-            txtApellido.Text != "" &&
-            txtDireccion.Text != "" &&
-            txtMail.Text != "" &&
-            txtNombre.Text != "" &&
-            txtTelefono.Text != "")
-                return true;
-            else return false;
+            if ( !EsNumero(txtDni.Text))
+            {
+                
+                MessageBox.Show("El Dni debe incluir solo números");
+                return false;
+            }
+
+            if (txtApellido.Text == "" && EsNumero(txtApellido.Text))
+            {
+                
+                MessageBox.Show("Apellido incorrecto");
+                return false;
+            }
+
+            if (txtDireccion.Text == "")
+            {
+                
+                MessageBox.Show("Direcion incorrecta");
+                return false;
+            }
+
+            if (txtMail.Text == "")
+            {
+                
+                MessageBox.Show("Email incorrecto");
+                return false;
+            }
+
+            if (txtNombre.Text == "" && EsNumero(txtApellido.Text))
+            {
+                
+                MessageBox.Show("Nombre incorrecto");
+                return false;
+            }
+
+            if (!EsNumero(txtTelefono.Text))
+            {
+                
+                MessageBox.Show("Telefono incorrecto");
+                return false;
+            }
+
+            if (rbTarjeta.Checked == true && txtNum.Text == "" && !EsNumero(txtNum.Text))
+            {
+
+                MessageBox.Show("Numero de tarjeta incorrecto");
+                return false;
+            }
+
+            if (rbTarjeta.Checked == true && txtVenc.Text == "" && !EsNumero(txtVenc.Text))
+            {
+
+                MessageBox.Show("Fecha de vencimiento de Tarjeta incorrecta");
+                return false;
+            }
+
+           
+
+            return true;
         }
 
-        private void completarCompra()
-        {
-            /*private int _idCompra;
-        private string _nombre;se cargo ahora
-        private string _apellido;se cargo ahora
-        private int _dni;se cargo ahora
-        private string _direccion;se cargo ahora
-        private int _telefono;se cargo ahora
-        private string _email;se cargo ahora
-        private DateTime _fechaNac;se cargo ahora
-        private DateTime _fechaDeViaje; se cargo antes
-        private int _origen; se cargo antes
-        private int _destino; se cargo antes
-        private int _cantidadPasajes; se cargo antes
-        private int _cantidadKG; se cargo antes
-        private int _viajeSeleccionado; se cargo antes
-        private string _estado; 
-             * */
 
-            compraActual.Apellido = txtApellido.Text;
-            compraActual.Nombre = txtNombre.Text;
-            compraActual.Dni = Convert.ToDecimal(txtDni.Text);
-            compraActual.Direccion = txtDireccion.Text;
-            compraActual.Email = txtMail.Text;
-            compraActual.Telefono = Convert.ToInt32(txtTelefono.Text);
-            compraActual.FechaNac = dtFechaNac.Value;
-
-
-
-        }
         private void btnButacas_Click(object sender, EventArgs e)
         {
-            if (estaTodoLLeno())
-            {
-                completarCompra();
-                var ventanaButacas = new Butacas(this.compraActual);
-                FormsHerramientas.mostrarVentanaNueva(ventanaButacas, this);
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Debe ingresar todos los datos obligatorios");
-                
-            }
+          
         }
 
         public Boolean IsEmpty (List<Persona> source)
@@ -126,19 +156,7 @@ namespace AerolineaFrba.ABM_Compra
 
         private void txtDni_TextChanged(object sender, EventArgs e)
         {
-            if (EsNumero(this.txtDni.Text))
-            {
-                clientes = DAOCliente.buscarClientePorDni(Convert.ToInt32(this.txtDni.Text));
-                ClientesRegistrados = this.crearListaDeUsuarios();
-
-                if (!IsEmpty(ClientesRegistrados))
-                {
-                    clienteActual = ClientesRegistrados.ElementAt(0);
-                    Autocompletar(clienteActual);
-                }
-                
-
-            }
+            
 
         }
 
@@ -151,7 +169,7 @@ namespace AerolineaFrba.ABM_Compra
 
         private List<Persona> crearListaDeUsuarios()
         {
-            List<Persona> lista = new List<Persona>(clientes.Rows.Count);
+            List<Persona> lista = new List<Persona>();
 
             foreach (DataRow row in clientes.Rows)
             {
@@ -178,22 +196,60 @@ namespace AerolineaFrba.ABM_Compra
             this.Hide();
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DAOCliente.AgregarCliente(clienteActual);
-                DAOCompra.AgregarCompra(compraActual);
-                DAOPago.AgregarPago(CrearPago());
-                MessageBox.Show("Felicitaciones has realizado tu compra");
-                this.Hide();
-            }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error." + ex.Message);
-            }
-             
+
+
+        private void completarCompra()
+        {
+            /* private int _idCompra;
+        private string _nombre;
+        private string _apellido;
+        private decimal _dni;
+        private string _direccion;
+        private int _telefono;
+        private string _email;
+        private DateTime _fechaNac;
+ 
+        private int _viajeSeleccionado;
+        private decimal _importe;
+        private int _tipopago;
+        private int _idButaca;
+             * */
+
+            Persona esteCliente = crearCliente();
+            Pago estePago = CrearPago();
+
+            compraActual.Apellido = esteCliente.Apellido;
+            compraActual.Nombre = esteCliente.Nombre;
+            compraActual.Dni = esteCliente.Dni;
+            compraActual.Direccion = esteCliente.Direccion;
+            compraActual.Email = esteCliente.Email;
+            compraActual.Telefono = esteCliente.Telefono;
+            compraActual.FechaNac = esteCliente.FechaNac;
+            compraActual.ViajeSeleccionado = estePago.Id_viaje;
+            compraActual.Importe = estePago.Importe;
+            compraActual.Tipopago = estePago.Tipo_pago;
+            
+          
+
+        }
+
+
+
+        private Persona crearCliente()
+        {
+            Persona cliente = new Persona();
+          
+            cliente.Apellido = txtApellido.Text;
+            cliente.Nombre = txtNombre.Text;
+            cliente.Dni = Convert.ToDecimal(txtDni.Text);
+            cliente.Direccion = txtDireccion.Text;
+            cliente.Email = txtMail.Text;
+            cliente.Telefono = Convert.ToDecimal(txtTelefono.Text);
+            cliente.FechaNac = dtFechaNac.Value;
+
+            return cliente;
+
         }
 
 
@@ -229,8 +285,8 @@ namespace AerolineaFrba.ABM_Compra
                 }
                 
             }
-          
-            pago.Pnr = Convert.ToInt32(txtNum.Text);
+            Random rnd = new Random(1);
+            pago.Pnr = (int)rnd.Next();
             pago.Id_viaje = compraActual.ViajeSeleccionado;
             pago.Importe =(( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes))+ (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG)));
            
@@ -259,7 +315,79 @@ namespace AerolineaFrba.ABM_Compra
 
             return pago;
         }
- 
+
+        private void btnCompletar_Click(object sender, EventArgs e)
+        {
+            if (EsNumero(this.txtDni.Text))
+            {
+
+
+                if (!IsEmpty(ClientesRegistrados))
+                {
+                    clienteActual = ClientesRegistrados.ElementAt(0);
+                    Autocompletar(clienteActual);
+                }
+
+
+            }
+        }
+
+        private void rbEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtNum.Enabled = false;
+            this.txtVenc.Enabled = false;
+            this.cmbTipo.Enabled = false;
+            this.cmbCuotas.Enabled = false;
+        }
+
+        private void rbTarjeta_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtNum.Enabled = true;
+            this.txtVenc.Enabled = true;
+            this.cmbTipo.Enabled = true;
+            this.cmbCuotas.Enabled = true;
+        }
+
+        private void txtMail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (estaTodoLLeno())
+            {
+                completarCompra();
+                    try
+                    {
+                        
+                        DAOCompra.AgregarCompra(compraActual);
+
+                        MessageBox.Show("Felicitaciones has realizado tu compra");
+                        this.Hide();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hubo un error." + ex.Message);
+                    }
+
+
+                }
+          
+
+            else
+            {
+                MessageBox.Show("Debe ingresar todos los datos obligatorios");
+                return;
+            }
+        }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
       
     }

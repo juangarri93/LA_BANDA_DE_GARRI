@@ -43,6 +43,7 @@
             this.chkPasajes = new System.Windows.Forms.CheckBox();
             this.chkEncomienda = new System.Windows.Forms.CheckBox();
             this.lblSeleccion = new System.Windows.Forms.Label();
+            this.lblViaje = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompra)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +105,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(87, 272);
+            this.btnBuscar.Location = new System.Drawing.Point(73, 291);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(188, 48);
@@ -193,17 +194,28 @@
             // lblSeleccion
             // 
             this.lblSeleccion.AutoSize = true;
-            this.lblSeleccion.Location = new System.Drawing.Point(87, 238);
+            this.lblSeleccion.Location = new System.Drawing.Point(31, 228);
             this.lblSeleccion.Name = "lblSeleccion";
             this.lblSeleccion.Size = new System.Drawing.Size(134, 17);
             this.lblSeleccion.TabIndex = 29;
             this.lblSeleccion.Text = "Viajes Encontrados:";
+            // 
+            // lblViaje
+            // 
+            this.lblViaje.AutoSize = true;
+            this.lblViaje.Location = new System.Drawing.Point(31, 262);
+            this.lblViaje.Name = "lblViaje";
+            this.lblViaje.Size = new System.Drawing.Size(95, 17);
+            this.lblViaje.TabIndex = 30;
+            this.lblViaje.Text = "Viaje número:";
+            this.lblViaje.Click += new System.EventHandler(this.label4_Click);
             // 
             // AltaCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 583);
+            this.Controls.Add(this.lblViaje);
             this.Controls.Add(this.lblSeleccion);
             this.Controls.Add(this.chkEncomienda);
             this.Controls.Add(this.chkPasajes);
@@ -246,5 +258,6 @@
         private System.Windows.Forms.CheckBox chkPasajes;
         private System.Windows.Forms.CheckBox chkEncomienda;
         private System.Windows.Forms.Label lblSeleccion;
+        private System.Windows.Forms.Label lblViaje;
     }
 }

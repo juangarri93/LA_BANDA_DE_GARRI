@@ -13,7 +13,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private string _apellido;
         private decimal _dni;
         private string _direccion;
-        private int _telefono;
+        private decimal _telefono;
         private string _email;
         private DateTime _fechaNac;
         private DateTime _fechaDeViaje;
@@ -22,13 +22,16 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _cantidadPasajes;
         private int _cantidadKG;
         private int _viajeSeleccionado;
-        private string _estado;
+        private decimal _importe;
+        private int _tipopago;
+        private int _idButaca;
+        private List<Butaca> _butacasSeleccionadas;
 
 
         public Compra() { }
 
 
-        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, int telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado)
+        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, decimal telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado, decimal importe, int tipopago, int idbutaca, List<Butaca> butacasSeleccionadas)
         {
             this._idCompra = idCompra;
             this._nombre = nombre;
@@ -44,10 +47,41 @@ namespace AerolineaFrba.ConstructorDeClases
             this._cantidadPasajes = cantidadPasajes;
             this._cantidadKG = cantidadKG;
             this._viajeSeleccionado = viajeSeleccionado;
-            this._estado = estado;
+            this._importe = importe;
+            this.Tipopago = tipopago;
+            this.IdButaca = idbutaca;
+
+ 
 
 
         }
+
+        public List<Butaca> ButacasSeleccionadas
+        {
+            get { return _butacasSeleccionadas; }
+            set { _butacasSeleccionadas = value; }
+        }
+
+
+        public int Tipopago
+        {
+            get { return _tipopago; }
+            set { _tipopago = value; }
+        }
+
+
+        public decimal Importe
+        {
+            get { return _importe; }
+            set { _importe = value; }
+        }
+
+        public int IdButaca
+        {
+            get { return _idButaca; }
+            set { _idButaca = value; }
+        }
+
 
         public int IdCompra
         {
@@ -79,7 +113,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _direccion = value; }
         }
 
-        public int Telefono
+        public decimal Telefono
         {
             get { return _telefono; }
             set { _telefono = value; }
@@ -132,11 +166,7 @@ namespace AerolineaFrba.ConstructorDeClases
             get { return _viajeSeleccionado; }
             set { _viajeSeleccionado = value; }
         }
-        public string Estado
-        {
-            get { return _estado; }
-            set { _estado = value; }
-        }
+        
    
 
     }

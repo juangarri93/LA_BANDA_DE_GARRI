@@ -11,17 +11,7 @@ namespace AerolineaFrba.CapaADO
     class DAOCliente : SqlConnector
     {
         public static void AgregarCliente(Persona cliente)
-        {
-            bool flag = false;
-
-            if (cliente.Estado == "Habilitado")
-            {
-                flag = true;
-            }
-            else
-            {
-                flag = false;
-            }
+        { 
 
             executeProcedure("spinsertar_cliente", 1, cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Direccion, cliente.Telefono, cliente.Email, cliente.FechaNac);
 
@@ -37,5 +27,11 @@ namespace AerolineaFrba.CapaADO
         {
             return retrieveDataTable("spmostrar_clientes_pordni", dni);
         }
+
+        public static DataTable buscarClientes()
+        {
+            return retrieveDataTable("spmostrar_clientes");
+        }
+
     }
 }

@@ -205,11 +205,15 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados')
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino; 
 
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.sspinsertar_cliente') IS NOT NULL)
-DROP PROCEDURE LA_BANDA_DE_GARRI.sspinsertar_cliente; 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_cliente') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_cliente; 
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_clientes_pordni') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_clientes_pordni; 
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_clientes') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_clientes; 
+
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_pago') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_pago; 
@@ -1510,17 +1514,17 @@ CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
 (
 @ID_compra int output,
 @idviajeSeleccionado int,
-@nombre varchar(100),
-@apellido varchar(100),
-@dni varchar(100),
-@direccion varchar(100),
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric(18,0),
+@direccion nvarchar(255),
 @telefono numeric(18,0),
-@email varchar(100),
+@email nvarchar(255),
 @fechaNac date,
 @cantidadPasaje int,
 @cantidadKG int,
 @fechaCompra date,
-@Importe int,
+@Importe decimal(18,0),
 @Tipo_Pago int,
 @idButaca int
 )
@@ -1763,23 +1767,22 @@ GO
 
 ---agregado por lucas 15/11- --
 
-CREATE PROC [LA_BANDA_DE_GARRI].["spinsertar_cliente"]
+CREATE PROC LA_BANDA_DE_GARRI.spinsertar_cliente
 (
 @codigo int output,
-@nombre varchar(50),
-@apellido varchar(50),
-@dni int,
-@direccion varchar(50),
-@telefono varchar(50),
-@email varchar(50),
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric(18,0),
+@direccion nvarchar(255),
+@telefono numeric(18,0),
+@email nvarchar(255),
 @fechanac datetime
 )
 as insert into  LA_BANDA_DE_GARRI.Cliente(Id,Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
 values (@codigo,@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechanac)
 go
 
-
-CREATE proc [LA_BANDA_DE_GARRI].["spmostrar_clientes_pordni"] 
+CREATE proc LA_BANDA_DE_GARRI.spmostrar_clientes_pordni 
 (@dni numeric(18,0))
 as
 select * from LA_BANDA_DE_GARRI.Cliente
@@ -1787,8 +1790,15 @@ where @dni = dni
 order by Id
 go
 
+CREATE proc LA_BANDA_DE_GARRI.spmostrar_clientes 
+as
+select * from LA_BANDA_DE_GARRI.Cliente
+order by Id
+go
 
-CREATE proc [LA_BANDA_DE_GARRI].["spinsertar_pago"]
+
+
+CREATE proc LA_BANDA_DE_GARRI.spinsertar_pago
 (
 @codigo int output,
 @pnr int,
@@ -1802,7 +1812,7 @@ values (@pnr,@id_viaje,@id_cliente,@importe,@fechacompra,@tipo_pago)
 go
 
 
-CREATE proc [LA_BANDA_DE_GARRI].["spMostrar_viaje_esp"](
+CREATE proc LA_BANDA_DE_GARRI.spMostrar_viaje_esp(
 @id int
 )
 as

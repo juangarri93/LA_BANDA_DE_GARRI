@@ -59,6 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnCompletar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lineShape1
@@ -83,7 +84,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(137, 149);
-            this.txtApellido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(373, 22);
             this.txtApellido.TabIndex = 34;
@@ -101,10 +102,11 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(137, 282);
-            this.txtMail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMail.Margin = new System.Windows.Forms.Padding(4);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(373, 22);
             this.txtMail.TabIndex = 32;
+            this.txtMail.TextChanged += new System.EventHandler(this.txtMail_TextChanged);
             // 
             // label9
             // 
@@ -119,7 +121,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(137, 239);
-            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(373, 22);
             this.txtTelefono.TabIndex = 30;
@@ -127,7 +129,7 @@
             // txtDireccion
             // 
             this.txtDireccion.Location = new System.Drawing.Point(137, 197);
-            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(373, 22);
             this.txtDireccion.TabIndex = 29;
@@ -135,7 +137,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(137, 105);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(373, 22);
             this.txtNombre.TabIndex = 28;
@@ -143,9 +145,9 @@
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(137, 58);
-            this.txtDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDni.Margin = new System.Windows.Forms.Padding(4);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(373, 22);
+            this.txtDni.Size = new System.Drawing.Size(241, 22);
             this.txtDni.TabIndex = 27;
             this.txtDni.TextChanged += new System.EventHandler(this.txtDni_TextChanged);
             // 
@@ -235,6 +237,7 @@
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(372, 24);
             this.cmbTipo.TabIndex = 59;
+            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // txtVenc
             // 
@@ -303,6 +306,7 @@
             this.rbTarjeta.TabStop = true;
             this.rbTarjeta.Text = "Tarjeta";
             this.rbTarjeta.UseVisualStyleBackColor = true;
+            this.rbTarjeta.CheckedChanged += new System.EventHandler(this.rbTarjeta_CheckedChanged);
             // 
             // rbEfectivo
             // 
@@ -315,6 +319,7 @@
             this.rbEfectivo.TabStop = true;
             this.rbEfectivo.Text = "Efectivo";
             this.rbEfectivo.UseVisualStyleBackColor = true;
+            this.rbEfectivo.CheckedChanged += new System.EventHandler(this.rbEfectivo_CheckedChanged);
             // 
             // label7
             // 
@@ -359,11 +364,22 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
+            // btnCompletar
+            // 
+            this.btnCompletar.Location = new System.Drawing.Point(385, 52);
+            this.btnCompletar.Name = "btnCompletar";
+            this.btnCompletar.Size = new System.Drawing.Size(124, 28);
+            this.btnCompletar.TabIndex = 61;
+            this.btnCompletar.Text = "Buscar Ciente";
+            this.btnCompletar.UseVisualStyleBackColor = true;
+            this.btnCompletar.Click += new System.EventHandler(this.btnCompletar_Click);
+            // 
             // DatosCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 677);
+            this.Controls.Add(this.btnCompletar);
             this.Controls.Add(this.cmbCuotas);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.txtVenc);
@@ -436,5 +452,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnCompletar;
     }
 }

@@ -17,18 +17,8 @@ namespace AerolineaFrba.CapaADO
         
         public static void AgregarUsuario(Persona usuario)
         {
-            bool flag = false;
-
-            if (usuario.Estado == "Habilitado")
-            {
-                flag = true;
-            }
-            else 
-            {
-                flag = false;
-            }
-
-            executeProcedure("spinsertar_usuario", 1, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Direccion, usuario.Telefono, usuario.Email, usuario.FechaNac, flag,usuario.Rol);
+            
+            executeProcedure("spinsertar_usuario", 1, usuario.Nombre, usuario.Apellido, usuario.Dni, usuario.Direccion, usuario.Telefono, usuario.Email, usuario.FechaNac);
 
         }
 
