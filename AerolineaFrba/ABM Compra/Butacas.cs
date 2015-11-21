@@ -95,7 +95,7 @@ namespace AerolineaFrba.ABM_Compra
 
                     label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
                     this.listaDeSeleccionadas.Add(seleccionada);
-                  
+                   // DAOButaca.MarcarComoOcupada(seleccionada);
                     this.CrearListaDeButacasLibres();
                    
                     if (restan > 0)
