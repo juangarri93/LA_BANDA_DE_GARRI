@@ -30,7 +30,10 @@ namespace AerolineaFrba.ABM_Compra
             this._compraActual = compraActual;
             restan = _compraActual.CantidadPasajes;
             restanEnco = _compraActual.CantidadKG;
-
+            butacas = DAOButaca.ButacasLibres(this._compraActual.ViajeSeleccionado);
+            CrearListaDeButacasLibres();
+            listaDeSeleccionadas = new List<Butaca>();
+           
             InitializeComponent();
             
         }
@@ -47,9 +50,9 @@ namespace AerolineaFrba.ABM_Compra
                 var values = row.ItemArray;
                 Butaca butaca = new Butaca();
                 butaca.Id = (int)values[0];
-                butaca.Numero = (int)values[1];
-                butaca.Piso = (int)values[2];
-                butaca.Tipo = (int)values[3];
+                butaca.Numero = (decimal)values[1];
+                butaca.Piso = (decimal)values[3];
+                butaca.Tipo = (int)values[2];
                 butaca.Aeronave_id = (int)values[4];
 
 
@@ -72,23 +75,19 @@ namespace AerolineaFrba.ABM_Compra
 
         private void Butacas_Load(object sender, EventArgs e)
         {
-            butacas = DAOButaca.ButacasLibres(this._compraActual.ViajeSeleccionado);
-            CrearListaDeButacasLibres();
-            listaDeSeleccionadas = new List<Butaca>();
             this.comboBox1.DataSource = butacas;
-            comboBox1.DisplayMember = "Numero";
-
-            
-
-            label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+            comboBox1.DisplayMember = "Nro";
+            comboBox1.ValueMember = "Id";
+          
         }
 
 
         private void btnPago_Click(object sender, EventArgs e)
         {
+              label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
             if (listaDeButacasLibres != null)
             {
-                Butaca seleccionada = listaDeButacasLibres.Find(c => (c.Numero == Convert.ToInt32(comboBox1.SelectedText)));
+                Butaca seleccionada = listaDeButacasLibres.Find(c => (c.Numero == Convert.ToDecimal(comboBox1.Text)));
                 if (seleccionada != null)
                 {
                     label2.Text = "Tipo: " + Convert.ToString(seleccionada.Tipo);
@@ -99,6 +98,7 @@ namespace AerolineaFrba.ABM_Compra
                     DAOButaca.MarcarComoOcupada(seleccionada);
                     this.CrearListaDeButacasLibres();
                     this.restan--;
+                    label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
                     limpiar();
                 }
                 else

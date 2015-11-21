@@ -749,7 +749,7 @@ create procedure LA_BANDA_DE_GARRI.sp_butacas_libres(@id_Viaje int)
 as
 begin
 	
-	SELECT B.id, B.Nro FROM LA_BANDA_DE_GARRI.Butaca B 
+	SELECT * FROM LA_BANDA_DE_GARRI.Butaca B 
 	Where (Select V.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje V where V.Id=@id_Viaje)=B.Aeronave_id 
 	and NOT EXISTS(SELECT 1 from Pasaje_Encomienda P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
 	
@@ -874,7 +874,7 @@ CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_crear_ruta_aerea (@codigo numeric(18,0),
 														@precio_pasaje numeric(18,2),
 														@precio_kg numeric(18,2)) AS
 BEGIN
-	insert into LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo, Id_Tipo_Servicio, Ciudad_Origen, Ciudad_Destino, Precio_base_pasaje, Precio_base_kg)
+	insert into LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo, Id_Tipo_Servicio, Ciudad_Origen, Ciudad_Destino, Precio_base_pasaje, Precio_base_kg,'true')
 	values(@codigo, @tipo, @origen, @destino, @precio_pasaje, @precio_kg)
 END
 
@@ -895,7 +895,7 @@ GO
 
 
 --GENERAR VIAJE --actualizado 15/11
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@id_viaje int output,
+CREATE PROCEDURE [LA_BANDA_DE_GARRI].[sp_generar_viaje](@id_viaje int output,
 													@ruta_aerea numeric(18,0), 
 													@aeronave VARCHAR(255), 
 													@fecha_salida DATETIME, 
@@ -934,7 +934,7 @@ BEGIN
 		where Id_Aeronave = (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula = @aeronave)
 		and Fecha_salida = @fecha_salida 
 	
-		if(@cantidad = 0)
+		if(@cantidad != 0)
 			begin
 				return(1) --'LA AERONAVE NO SE ENCUENTRA DISPONIBLE EN ESA FECHA'
 			
@@ -950,13 +950,12 @@ BEGIN
 	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
 	return(2)
 	end
-	else
+		else
 	begin
-	return(1)
+	return(3)
 	end
 	 
 END
-go
 
 
 
@@ -1043,6 +1042,7 @@ END
 GO 
 
 
+
 create proc LA_BANDA_DE_GARRI.spbuscar_fechaOrigenDestino(
 @FechaSalida datetime,
 @CiudadOrigen int,
@@ -1052,13 +1052,15 @@ as
 begin 
  
 declare @idCodigo int
- select @idCodigo = Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Ruta_Aerea.Habilitada ='True' 
+select @idCodigo = Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Ruta_Aerea.Habilitada ='true'
 select * from LA_BANDA_DE_GARRI.Viaje 
-where Fecha_salida = @FechaSalida and Codigo_Ruta_Aerea = @idCodigo
+where Codigo_Ruta_Aerea = @idCodigo
+and YEAR(LA_BANDA_DE_GARRI.Viaje.Fecha_salida) = YEAR(@FechaSalida)
+		and MONTH(LA_BANDA_DE_GARRI.Viaje.Fecha_salida) = MONTH(@FechaSalida)
+		and DAY(LA_BANDA_DE_GARRI.Viaje.Fecha_salida) = DAY(@FechaSalida)
 order by LA_BANDA_DE_GARRI.Viaje.Id
 end
 go
-
 
 
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave

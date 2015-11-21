@@ -1,4 +1,4 @@
 solo me faltaria hacer este:
-
+ urgente!
 executeProcedure("spmarcar_butaca_ocupada", butaca.Id); (int)retrieveDataTable("spmostrar_clientes");
  

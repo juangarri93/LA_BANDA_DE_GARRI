@@ -149,29 +149,26 @@
             // 
             // dtFechaSalida
             // 
-            this.dtFechaSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFechaSalida.Location = new System.Drawing.Point(240, 95);
+            this.dtFechaSalida.Location = new System.Drawing.Point(211, 95);
             this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaSalida.Name = "dtFechaSalida";
-            this.dtFechaSalida.Size = new System.Drawing.Size(110, 22);
+            this.dtFechaSalida.Size = new System.Drawing.Size(195, 22);
             this.dtFechaSalida.TabIndex = 86;
             // 
             // dtFechaLLegada
             // 
-            this.dtFechaLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFechaLLegada.Location = new System.Drawing.Point(240, 165);
+            this.dtFechaLLegada.Location = new System.Drawing.Point(211, 165);
             this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaLLegada.Name = "dtFechaLLegada";
-            this.dtFechaLLegada.Size = new System.Drawing.Size(110, 22);
+            this.dtFechaLLegada.Size = new System.Drawing.Size(195, 22);
             this.dtFechaLLegada.TabIndex = 87;
             // 
             // dtFechaLLegadaEstimada
             // 
-            this.dtFechaLLegadaEstimada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(240, 230);
+            this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(211, 230);
             this.dtFechaLLegadaEstimada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaLLegadaEstimada.Name = "dtFechaLLegadaEstimada";
-            this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(110, 22);
+            this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(195, 22);
             this.dtFechaLLegadaEstimada.TabIndex = 88;
             // 
             // GenerarViaje

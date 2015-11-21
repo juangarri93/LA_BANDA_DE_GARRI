@@ -42,6 +42,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.chkPasajes = new System.Windows.Forms.CheckBox();
             this.chkEncomienda = new System.Windows.Forms.CheckBox();
+            this.lblSeleccion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompra)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             // 
             // dtpFechaViaje
             // 
-            this.dtpFechaViaje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaViaje.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaViaje.Location = new System.Drawing.Point(29, 52);
             this.dtpFechaViaje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpFechaViaje.Name = "dtpFechaViaje";
@@ -103,7 +104,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(87, 240);
+            this.btnBuscar.Location = new System.Drawing.Point(87, 272);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(188, 48);
@@ -189,11 +190,21 @@
             this.chkEncomienda.UseVisualStyleBackColor = true;
             this.chkEncomienda.CheckedChanged += new System.EventHandler(this.chkEncomienda_CheckedChanged);
             // 
+            // lblSeleccion
+            // 
+            this.lblSeleccion.AutoSize = true;
+            this.lblSeleccion.Location = new System.Drawing.Point(87, 238);
+            this.lblSeleccion.Name = "lblSeleccion";
+            this.lblSeleccion.Size = new System.Drawing.Size(134, 17);
+            this.lblSeleccion.TabIndex = 29;
+            this.lblSeleccion.Text = "Viajes Encontrados:";
+            // 
             // AltaCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 583);
+            this.Controls.Add(this.lblSeleccion);
             this.Controls.Add(this.chkEncomienda);
             this.Controls.Add(this.chkPasajes);
             this.Controls.Add(this.btnCancelar);
@@ -234,5 +245,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.CheckBox chkPasajes;
         private System.Windows.Forms.CheckBox chkEncomienda;
+        private System.Windows.Forms.Label lblSeleccion;
     }
 }

@@ -50,45 +50,44 @@ namespace AerolineaFrba.Abm_Compra
 
 
         private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        { 
+
+        }
+
+        private void OcultarColumnas()
         {
-            if (e.ColumnIndex == dgvCompra.Columns["dataGridViewCheckBoxColumn1"].Index)
-            {
-                DataGridViewCheckBoxCell ChkEliminar = (DataGridViewCheckBoxCell)dgvCompra.Rows[e.RowIndex].Cells["dataGridViewCheckBoxColumn1"];
-                ChkEliminar.Value = !Convert.ToBoolean(ChkEliminar.Value);
-            }
+            this.dgvCompra.Columns[0].Visible = false;
+            //this.dataListadoAeronaves.Columns[1].Visible = false;
+            lblSeleccion.Text = "Viajes Encontrados: " + Convert.ToString(dgvCompra.Rows.Count);
 
         }
 
         private void dgvCompra_DoubleClick(object sender, EventArgs e)
         {
             // string fechaAlta = Convert.ToString(this.dataListadoAeronaves.CurrentRow.Cells["Fecha_alta"].Value);
-            if (dgvCompra.IsAccessible)
-            {
-
+          
                 this.compraActual.ViajeSeleccionado = Convert.ToInt32(this.dgvCompra.CurrentRow.Cells["Id"].Value);
 
                 this.compraActual.FechaDeViaje = this.dtpFechaViaje.Value;
 
-                DataTable ciudadorigen = DAOCiudad.buscarCiudad(this.cmbOrigen.SelectedText);
-                DataTable ciudaddestino = DAOCiudad.buscarCiudad(this.cmbDestino.SelectedText);
+                DataTable ciudadorigen = DAOCiudad.buscarCiudad(this.cmbOrigen.Text);
+                DataTable ciudaddestino = DAOCiudad.buscarCiudad(this.cmbDestino.Text);
 
                 DataRow row = ciudadorigen.Rows[0];
                 Ciudad o = new Ciudad();
                 o.IdentificadorCiudad = Convert.ToInt32(row["Id"]);
                 o.Nombre = (string)row["Nombre"];
-                o.Habilitado = (bool)row["Habilitado"];
+                o.Habilitado = (bool)row["Habilitada"];
 
                 DataRow row2 = ciudaddestino.Rows[0];
                 Ciudad o2 = new Ciudad();
                 o2.IdentificadorCiudad = Convert.ToInt32(row2["Id"]);
                 o2.Nombre = (string)row2["Nombre"];
-                o2.Habilitado = (bool)row2["Habilitado"];
-
+                o2.Habilitado = (bool)row2["Habilitada"];
+       
                 this.compraActual.Origen = o.IdentificadorCiudad;
                 this.compraActual.Destino = o2.IdentificadorCiudad;
-            }
-            else
-                return;
+            
              
         }
 
@@ -96,7 +95,7 @@ namespace AerolineaFrba.Abm_Compra
       {
             if (dtpFechaViaje.Value.Date < DateTime.Now.Date)
                 MessageBox.Show("Fecha incorrecta");
-            else if (cmbDestino.SelectedValue == cmbOrigen.SelectedValue)
+            else if (cmbDestino.SelectedIndex == cmbOrigen.SelectedIndex)
                 MessageBox.Show("Las ciudades origen y destino no pueden coincidir");
            
             else
@@ -118,7 +117,10 @@ namespace AerolineaFrba.Abm_Compra
                     o2.Nombre = (string)row2["Nombre"];
                     o2.Habilitado = (bool)row2["Habilitada"];
 
+
                     dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value,  o.IdentificadorCiudad,  o2.IdentificadorCiudad);
+                    OcultarColumnas();
+
 
                 }
                 catch (Exception ex)
@@ -145,12 +147,12 @@ namespace AerolineaFrba.Abm_Compra
                
                                 
                     
-                    int pasajes = chkPasajes.Checked ? (cantPasajes.SelectedIndex) : 0;
+                    int pasajes = chkPasajes.Checked ? (cantPasajes.SelectedIndex+1) : 0;
 
                     if (kgs + pasajes > 0)
                     {
                         this.compraActual.CantidadKG = kgs;
-                        this.compraActual.CantidadPasajes = pasajes+1;
+                        this.compraActual.CantidadPasajes = pasajes;
                         this.compraActual.FechaDeViaje = dtpFechaViaje.Value;
                        
 

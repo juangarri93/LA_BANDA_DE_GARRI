@@ -249,6 +249,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Aeronave\ABMBajaModificacion.resx">
       <DependentUpon>ABMBajaModificacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Ciudad\ABMCiudad.resx">
       <DependentUpon>ABMCiudad.cs</DependentUpon>

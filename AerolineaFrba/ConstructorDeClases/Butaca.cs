@@ -9,14 +9,14 @@ namespace AerolineaFrba.ConstructorDeClases
     public class Butaca
     {
         int _id;
-        int _numero;
+        decimal _numero;
         int _tipo;
-        int _piso;
+        decimal _piso;
         int _Aeronave_id;
 
 
         public Butaca() { }
-        public Butaca( int id, int numero, int tipo, int piso, int aernoave) 
+        public Butaca(int id, decimal numero, int tipo, decimal piso, int aernoave) 
         {
             Id = id;
             Numero = numero;
@@ -32,7 +32,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _id = value; }
         }
 
-        public int Numero
+        public decimal Numero
         {
             get { return _numero; }
             set { _numero = value; }
@@ -44,7 +44,7 @@ namespace AerolineaFrba.ConstructorDeClases
             set { _tipo = value; }
         }
 
-        public int Piso
+        public decimal Piso
         {
             get { return _piso; }
             set { _piso = value; }
