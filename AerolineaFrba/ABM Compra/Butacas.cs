@@ -85,8 +85,9 @@ namespace AerolineaFrba.ABM_Compra
 
         private void btnSeleccion_Click(object sender, EventArgs e)
         {
-
+            
             label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+            KgDisp.Text = "Kg disponibles: " + Convert.ToString(kgsDisponibles);
 
             if (listaDeButacasLibres != null && this._compraActual.CantidadKG <= kgsDisponibles)
             {
@@ -102,13 +103,19 @@ namespace AerolineaFrba.ABM_Compra
                 }
 
                 restan = restan - listaDeSeleccionadas.Count();
+                int aux = kgsDisponibles - this._compraActual.CantidadKG;
 
-                if (restan > 0)
+                if (restan > 0 )
                 {
                     this.restan--;
                     label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+                    KgDisp.Text = "Kg disponibles: " + Convert.ToString(aux);
                     return;
 
+                }
+                if(aux >=0){
+                     KgDisp.Text = "Kg disponibles: " + Convert.ToString(aux);
+                    return;
                 }
                 else
                 {

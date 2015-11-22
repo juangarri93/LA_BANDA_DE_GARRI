@@ -221,6 +221,8 @@ DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_pago;
  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_viaje_esp') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.spMostrar_viaje_esp; 
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_Kg_disponibles') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.sp_Kg_disponibles; 
 
   
 --Dropeo las tablas
@@ -1820,3 +1822,17 @@ select * from LA_BANDA_DE_GARRI.Ruta_Aerea
 where Id = id 
 order by Id
 go
+
+CREATE proc LA_BANDA_DE_GARRI.sp_Kg_disponibles(
+@id_viaje int
+)
+as
+begin
+declare @idAeronave int
+set @idAeronave = (select viaje.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where Id = @id_viaje)
+declare @retorno int
+set @retorno = (select Aeronave.Kg_Disponibles from LA_BANDA_DE_GARRI.Aeronave where Id = @idAeronave)
+return(@retorno)
+end
+go
+
