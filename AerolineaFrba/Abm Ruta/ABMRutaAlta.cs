@@ -28,8 +28,9 @@ namespace AerolineaFrba.Abm_Ruta
             cbTipoDeServicio.DataSource = DAOAerolinea.getTipoServicio().DefaultView;
             cbTipoDeServicio.DisplayMember = "Tipo_Servicio";
 
-            cmbHabiltiado.Items.Add("Habilitado");
+           
             cmbHabiltiado.Items.Add("Deshabilitado");
+            cmbHabiltiado.Items.Add("Habilitado");
             cargarComboBox();
 
         }

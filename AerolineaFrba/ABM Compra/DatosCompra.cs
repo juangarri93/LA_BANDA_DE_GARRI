@@ -179,9 +179,9 @@ namespace AerolineaFrba.ABM_Compra
                 persona.Id = (int)values[0];
                 persona.Nombre = (string)values[1];
                 persona.Apellido = (string)values[2];
-                persona.Dni = (int)values[3];
+                persona.Dni = (decimal)values[3];
                 persona.Direccion = (string)values[4];
-                persona.Telefono = (int)values[5];
+                persona.Telefono = (decimal)values[5];
                 persona.Email = (string)values[6];
                 persona.FechaNac = (DateTime)values[7];
 
@@ -274,7 +274,7 @@ namespace AerolineaFrba.ABM_Compra
             if(viaje!=null){
 
                 DataRow rowviaje = viaje.Rows[0];
-                int id_ruta = rowviaje.Field<int>("Codigo_Ruta_Aerea");
+                int id_ruta = rowviaje.Field<int>("Id");
                 DataTable ruta = DAORuta.MostrarRutaEspecifica(id_ruta);
                 if (ruta != null)
                 {
@@ -285,20 +285,21 @@ namespace AerolineaFrba.ABM_Compra
                 }
                 
             }
+
             Random rnd = new Random(1);
             pago.Pnr = (int)rnd.Next();
             pago.Id_viaje = compraActual.ViajeSeleccionado;
             pago.Importe =(( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes))+ (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG)));
            
             DataTable usuario = DAOCliente.buscarClientePorDni(compraActual.Dni);
-            if (usuario != null)
+            if (usuario.DataSet != null)
             {
                 DataRow rowsuario = usuario.Rows[0];
                 id_usuario = rowsuario.Field<int>("Id");
                 
             }
 
-            pago.Id_cliente = id_usuario;
+           
             pago.Fecha_compra = DateTime.Now;
             bool pagoT = rbTarjeta.Checked ? true : false;
 
@@ -338,6 +339,7 @@ namespace AerolineaFrba.ABM_Compra
             this.txtVenc.Enabled = false;
             this.cmbTipo.Enabled = false;
             this.cmbCuotas.Enabled = false;
+            
         }
 
         private void rbTarjeta_CheckedChanged(object sender, EventArgs e)
@@ -346,6 +348,7 @@ namespace AerolineaFrba.ABM_Compra
             this.txtVenc.Enabled = true;
             this.cmbTipo.Enabled = true;
             this.cmbCuotas.Enabled = true;
+           
         }
 
         private void txtMail_TextChanged(object sender, EventArgs e)

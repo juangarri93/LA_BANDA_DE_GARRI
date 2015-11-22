@@ -878,8 +878,8 @@ CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_crear_ruta_aerea (@codigo numeric(18,0),
 														@precio_pasaje numeric(18,2),
 														@precio_kg numeric(18,2)) AS
 BEGIN
-	insert into LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo, Id_Tipo_Servicio, Ciudad_Origen, Ciudad_Destino, Precio_base_pasaje, Precio_base_kg,'true')
-	values(@codigo, @tipo, @origen, @destino, @precio_pasaje, @precio_kg)
+	insert into LA_BANDA_DE_GARRI.Ruta_Aerea(Codigo, Id_Tipo_Servicio, Ciudad_Origen, Ciudad_Destino, Precio_base_pasaje, Precio_base_kg,Habilitada)
+	values(@codigo, @tipo, @origen, @destino, @precio_pasaje, @precio_kg,'true')
 END
 
 GO
@@ -899,7 +899,7 @@ GO
 
 
 --GENERAR VIAJE --actualizado 15/11
-CREATE PROCEDURE [LA_BANDA_DE_GARRI].[sp_generar_viaje](@id_viaje int output,
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_generar_viaje(@id_viaje int output,
 													@ruta_aerea numeric(18,0), 
 													@aeronave VARCHAR(255), 
 													@fecha_salida DATETIME, 
@@ -960,7 +960,7 @@ BEGIN
 	end
 	 
 END
-
+go
 
 
 --REGISTRO LLEGADA A DESTINO
@@ -1056,7 +1056,7 @@ as
 begin 
  
 declare @idCodigo int
-select @idCodigo = Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Ruta_Aerea.Habilitada ='true'
+select @idCodigo = Id from LA_BANDA_DE_GARRI.Ruta_Aerea where Ciudad_Origen = @CiudadOrigen and Ciudad_Destino = @CiudadDestino and Ruta_Aerea.Habilitada = 'true'
 select * from LA_BANDA_DE_GARRI.Viaje 
 where Codigo_Ruta_Aerea = @idCodigo
 and YEAR(LA_BANDA_DE_GARRI.Viaje.Fecha_salida) = YEAR(@FechaSalida)

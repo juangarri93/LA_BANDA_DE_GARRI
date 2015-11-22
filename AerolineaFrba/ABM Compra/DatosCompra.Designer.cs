@@ -46,11 +46,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtFechaNac = new System.Windows.Forms.DateTimePicker();
             this.cmbCuotas = new System.Windows.Forms.ComboBox();
-            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.txtVenc = new System.Windows.Forms.TextBox();
             this.txtNum = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.rbTarjeta = new System.Windows.Forms.RadioButton();
@@ -60,6 +58,8 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCompletar = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lineShape1
@@ -229,16 +229,6 @@
             this.cmbCuotas.Size = new System.Drawing.Size(372, 24);
             this.cmbCuotas.TabIndex = 60;
             // 
-            // cmbTipo
-            // 
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(137, 521);
-            this.cmbTipo.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(372, 24);
-            this.cmbTipo.TabIndex = 59;
-            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
-            // 
             // txtVenc
             // 
             this.txtVenc.Location = new System.Drawing.Point(137, 491);
@@ -264,16 +254,6 @@
             this.label13.Size = new System.Drawing.Size(98, 17);
             this.label13.TabIndex = 56;
             this.label13.Text = "Venc. (MMAA)";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(21, 516);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(36, 17);
-            this.label12.TabIndex = 55;
-            this.label12.Text = "Tipo";
             // 
             // label11
             // 
@@ -374,6 +354,26 @@
             this.btnCompletar.UseVisualStyleBackColor = true;
             this.btnCompletar.Click += new System.EventHandler(this.btnCompletar_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(21, 516);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(36, 17);
+            this.label12.TabIndex = 55;
+            this.label12.Text = "Tipo";
+            // 
+            // cmbTipo
+            // 
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(137, 521);
+            this.cmbTipo.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(372, 24);
+            this.cmbTipo.TabIndex = 59;
+            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
+            // 
             // DatosCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -439,11 +439,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtFechaNac;
         private System.Windows.Forms.ComboBox cmbCuotas;
-        private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.TextBox txtVenc;
         private System.Windows.Forms.TextBox txtNum;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RadioButton rbTarjeta;
@@ -453,5 +451,7 @@
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnCompletar;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cmbTipo;
     }
 }

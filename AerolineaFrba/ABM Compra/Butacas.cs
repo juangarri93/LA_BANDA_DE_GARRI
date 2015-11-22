@@ -22,6 +22,7 @@ namespace AerolineaFrba.ABM_Compra
               
         List<Butaca> listaDeButacasLibres;
         List<Butaca> listaDeSeleccionadas;
+        int kgsDisponibles;
         DataTable butacas;
 
         public Butacas(Compra compraActual)
@@ -31,6 +32,7 @@ namespace AerolineaFrba.ABM_Compra
             restan = _compraActual.CantidadPasajes;
             restanEnco = _compraActual.CantidadKG;
             butacas = DAOButaca.ButacasLibres(this._compraActual.ViajeSeleccionado);
+            kgsDisponibles = DAOViaje.getKgDisponibles(this._compraActual.ViajeSeleccionado);
             CrearListaDeButacasLibres();
             listaDeSeleccionadas = new List<Butaca>();
             
@@ -75,14 +77,56 @@ namespace AerolineaFrba.ABM_Compra
 
         private void Butacas_Load(object sender, EventArgs e)
         {
-            this.comboBox1.DataSource = butacas;
-            comboBox1.DisplayMember = "Nro";
-            comboBox1.ValueMember = "Id";
+            this.checkedListBox1.DataSource = butacas;
+            checkedListBox1.DisplayMember = "Nro";
+            checkedListBox1.ValueMember = "Id";
           
         }
 
+        private void btnSeleccion_Click(object sender, EventArgs e)
+        {
 
-        private void btnPago_Click(object sender, EventArgs e)
+            label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+
+            if (listaDeButacasLibres != null && this._compraActual.CantidadKG <= kgsDisponibles)
+            {
+
+                CrearListaDeButacasLibres();
+                var lista = checkedListBox1.CheckedIndices.Cast<int>().ToList();
+
+                foreach (int butaquita in lista)
+                {
+                    this.listaDeSeleccionadas.Add(this.listaDeButacasLibres.ElementAt(butaquita));
+
+
+                }
+
+                restan = restan - listaDeSeleccionadas.Count();
+
+                if (restan > 0)
+                {
+                    this.restan--;
+                    label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+                    return;
+
+                }
+                else
+                {
+                    label5.Text = "Has seleccionado todas.";
+
+                    return;
+                }
+            }
+           
+            else
+            {
+                MessageBox.Show("No se encuentran vuelos disponibles");
+                return;
+            }
+
+        }
+
+      /*  private void btnSeleccion_Click(object sender, EventArgs e)
         {
               label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
             if (listaDeButacasLibres != null)
@@ -95,7 +139,7 @@ namespace AerolineaFrba.ABM_Compra
 
                     label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
                     this.listaDeSeleccionadas.Add(seleccionada);
-                   // DAOButaca.MarcarComoOcupada(seleccionada);
+                   DAOButaca.MarcarComoOcupada(seleccionada);
                     this.CrearListaDeButacasLibres();
                    
                     if (restan > 0)
@@ -119,6 +163,8 @@ namespace AerolineaFrba.ABM_Compra
             }
         }
 
+
+        */
         private void limpiar()
         {
             label2.Text = "Tipo: ";
