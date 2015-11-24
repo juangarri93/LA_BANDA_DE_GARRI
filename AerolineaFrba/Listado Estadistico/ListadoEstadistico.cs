@@ -56,12 +56,40 @@ namespace AerolineaFrba.Listado_Estadistico
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            int indice = cmbListado.SelectedIndex + 1;
+            decimal anio = Convert.ToDecimal(cbAño.Text);
+            int semestre = Convert.ToInt32(cbSemestre.SelectedIndex + 1);
 
+            switch (indice)
+            {
+                case 1:
+                    MessageBox.Show("TOP 5 de Destinos con mas pasajes comprados.");
+                    //DAOEstadistica1(anio, semestre); (@anio numeric(4,0), @semestre int)
+                    break;
+                
+                case 2:
+                    MessageBox.Show("TOP 5 de Destinos con aeronaves mas vacias.");
+                    //DAOEstadistica2(anio, semestre);
+                    break;
+                case 3:
+                    MessageBox.Show("TOP 5 de Clientes con mas puntos acumulados a la fecha.");
+                    //DAOEstadistica3(anio, semestre);
+                    break;
+                case 4:
+                    MessageBox.Show("TOP 5 de Destinos con pasajes cancelados.");
+                    //DAOEstadistica4(anio, semestre);
+                    break;
+                case 5:
+                    MessageBox.Show("TOP 5 de Aeronaves con mayor cantidad de dias fuera de servicio.");
+                    //DAOEstadistica5(anio, semestre);
+                    break;
+
+            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
     }
 }

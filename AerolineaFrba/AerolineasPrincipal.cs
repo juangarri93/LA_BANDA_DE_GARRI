@@ -20,6 +20,7 @@ using AerolineaFrba.Abm_Compra;
 using AerolineaFrba.Login;
 using AerolineaFrba.Registro_Llegada_Destino;
 using AerolineaFrba.Consulta_Millas;
+using AerolineaFrba.Listado_Estadistico;
 
 namespace AerolineaFrba
 {
@@ -106,6 +107,12 @@ namespace AerolineaFrba
         {
             var nuevaVentanaCanjearMillas = new CanjeMillas();
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCanjearMillas, this);
+        }
+
+        private void btnEstadist_Click(object sender, EventArgs e)
+        {
+            var nuevaVentanaEstad = new ListadoEstadistico();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaEstad, this);
         }
 
        
