@@ -123,6 +123,11 @@ namespace AerolineaFrba.Generacion_Viaje
         {
             matricula = cbAeronave.SelectedItem.ToString();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
  
     }
 }

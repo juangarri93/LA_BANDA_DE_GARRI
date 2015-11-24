@@ -51,5 +51,18 @@ namespace AerolineaFrba.CapaADO
             return executeProcedureWithReturnValue("sp_Kg_disponibles", id_viaje);
          
         }
+
+
+        public static int CheckearViaje(string matricula, string origen, string destino)
+        {
+            return executeProcedureWithReturnValue("sp_checkViaje", matricula, origen, destino);
+
+        }
+
+        public static int RegistrarLlegada(string matricula, string origen, string destino, DateTime fecha)
+        {
+            return executeProcedureWithReturnValue("sp_registrar_llegada_destino", matricula, origen, destino,fecha);
+        }
+
     }
 }

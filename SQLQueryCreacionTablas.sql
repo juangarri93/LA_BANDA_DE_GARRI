@@ -136,6 +136,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarFabricante_aeronave') IS NOT NULL)
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarNumero_aeronave') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarNumero_aeronave;
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarMatricula_aeronave') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarMatricula_aeronave;
+  
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarModelo_aeronave') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spbuscarModelo_aeronave;
    
@@ -224,6 +227,10 @@ DROP PROCEDURE LA_BANDA_DE_GARRI.spMostrar_viaje_esp;
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_Kg_disponibles') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.sp_Kg_disponibles; 
 
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_checkViaje') IS NOT NULL)
+DROP PROCEDURE LA_BANDA_DE_GARRI.sp_checkViaje; 
+
+ 
   
 --Dropeo las tablas
   
@@ -966,7 +973,7 @@ go
 
 
 --REGISTRO LLEGADA A DESTINO
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@fecha_llegada DATETIME, @aeronave NVARCHAR(255), @origen int, @destino int) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@matricula VARCHAR(255), @origen int, @destino int, @fecha_llegada DATETIME ) AS
 BEGIN
 return 1;
 --insert a una tabla nueva de registro de llegadas?
@@ -1150,6 +1157,16 @@ as
 select * from LA_BANDA_DE_GARRI.Aeronave
 where Numero like '%' + @numeroABuscar + '%'
 go
+
+/*
+--PROCEDIMIENTO BUSCAR MATRICULA--
+create proc LA_BANDA_DE_GARRI.spbuscarMatricula_aeronave
+@matricula varchar(255)
+as
+select * from LA_BANDA_DE_GARRI.Aeronave
+where Matricula like '%' + @matricula + '%'
+go
+*/
 
 --PROCEDIMIENTO BUSCAR FABRICANTE--
 create proc LA_BANDA_DE_GARRI.spbuscarFabricante_aeronave
@@ -1836,3 +1853,40 @@ return(@retorno)
 end
 go
 
+
+
+create proc LA_BANDA_DE_GARRI.sp_checkViaje(
+@matricula varchar(255),
+@origen varchar(255),
+@destino varchar(255)
+)
+as
+begin
+declare @idorigen int
+declare @iddestino int
+declare @idaeronave int
+select @idaeronave = LA_BANDA_DE_GARRI.Aeronave.Id from LA_BANDA_DE_GARRI.Aeronave 
+where Matricula = @matricula
+select @idorigen = LA_BANDA_DE_GARRI.Ciudad.Id from LA_BANDA_DE_GARRI.Ciudad
+where Nombre = @origen
+select @iddestino = LA_BANDA_DE_GARRI.Ciudad.Id from LA_BANDA_DE_GARRI.Ciudad
+where Nombre = @destino
+
+declare @idruta int
+select @idruta = LA_BANDA_DE_GARRI.Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
+where Ciudad_Origen = @idorigen and Ciudad_Destino = @iddestino and Habilitada = 'True'
+
+declare @resul int
+select @resul = LA_BANDA_DE_GARRI.Viaje.Id from LA_BANDA_DE_GARRI.Viaje
+where Id_Aeronave = @idaeronave and Codigo_Ruta_Aerea = @idruta
+
+if(@resul is null)
+begin
+	return(0)
+	end
+else
+begin
+	return(1)
+	end
+end
+go

@@ -18,6 +18,7 @@ using AerolineaFrba.Registro_de_Usuario;
 using AerolineaFrba.Generacion_Viaje;
 using AerolineaFrba.Abm_Compra;
 using AerolineaFrba.Login;
+using AerolineaFrba.Registro_Llegada_Destino;
 using AerolineaFrba.Consulta_Millas;
 
 namespace AerolineaFrba
@@ -74,7 +75,8 @@ namespace AerolineaFrba
 
         private void btnRegistroDeLlegadaDestino_Click(object sender, EventArgs e)
         {
-
+            var nuevaVentanaRegistroDeLLegada = new Registro();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRegistroDeLLegada, this);
         }
 
         private void btnCompra_Click(object sender, EventArgs e)

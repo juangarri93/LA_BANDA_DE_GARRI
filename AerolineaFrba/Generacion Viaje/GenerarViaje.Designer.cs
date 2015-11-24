@@ -33,7 +33,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbRutaAerea = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGenerarViaje = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,12 +40,14 @@
             this.dtFechaSalida = new System.Windows.Forms.DateTimePicker();
             this.dtFechaLLegada = new System.Windows.Forms.DateTimePicker();
             this.dtFechaLLegadaEstimada = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 95);
+            this.label1.Location = new System.Drawing.Point(7, 29);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 37);
@@ -56,7 +57,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 160);
+            this.label2.Location = new System.Drawing.Point(7, 89);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(201, 37);
@@ -66,7 +67,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 210);
+            this.label3.Location = new System.Drawing.Point(7, 143);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(177, 65);
@@ -76,7 +77,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 290);
+            this.label5.Location = new System.Drawing.Point(7, 222);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(163, 37);
@@ -87,29 +88,19 @@
             // 
             this.cbRutaAerea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRutaAerea.FormattingEnabled = true;
-            this.cbRutaAerea.Location = new System.Drawing.Point(187, 290);
+            this.cbRutaAerea.Location = new System.Drawing.Point(191, 229);
             this.cbRutaAerea.Margin = new System.Windows.Forms.Padding(4);
             this.cbRutaAerea.Name = "cbRutaAerea";
-            this.cbRutaAerea.Size = new System.Drawing.Size(200, 24);
+            this.cbRutaAerea.Size = new System.Drawing.Size(219, 24);
             this.cbRutaAerea.TabIndex = 71;
             this.cbRutaAerea.SelectedIndexChanged += new System.EventHandler(this.cbRutaAerea_SelectedIndexChanged);
             // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(115, 23);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(173, 37);
-            this.label6.TabIndex = 72;
-            this.label6.Text = "Generar Viaje ";
-            // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(21, 418);
+            this.btnCancelar.Location = new System.Drawing.Point(13, 431);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(176, 42);
+            this.btnCancelar.Size = new System.Drawing.Size(429, 42);
             this.btnCancelar.TabIndex = 73;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -117,10 +108,10 @@
             // 
             // btnGenerarViaje
             // 
-            this.btnGenerarViaje.Location = new System.Drawing.Point(211, 418);
+            this.btnGenerarViaje.Location = new System.Drawing.Point(13, 367);
             this.btnGenerarViaje.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
-            this.btnGenerarViaje.Size = new System.Drawing.Size(176, 42);
+            this.btnGenerarViaje.Size = new System.Drawing.Size(429, 42);
             this.btnGenerarViaje.TabIndex = 75;
             this.btnGenerarViaje.Text = "Generar Viaje";
             this.btnGenerarViaje.UseVisualStyleBackColor = true;
@@ -129,7 +120,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 351);
+            this.label4.Location = new System.Drawing.Point(7, 277);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(163, 37);
@@ -140,36 +131,56 @@
             // 
             this.cbAeronave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAeronave.FormattingEnabled = true;
-            this.cbAeronave.Location = new System.Drawing.Point(187, 351);
+            this.cbAeronave.Location = new System.Drawing.Point(191, 284);
             this.cbAeronave.Margin = new System.Windows.Forms.Padding(4);
             this.cbAeronave.Name = "cbAeronave";
-            this.cbAeronave.Size = new System.Drawing.Size(200, 24);
+            this.cbAeronave.Size = new System.Drawing.Size(219, 24);
             this.cbAeronave.TabIndex = 80;
             this.cbAeronave.SelectedIndexChanged += new System.EventHandler(this.cbAeronave_SelectedIndexChanged);
             // 
             // dtFechaSalida
             // 
-            this.dtFechaSalida.Location = new System.Drawing.Point(211, 95);
+            this.dtFechaSalida.Location = new System.Drawing.Point(191, 34);
             this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaSalida.Name = "dtFechaSalida";
-            this.dtFechaSalida.Size = new System.Drawing.Size(195, 22);
+            this.dtFechaSalida.Size = new System.Drawing.Size(219, 22);
             this.dtFechaSalida.TabIndex = 86;
             // 
             // dtFechaLLegada
             // 
-            this.dtFechaLLegada.Location = new System.Drawing.Point(211, 165);
+            this.dtFechaLLegada.Location = new System.Drawing.Point(191, 94);
             this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaLLegada.Name = "dtFechaLLegada";
-            this.dtFechaLLegada.Size = new System.Drawing.Size(195, 22);
+            this.dtFechaLLegada.Size = new System.Drawing.Size(219, 22);
             this.dtFechaLLegada.TabIndex = 87;
             // 
             // dtFechaLLegadaEstimada
             // 
-            this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(211, 230);
+            this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(191, 161);
             this.dtFechaLLegadaEstimada.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtFechaLLegadaEstimada.Name = "dtFechaLLegadaEstimada";
-            this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(195, 22);
+            this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(219, 22);
             this.dtFechaLLegadaEstimada.TabIndex = 88;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dtFechaLLegadaEstimada);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dtFechaLLegada);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.dtFechaSalida);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cbAeronave);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.cbRutaAerea);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(430, 337);
+            this.groupBox1.TabIndex = 89;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Generar Viaje";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // GenerarViaje
             // 
@@ -177,25 +188,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(418, 485);
-            this.Controls.Add(this.dtFechaLLegadaEstimada);
-            this.Controls.Add(this.dtFechaLLegada);
-            this.Controls.Add(this.dtFechaSalida);
-            this.Controls.Add(this.cbAeronave);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(459, 488);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGenerarViaje);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.cbRutaAerea);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GenerarViaje";
-            this.Text = "Form1";
+            this.Text = "Generar Viaje";
             this.Load += new System.EventHandler(this.GenerarViaje_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -207,7 +209,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbRutaAerea;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGenerarViaje;
         private System.Windows.Forms.Label label4;
@@ -215,5 +216,6 @@
         private System.Windows.Forms.DateTimePicker dtFechaSalida;
         private System.Windows.Forms.DateTimePicker dtFechaLLegada;
         private System.Windows.Forms.DateTimePicker dtFechaLLegadaEstimada;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
