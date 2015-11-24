@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AerolineaFrba.CapaADO;
+
 namespace AerolineaFrba.Listado_Estadistico
 {
     public partial class ListadoEstadistico : Form
@@ -64,23 +66,24 @@ namespace AerolineaFrba.Listado_Estadistico
             {
                 case 1:
                     MessageBox.Show("TOP 5 de Destinos con mas pasajes comprados en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    //DAOEstadistica1(anio, semestre); (@anio numeric(4,0), @semestre int)
+                    DAOEstadistica.estadisticaDestinosconPasPasajesComprados(anio,semestre);
                     break;
                 
                 case 2:
                     MessageBox.Show("TOP 5 de Destinos con aeronaves mas vacias en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    //DAOEstadistica2(anio, semestre);
+                    DAOEstadistica.estadisticaDestinosConAeronavesMasVacias(anio, semestre);
                     break;
                 case 3:
                     MessageBox.Show("TOP 5 de Clientes con mas puntos acumulados a la fecha en el " + cbSemestre.Text + " de " + cbAño.Text);
+                    DAOEstadistica.estadisticaClientesConMasPuntosAcumulados(anio, semestre);
                     break;
                 case 4:
                     MessageBox.Show("TOP 5 de Destinos con pasajes cancelados en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    //DAOEstadistica4(anio, semestre);
+                    DAOEstadistica.estadisticaDestinosConPasajesCancelados(anio, semestre);
                     break;
                 case 5:
                     MessageBox.Show("TOP 5 de Aeronaves con mayor cantidad de dias fuera de servicio en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    //DAOEstadistica5(anio, semestre);
+                    DAOEstadistica.estadisticaAeronavesConMayorCantidadDeDiasFueraDeServicio(anio, semestre);
                     break;
 
             }

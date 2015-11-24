@@ -1736,7 +1736,7 @@ end
 go
 
 
---PROCEDIMIENTO sptraerCiudad --> LO USO PARA COMBOBO IMPORTANTE--
+--PROCEDIMIENTO sptraerCiudad --> LO USO PARA COMBOBOX IMPORTANTE--
 create proc LA_BANDA_DE_GARRI.sptraerCiudad
 (
 @idCiudad int

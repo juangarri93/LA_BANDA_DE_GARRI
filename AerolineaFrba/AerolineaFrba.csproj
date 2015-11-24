@@ -150,6 +150,7 @@
     <Compile Include="CapaADO\DAOCiudad.cs" />
     <Compile Include="CapaADO\DAOCliente.cs" />
     <Compile Include="CapaADO\DAOCompra.cs" />
+    <Compile Include="CapaADO\DAOEstadistica.cs" />
     <Compile Include="CapaADO\DAOFuncionalidades.cs" />
     <Compile Include="CapaADO\DAOMillas.cs" />
     <Compile Include="CapaADO\DAOPago.cs" />
