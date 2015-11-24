@@ -31,7 +31,7 @@ namespace AerolineaFrba.Listado_Estadistico
 
             List<String> anios = new List<String>();
              
-            for (int i = 1900; i <= 2020; i++)
+            for (int i = 2020; i >= 1900; i--)
             {
                 anios.Add(Convert.ToString(i));
             }
@@ -63,24 +63,23 @@ namespace AerolineaFrba.Listado_Estadistico
             switch (indice)
             {
                 case 1:
-                    MessageBox.Show("TOP 5 de Destinos con mas pasajes comprados.");
+                    MessageBox.Show("TOP 5 de Destinos con mas pasajes comprados en el " + cbSemestre.Text + " de " + cbAño.Text);
                     //DAOEstadistica1(anio, semestre); (@anio numeric(4,0), @semestre int)
                     break;
                 
                 case 2:
-                    MessageBox.Show("TOP 5 de Destinos con aeronaves mas vacias.");
+                    MessageBox.Show("TOP 5 de Destinos con aeronaves mas vacias en el " + cbSemestre.Text + " de " + cbAño.Text);
                     //DAOEstadistica2(anio, semestre);
                     break;
                 case 3:
-                    MessageBox.Show("TOP 5 de Clientes con mas puntos acumulados a la fecha.");
-                    //DAOEstadistica3(anio, semestre);
+                    MessageBox.Show("TOP 5 de Clientes con mas puntos acumulados a la fecha en el " + cbSemestre.Text + " de " + cbAño.Text);
                     break;
                 case 4:
-                    MessageBox.Show("TOP 5 de Destinos con pasajes cancelados.");
+                    MessageBox.Show("TOP 5 de Destinos con pasajes cancelados en el " + cbSemestre.Text + " de " + cbAño.Text);
                     //DAOEstadistica4(anio, semestre);
                     break;
                 case 5:
-                    MessageBox.Show("TOP 5 de Aeronaves con mayor cantidad de dias fuera de servicio.");
+                    MessageBox.Show("TOP 5 de Aeronaves con mayor cantidad de dias fuera de servicio en el " + cbSemestre.Text + " de " + cbAño.Text);
                     //DAOEstadistica5(anio, semestre);
                     break;
 
