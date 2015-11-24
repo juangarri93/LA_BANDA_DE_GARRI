@@ -128,6 +128,21 @@ namespace AerolineaFrba.Generacion_Viaje
         {
 
         }
+
+        private void dtFechaSalida_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtFechaLLegada_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtFechaLLegadaEstimada_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
  
     }
 }

@@ -83,6 +83,21 @@ namespace AerolineaFrba.Consulta_Millas
 
         }
 
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtvMillas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnCanjear_Click(object sender, EventArgs e)
+        {
+
+        }
+
     
 
          

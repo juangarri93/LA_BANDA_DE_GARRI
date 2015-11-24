@@ -127,6 +127,21 @@ namespace AerolineaFrba.Canje_Millas
             
         }
 
+        private void txtDni_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbCantidad_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void date_canje_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         
       
     }

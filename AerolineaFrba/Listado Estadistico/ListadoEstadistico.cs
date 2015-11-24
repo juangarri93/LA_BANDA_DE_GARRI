@@ -90,5 +90,15 @@ namespace AerolineaFrba.Listado_Estadistico
         {
             this.Hide();
         }
+
+        private void cbAño_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbSemestre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -51,26 +51,31 @@
             // 
             this.filtrarDNI.Controls.Add(this.txtDni);
             this.filtrarDNI.Controls.Add(this.label1);
-            this.filtrarDNI.Location = new System.Drawing.Point(24, 23);
+            this.filtrarDNI.Location = new System.Drawing.Point(32, 28);
+            this.filtrarDNI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.filtrarDNI.Name = "filtrarDNI";
-            this.filtrarDNI.Size = new System.Drawing.Size(351, 70);
+            this.filtrarDNI.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filtrarDNI.Size = new System.Drawing.Size(468, 86);
             this.filtrarDNI.TabIndex = 7;
             this.filtrarDNI.TabStop = false;
             this.filtrarDNI.Text = "Ingrese DNI";
             // 
             // txtDni
             // 
-            this.txtDni.Location = new System.Drawing.Point(139, 32);
+            this.txtDni.Location = new System.Drawing.Point(185, 39);
+            this.txtDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(191, 20);
+            this.txtDni.Size = new System.Drawing.Size(253, 22);
             this.txtDni.TabIndex = 6;
+            this.txtDni.TextChanged += new System.EventHandler(this.txtDni_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 34);
+            this.label1.Location = new System.Drawing.Point(20, 42);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 13);
+            this.label1.Size = new System.Drawing.Size(154, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Numero de Documento";
             // 
@@ -80,44 +85,51 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cbPremios);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(24, 109);
+            this.groupBox1.Location = new System.Drawing.Point(32, 134);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 128);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(468, 158);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione Premio";
             // 
             // cbCantidad
             // 
-            this.cbCantidad.Location = new System.Drawing.Point(80, 80);
+            this.cbCantidad.Location = new System.Drawing.Point(107, 98);
+            this.cbCantidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbCantidad.Name = "cbCantidad";
-            this.cbCantidad.Size = new System.Drawing.Size(248, 20);
+            this.cbCantidad.Size = new System.Drawing.Size(331, 22);
             this.cbCantidad.TabIndex = 10;
+            this.cbCantidad.ValueChanged += new System.EventHandler(this.cbCantidad_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 80);
+            this.label2.Location = new System.Drawing.Point(20, 98);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "Cantidad";
             // 
             // cbPremios
             // 
             this.cbPremios.FormattingEnabled = true;
-            this.cbPremios.Location = new System.Drawing.Point(80, 38);
+            this.cbPremios.Location = new System.Drawing.Point(107, 47);
+            this.cbPremios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbPremios.Name = "cbPremios";
-            this.cbPremios.Size = new System.Drawing.Size(249, 21);
+            this.cbPremios.Size = new System.Drawing.Size(331, 24);
             this.cbPremios.TabIndex = 8;
             this.cbPremios.SelectedIndexChanged += new System.EventHandler(this.cbPremios_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 38);
+            this.label3.Location = new System.Drawing.Point(20, 47);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.Size = new System.Drawing.Size(52, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Premio";
             // 
@@ -125,34 +137,40 @@
             // 
             this.groupBox3.Controls.Add(this.date_canje);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Location = new System.Drawing.Point(24, 254);
+            this.groupBox3.Location = new System.Drawing.Point(32, 313);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(351, 70);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(468, 86);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fecha de canje";
             // 
             // date_canje
             // 
-            this.date_canje.Location = new System.Drawing.Point(130, 28);
+            this.date_canje.Location = new System.Drawing.Point(173, 34);
+            this.date_canje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.date_canje.Name = "date_canje";
-            this.date_canje.Size = new System.Drawing.Size(200, 20);
+            this.date_canje.Size = new System.Drawing.Size(265, 22);
             this.date_canje.TabIndex = 9;
+            this.date_canje.ValueChanged += new System.EventHandler(this.date_canje_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 33);
+            this.label4.Location = new System.Drawing.Point(20, 41);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 13);
+            this.label4.Size = new System.Drawing.Size(107, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Fecha de Canje";
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(182, 338);
+            this.btnAceptar.Location = new System.Drawing.Point(243, 416);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(87, 26);
+            this.btnAceptar.Size = new System.Drawing.Size(116, 32);
             this.btnAceptar.TabIndex = 11;
             this.btnAceptar.Text = "Canjear";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -160,9 +178,10 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(288, 338);
+            this.btnCancelar.Location = new System.Drawing.Point(384, 416);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(87, 26);
+            this.btnCancelar.Size = new System.Drawing.Size(116, 32);
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -170,16 +189,16 @@
             // 
             // CanjeMillas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 383);
+            this.ClientSize = new System.Drawing.Size(517, 471);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.filtrarDNI);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CanjeMillas";
             this.Text = "Canje de Millas";
             this.filtrarDNI.ResumeLayout(false);

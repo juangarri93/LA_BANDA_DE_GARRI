@@ -56,6 +56,7 @@
             this.cmbDestino.Name = "cmbDestino";
             this.cmbDestino.Size = new System.Drawing.Size(292, 24);
             this.cmbDestino.TabIndex = 17;
+            this.cmbDestino.SelectedIndexChanged += new System.EventHandler(this.cmbDestino_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -93,6 +94,7 @@
             this.cmbOrigen.Name = "cmbOrigen";
             this.cmbOrigen.Size = new System.Drawing.Size(292, 24);
             this.cmbOrigen.TabIndex = 13;
+            this.cmbOrigen.SelectedIndexChanged += new System.EventHandler(this.cmbOrigen_SelectedIndexChanged);
             // 
             // dtpFechaViaje
             // 
@@ -102,6 +104,7 @@
             this.dtpFechaViaje.Name = "dtpFechaViaje";
             this.dtpFechaViaje.Size = new System.Drawing.Size(292, 22);
             this.dtpFechaViaje.TabIndex = 12;
+            this.dtpFechaViaje.ValueChanged += new System.EventHandler(this.dtpFechaViaje_ValueChanged);
             // 
             // btnBuscar
             // 
@@ -135,6 +138,7 @@
             this.cantPasajes.Name = "cantPasajes";
             this.cantPasajes.Size = new System.Drawing.Size(129, 24);
             this.cantPasajes.TabIndex = 21;
+            this.cantPasajes.SelectedIndexChanged += new System.EventHandler(this.cantPasajes_SelectedIndexChanged);
             // 
             // txtCantKG
             // 
@@ -144,6 +148,7 @@
             this.txtCantKG.Name = "txtCantKG";
             this.txtCantKG.Size = new System.Drawing.Size(71, 22);
             this.txtCantKG.TabIndex = 24;
+            this.txtCantKG.TextChanged += new System.EventHandler(this.txtCantKG_TextChanged);
             // 
             // btnComprar
             // 

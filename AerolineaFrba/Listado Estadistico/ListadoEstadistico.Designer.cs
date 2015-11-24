@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbAño = new System.Windows.Forms.ComboBox();
+            this.cbSemestre = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbListado = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dgvListado = new System.Windows.Forms.DataGridView();
-            this.cbSemestre = new System.Windows.Forms.ComboBox();
-            this.cbAño = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +54,24 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione detalles de busqueda";
+            // 
+            // cbAño
+            // 
+            this.cbAño.FormattingEnabled = true;
+            this.cbAño.Location = new System.Drawing.Point(146, 62);
+            this.cbAño.Name = "cbAño";
+            this.cbAño.Size = new System.Drawing.Size(176, 24);
+            this.cbAño.TabIndex = 9;
+            this.cbAño.SelectedIndexChanged += new System.EventHandler(this.cbAño_SelectedIndexChanged);
+            // 
+            // cbSemestre
+            // 
+            this.cbSemestre.FormattingEnabled = true;
+            this.cbSemestre.Location = new System.Drawing.Point(343, 62);
+            this.cbSemestre.Name = "cbSemestre";
+            this.cbSemestre.Size = new System.Drawing.Size(189, 24);
+            this.cbSemestre.TabIndex = 8;
+            this.cbSemestre.SelectedIndexChanged += new System.EventHandler(this.cbSemestre_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -111,22 +129,6 @@
             this.dgvListado.Size = new System.Drawing.Size(549, 202);
             this.dgvListado.TabIndex = 10;
             this.dgvListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_CellContentClick);
-            // 
-            // cbSemestre
-            // 
-            this.cbSemestre.FormattingEnabled = true;
-            this.cbSemestre.Location = new System.Drawing.Point(343, 62);
-            this.cbSemestre.Name = "cbSemestre";
-            this.cbSemestre.Size = new System.Drawing.Size(189, 24);
-            this.cbSemestre.TabIndex = 8;
-            // 
-            // cbAño
-            // 
-            this.cbAño.FormattingEnabled = true;
-            this.cbAño.Location = new System.Drawing.Point(146, 62);
-            this.cbAño.Name = "cbAño";
-            this.cbAño.Size = new System.Drawing.Size(176, 24);
-            this.cbAño.TabIndex = 9;
             // 
             // ListadoEstadistico
             // 

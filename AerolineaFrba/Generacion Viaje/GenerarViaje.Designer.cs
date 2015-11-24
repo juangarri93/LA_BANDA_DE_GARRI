@@ -145,6 +145,7 @@
             this.dtFechaSalida.Name = "dtFechaSalida";
             this.dtFechaSalida.Size = new System.Drawing.Size(219, 22);
             this.dtFechaSalida.TabIndex = 86;
+            this.dtFechaSalida.ValueChanged += new System.EventHandler(this.dtFechaSalida_ValueChanged);
             // 
             // dtFechaLLegada
             // 
@@ -153,6 +154,7 @@
             this.dtFechaLLegada.Name = "dtFechaLLegada";
             this.dtFechaLLegada.Size = new System.Drawing.Size(219, 22);
             this.dtFechaLLegada.TabIndex = 87;
+            this.dtFechaLLegada.ValueChanged += new System.EventHandler(this.dtFechaLLegada_ValueChanged);
             // 
             // dtFechaLLegadaEstimada
             // 
@@ -161,6 +163,7 @@
             this.dtFechaLLegadaEstimada.Name = "dtFechaLLegadaEstimada";
             this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(219, 22);
             this.dtFechaLLegadaEstimada.TabIndex = 88;
+            this.dtFechaLLegadaEstimada.ValueChanged += new System.EventHandler(this.dtFechaLLegadaEstimada_ValueChanged);
             // 
             // groupBox1
             // 

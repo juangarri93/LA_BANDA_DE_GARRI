@@ -203,5 +203,30 @@ namespace AerolineaFrba.Abm_Compra
         {
 
         }
+
+        private void cantPasajes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCantKG_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpFechaViaje_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
