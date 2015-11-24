@@ -45,8 +45,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textTel = new System.Windows.Forms.TextBox();
             this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbPerfil = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -204,30 +202,11 @@
             this.dtpFechaNac.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtpFechaNac.ValueChanged += new System.EventHandler(this.dtpFechaNac_ValueChanged);
             // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(16, 329);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 23);
-            this.label9.TabIndex = 63;
-            this.label9.Text = "Perfil :";
-            // 
-            // cbPerfil
-            // 
-            this.cbPerfil.FormattingEnabled = true;
-            this.cbPerfil.Location = new System.Drawing.Point(233, 329);
-            this.cbPerfil.Name = "cbPerfil";
-            this.cbPerfil.Size = new System.Drawing.Size(365, 21);
-            this.cbPerfil.TabIndex = 64;
-            // 
             // RegistroUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 423);
-            this.Controls.Add(this.cbPerfil);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.dtpFechaNac);
             this.Controls.Add(this.textTel);
             this.Controls.Add(this.label8);
@@ -273,7 +252,5 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textTel;
         private System.Windows.Forms.DateTimePicker dtpFechaNac;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cbPerfil;
     }
 }

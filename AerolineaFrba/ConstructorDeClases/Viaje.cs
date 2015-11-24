@@ -42,7 +42,9 @@ namespace AerolineaFrba.ConstructorDeClases
 
         public bool ValidarDatos(DateTime fechaSalida, DateTime fechaLlegada, DateTime fechaLlegadaEstimada)
         {
-          
+
+            return true;
+
             if ((fechaSalida.Year == fechaLlegada.Year) &&
              (fechaSalida.Month == fechaLlegada.Month) &&
              ((fechaLlegada.Day - fechaSalida.Day) <= 1) &&

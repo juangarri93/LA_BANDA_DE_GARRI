@@ -35,7 +35,7 @@ namespace AerolineaFrba.Registro_de_Usuario
             {
 
 
-              //  DAOUsuario.AgregarUsuario(CargarUsuario());
+                DAOUsuario.AgregarUsuario(CargarUsuario());
                 MessageBox.Show("El Usuario se agregó correctamente.");
                 limpiar();
             }
@@ -91,7 +91,8 @@ namespace AerolineaFrba.Registro_de_Usuario
         private Persona CargarUsuario()
         {
              
-            return new Persona(1, textNombre.Text, textApellido.Text, Convert.ToInt32(textDNI.Text), textDir.Text, Convert.ToInt32(textTel.Text), textMail.Text, dtpFechaNac.Value,cbPerfil.Text);
+            return new Persona(1, textNombre.Text, textApellido.Text, Convert.ToInt32(textDNI.Text), textDir.Text, Convert.ToInt32(textTel.Text), textMail.Text, dtpFechaNac.Value,
+                ""/*cbPerfil.Text*/);
 
         }
 
@@ -109,8 +110,8 @@ namespace AerolineaFrba.Registro_de_Usuario
 
         private void RegistroUsuarios_Load(object sender, EventArgs e)
         {
-            cbPerfil.DataSource = DAOUsuario.getPerfilRol().DefaultView;
-            cbPerfil.DisplayMember = "Rol";
+            //cbPerfil.DataSource = DAOUsuario.getPerfilRol().DefaultView;
+            //cbPerfil.DisplayMember = "Rol";
         }
 
         

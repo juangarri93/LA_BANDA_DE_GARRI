@@ -436,7 +436,7 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Cliente] (
 [direccion] NVARCHAR(255),
 [telefono] NUMERIC(18,0), 
 [mail] NVARCHAR(255),
-[fecha_nacimiento] DATETIME,
+[fecha_nacimiento] DATE,
 CONSTRAINT [PK_Cliente] PRIMARY KEY ([Id])
 )
 
@@ -1795,10 +1795,11 @@ CREATE PROC LA_BANDA_DE_GARRI.spinsertar_cliente
 @direccion nvarchar(255),
 @telefono numeric(18,0),
 @email nvarchar(255),
-@fechanac datetime
+@fechanac date
 )
-as insert into  LA_BANDA_DE_GARRI.Cliente(Id,Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
-values (@codigo,@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechanac)
+as 
+insert into  LA_BANDA_DE_GARRI.Cliente(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
+values (@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechanac)
 go
 
 CREATE proc LA_BANDA_DE_GARRI.spmostrar_clientes_pordni 
