@@ -43,6 +43,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnEditarBFS = new System.Windows.Forms.Button();
             this.cbFabricante = new System.Windows.Forms.ComboBox();
             this.cbModelo = new System.Windows.Forms.ComboBox();
             this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
@@ -74,8 +76,6 @@
             this.CodigoAeronave = new System.Windows.Forms.Label();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.btnEditarBFS = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -274,6 +274,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aeronaves";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(743, 157);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 50);
+            this.button1.TabIndex = 74;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnEditarBFS
+            // 
+            this.btnEditarBFS.Location = new System.Drawing.Point(604, 157);
+            this.btnEditarBFS.Name = "btnEditarBFS";
+            this.btnEditarBFS.Size = new System.Drawing.Size(99, 50);
+            this.btnEditarBFS.TabIndex = 73;
+            this.btnEditarBFS.Text = "Habilitar baja fuera de servicio";
+            this.btnEditarBFS.UseVisualStyleBackColor = true;
+            this.btnEditarBFS.Click += new System.EventHandler(this.btnEditarBFS_Click);
             // 
             // cbFabricante
             // 
@@ -577,26 +597,6 @@
             this.lineShape1.X2 = 558;
             this.lineShape1.Y1 = -24;
             this.lineShape1.Y2 = 311;
-            // 
-            // btnEditarBFS
-            // 
-            this.btnEditarBFS.Location = new System.Drawing.Point(604, 157);
-            this.btnEditarBFS.Name = "btnEditarBFS";
-            this.btnEditarBFS.Size = new System.Drawing.Size(99, 50);
-            this.btnEditarBFS.TabIndex = 73;
-            this.btnEditarBFS.Text = "Habilitar baja fuera de servicio";
-            this.btnEditarBFS.UseVisualStyleBackColor = true;
-            this.btnEditarBFS.Click += new System.EventHandler(this.btnEditarBFS_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(743, 157);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 50);
-            this.button1.TabIndex = 74;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ABMBajaModificacion
             // 

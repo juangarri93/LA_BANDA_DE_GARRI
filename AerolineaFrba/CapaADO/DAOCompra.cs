@@ -14,9 +14,11 @@ namespace AerolineaFrba.CapaADO
     {
         public static void AgregarCompra(Compra compra)
         {
-
-            executeProcedure("spinsertar_compra", 1, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadPasajes, compra.CantidadKG, compra.FechaDeViaje, compra.Importe, compra.Tipopago, compra.IdButaca);
-
+             foreach (var Butacas in compra.ButacasSeleccionadas)
+            {
+                executeProcedure("spinsertar_compra", 1, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadPasajes, compra.CantidadKG, compra.FechaDeViaje, compra.Importe, compra.Tipopago, Butacas.Id);
+            }
+         
         }
 
         //Metodo Mostrar

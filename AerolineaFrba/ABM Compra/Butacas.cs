@@ -24,14 +24,17 @@ namespace AerolineaFrba.ABM_Compra
         List<Butaca> listaDeSeleccionadas;
         int kgsDisponibles;
         DataTable butacas;
+        string kgComprados = "";
+        string CantidadPasajes = "";
 
         public Butacas(Compra compraActual)
         {
-            
+            CantidadPasajes = Convert.ToString(compraActual.CantidadPasajes);
+            kgComprados = Convert.ToString(compraActual.CantidadKG);
             this._compraActual = compraActual;
             restan = _compraActual.CantidadPasajes;
             restanEnco = _compraActual.CantidadKG;
-            butacas = DAOButaca.ButacasLibres(this._compraActual.ViajeSeleccionado);
+            butacas = DAOButaca.ButacasLibres(compraActual.ViajeSeleccionado);
             kgsDisponibles = DAOViaje.getKgDisponibles(this._compraActual.ViajeSeleccionado);
             CrearListaDeButacasLibres();
             listaDeSeleccionadas = new List<Butaca>();
@@ -80,14 +83,17 @@ namespace AerolineaFrba.ABM_Compra
             this.checkedListBox1.DataSource = butacas;
             checkedListBox1.DisplayMember = "Nro";
             checkedListBox1.ValueMember = "Id";
-          
+
+            label5.Text = "Restan seleccionar:" + CantidadPasajes;
+            KgDisp.Text = "Kg disponibles:" + kgsDisponibles;
+
         }
 
         private void btnSeleccion_Click(object sender, EventArgs e)
         {
             
-            label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
-            KgDisp.Text = "Kg disponibles: " + Convert.ToString(kgsDisponibles);
+            //label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
+            //KgDisp.Text = "Kg disponibles: " + Convert.ToString(kgsDisponibles);
 
             if (listaDeButacasLibres != null && this._compraActual.CantidadKG <= kgsDisponibles)
             {
@@ -102,12 +108,12 @@ namespace AerolineaFrba.ABM_Compra
 
                 }
 
-                restan = restan - listaDeSeleccionadas.Count();
+                restan = restan - (listaDeSeleccionadas.Count());
                 int aux = kgsDisponibles - this._compraActual.CantidadKG;
 
-                if (restan > 0 )
+                if (restan >= 0)
                 {
-                    this.restan--;
+                    //this.restan--;
                     label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
                     KgDisp.Text = "Kg disponibles: " + Convert.ToString(aux);
                     return;

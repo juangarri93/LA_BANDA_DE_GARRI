@@ -17,7 +17,8 @@ namespace AerolineaFrba.Abm_Compra
 {
     public partial class AltaCompra : Form
     {
-        Compra compraActual; 
+        Compra compraActual;
+        bool flag = false;
 
         public AltaCompra()
         {
@@ -49,10 +50,10 @@ namespace AerolineaFrba.Abm_Compra
         }
 
 
-        private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        { 
+        //private void dgvCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{ 
 
-        }
+        //}
 
         private void OcultarColumnas()
         {
@@ -118,8 +119,10 @@ namespace AerolineaFrba.Abm_Compra
                     o2.Nombre = (string)row2["Nombre"];
                     o2.Habilitado = (bool)row2["Habilitada"];
 
+                    DataTable busqueda = DAOViaje.Buscar(dtpFechaViaje.Value, o.IdentificadorCiudad, o2.IdentificadorCiudad);
 
-                    dgvCompra.DataSource = DAOViaje.Buscar(dtpFechaViaje.Value,  o.IdentificadorCiudad,  o2.IdentificadorCiudad);
+                    dgvCompra.DataSource = busqueda;
+                  
                     OcultarColumnas();
 
 
@@ -177,7 +180,16 @@ namespace AerolineaFrba.Abm_Compra
 
         private void chkPasajes_CheckedChanged(object sender, EventArgs e)
         {
-           
+            if(flag == false)
+            {
+                cantPasajes.Enabled = true;
+                flag = true;
+            }else
+            {
+                cantPasajes.Enabled = false;
+                flag = false;
+            }
+
         }
 
         private void chkEncomienda_CheckedChanged(object sender, EventArgs e)
@@ -227,6 +239,11 @@ namespace AerolineaFrba.Abm_Compra
         private void dtpFechaViaje_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void AltaCompra_Load(object sender, EventArgs e)
+        {
+            cantPasajes.Enabled = false;
         }
     }
 }

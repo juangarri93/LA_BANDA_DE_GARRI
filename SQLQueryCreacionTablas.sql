@@ -13,6 +13,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures 
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcargar_butacasEnTablaViaje_Butaca') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.spcargar_butacasEnTablaViaje_Butaca;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_RolHabilitados') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.spmostrar_RolHabilitados;
 
@@ -764,7 +768,8 @@ begin
 	
 	SELECT * FROM LA_BANDA_DE_GARRI.Butaca B 
 	Where (Select V.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje V where V.Id=@id_Viaje)=B.Aeronave_id 
-	and NOT EXISTS(SELECT 1 from Pasaje_Encomienda P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
+	and NOT EXISTS(SELECT 1 from LA_BANDA_DE_GARRI.Pasaje_Encomienda P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
+	and Exists(Select 1 from LA_BANDA_DE_GARRI.Viaje_Butaca T where T.id_Butaca = B.Id and T.libre = 0)
 	
 END
 GO
@@ -961,6 +966,13 @@ BEGIN
 	 begin
 	 insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
 	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
+
+	declare @idViaje int
+	set @id_viaje = (select max(Id) from LA_BANDA_DE_GARRI.Viaje)
+
+	insert into LA_BANDA_DE_GARRI.Viaje_Butaca(id_Viaje,id_Butaca,libre)
+	select @id_viaje,b.Id,1 from LA_BANDA_DE_GARRI.Butaca b where b.Aeronave_id = Aeronave_id
+
 	return(2)
 	end
 		else
@@ -1542,9 +1554,9 @@ CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
 @fechaNac date,
 @cantidadPasaje int,
 @cantidadKG int,
-@fechaCompra date,
+@fechaCompra datetime,
 @Importe decimal(18,0),
-@Tipo_Pago int,
+@Tipo_Pago char(1),
 @idButaca int
 )
 as
@@ -1566,12 +1578,15 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 
 	insert into  LA_BANDA_DE_GARRI.Pago(Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
 	values(@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+	
+	declare @idPago int
+	set @idPago = (SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago)
 
-	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,KG)
-	values(@idCliente,@idviajeSeleccionado,@idButaca,@cantidadKG)
+	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago,KG)
+	values(@idCliente,@idviajeSeleccionado,@idButaca,@idPago,@cantidadKG)
 
 	update LA_BANDA_DE_GARRI.Viaje_Butaca
-	set libre = 1
+	set libre = 0
 	where id_Butaca = @idButaca and id_Viaje=@idviajeSeleccionado
 
 end
@@ -1890,4 +1905,20 @@ begin
 	return(1)
 	end
 end
+go
+
+-- Agregado Nico 24/11/2015--
+
+create proc LA_BANDA_DE_GARRI.spcargar_butacasEnTablaViaje_Butaca
+(
+@id_viaje int,
+@id_aeronave int
+)
+as
+begin
+
+insert into LA_BANDA_DE_GARRI.Viaje_Butaca(id_Viaje,id_Butaca,libre)
+select @id_viaje,b.Id,1 from LA_BANDA_DE_GARRI.Butaca b where b.Aeronave_id = @id_aeronave
+
+end 
 go
