@@ -1685,6 +1685,24 @@ end
 
 go
 
+--top 5 aeronave mas vacia
+create procedure LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia (@anio numeric(4,0), @semestre int)
+as
+begin
+	select v.Id_Aeronave, COUNT(v.Id_Aeronave)
+	from LA_BANDA_DE_GARRI.Viaje v
+	join LA_BANDA_DE_GARRI.Butaca b on b.Aeronave_id = v.Id_Aeronave
+	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (p.Id_Butaca = b.Id
+													and p.Id_Viaje = v.Id)
+	where p.KG > 0 
+	and year(v.Fecha_salida) = @anio
+	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, v.Fecha_salida) = 1
+	group by v.Id_Aeronave
+	order by 2 asc
+end
+
+go
+
 --Fecha 14/11/2015 Nico --
 -- Procedimiento Editar Ciudad --
 
