@@ -94,7 +94,6 @@ namespace AerolineaFrba.ABM_Compra
             
             //label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
             //KgDisp.Text = "Kg disponibles: " + Convert.ToString(kgsDisponibles);
-
             if (listaDeButacasLibres != null && this._compraActual.CantidadKG <= kgsDisponibles)
             {
 
@@ -108,27 +107,18 @@ namespace AerolineaFrba.ABM_Compra
 
                 }
 
-                restan = restan - (listaDeSeleccionadas.Count());
-                int aux = kgsDisponibles - this._compraActual.CantidadKG;
-
-                if (restan >= 0)
+                if (listaDeSeleccionadas.Count() > _compraActual.CantidadPasajes)
                 {
-                    //this.restan--;
-                    label5.Text = "Restan seleccionar: " + Convert.ToString(restan);
-                    KgDisp.Text = "Kg disponibles: " + Convert.ToString(aux);
+                    MessageBox.Show("La Cantidad de butacas solicitadas excede a la compra actual,seleccione la cantidad correspondiente");
                     return;
+                }
 
-                }
-                if(aux >=0){
-                     KgDisp.Text = "Kg disponibles: " + Convert.ToString(aux);
-                    return;
-                }
-                else
+                if (listaDeSeleccionadas.Count() < _compraActual.CantidadPasajes)
                 {
-                    label5.Text = "Has seleccionado todas.";
-
+                    MessageBox.Show("La Cantidad de butacas solicitadas es menor a la compra actual,seleccion la cantidad correspondiente");
                     return;
                 }
+
             }
            
             else

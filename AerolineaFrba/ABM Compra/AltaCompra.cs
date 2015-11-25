@@ -145,6 +145,12 @@ namespace AerolineaFrba.Abm_Compra
 
             try
             {
+
+                if ((this.compraActual.ViajeSeleccionado == 0))
+                {
+                    MessageBox.Show("Debe hacer doble click en la tabla de la derecha y elegir un viaje.");
+                }
+
                 if (EsNumero(txtCantKG.Text))
                 {
                     int kgs = chkEncomienda.Checked ? Convert.ToInt32(txtCantKG.Text) : 0;
@@ -208,6 +214,7 @@ namespace AerolineaFrba.Abm_Compra
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+
             this.Hide();
         }
 
@@ -245,5 +252,12 @@ namespace AerolineaFrba.Abm_Compra
         {
             cantPasajes.Enabled = false;
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+    
     }
 }
