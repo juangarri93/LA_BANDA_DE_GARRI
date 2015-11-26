@@ -70,5 +70,13 @@ namespace AerolineaFrba.Abm_Rol
         {
             this.Hide();
         }
+
+        private void BajaLogica_Click(object sender, EventArgs e)
+        {
+
+            var ventanaModificarEstadoRol = new ModificarEstadoRol();
+            FormsHerramientas.mostrarVentanaNueva(ventanaModificarEstadoRol, this);
+
+        }
     }
 }

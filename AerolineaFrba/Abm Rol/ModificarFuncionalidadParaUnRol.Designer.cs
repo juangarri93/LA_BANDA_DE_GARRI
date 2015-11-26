@@ -68,7 +68,7 @@
             this.labelMuestraNombre.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMuestraNombre.Location = new System.Drawing.Point(479, 17);
             this.labelMuestraNombre.Name = "labelMuestraNombre";
-            this.labelMuestraNombre.Size = new System.Drawing.Size(161, 32);
+            this.labelMuestraNombre.Size = new System.Drawing.Size(213, 32);
             this.labelMuestraNombre.TabIndex = 22;
             this.labelMuestraNombre.Text = "Nombre Rol";
             // 

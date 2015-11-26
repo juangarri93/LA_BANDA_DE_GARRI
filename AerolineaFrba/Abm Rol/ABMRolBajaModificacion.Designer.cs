@@ -63,8 +63,9 @@
             this.BajaLogica.Name = "BajaLogica";
             this.BajaLogica.Size = new System.Drawing.Size(159, 57);
             this.BajaLogica.TabIndex = 19;
-            this.BajaLogica.Text = "Baja Logica";
+            this.BajaLogica.Text = "Modificar Estado";
             this.BajaLogica.UseVisualStyleBackColor = true;
+            this.BajaLogica.Click += new System.EventHandler(this.BajaLogica_Click);
             // 
             // cbNombre
             // 

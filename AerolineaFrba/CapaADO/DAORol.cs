@@ -72,5 +72,10 @@ namespace AerolineaFrba.CapaADO
                 executeProcedure("spinsertar_rol_funcionalidad ", rol.Codigo, func + 1);
             }
         }
+
+         public static void EditarNombreRol(string nombreAnt,bool estado)
+         {
+             executeProcedure("sp_cambiar_estado_rol", nombreAnt,estado);
+         }
     }
 }
