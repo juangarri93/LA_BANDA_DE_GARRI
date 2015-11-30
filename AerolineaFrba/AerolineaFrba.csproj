@@ -176,6 +176,7 @@
     <Compile Include="ConstructorDeClases\Butaca.cs" />
     <Compile Include="ConstructorDeClases\Ciudad.cs" />
     <Compile Include="ConstructorDeClases\Compra.cs" />
+    <Compile Include="ConstructorDeClases\Cancelacion.cs" />
     <Compile Include="ConstructorDeClases\Millas.cs" />
     <Compile Include="ConstructorDeClases\Pago.cs" />
     <Compile Include="ConstructorDeClases\Persona.cs" />
@@ -188,6 +189,12 @@
     </Compile>
     <Compile Include="Consulta Millas\ConsultaMillas.Designer.cs">
       <DependentUpon>ConsultaMillas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devolucion\CancelarPasajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devolucion\CancelarPasajes.Designer.cs">
+      <DependentUpon>CancelarPasajes.cs</DependentUpon>
     </Compile>
     <Compile Include="Devolucion\DevolucionOpciones.cs">
       <SubType>Form</SubType>

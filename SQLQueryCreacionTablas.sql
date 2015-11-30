@@ -973,7 +973,7 @@ BEGIN
 	set @id_viaje = (select max(Id) from LA_BANDA_DE_GARRI.Viaje)
 
 	insert into LA_BANDA_DE_GARRI.Viaje_Butaca(id_Viaje,id_Butaca,libre)
-	select @id_viaje,b.Id,1 from LA_BANDA_DE_GARRI.Butaca b where b.Aeronave_id = Aeronave_id
+	select @id_viaje,b.Id,1 from LA_BANDA_DE_GARRI.Butaca b where b.Aeronave_id = @id_aeronave
 
 	return(2)
 	end
