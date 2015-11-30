@@ -16,8 +16,6 @@ namespace AerolineaFrba.Abm_Rol
     public partial class ModificarEstadoRol : Form
     {
 
-        Rol rol;
-
         public ModificarEstadoRol()
         {
             InitializeComponent();
@@ -27,6 +25,10 @@ namespace AerolineaFrba.Abm_Rol
         {
 
             this.dgRolesEstado.DataSource = DAORol.getRol();
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            textBox3.ReadOnly = true;
+
         }
 
         private void btVolver_Click(object sender, EventArgs e)
@@ -39,10 +41,9 @@ namespace AerolineaFrba.Abm_Rol
             try
             {
 
-                String nombreAnt = "";
-
-                DAORol.EditarNombreRol(nombreAnt,true);
+                DAORol.EditarEstadoRol(cargarRol());
                 MessageBox.Show("Rol Modificado correctamente.");
+                this.dgRolesEstado.DataSource = DAORol.getRol();
 
           
             }
@@ -52,13 +53,17 @@ namespace AerolineaFrba.Abm_Rol
             }
         }
 
+        private Rol cargarRol()
+        {
+            return new Rol(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToBoolean(textBox3.Text));
+        }
+
         private void dgRolesEstado_DoubleClick(object sender, EventArgs e)
         {
 
-            rol.Codigo = Convert.ToInt32(this.dgRolesEstado.CurrentRow.Cells["Id"].Value);
-            rol.Nombre = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Rol"].Value);
-            rol.Habilitado = Convert.ToBoolean(this.dgRolesEstado.CurrentRow.Cells["Habilitado"].Value);
-
+            textBox1.Text = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Id"].Value);
+            textBox2.Text = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Rol"].Value);
+            textBox3.Text = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Habilitado"].Value);
 
         }
     }

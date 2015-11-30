@@ -12,7 +12,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fncEstaOcupada') IS NOT NULL)
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
---Dropeo las procedures 
+--Dropeo las procedures
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia ') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia ;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcargar_butacasEnTablaViaje_Butaca') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.spcargar_butacasEnTablaViaje_Butaca;
@@ -800,11 +802,11 @@ END
 
 GO
 
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol NVARCHAR(255), @estado BIT) AS
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cambiar_estado_rol(@rol int, @estado BIT) AS
 BEGIN
 	update LA_BANDA_DE_GARRI.Rol
 	set Habilitado = @estado
-	where Rol = @rol
+	where Id = @rol
 END
 GO
 
