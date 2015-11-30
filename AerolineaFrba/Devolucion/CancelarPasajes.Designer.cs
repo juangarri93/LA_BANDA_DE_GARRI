@@ -28,11 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dtButacasCompradas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dtButacasCompradas)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dtButacasCompradas
+            // 
+            this.dtButacasCompradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtButacasCompradas.Location = new System.Drawing.Point(35, 27);
+            this.dtButacasCompradas.Name = "dtButacasCompradas";
+            this.dtButacasCompradas.Size = new System.Drawing.Size(311, 189);
+            this.dtButacasCompradas.TabIndex = 0;
+            // 
+            // CancelarPasajes
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(426, 262);
+            this.Controls.Add(this.dtButacasCompradas);
+            this.Name = "CancelarPasajes";
             this.Text = "CancelarPasajes";
+            ((System.ComponentModel.ISupportInitialize)(this.dtButacasCompradas)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dtButacasCompradas;
     }
 }

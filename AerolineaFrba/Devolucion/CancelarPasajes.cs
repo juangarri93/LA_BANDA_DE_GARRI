@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AerolineaFrba.ConstructorDeClases;
+using AerolineaFrba.CapaADO;
 
 namespace AerolineaFrba.Devolucion
 {
@@ -16,8 +17,9 @@ namespace AerolineaFrba.Devolucion
     {
         public CancelarPasajes(Cancelacion cancelacion)
         {
-
+          
             InitializeComponent();
+            dtButacasCompradas.DataSource = DAOCancelacion.getButacas(cancelacion);
         }
     }
 }

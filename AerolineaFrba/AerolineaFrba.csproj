@@ -153,6 +153,7 @@
     </Compile>
     <Compile Include="CapaADO\DAOAerolinea.cs" />
     <Compile Include="CapaADO\DAOButaca.cs" />
+    <Compile Include="CapaADO\DAOCancelacion.cs" />
     <Compile Include="CapaADO\DAOCiudad.cs" />
     <Compile Include="CapaADO\DAOCliente.cs" />
     <Compile Include="CapaADO\DAOCompra.cs" />
@@ -328,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Consulta Millas\ConsultaMillas.resx">
       <DependentUpon>ConsultaMillas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\CancelarPasajes.resx">
+      <DependentUpon>CancelarPasajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Devolucion\DevolucionOpciones.resx">
       <DependentUpon>DevolucionOpciones.cs</DependentUpon>

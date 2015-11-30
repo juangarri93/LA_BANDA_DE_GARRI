@@ -27,14 +27,14 @@ namespace AerolineaFrba.Devolucion
 
         private void btnBuscarNroDeCompra_Click(object sender, EventArgs e)
         {
-            
+            Cancelacion cancelacion = new Cancelacion(dtpFechaDevolucion.Value, Convert.ToInt32(txtNroDeCompra.Text), 4, txtMotivo.Text);
+
+            var ventanaCancelarPasajes = new CancelarPasajes(cancelacion);
+            FormsHerramientas.mostrarVentanaNueva(ventanaCancelarPasajes, this);
 
             try
             {
-                Cancelacion cancelacion = new Cancelacion(dtpFechaDevolucion.Value, Convert.ToInt32(txtNroDeCompra.Text), Convert.ToInt32(txtCodigoPasaje.Text), txtMotivo.Text);
-
-                var ventanaCancelarPasajes = new CancelarPasajes(cancelacion);
-                FormsHerramientas.mostrarVentanaNueva(ventanaCancelarPasajes, this);
+              
             }
             catch (Exception ex)
             {

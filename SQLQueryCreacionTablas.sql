@@ -13,7 +13,10 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia ') IS NOT NULL)
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_butacas_pasaje_compra') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.spMostrar_butacas_pasaje_compra ;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia ;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spcargar_butacasEnTablaViaje_Butaca') IS NOT NULL)
@@ -1990,3 +1993,18 @@ GO
 
 	exec LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas	
 GO
+
+create proc LA_BANDA_DE_GARRI.spMostrar_butacas_pasaje_compra(
+@numeroPasaje int,
+@PNR int
+)
+as
+begin
+
+	declare @idViaje int
+	select @idViaje = Id_viaje from LA_BANDA_DE_GARRI.Pago where PNR = @PNR
+
+	select * from LA_BANDA_DE_GARRI.Viaje_Butaca WHERE id_Viaje = @idViaje and libre = '0'
+
+end
+go
