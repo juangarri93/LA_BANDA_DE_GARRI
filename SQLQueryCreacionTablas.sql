@@ -234,7 +234,8 @@ DROP PROCEDURE LA_BANDA_DE_GARRI.sp_Kg_disponibles;
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_checkViaje') IS NOT NULL)
 DROP PROCEDURE LA_BANDA_DE_GARRI.sp_checkViaje; 
 
- 
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas;
   
 --Dropeo las tablas
   
@@ -1940,3 +1941,50 @@ select @id_viaje,b.Id,1 from LA_BANDA_DE_GARRI.Butaca b where b.Aeronave_id = @i
 
 end 
 go
+
+--Se agrega la cantidad de tipos de butaca en cada aeronave
+create procedure LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas AS
+BEGIN
+	DECLARE AeronaveCursor CURSOR FOR
+	
+	select Id from LA_BANDA_DE_GARRI.Aeronave 
+	
+	DECLARE @aeronave_id INT, @cantidad_ventana INT, @cantidad_pasillo INT;
+		
+		OPEN AeronaveCursor;
+			
+			FETCH NEXT FROM AeronaveCursor INTO @aeronave_id 
+			WHILE @@FETCH_STATUS = 0
+			
+			BEGIN
+				
+				select 	@cantidad_pasillo = count(b.Aeronave_id)
+				from LA_BANDA_DE_GARRI.Aeronave a
+				join LA_BANDA_DE_GARRI.Butaca b on (a.Id = b.Aeronave_id)
+				where a.Id = @aeronave_id 
+				group by a.Id, b.Tipo
+				having b.Tipo = 1
+
+				select @cantidad_ventana = count(b.Aeronave_id)
+				from LA_BANDA_DE_GARRI.Aeronave a
+				join LA_BANDA_DE_GARRI.Butaca b on (a.Id = b.Aeronave_id)
+
+				where a.Id = @aeronave_id 
+				group by a.Id, b.Tipo
+				having b.Tipo = 2
+
+				update LA_BANDA_DE_GARRI.Aeronave
+				SET cantidad_butacas_ventana = @cantidad_ventana,
+					cantidad_ventanas_pasillo = @cantidad_pasillo
+				WHERE id = @aeronave_id;
+				
+				FETCH NEXT FROM AeronaveCursor INTO @aeronave_id
+			END;
+		
+		CLOSE AeronaveCursor;
+	DEALLOCATE AeronaveCursor;
+END;
+GO
+
+	exec LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas	
+GO
