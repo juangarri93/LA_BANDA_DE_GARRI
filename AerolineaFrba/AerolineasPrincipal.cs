@@ -21,6 +21,7 @@ using AerolineaFrba.Login;
 using AerolineaFrba.Registro_Llegada_Destino;
 using AerolineaFrba.Consulta_Millas;
 using AerolineaFrba.Listado_Estadistico;
+using AerolineaFrba.Devolucion;
 
 namespace AerolineaFrba
 {
@@ -113,6 +114,12 @@ namespace AerolineaFrba
         {
             var nuevaVentanaEstad = new ListadoEstadistico();
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaEstad, this);
+        }
+
+        private void btnCancelacion_Click(object sender, EventArgs e)
+        {
+            var nuevaVentanaDevolucion = new DevolucionOpciones();
+            FormsHerramientas.mostrarVentanaNueva(nuevaVentanaDevolucion, this);
         }
 
        
