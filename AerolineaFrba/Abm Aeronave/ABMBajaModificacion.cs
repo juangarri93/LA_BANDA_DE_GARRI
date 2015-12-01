@@ -390,9 +390,9 @@ namespace AerolineaFrba.Abm_Aeronave
             cmbBajaFueraDeServicio.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
-            dtpFechaAlta.Value = DateTime.MinValue;
-            dtFechaFueraDeServicio.Value = DateTime.MinValue;
-            dtFechaDeReinicio.Value = DateTime.MinValue;
+            dtpFechaAlta.Value = DateTime.Today;
+            dtFechaFueraDeServicio.Value = DateTime.Today;
+            dtFechaDeReinicio.Value = DateTime.Today;
 
         }
 
@@ -543,6 +543,11 @@ namespace AerolineaFrba.Abm_Aeronave
             dtFechaDeReinicio.Enabled = false;
             flagBajaFueraServicio = false;
             habilitado = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Holi");
         }
 
         

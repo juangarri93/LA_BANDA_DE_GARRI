@@ -54,121 +54,108 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 78);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 36;
             this.label1.Text = "Fecha alta :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 32);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(12, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 17);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 37;
             this.label2.Text = "Numero  :";
             // 
             // txtNumeroAeronave
             // 
-            this.txtNumeroAeronave.Location = new System.Drawing.Point(127, 23);
-            this.txtNumeroAeronave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNumeroAeronave.Location = new System.Drawing.Point(95, 19);
             this.txtNumeroAeronave.Name = "txtNumeroAeronave";
-            this.txtNumeroAeronave.Size = new System.Drawing.Size(153, 22);
+            this.txtNumeroAeronave.Size = new System.Drawing.Size(116, 20);
             this.txtNumeroAeronave.TabIndex = 38;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 123);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 100);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 40;
             this.label3.Text = "Modelo  :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 169);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(12, 137);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 17);
+            this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 41;
             this.label4.Text = "Matricula  :";
             // 
             // txtMatricula
             // 
-            this.txtMatricula.Location = new System.Drawing.Point(127, 160);
-            this.txtMatricula.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMatricula.Location = new System.Drawing.Point(95, 130);
             this.txtMatricula.Name = "txtMatricula";
-            this.txtMatricula.Size = new System.Drawing.Size(160, 22);
+            this.txtMatricula.Size = new System.Drawing.Size(121, 20);
             this.txtMatricula.TabIndex = 42;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 214);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(12, 174);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 17);
+            this.label5.Size = new System.Drawing.Size(66, 13);
             this.label5.TabIndex = 43;
             this.label5.Text = "Fabricante  :";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(321, 27);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(241, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 17);
+            this.label6.Size = new System.Drawing.Size(88, 13);
             this.label6.TabIndex = 45;
             this.label6.Text = "Tipo de servicio :";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(321, 73);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(241, 59);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(191, 17);
+            this.label7.Size = new System.Drawing.Size(144, 13);
             this.label7.TabIndex = 47;
             this.label7.Text = "Cantidad de butacas Pasillo :";
             // 
             // txtCantidadDeButacasPasillo
             // 
-            this.txtCantidadDeButacasPasillo.Location = new System.Drawing.Point(543, 64);
-            this.txtCantidadDeButacasPasillo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCantidadDeButacasPasillo.Location = new System.Drawing.Point(407, 52);
             this.txtCantidadDeButacasPasillo.Name = "txtCantidadDeButacasPasillo";
-            this.txtCantidadDeButacasPasillo.Size = new System.Drawing.Size(160, 22);
+            this.txtCantidadDeButacasPasillo.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadDeButacasPasillo.TabIndex = 48;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(321, 169);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(241, 137);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 17);
+            this.label8.Size = new System.Drawing.Size(88, 13);
             this.label8.TabIndex = 49;
             this.label8.Text = "Cantidad de KG :";
             // 
             // txtCantidadButacasVentana
             // 
-            this.txtCantidadButacasVentana.Location = new System.Drawing.Point(543, 119);
-            this.txtCantidadButacasVentana.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCantidadButacasVentana.Location = new System.Drawing.Point(407, 97);
             this.txtCantidadButacasVentana.Name = "txtCantidadButacasVentana";
-            this.txtCantidadButacasVentana.Size = new System.Drawing.Size(160, 22);
+            this.txtCantidadButacasVentana.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadButacasVentana.TabIndex = 50;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(325, 233);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAceptar.Location = new System.Drawing.Point(244, 189);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(169, 41);
+            this.btnAceptar.Size = new System.Drawing.Size(127, 33);
             this.btnAceptar.TabIndex = 51;
             this.btnAceptar.Text = "Guardar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -176,10 +163,9 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(543, 233);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(407, 189);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(169, 41);
+            this.btnCancelar.Size = new System.Drawing.Size(127, 33);
             this.btnCancelar.TabIndex = 52;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -188,69 +174,62 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(321, 123);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(241, 100);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(203, 17);
+            this.label9.Size = new System.Drawing.Size(154, 13);
             this.label9.TabIndex = 62;
             this.label9.Text = "Cantidad de butacas Ventana :";
             // 
             // cbModelo
             // 
             this.cbModelo.FormattingEnabled = true;
-            this.cbModelo.Location = new System.Drawing.Point(127, 112);
-            this.cbModelo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbModelo.Location = new System.Drawing.Point(95, 91);
             this.cbModelo.Name = "cbModelo";
-            this.cbModelo.Size = new System.Drawing.Size(160, 24);
+            this.cbModelo.Size = new System.Drawing.Size(121, 21);
             this.cbModelo.TabIndex = 63;
             // 
             // cbFabricante
             // 
             this.cbFabricante.FormattingEnabled = true;
-            this.cbFabricante.Location = new System.Drawing.Point(127, 214);
-            this.cbFabricante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFabricante.Location = new System.Drawing.Point(95, 174);
             this.cbFabricante.Name = "cbFabricante";
-            this.cbFabricante.Size = new System.Drawing.Size(160, 24);
+            this.cbFabricante.Size = new System.Drawing.Size(121, 21);
             this.cbFabricante.TabIndex = 64;
             // 
             // cbTipoServicio
             // 
             this.cbTipoServicio.FormattingEnabled = true;
-            this.cbTipoServicio.Location = new System.Drawing.Point(543, 23);
-            this.cbTipoServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTipoServicio.Location = new System.Drawing.Point(407, 19);
             this.cbTipoServicio.Name = "cbTipoServicio";
-            this.cbTipoServicio.Size = new System.Drawing.Size(160, 24);
+            this.cbTipoServicio.Size = new System.Drawing.Size(121, 21);
             this.cbTipoServicio.TabIndex = 65;
             // 
             // txtCantidadDeKG
             // 
-            this.txtCantidadDeKG.Location = new System.Drawing.Point(543, 165);
-            this.txtCantidadDeKG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCantidadDeKG.Location = new System.Drawing.Point(407, 134);
             this.txtCantidadDeKG.Name = "txtCantidadDeKG";
-            this.txtCantidadDeKG.Size = new System.Drawing.Size(160, 22);
+            this.txtCantidadDeKG.Size = new System.Drawing.Size(121, 20);
             this.txtCantidadDeKG.TabIndex = 66;
             // 
             // dtpFECHA
             // 
             this.dtpFECHA.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFECHA.Location = new System.Drawing.Point(127, 73);
-            this.dtpFECHA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpFECHA.Location = new System.Drawing.Point(95, 59);
             this.dtpFECHA.MaxDate = new System.DateTime(2050, 1, 25, 23, 59, 0, 0);
             this.dtpFECHA.MinDate = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtpFECHA.Name = "dtpFECHA";
             this.dtpFECHA.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpFECHA.ShowUpDown = true;
-            this.dtpFECHA.Size = new System.Drawing.Size(153, 22);
+            this.dtpFECHA.Size = new System.Drawing.Size(116, 20);
             this.dtpFECHA.TabIndex = 67;
             this.dtpFECHA.Value = new System.DateTime(2015, 1, 25, 23, 59, 0, 0);
             this.dtpFECHA.ValueChanged += new System.EventHandler(this.dtpFECHA_ValueChanged);
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(747, 233);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVolver.Location = new System.Drawing.Point(560, 189);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(169, 41);
+            this.btnVolver.Size = new System.Drawing.Size(127, 33);
             this.btnVolver.TabIndex = 68;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -258,9 +237,9 @@
             // 
             // ABMAeronaveAlta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 305);
+            this.ClientSize = new System.Drawing.Size(699, 248);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dtpFECHA);
             this.Controls.Add(this.txtCantidadDeKG);
@@ -283,11 +262,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ABMAeronaveAlta";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ABMAeronaveAlta";
+            this.Text = "Alta de Aeronave";
             this.Load += new System.EventHandler(this.ABMAeronaveAlta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
