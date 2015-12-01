@@ -40,7 +40,7 @@ namespace AerolineaFrba.ABM_Compra
             listaDeSeleccionadas = new List<Butaca>();
             
             InitializeComponent();
-            
+            this.btnFin.Enabled = false;
         }
 
         private void CrearListaDeButacasLibres()
@@ -103,7 +103,7 @@ namespace AerolineaFrba.ABM_Compra
                 foreach (int butaquita in lista)
                 {
                     this.listaDeSeleccionadas.Add(this.listaDeButacasLibres.ElementAt(butaquita));
-
+                   
 
                 }
 
@@ -118,6 +118,17 @@ namespace AerolineaFrba.ABM_Compra
                     MessageBox.Show("La Cantidad de butacas solicitadas es menor a la compra actual,seleccion la cantidad correspondiente");
                     return;
                 }
+
+                else
+                {
+                    label5.Text = "Restan seleccionar: 0";
+                    KgDisp.Text = "Kg disponibles: " + Convert.ToString(kgsDisponibles - this._compraActual.CantidadKG);
+
+                    MessageBox.Show("Ha finalizado la selección, ya puede realizar el Pago");
+                    this.btnFin.Enabled = true;
+                    return;
+                }
+
 
             }
            
