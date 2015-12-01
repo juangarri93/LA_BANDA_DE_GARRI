@@ -122,6 +122,8 @@
             // 
             // dgvCompra
             // 
+            this.dgvCompra.AllowUserToAddRows = false;
+            this.dgvCompra.AllowUserToDeleteRows = false;
             this.dgvCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompra.Location = new System.Drawing.Point(266, 16);
             this.dgvCompra.Margin = new System.Windows.Forms.Padding(2);

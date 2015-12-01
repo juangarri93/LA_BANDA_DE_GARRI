@@ -34,9 +34,12 @@
             // 
             // dtButacasCompradas
             // 
+            this.dtButacasCompradas.AllowUserToAddRows = false;
+            this.dtButacasCompradas.AllowUserToDeleteRows = false;
             this.dtButacasCompradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtButacasCompradas.Location = new System.Drawing.Point(35, 27);
             this.dtButacasCompradas.Name = "dtButacasCompradas";
+            this.dtButacasCompradas.ReadOnly = true;
             this.dtButacasCompradas.Size = new System.Drawing.Size(311, 189);
             this.dtButacasCompradas.TabIndex = 0;
             // 
@@ -55,6 +58,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dtButacasCompradas;
+        public System.Windows.Forms.DataGridView dtButacasCompradas;
+
+
     }
 }

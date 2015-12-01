@@ -13,6 +13,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdame_PNR') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.spdame_PNR;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrar_butacas_pasaje_compra') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.spMostrar_butacas_pasaje_compra ;
 
@@ -777,7 +780,7 @@ begin
 	SELECT * FROM LA_BANDA_DE_GARRI.Butaca B 
 	Where (Select V.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje V where V.Id=@id_Viaje)=B.Aeronave_id 
 	and NOT EXISTS(SELECT 1 from LA_BANDA_DE_GARRI.Pasaje_Encomienda P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
-	and Exists(Select 1 from LA_BANDA_DE_GARRI.Viaje_Butaca T where T.id_Butaca = B.Id and T.libre = 0)
+	and Exists(Select 1 from LA_BANDA_DE_GARRI.Viaje_Butaca T where T.id_Butaca = B.Id and T.libre = 1)
 	
 END
 GO
@@ -1552,6 +1555,7 @@ go
 CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
 (
 @ID_compra int output,
+@PNR int,
 @idviajeSeleccionado int,
 @nombre nvarchar(255),
 @apellido nvarchar(255),
@@ -1584,8 +1588,8 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	SET @idCliente = (select Cliente.Id from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
 	SET @idAeronave = (select Viaje.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where @idviajeSeleccionado = Id)
 
-	insert into  LA_BANDA_DE_GARRI.Pago(Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-	values(@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+	insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+	values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
 	
 	declare @idPago int
 	set @idPago = (SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago)
@@ -2009,4 +2013,9 @@ begin
 	select * from LA_BANDA_DE_GARRI.Viaje_Butaca WHERE id_Viaje = @idViaje and libre = '0'
 
 end
+go
+
+create proc  LA_BANDA_DE_GARRI.spdame_PNR
+as
+SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago
 go
