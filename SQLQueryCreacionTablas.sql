@@ -451,7 +451,7 @@ CONSTRAINT [PK_Cliente] PRIMARY KEY ([Id])
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Pago](
-[Id] IDENTITY (1,1),
+[Id] INT IDENTITY (1,1),
 [PNR] INT, 
 [Id_viaje] INT,
 [Id_Cliente] INT,
@@ -517,7 +517,7 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] (
 CONSTRAINT [PK_Pasaje_Encomienda] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Cliente_PasajeEncomienda] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Cliente] ([Id]),
 CONSTRAINT [FK_Viaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viaje] ([Id]),
-CONSTRAINT [FK_Pago] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].Pago ([PNR]),
+CONSTRAINT [FK_Pago] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].Pago ([Id]),
 CONSTRAINT [FK_Butaca_Pasaje] FOREIGN KEY ([Id_Butaca]) REFERENCES [LA_BANDA_DE_GARRI].Butaca ([Id])
 )
 
