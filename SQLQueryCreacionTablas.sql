@@ -451,13 +451,14 @@ CONSTRAINT [PK_Cliente] PRIMARY KEY ([Id])
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Pago](
-[PNR] INT IDENTITY (1,1),
+[Id] IDENTITY (1,1),
+[PNR] INT, 
 [Id_viaje] INT,
 [Id_Cliente] INT,
 [Importe] NUMERIC(18,2),
 [Fecha_compra] DATETIME,
 [Tipo_Pago] CHAR(1),
-CONSTRAINT [PK_Pago] PRIMARY KEY ([PNR]),
+CONSTRAINT [PK_Pago] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Cliente_Pago] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Cliente] ([Id]),
 CONSTRAINT [FK_Viaje_Pago] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viaje] ([Id])
 )
@@ -521,12 +522,13 @@ CONSTRAINT [FK_Butaca_Pasaje] FOREIGN KEY ([Id_Butaca]) REFERENCES [LA_BANDA_DE_
 )
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Devolucion] (
+[Id_Pago] INT,
 [PNR] INT,
 [Id_Pasaje_Encomienda] INT,
 [Fecha_Devolucion] DATETIME,
 [Motivo] NVARCHAR(255),
-CONSTRAINT [PK_Devolucion] PRIMARY KEY ([PNR]),
-CONSTRAINT [FK_PNR] FOREIGN KEY ([PNR]) REFERENCES [LA_BANDA_DE_GARRI].[Pago] ([PNR]),
+CONSTRAINT [PK_Devolucion] PRIMARY KEY ([Id_pago]),
+CONSTRAINT [FK_Id_Pago] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].[Pago] ([Id]),
 CONSTRAINT [FK_Pasaje_Encomienda] FOREIGN KEY ([Id_Pasaje_Encomienda]) REFERENCES [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] ([Id]),
 )
 
