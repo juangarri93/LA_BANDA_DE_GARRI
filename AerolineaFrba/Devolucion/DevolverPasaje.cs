@@ -22,19 +22,20 @@ namespace AerolineaFrba.Devolucion
 
         private void DevolverPasaje_Load(object sender, EventArgs e)
         {
-            btnBuscarNroDeCompra.Enabled = false;
+            btnBuscarNroDeCompra.Enabled = true;
         }
 
         private void btnBuscarNroDeCompra_Click(object sender, EventArgs e)
         {
-            Cancelacion cancelacion = new Cancelacion(dtpFechaDevolucion.Value, Convert.ToInt32(txtNroDeCompra.Text), 4, txtMotivo.Text);
-
-            var ventanaCancelarPasajes = new CancelarPasajes(cancelacion);
-            FormsHerramientas.mostrarVentanaNueva(ventanaCancelarPasajes, this);
-
+           
             try
             {
-              
+                
+                Cancelacion cancelacion = new Cancelacion(dtpFechaDevolucion.Value, Convert.ToInt32(txtNroDeCompra.Text), 4, txtMotivo.Text);
+
+                if (Validaciones()) return;
+                var ventanaCancelarPasajes = new CancelarPasajes(cancelacion);
+                FormsHerramientas.mostrarVentanaNueva(ventanaCancelarPasajes, this);
             }
             catch (Exception ex)
             {
@@ -44,9 +45,41 @@ namespace AerolineaFrba.Devolucion
           
         }
 
+        private bool Validaciones()
+        {
+
+            if (txtNroDeCompra.Text == "")
+            {
+                MessageBox.Show("NO INGRESO NUMERO DE COMPRA");
+                return true;
+            }
+
+            int nroDeCompra = Convert.ToInt32(txtNroDeCompra.Text);
+            
+             if (nroDeCompra <= 0)
+            {
+                MessageBox.Show("El numero de compra no puede ser menor o igual a cero");
+                return true;
+            }
+
+             if (txtMotivo.Text == "")
+            {
+                MessageBox.Show("NO INGRESO EL MOTIVO DE LA CANCELACION");
+                return true;
+            }
+
+
+            return false;
+        }
+
         private void txtNroDeCompra_TextChanged(object sender, EventArgs e)
         {
-            btnBuscarNroDeCompra.Enabled = true;
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

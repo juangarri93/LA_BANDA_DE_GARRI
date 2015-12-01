@@ -13,6 +13,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_pasaje') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_cancelar_pasaje;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdame_PNR') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.spdame_PNR;
 
@@ -1588,9 +1591,15 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	SET @idCliente = (select Cliente.Id from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
 	SET @idAeronave = (select Viaje.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where @idviajeSeleccionado = Id)
 
-	insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-	values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+	if not exists(select * from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
+		
+		begin
+
+		insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
 	
+		end
+
 	declare @idPago int
 	set @idPago = (SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago)
 
@@ -2018,4 +2027,27 @@ go
 create proc  LA_BANDA_DE_GARRI.spdame_PNR
 as
 SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago
+go
+
+-- Agregado Nico 01/12/2015 --
+create proc LA_BANDA_DE_GARRI.sp_cancelar_pasaje(
+@fechaDevolucion date,
+@PNR int,
+@nroPasaje int,
+@motivoDevolucion nvarchar(255)
+)
+as
+begin
+
+update LA_BANDA_DE_GARRI.Viaje_Butaca set libre = 1 where id_Butaca = @nroPasaje
+
+declare @idPago int 
+set @idPago = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
+
+insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje_Encomienda,Fecha_Devolucion,Motivo)
+values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
+
+delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda where @nroPasaje = Id_Butaca
+
+end
 go

@@ -13,9 +13,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _NumeroDeCompraPNR;
         private int _NumeroPasaje;
         private string _motivoCancelacion;
-        private DateTime dateTime;
      
-
         public Cancelacion(DateTime fecha, int PNR, int codigo, string motivo)
         {
             fechaDevolucion = fecha;

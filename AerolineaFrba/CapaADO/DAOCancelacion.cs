@@ -19,5 +19,11 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spMostrar_butacas_pasaje_compra", cancelacion.NumeroPasaje,cancelacion.NumeroDeCompraPNR);
 
         }
+
+        public static int cancelaPasaje(Cancelacion cancelacion)
+        {
+
+            return executeProcedureWithReturnValue("sp_cancelar_pasaje",cancelacion.fechaDevolucion,cancelacion.NumeroDeCompraPNR,cancelacion.NumeroPasaje,cancelacion.motivoCancelacion); ;
+        }
     }
 }

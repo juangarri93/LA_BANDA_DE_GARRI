@@ -35,12 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtMotivo = new System.Windows.Forms.TextBox();
             this.btnBuscarNroDeCompra = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dtpFechaDevolucion
             // 
             this.dtpFechaDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaDevolucion.Location = new System.Drawing.Point(188, 32);
+            this.dtpFechaDevolucion.Location = new System.Drawing.Point(188, 26);
             this.dtpFechaDevolucion.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaDevolucion.MaxDate = new System.DateTime(2050, 1, 25, 0, 0, 0, 0);
             this.dtpFechaDevolucion.MinDate = new System.DateTime(1990, 1, 25, 0, 0, 0, 0);
@@ -54,7 +55,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 29);
+            this.label7.Location = new System.Drawing.Point(12, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 23);
             this.label7.TabIndex = 64;
@@ -63,7 +64,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 84);
+            this.label1.Location = new System.Drawing.Point(12, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 23);
             this.label1.TabIndex = 65;
@@ -71,7 +72,7 @@
             // 
             // txtNroDeCompra
             // 
-            this.txtNroDeCompra.Location = new System.Drawing.Point(188, 86);
+            this.txtNroDeCompra.Location = new System.Drawing.Point(188, 73);
             this.txtNroDeCompra.Name = "txtNroDeCompra";
             this.txtNroDeCompra.Size = new System.Drawing.Size(156, 20);
             this.txtNroDeCompra.TabIndex = 66;
@@ -80,7 +81,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 188);
+            this.label2.Location = new System.Drawing.Point(12, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(222, 23);
             this.label2.TabIndex = 67;
@@ -88,7 +89,7 @@
             // 
             // txtMotivo
             // 
-            this.txtMotivo.Location = new System.Drawing.Point(240, 189);
+            this.txtMotivo.Location = new System.Drawing.Point(240, 120);
             this.txtMotivo.Multiline = true;
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.Size = new System.Drawing.Size(296, 102);
@@ -96,7 +97,7 @@
             // 
             // btnBuscarNroDeCompra
             // 
-            this.btnBuscarNroDeCompra.Location = new System.Drawing.Point(16, 245);
+            this.btnBuscarNroDeCompra.Location = new System.Drawing.Point(45, 248);
             this.btnBuscarNroDeCompra.Name = "btnBuscarNroDeCompra";
             this.btnBuscarNroDeCompra.Size = new System.Drawing.Size(189, 46);
             this.btnBuscarNroDeCompra.TabIndex = 69;
@@ -104,11 +105,22 @@
             this.btnBuscarNroDeCompra.UseVisualStyleBackColor = true;
             this.btnBuscarNroDeCompra.Click += new System.EventHandler(this.btnBuscarNroDeCompra_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(291, 248);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(189, 46);
+            this.button1.TabIndex = 70;
+            this.button1.Text = "Volver";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DevolverPasaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 316);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnBuscarNroDeCompra);
             this.Controls.Add(this.txtMotivo);
             this.Controls.Add(this.label2);
@@ -133,5 +145,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtMotivo;
         private System.Windows.Forms.Button btnBuscarNroDeCompra;
+        private System.Windows.Forms.Button button1;
     }
 }
