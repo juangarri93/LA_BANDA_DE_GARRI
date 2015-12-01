@@ -325,8 +325,19 @@ namespace AerolineaFrba.ABM_Compra
 
                 if (!IsEmpty(ClientesRegistrados))
                 {
-                    clienteActual = ClientesRegistrados.ElementAt(0);
-                    Autocompletar(clienteActual);
+                   // clienteActual = ClientesRegistrados.
+                    
+                    foreach(Persona personita in ClientesRegistrados)
+                    {
+                        if (personita.Dni == Convert.ToDecimal(txtDni.Text))
+                        {
+                            clienteActual = personita;
+                        }
+                    }
+                    if (clienteActual != null)
+                    {
+                        Autocompletar(clienteActual);
+                    }
                 }
 
 

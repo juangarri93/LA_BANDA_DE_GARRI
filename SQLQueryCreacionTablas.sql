@@ -1739,7 +1739,7 @@ create proc LA_BANDA_DE_GARRI.spbuscar_ciudad
 @nombre varchar(100)
 as
 select * from LA_BANDA_DE_GARRI.Ciudad
-where Nombre like '%' + @nombre  + '%'
+where Nombre like @nombre 
 go
 
 create proc LA_BANDA_DE_GARRI.spMostrar_Ciudad_sin_baja_util
