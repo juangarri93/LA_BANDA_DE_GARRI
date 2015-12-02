@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -35,7 +37,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtPrecioKG = new System.Windows.Forms.TextBox();
             this.txtPrecioBase = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cbOrigen = new System.Windows.Forms.ComboBox();
@@ -48,15 +49,34 @@
             this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(135, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(193, 29);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Alta Ruta Aerea";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(356, 327);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(110, 13);
+            this.label9.TabIndex = 73;
+            this.label9.Text = "* Campos Obligatorios";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(22, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 16);
+            this.label2.Size = new System.Drawing.Size(93, 16);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Tipo Servicio";
+            this.label2.Text = "*Tipo Servicio";
             // 
             // label3
             // 
@@ -64,9 +84,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(22, 222);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 16);
+            this.label3.Size = new System.Drawing.Size(73, 16);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Precio KG";
+            this.label3.Text = "*Precio KG";
             // 
             // label4
             // 
@@ -74,9 +94,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(22, 182);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 16);
+            this.label4.Size = new System.Drawing.Size(59, 16);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Destino";
+            this.label4.Text = "*Destino";
             // 
             // label5
             // 
@@ -84,9 +104,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(22, 142);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
+            this.label5.Size = new System.Drawing.Size(53, 16);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Origen";
+            this.label5.Text = "*Origen";
             // 
             // label6
             // 
@@ -94,9 +114,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(22, 262);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 16);
+            this.label6.Size = new System.Drawing.Size(86, 16);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Precio base";
+            this.label6.Text = "*Precio base";
             // 
             // txtPrecioKG
             // 
@@ -112,16 +132,6 @@
             this.txtPrecioBase.Size = new System.Drawing.Size(148, 20);
             this.txtPrecioBase.TabIndex = 13;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(135, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(193, 29);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Alta Ruta Aerea";
-            // 
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(319, 252);
@@ -134,7 +144,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(319, 185);
+            this.btnCancelar.Location = new System.Drawing.Point(319, 182);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(127, 33);
             this.btnCancelar.TabIndex = 55;
@@ -173,9 +183,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(22, 307);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 16);
+            this.label8.Size = new System.Drawing.Size(75, 16);
             this.label8.TabIndex = 68;
-            this.label8.Text = "Habilitado";
+            this.label8.Text = "*Habilitado";
             // 
             // btnVolver
             // 
@@ -193,9 +203,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(22, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 70;
-            this.label1.Text = "Codigo";
+            this.label1.Text = "*Codigo";
             // 
             // txtCodigo
             // 
@@ -217,6 +227,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 349);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.cbTipoDeServicio);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.label1);
@@ -237,7 +248,7 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMRutaAlta";
-            this.Text = "ABMRutaAlta";
+            this.Text = "Alta de Ruta";
             this.Load += new System.EventHandler(this.ABMRutaAlta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -246,6 +257,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -253,7 +266,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPrecioKG;
         private System.Windows.Forms.TextBox txtPrecioBase;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cbOrigen;

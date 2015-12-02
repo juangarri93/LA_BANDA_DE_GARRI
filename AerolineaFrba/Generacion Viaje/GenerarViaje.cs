@@ -67,6 +67,7 @@ namespace AerolineaFrba.Generacion_Viaje
         private void button1_Click(object sender, EventArgs e)
         {
             limpiar();
+            this.Hide();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

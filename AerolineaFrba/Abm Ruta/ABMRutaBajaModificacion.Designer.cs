@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMRutaBajaModificacion));
             this.cbDestino = new System.Windows.Forms.ComboBox();
             this.cbOrigen = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@
             this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
             this.Id = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -255,11 +257,22 @@
             this.txtId.Size = new System.Drawing.Size(148, 20);
             this.txtId.TabIndex = 84;
             // 
+            // button3
+            // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(805, 322);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(32, 33);
+            this.button3.TabIndex = 85;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // ABMRutaBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 356);
+            this.ClientSize = new System.Drawing.Size(839, 356);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.Id);
             this.Controls.Add(this.cbTipoDeServicio);
@@ -283,7 +296,7 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMRutaBajaModificacion";
-            this.Text = "ABMRutaBajaModificacion";
+            this.Text = "Baja/Modificacion de Ruta";
             this.Load += new System.EventHandler(this.ABMRutaBajaModificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -315,5 +328,6 @@
         private System.Windows.Forms.ComboBox cbTipoDeServicio;
         private System.Windows.Forms.Label Id;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button button3;
     }
 }

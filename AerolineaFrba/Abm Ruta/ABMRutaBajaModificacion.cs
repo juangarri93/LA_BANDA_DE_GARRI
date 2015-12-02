@@ -209,5 +209,12 @@ namespace AerolineaFrba.Abm_Ruta
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Si se desea editar una Ruta siga los siguientes pasos:" + Environment.NewLine +
+                                "  ● Hacer clic sobre la ruta a editar y sobre el boton 'Editar'" + Environment.NewLine +
+                                "  ● Finalmente sobre el boton 'Guardar'");
+        }
     }
 }

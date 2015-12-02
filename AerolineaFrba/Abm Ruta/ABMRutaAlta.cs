@@ -103,6 +103,14 @@ namespace AerolineaFrba.Abm_Ruta
                 MessageBox.Show("EL PRECIO BASE NO PUEDE SER MENOR A 0");
                 return true;
             }
+
+            if (cmbHabiltiado.SelectedIndex != 0 && cmbHabiltiado.SelectedIndex != 1)
+            {
+                MessageBox.Show("Establecer si la ruta se encuentra habilitada");
+                return true;
+
+            }
+
             return false;
         }
 
