@@ -81,5 +81,10 @@ namespace AerolineaFrba.Abm_Rol
         {
             this.Hide();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Para generar un nuevo rol se debera ingresar un nombre, seleccionar las funcionalidades que se deseen y hacer clic en guardar");
+        }
     }
 }

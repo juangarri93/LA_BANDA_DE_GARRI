@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMBajaModificacion));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnBajaLogica = new System.Windows.Forms.Button();
             this.checkBoxbajaLogica1 = new System.Windows.Forms.CheckBox();
@@ -43,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnEditarBFS = new System.Windows.Forms.Button();
             this.cbFabricante = new System.Windows.Forms.ComboBox();
@@ -76,7 +80,6 @@
             this.CodigoAeronave = new System.Windows.Forms.Label();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListadoAeronaves)).BeginInit();
@@ -88,7 +91,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 28);
+            this.tabControl1.Location = new System.Drawing.Point(12, 18);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(906, 365);
@@ -96,6 +99,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.btnVolver);
             this.tabPage1.Controls.Add(this.btnBajaLogica);
             this.tabPage1.Controls.Add(this.checkBoxbajaLogica1);
@@ -115,9 +120,28 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(27, 53);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 13);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Filtrar por:";
+            // 
+            // button3
+            // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(860, 47);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(32, 33);
+            this.button3.TabIndex = 13;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(763, 16);
+            this.btnVolver.Location = new System.Drawing.Point(788, 6);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(104, 23);
             this.btnVolver.TabIndex = 12;
@@ -126,9 +150,9 @@
             // 
             // btnBajaLogica
             // 
-            this.btnBajaLogica.Location = new System.Drawing.Point(161, 55);
+            this.btnBajaLogica.Location = new System.Drawing.Point(635, 47);
             this.btnBajaLogica.Name = "btnBajaLogica";
-            this.btnBajaLogica.Size = new System.Drawing.Size(104, 23);
+            this.btnBajaLogica.Size = new System.Drawing.Size(113, 23);
             this.btnBajaLogica.TabIndex = 11;
             this.btnBajaLogica.Text = "Baja Logica";
             this.btnBajaLogica.Click += new System.EventHandler(this.btnBajaLogica_Click);
@@ -136,36 +160,36 @@
             // checkBoxbajaLogica1
             // 
             this.checkBoxbajaLogica1.AutoSize = true;
-            this.checkBoxbajaLogica1.Location = new System.Drawing.Point(9, 59);
+            this.checkBoxbajaLogica1.Location = new System.Drawing.Point(506, 51);
             this.checkBoxbajaLogica1.Name = "checkBoxbajaLogica1";
-            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxbajaLogica1.Size = new System.Drawing.Size(123, 17);
             this.checkBoxbajaLogica1.TabIndex = 10;
-            this.checkBoxbajaLogica1.Text = "Baja Logica";
+            this.checkBoxbajaLogica1.Text = "Habilitar Baja Logica";
             this.checkBoxbajaLogica1.UseVisualStyleBackColor = true;
             this.checkBoxbajaLogica1.CheckedChanged += new System.EventHandler(this.bajaLogica1_CheckedChanged);
             // 
             // btnFabricante
             // 
-            this.btnFabricante.Location = new System.Drawing.Point(623, 15);
+            this.btnFabricante.Location = new System.Drawing.Point(358, 47);
             this.btnFabricante.Name = "btnFabricante";
             this.btnFabricante.Size = new System.Drawing.Size(104, 23);
             this.btnFabricante.TabIndex = 9;
-            this.btnFabricante.Text = "Filtro Fabricante";
+            this.btnFabricante.Text = "Fabricante";
             this.btnFabricante.Click += new System.EventHandler(this.btnFabricante_Click);
             // 
             // btnFiltroModelo
             // 
-            this.btnFiltroModelo.Location = new System.Drawing.Point(501, 15);
+            this.btnFiltroModelo.Location = new System.Drawing.Point(224, 47);
             this.btnFiltroModelo.Name = "btnFiltroModelo";
             this.btnFiltroModelo.Size = new System.Drawing.Size(104, 23);
             this.btnFiltroModelo.TabIndex = 8;
-            this.btnFiltroModelo.Text = "Filtro Modelo";
+            this.btnFiltroModelo.Text = "Modelo";
             this.btnFiltroModelo.Click += new System.EventHandler(this.btnFiltroModelo_Click);
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(432, 72);
+            this.lblTotal.Location = new System.Drawing.Point(520, 23);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(109, 13);
             this.lblTotal.TabIndex = 6;
@@ -184,7 +208,7 @@
             this.dataListadoAeronaves.MultiSelect = false;
             this.dataListadoAeronaves.Name = "dataListadoAeronaves";
             this.dataListadoAeronaves.ReadOnly = true;
-            this.dataListadoAeronaves.Size = new System.Drawing.Size(767, 242);
+            this.dataListadoAeronaves.Size = new System.Drawing.Size(886, 242);
             this.dataListadoAeronaves.TabIndex = 4;
             this.dataListadoAeronaves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoAeronaves_CellContentClick);
             this.dataListadoAeronaves.DoubleClick += new System.EventHandler(this.dataListadoAeronaves_DoubleClick);
@@ -198,29 +222,29 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(161, 18);
+            this.txtBuscar.Location = new System.Drawing.Point(202, 21);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(188, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(145, 20);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged_1);
             // 
             // btnFiltroNumero
             // 
-            this.btnFiltroNumero.Location = new System.Drawing.Point(379, 15);
+            this.btnFiltroNumero.Location = new System.Drawing.Point(92, 47);
             this.btnFiltroNumero.Name = "btnFiltroNumero";
             this.btnFiltroNumero.Size = new System.Drawing.Size(104, 23);
             this.btnFiltroNumero.TabIndex = 7;
-            this.btnFiltroNumero.Text = "Filtro Numero";
+            this.btnFiltroNumero.Text = "Numero";
             this.btnFiltroNumero.Click += new System.EventHandler(this.FiltroNumero_Click);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 19);
+            this.label2.Location = new System.Drawing.Point(95, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 28);
+            this.label2.Size = new System.Drawing.Size(110, 28);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Numero Aeronave :";
+            this.label2.Text = "Dato a Filtrar : ";
             // 
             // tabPage2
             // 
@@ -236,6 +260,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnEditarBFS);
             this.groupBox1.Controls.Add(this.cbFabricante);
@@ -275,6 +300,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aeronaves";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button2
+            // 
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(860, 294);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 33);
+            this.button2.TabIndex = 75;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -599,27 +633,16 @@
             this.lineShape1.Y1 = -24;
             this.lineShape1.Y2 = 311;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(952, 360);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // ABMBajaModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 395);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(927, 395);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMBajaModificacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ABMBajaModificacion";
+            this.Text = "Baja/Modificacion Aeronaves";
             this.Load += new System.EventHandler(this.ABMBajaModificacion_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -682,7 +705,9 @@
         private System.Windows.Forms.Button btnEditarBFS;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label11;
 
     }
 }

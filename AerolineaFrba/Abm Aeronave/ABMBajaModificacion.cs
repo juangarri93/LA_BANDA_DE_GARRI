@@ -545,11 +545,24 @@ namespace AerolineaFrba.Abm_Aeronave
             habilitado = 0;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Holi");
+
+            MessageBox.Show("Si se desea dar de baja una aeronave siga los siguientes pasos:" + Environment.NewLine +
+                                  "  ● Buscar la aeronave a dar de baja" + Environment.NewLine +
+                                  "  ● Hacer clic en el checkbox 'Habilitar Baja logica'" + Environment.NewLine +
+                                  "  ● Seleccionar la/s Aeronaves" + Environment.NewLine +
+                                  "  ● Finalmente hacer clic en el boton Baja Logica" + Environment.NewLine +  Environment.NewLine +
+                             "Si se desea Editar una Aeronave, simplemente hacer doble clic sobre la misma");
+
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Para habilitar la edicion y la baja por fuera de servicio, hacer clic en los respectivos botones, " + Environment.NewLine +
+                                   " y para finalizar, 'Guardar' le guardara ambos");
+
+        }
+       
     } 
 }

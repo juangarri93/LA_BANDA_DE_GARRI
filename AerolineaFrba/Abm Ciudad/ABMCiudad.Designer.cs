@@ -76,7 +76,6 @@
             this.Controls.Add(this.lbTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ABMCiudad";
-            this.Text = "ABMCiudad";
             this.ResumeLayout(false);
             this.PerformLayout();
 

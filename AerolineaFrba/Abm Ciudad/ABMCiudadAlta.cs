@@ -19,17 +19,6 @@ namespace AerolineaFrba.Abm_Ciudad
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-           
-        }
-         
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
@@ -37,7 +26,7 @@ namespace AerolineaFrba.Abm_Ciudad
             try
             {
 
-              
+                if (Validaciones()) return;
                 DAOCiudad.AgregarCiudad(CargarCiudad());
                 MessageBox.Show("La Ciudad se agregó correctamente.");
                 limpiar();
@@ -48,7 +37,27 @@ namespace AerolineaFrba.Abm_Ciudad
             }
         }
 
-       
+        private bool Validaciones()
+        {
+
+            if (textNombre.Text == "")
+            {
+                MessageBox.Show("NO INGRESO NOMBRE");
+                return true;
+
+            }
+            if (cbHabilitado.SelectedIndex != 0 && cbHabilitado.SelectedIndex != 1)
+            {
+                MessageBox.Show("Establecer si la ciudad se encuentra habilitada");
+                return true;
+
+            }
+
+          
+
+            return false;
+        }
+
         
         private Ciudad CargarCiudad() 
         {
@@ -76,12 +85,6 @@ namespace AerolineaFrba.Abm_Ciudad
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            this.Hide();
-        }
-
         private void ABMCiudadAlta_Load(object sender, EventArgs e)
         {
             this.Top = 0;
@@ -93,6 +96,7 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            limpiar();
             this.Hide();
         }
 

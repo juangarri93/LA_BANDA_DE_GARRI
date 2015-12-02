@@ -66,5 +66,13 @@ namespace AerolineaFrba.Abm_Rol
             textBox3.Text = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Habilitado"].Value);
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Para modificar el estado de un rol siga los siguientes pasos:" + Environment.NewLine +
+                                  "  ● Hacer clic en el Rol a editar" + Environment.NewLine +
+                                  "  ● Hacer clic en la casilla de 'Habilitado' del Rol a editar" + Environment.NewLine +
+                                  "  ● Finalmente Aceptar");
+        }
     }
 }
