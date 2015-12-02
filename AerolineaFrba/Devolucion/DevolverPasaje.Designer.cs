@@ -89,7 +89,7 @@
             // 
             // txtMotivo
             // 
-            this.txtMotivo.Location = new System.Drawing.Point(240, 120);
+            this.txtMotivo.Location = new System.Drawing.Point(230, 120);
             this.txtMotivo.Multiline = true;
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.Size = new System.Drawing.Size(296, 102);

@@ -13,6 +13,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_encomienda') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_cancelar_encomienda;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_pasaje') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_cancelar_pasaje;
 
@@ -2048,6 +2051,29 @@ insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje_Encomienda,Fecha_
 values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
 
 delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda where @nroPasaje = Id_Butaca
+
+end
+go
+
+create proc LA_BANDA_DE_GARRI.sp_cancelar_encomienda
+(@fechaDevolucion date,
+@PNR int,
+@nroPasaje int,
+@motivoDevolucion nvarchar(255)
+)
+as
+begin
+
+declare @idPago int 
+set @idPago = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
+
+declare @idViaje int 
+set @idViaje = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
+
+insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje_Encomienda,Fecha_Devolucion,Motivo)
+values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
+
+delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda where @idPago = Id_Pago and @idViaje = Id_Viaje
 
 end
 go

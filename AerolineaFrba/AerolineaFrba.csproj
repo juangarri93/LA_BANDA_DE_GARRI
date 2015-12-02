@@ -339,6 +339,9 @@
     <EmbeddedResource Include="Devolucion\DevolverPasaje.resx">
       <DependentUpon>DevolverPasaje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\LiberacionDeKGs.resx">
+      <DependentUpon>LiberacionDeKGs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generacion Viaje\GenerarViaje.resx">
       <DependentUpon>GenerarViaje.cs</DependentUpon>
     </EmbeddedResource>

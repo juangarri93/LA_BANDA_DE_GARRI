@@ -23,7 +23,12 @@ namespace AerolineaFrba.CapaADO
         public static int cancelaPasaje(Cancelacion cancelacion)
         {
 
-            return executeProcedureWithReturnValue("sp_cancelar_pasaje",cancelacion.fechaDevolucion,cancelacion.NumeroDeCompraPNR,cancelacion.NumeroPasaje,cancelacion.motivoCancelacion); ;
+            return executeProcedureWithReturnValue("sp_cancelar_pasaje",cancelacion.fechaDevolucion,cancelacion.NumeroDeCompraPNR,cancelacion.NumeroPasaje,cancelacion.motivoCancelacion); 
+        }
+
+        public static int cancelarEncomienda(Cancelacion cancelacion)
+        {
+            return executeProcedureWithReturnValue("sp_cancelar_encomienda", cancelacion.fechaDevolucion, cancelacion.NumeroDeCompraPNR, cancelacion.NumeroPasaje, cancelacion.motivoCancelacion); 
         }
     }
 }
