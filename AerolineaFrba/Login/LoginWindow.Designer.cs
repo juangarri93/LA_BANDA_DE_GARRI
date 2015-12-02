@@ -64,18 +64,18 @@
             this.label2.Text = "Contraseña";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
+            // TxtBox_userName
             // 
             this.TxtBox_userName.Location = new System.Drawing.Point(95, 35);
-            this.TxtBox_userName.Name = "textBox1";
+            this.TxtBox_userName.Name = "TxtBox_userName";
             this.TxtBox_userName.Size = new System.Drawing.Size(126, 20);
             this.TxtBox_userName.TabIndex = 3;
             this.TxtBox_userName.TextChanged += new System.EventHandler(this.textUser_TextChanged);
             // 
-            // textBox2
+            // TxtBox_password
             // 
             this.TxtBox_password.Location = new System.Drawing.Point(95, 72);
-            this.TxtBox_password.Name = "textBox2";
+            this.TxtBox_password.Name = "TxtBox_password";
             this.TxtBox_password.Size = new System.Drawing.Size(126, 20);
             this.TxtBox_password.TabIndex = 4;
             this.TxtBox_password.TextChanged += new System.EventHandler(this.textPass_TextChanged);
@@ -91,7 +91,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "LoginWindow";
-            this.Text = "Form1";
+            this.Text = "Log in";
             this.Load += new System.EventHandler(this.LoginWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

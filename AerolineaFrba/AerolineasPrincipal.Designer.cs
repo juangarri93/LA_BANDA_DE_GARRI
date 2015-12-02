@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AerolineasPrincipal));
             this.btnABMAronaves = new System.Windows.Forms.Button();
             this.btnABMRol = new System.Windows.Forms.Button();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnABM_Ciudad = new System.Windows.Forms.Button();
             this.btnABMRutaAerea = new System.Windows.Forms.Button();
             this.btnRegistrosDeUsuarios = new System.Windows.Forms.Button();
@@ -42,11 +42,14 @@
             this.btn_consulta_millas = new System.Windows.Forms.Button();
             this.btnEstadist = new System.Windows.Forms.Button();
             this.btnCancelacion = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnABMAronaves
             // 
-            this.btnABMAronaves.Location = new System.Drawing.Point(12, 94);
+            this.btnABMAronaves.Location = new System.Drawing.Point(476, 12);
             this.btnABMAronaves.Name = "btnABMAronaves";
             this.btnABMAronaves.Size = new System.Drawing.Size(180, 36);
             this.btnABMAronaves.TabIndex = 0;
@@ -56,7 +59,7 @@
             // 
             // btnABMRol
             // 
-            this.btnABMRol.Location = new System.Drawing.Point(12, 145);
+            this.btnABMRol.Location = new System.Drawing.Point(476, 54);
             this.btnABMRol.Name = "btnABMRol";
             this.btnABMRol.Size = new System.Drawing.Size(180, 36);
             this.btnABMRol.TabIndex = 1;
@@ -64,20 +67,9 @@
             this.btnABMRol.UseVisualStyleBackColor = true;
             this.btnABMRol.Click += new System.EventHandler(this.btnABM_Rol_Click);
             // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.Location = new System.Drawing.Point(154, 29);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(175, 32);
-            this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "AEROLINEA";
-            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
-            // 
             // btnABM_Ciudad
             // 
-            this.btnABM_Ciudad.Location = new System.Drawing.Point(12, 203);
+            this.btnABM_Ciudad.Location = new System.Drawing.Point(476, 96);
             this.btnABM_Ciudad.Name = "btnABM_Ciudad";
             this.btnABM_Ciudad.Size = new System.Drawing.Size(180, 36);
             this.btnABM_Ciudad.TabIndex = 9;
@@ -87,7 +79,7 @@
             // 
             // btnABMRutaAerea
             // 
-            this.btnABMRutaAerea.Location = new System.Drawing.Point(12, 256);
+            this.btnABMRutaAerea.Location = new System.Drawing.Point(476, 138);
             this.btnABMRutaAerea.Name = "btnABMRutaAerea";
             this.btnABMRutaAerea.Size = new System.Drawing.Size(180, 36);
             this.btnABMRutaAerea.TabIndex = 10;
@@ -97,7 +89,7 @@
             // 
             // btnRegistrosDeUsuarios
             // 
-            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(282, 94);
+            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(662, 12);
             this.btnRegistrosDeUsuarios.Name = "btnRegistrosDeUsuarios";
             this.btnRegistrosDeUsuarios.Size = new System.Drawing.Size(180, 36);
             this.btnRegistrosDeUsuarios.TabIndex = 11;
@@ -107,7 +99,7 @@
             // 
             // btnGenerarViaje
             // 
-            this.btnGenerarViaje.Location = new System.Drawing.Point(282, 145);
+            this.btnGenerarViaje.Location = new System.Drawing.Point(662, 54);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
             this.btnGenerarViaje.Size = new System.Drawing.Size(180, 36);
             this.btnGenerarViaje.TabIndex = 12;
@@ -117,7 +109,7 @@
             // 
             // btnRegistroDeLlegadaDestino
             // 
-            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(282, 203);
+            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(662, 96);
             this.btnRegistroDeLlegadaDestino.Name = "btnRegistroDeLlegadaDestino";
             this.btnRegistroDeLlegadaDestino.Size = new System.Drawing.Size(180, 36);
             this.btnRegistroDeLlegadaDestino.TabIndex = 13;
@@ -127,7 +119,7 @@
             // 
             // btnCompra
             // 
-            this.btnCompra.Location = new System.Drawing.Point(282, 256);
+            this.btnCompra.Location = new System.Drawing.Point(662, 138);
             this.btnCompra.Name = "btnCompra";
             this.btnCompra.Size = new System.Drawing.Size(180, 36);
             this.btnCompra.TabIndex = 14;
@@ -138,9 +130,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(392, 9);
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(376, 12);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(70, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(92, 17);
             this.linkLabel1.TabIndex = 15;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Iniciar Sesion";
@@ -148,7 +141,7 @@
             // 
             // btn_canjear_millas
             // 
-            this.btn_canjear_millas.Location = new System.Drawing.Point(282, 312);
+            this.btn_canjear_millas.Location = new System.Drawing.Point(662, 180);
             this.btn_canjear_millas.Name = "btn_canjear_millas";
             this.btn_canjear_millas.Size = new System.Drawing.Size(180, 36);
             this.btn_canjear_millas.TabIndex = 17;
@@ -158,7 +151,7 @@
             // 
             // btn_consulta_millas
             // 
-            this.btn_consulta_millas.Location = new System.Drawing.Point(12, 312);
+            this.btn_consulta_millas.Location = new System.Drawing.Point(476, 180);
             this.btn_consulta_millas.Name = "btn_consulta_millas";
             this.btn_consulta_millas.Size = new System.Drawing.Size(180, 36);
             this.btn_consulta_millas.TabIndex = 16;
@@ -168,7 +161,7 @@
             // 
             // btnEstadist
             // 
-            this.btnEstadist.Location = new System.Drawing.Point(12, 363);
+            this.btnEstadist.Location = new System.Drawing.Point(476, 222);
             this.btnEstadist.Name = "btnEstadist";
             this.btnEstadist.Size = new System.Drawing.Size(180, 36);
             this.btnEstadist.TabIndex = 18;
@@ -178,7 +171,7 @@
             // 
             // btnCancelacion
             // 
-            this.btnCancelacion.Location = new System.Drawing.Point(282, 366);
+            this.btnCancelacion.Location = new System.Drawing.Point(662, 222);
             this.btnCancelacion.Name = "btnCancelacion";
             this.btnCancelacion.Size = new System.Drawing.Size(180, 36);
             this.btnCancelacion.TabIndex = 19;
@@ -186,12 +179,34 @@
             this.btnCancelacion.UseVisualStyleBackColor = true;
             this.btnCancelacion.Click += new System.EventHandler(this.btnCancelacion_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 54);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(456, 205);
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 30F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(290, 48);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Aerolinea FRBA";
+            // 
             // AerolineasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(474, 414);
+            this.ClientSize = new System.Drawing.Size(852, 270);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelacion);
             this.Controls.Add(this.btnEstadist);
             this.Controls.Add(this.btn_canjear_millas);
@@ -203,13 +218,13 @@
             this.Controls.Add(this.btnRegistrosDeUsuarios);
             this.Controls.Add(this.btnABMRutaAerea);
             this.Controls.Add(this.btnABM_Ciudad);
-            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnABMRol);
             this.Controls.Add(this.btnABMAronaves);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "AerolineasPrincipal";
             this.Text = "Aerolineas FRBA";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,7 +234,6 @@
 
         private System.Windows.Forms.Button btnABMAronaves;
         private System.Windows.Forms.Button btnABMRol;
-        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnABM_Ciudad;
         private System.Windows.Forms.Button btnABMRutaAerea;
         private System.Windows.Forms.Button btnRegistrosDeUsuarios;
@@ -231,6 +245,8 @@
         private System.Windows.Forms.Button btn_consulta_millas;
         private System.Windows.Forms.Button btnEstadist;
         private System.Windows.Forms.Button btnCancelacion;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
 
     }
 }
