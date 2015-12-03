@@ -52,8 +52,8 @@ namespace AerolineaFrba.Login
                 Aerolineas.actualizaBotones(login.listaFuncionalidades);
                 MessageBox.Show("El LOGIN HA SIDO CORRECTO, BIENVENIDO");
                 this.Hide();
-         
-                
+                Aerolineas.Focus();
+                         
             }
             catch (Exception excep)
             {

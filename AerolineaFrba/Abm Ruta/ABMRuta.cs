@@ -14,9 +14,12 @@ namespace AerolineaFrba.Abm_Ruta
 {
     public partial class ABMRuta : Form
     {
-        public ABMRuta()
+        AerolineasPrincipal Aerolineas;
+
+        public ABMRuta(AerolineasPrincipal aerolineas)
         {
             InitializeComponent();
+            Aerolineas = aerolineas;
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -29,6 +32,12 @@ namespace AerolineaFrba.Abm_Ruta
         {
             var ventanaBajaModificacionRuta = new ABMRutaBajaModificacion();
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRuta, this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Aerolineas.Focus();
         }
     }
 }

@@ -14,11 +14,14 @@ namespace AerolineaFrba.Abm_Rol
 {
     public partial class ABMRol : Form
     {
-        public ABMRol()
+        AerolineasPrincipal Aerolineas;
+
+        public ABMRol(AerolineasPrincipal aerolineas)
         {
             InitializeComponent();
+            Aerolineas = aerolineas;
         }
-
+     
         private void lbTitulo_Click(object sender, EventArgs e)
         {
 
@@ -34,6 +37,12 @@ namespace AerolineaFrba.Abm_Rol
         {
             var ventanaBajaModificacionRol = new ABMRolBajaModificacion();
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionRol, this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Aerolineas.Focus();
         }
     }
 }

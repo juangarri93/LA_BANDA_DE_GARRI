@@ -15,9 +15,12 @@ namespace AerolineaFrba.Abm_Aeronave
 {
     public partial class ABMAeronave : Form
     {
-        public ABMAeronave()
+        AerolineasPrincipal Aerolineas;
+
+        public ABMAeronave(AerolineasPrincipal aerolineas)
         {
             InitializeComponent();
+            Aerolineas = aerolineas;
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -41,6 +44,12 @@ namespace AerolineaFrba.Abm_Aeronave
         private void lbTitulo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Aerolineas.Focus();
+            this.Hide();
         }
    
     }

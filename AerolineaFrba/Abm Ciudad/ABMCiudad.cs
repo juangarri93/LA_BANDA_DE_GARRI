@@ -13,9 +13,13 @@ namespace AerolineaFrba.Abm_Ciudad
 {
     public partial class ABMCiudad : Form
     {
-        public ABMCiudad()
+
+        AerolineasPrincipal Aerolineas;
+
+        public ABMCiudad(AerolineasPrincipal aerolineas)
         {
             InitializeComponent();
+            Aerolineas = aerolineas;
         }
 
         private void lbTitulo_Click(object sender, EventArgs e)
@@ -33,6 +37,13 @@ namespace AerolineaFrba.Abm_Ciudad
         {
             var ventanaBajaModif = new ABMCiudadBajaModif();
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModif, this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Aerolineas.Focus();
+            
         }
     }
 }

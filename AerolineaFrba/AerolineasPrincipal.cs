@@ -38,38 +38,38 @@ namespace AerolineaFrba
             btnABMRol.Visible = false;
             btnABM_Ciudad.Visible = false;
             btnABMRutaAerea.Visible = false;
-            btn_canjear_millas.Visible = false;
-            btn_consulta_millas.Visible = false;
+            //btn_canjear_millas.Visible = false;
+            //btn_consulta_millas.Visible = false;
             btnEstadist.Visible = false;
             btnRegistrosDeUsuarios.Visible = false;
             btnGenerarViaje.Visible = false;
             btnRegistroDeLlegadaDestino.Visible = false;
-            btnCompra.Visible = false;
+            //btnCompra.Visible = false;
             btnCancelacion.Visible = false;
 
         }
 
         private void btnABM_Rol_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaRol = new ABMRol();
+            var nuevaVentanaRol = new ABMRol(this);
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRol, this);
         }
 
         private void btnABM_Aeronaves_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaAeronaves = new ABMAeronave();
+            var nuevaVentanaAeronaves = new ABMAeronave(this);
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaAeronaves, this);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaCiudad = new ABMCiudad();
+            var nuevaVentanaCiudad = new ABMCiudad(this);
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaCiudad, this);
         }
 
         private void btnABMRutaAerea_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaRutaArea = new ABMRuta();
+            var nuevaVentanaRutaArea = new ABMRuta(this);
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRutaArea, this);
         }
 
@@ -83,7 +83,7 @@ namespace AerolineaFrba
 
         private void btnRegistrosDeUsuarios_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaRegistroUsuarios = new ABMUsuario();
+            var nuevaVentanaRegistroUsuarios = new ABMUsuario(this);
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaRegistroUsuarios, this);
         }
 
@@ -130,7 +130,7 @@ namespace AerolineaFrba
 
         private void btnCancelacion_Click(object sender, EventArgs e)
         {
-            var nuevaVentanaDevolucion = new DevolucionOpciones();
+            var nuevaVentanaDevolucion = new DevolucionOpciones(this);
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaDevolucion, this);
         }
 

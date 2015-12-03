@@ -16,9 +16,12 @@ namespace AerolineaFrba.Registro_de_Usuario
 {
     public partial class ABMUsuario : Form
     {
-        public ABMUsuario()
+        public AerolineasPrincipal Aerolineas;
+
+        public ABMUsuario(AerolineasPrincipal aerolineas)
         {
             InitializeComponent();
+            Aerolineas = aerolineas;
         }
 
         private void ABMUsuario_Load(object sender, EventArgs e)
@@ -38,6 +41,12 @@ namespace AerolineaFrba.Registro_de_Usuario
 
            // var ventanaBajaUsuarios = new ABMBajaModifUsuario();
            // FormsHerramientas.mostrarVentanaNueva(ventanaBajaUsuarios, this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Aerolineas.Focus();
         }
     }
 }

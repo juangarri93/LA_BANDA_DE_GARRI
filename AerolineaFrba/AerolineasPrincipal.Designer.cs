@@ -49,7 +49,7 @@
             // 
             // btnABMAronaves
             // 
-            this.btnABMAronaves.Location = new System.Drawing.Point(476, 12);
+            this.btnABMAronaves.Location = new System.Drawing.Point(662, 222);
             this.btnABMAronaves.Name = "btnABMAronaves";
             this.btnABMAronaves.Size = new System.Drawing.Size(180, 36);
             this.btnABMAronaves.TabIndex = 0;
@@ -59,7 +59,7 @@
             // 
             // btnABMRol
             // 
-            this.btnABMRol.Location = new System.Drawing.Point(476, 54);
+            this.btnABMRol.Location = new System.Drawing.Point(660, 96);
             this.btnABMRol.Name = "btnABMRol";
             this.btnABMRol.Size = new System.Drawing.Size(180, 36);
             this.btnABMRol.TabIndex = 1;
@@ -89,7 +89,7 @@
             // 
             // btnRegistrosDeUsuarios
             // 
-            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(662, 12);
+            this.btnRegistrosDeUsuarios.Location = new System.Drawing.Point(662, 54);
             this.btnRegistrosDeUsuarios.Name = "btnRegistrosDeUsuarios";
             this.btnRegistrosDeUsuarios.Size = new System.Drawing.Size(180, 36);
             this.btnRegistrosDeUsuarios.TabIndex = 11;
@@ -99,7 +99,7 @@
             // 
             // btnGenerarViaje
             // 
-            this.btnGenerarViaje.Location = new System.Drawing.Point(662, 54);
+            this.btnGenerarViaje.Location = new System.Drawing.Point(662, 138);
             this.btnGenerarViaje.Name = "btnGenerarViaje";
             this.btnGenerarViaje.Size = new System.Drawing.Size(180, 36);
             this.btnGenerarViaje.TabIndex = 12;
@@ -109,7 +109,7 @@
             // 
             // btnRegistroDeLlegadaDestino
             // 
-            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(662, 96);
+            this.btnRegistroDeLlegadaDestino.Location = new System.Drawing.Point(662, 180);
             this.btnRegistroDeLlegadaDestino.Name = "btnRegistroDeLlegadaDestino";
             this.btnRegistroDeLlegadaDestino.Size = new System.Drawing.Size(180, 36);
             this.btnRegistroDeLlegadaDestino.TabIndex = 13;
@@ -119,7 +119,7 @@
             // 
             // btnCompra
             // 
-            this.btnCompra.Location = new System.Drawing.Point(662, 138);
+            this.btnCompra.Location = new System.Drawing.Point(476, 54);
             this.btnCompra.Name = "btnCompra";
             this.btnCompra.Size = new System.Drawing.Size(180, 36);
             this.btnCompra.TabIndex = 14;
@@ -141,7 +141,7 @@
             // 
             // btn_canjear_millas
             // 
-            this.btn_canjear_millas.Location = new System.Drawing.Point(662, 180);
+            this.btn_canjear_millas.Location = new System.Drawing.Point(476, 12);
             this.btn_canjear_millas.Name = "btn_canjear_millas";
             this.btn_canjear_millas.Size = new System.Drawing.Size(180, 36);
             this.btn_canjear_millas.TabIndex = 17;
@@ -151,7 +151,7 @@
             // 
             // btn_consulta_millas
             // 
-            this.btn_consulta_millas.Location = new System.Drawing.Point(476, 180);
+            this.btn_consulta_millas.Location = new System.Drawing.Point(660, 12);
             this.btn_consulta_millas.Name = "btn_consulta_millas";
             this.btn_consulta_millas.Size = new System.Drawing.Size(180, 36);
             this.btn_consulta_millas.TabIndex = 16;
@@ -171,7 +171,7 @@
             // 
             // btnCancelacion
             // 
-            this.btnCancelacion.Location = new System.Drawing.Point(662, 222);
+            this.btnCancelacion.Location = new System.Drawing.Point(474, 180);
             this.btnCancelacion.Name = "btnCancelacion";
             this.btnCancelacion.Size = new System.Drawing.Size(180, 36);
             this.btnCancelacion.TabIndex = 19;
@@ -204,7 +204,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(852, 270);
+            this.ClientSize = new System.Drawing.Size(851, 269);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelacion);

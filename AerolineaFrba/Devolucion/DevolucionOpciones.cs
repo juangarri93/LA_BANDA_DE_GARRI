@@ -14,9 +14,13 @@ namespace AerolineaFrba.Devolucion
 {
     public partial class DevolucionOpciones : Form
     {
-        public DevolucionOpciones()
+
+        AerolineasPrincipal Aerolineas;
+
+        public DevolucionOpciones(AerolineasPrincipal aerolineas)
         {
             InitializeComponent();
+            Aerolineas = aerolineas;
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -45,6 +49,12 @@ namespace AerolineaFrba.Devolucion
         {
             var ventanaLiberacionDeKgs = new LiberacionDeKGs();
             FormsHerramientas.mostrarVentanaNueva(ventanaLiberacionDeKgs, this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Aerolineas.Focus();
         }
     }
 }
