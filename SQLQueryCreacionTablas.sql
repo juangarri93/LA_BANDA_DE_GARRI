@@ -15,6 +15,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
 --Dropeo las procedures
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdame_idRol') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.spdame_idRol;
+  
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spViajeYPagoTest') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spViajeYPagoTest;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_resetearLogins') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_resetearLogins;
@@ -2157,4 +2160,43 @@ declare @auxId int
 set @auxId = (select Id_Rol from LA_BANDA_DE_GARRI.Usuario where @usuario = Username)
 return @auxId
 go
+
+
+create proc LA_BANDA_DE_GARRI.spViajeYPagoTest
+as
+
+declare @auxId int
+declare @date1 DATETIME
+declare @date2 DATETIME
+declare @date3 DATETIME
+set @date1 = '02/12/2015 0:00:00'
+set @date2 = '03/12/2015 15:00:00'
+set @date3 = '02/12/2015 15:30:00'
+
+exec LA_BANDA_DE_GARRI.sp_generar_viaje @auxId,65805175,'ASQ-169',@date1,@date2,@date3
+
+select @auxId=Id from LA_BANDA_DE_GARRI.Viaje where Viaje.Fecha_salida=@date1 and Viaje.Codigo_Ruta_Aerea=65805175 and Viaje.Id_Aeronave=(select id from LA_BANDA_DE_GARRI.Aeronave where Aeronave.Matricula='ASQ-169')
+
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',324
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',325
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',326
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',327
+
+exec LA_BANDA_DE_GARRI.sp_registrar_llegada_destino 'ASQ-169',@date1,@auxId
+
+set @date1 = '10/12/2015 0:00:00'
+set @date2 = '12/12/2015 15:00:00'
+set @date3 = '12/12/2015 15:30:00'
+
+exec LA_BANDA_DE_GARRI.sp_generar_viaje @auxId,65805175,'ASQ-169',@date1,@date2,@date3
+
+select @auxId=Id from LA_BANDA_DE_GARRI.Viaje where Viaje.Fecha_salida=@date1 and Viaje.Codigo_Ruta_Aerea=65805175 and Viaje.Id_Aeronave=(select id from LA_BANDA_DE_GARRI.Aeronave where Aeronave.Matricula='ASQ-169')
+
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',324
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',325
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',326
+exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',327
+go
+
+
 
