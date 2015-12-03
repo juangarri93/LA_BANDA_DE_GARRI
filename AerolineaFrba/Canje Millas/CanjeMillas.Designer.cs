@@ -32,7 +32,6 @@
             this.txtDni = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbCantidad = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.cbPremios = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,9 +40,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.cantPremios = new System.Windows.Forms.ComboBox();
             this.filtrarDNI.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCantidad)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,9 +51,9 @@
             this.filtrarDNI.Controls.Add(this.txtDni);
             this.filtrarDNI.Controls.Add(this.label1);
             this.filtrarDNI.Location = new System.Drawing.Point(32, 28);
-            this.filtrarDNI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filtrarDNI.Margin = new System.Windows.Forms.Padding(4);
             this.filtrarDNI.Name = "filtrarDNI";
-            this.filtrarDNI.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filtrarDNI.Padding = new System.Windows.Forms.Padding(4);
             this.filtrarDNI.Size = new System.Drawing.Size(468, 86);
             this.filtrarDNI.TabIndex = 7;
             this.filtrarDNI.TabStop = false;
@@ -63,7 +62,7 @@
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(185, 39);
-            this.txtDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDni.Margin = new System.Windows.Forms.Padding(4);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(253, 22);
             this.txtDni.TabIndex = 6;
@@ -81,27 +80,18 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbCantidad);
+            this.groupBox1.Controls.Add(this.cantPremios);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cbPremios);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(32, 134);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(468, 158);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione Premio";
-            // 
-            // cbCantidad
-            // 
-            this.cbCantidad.Location = new System.Drawing.Point(107, 98);
-            this.cbCantidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cbCantidad.Name = "cbCantidad";
-            this.cbCantidad.Size = new System.Drawing.Size(331, 22);
-            this.cbCantidad.TabIndex = 10;
-            this.cbCantidad.ValueChanged += new System.EventHandler(this.cbCantidad_ValueChanged);
             // 
             // label2
             // 
@@ -117,7 +107,7 @@
             // 
             this.cbPremios.FormattingEnabled = true;
             this.cbPremios.Location = new System.Drawing.Point(107, 47);
-            this.cbPremios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPremios.Margin = new System.Windows.Forms.Padding(4);
             this.cbPremios.Name = "cbPremios";
             this.cbPremios.Size = new System.Drawing.Size(331, 24);
             this.cbPremios.TabIndex = 8;
@@ -138,9 +128,9 @@
             this.groupBox3.Controls.Add(this.date_canje);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Location = new System.Drawing.Point(32, 313);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(468, 86);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
@@ -149,7 +139,7 @@
             // date_canje
             // 
             this.date_canje.Location = new System.Drawing.Point(173, 34);
-            this.date_canje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.date_canje.Margin = new System.Windows.Forms.Padding(4);
             this.date_canje.Name = "date_canje";
             this.date_canje.Size = new System.Drawing.Size(265, 22);
             this.date_canje.TabIndex = 9;
@@ -168,7 +158,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(243, 416);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(116, 32);
             this.btnAceptar.TabIndex = 11;
@@ -179,13 +169,22 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(384, 416);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(116, 32);
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // cantPremios
+            // 
+            this.cantPremios.FormattingEnabled = true;
+            this.cantPremios.Location = new System.Drawing.Point(107, 91);
+            this.cantPremios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cantPremios.Name = "cantPremios";
+            this.cantPremios.Size = new System.Drawing.Size(331, 24);
+            this.cantPremios.TabIndex = 22;
             // 
             // CanjeMillas
             // 
@@ -205,7 +204,6 @@
             this.filtrarDNI.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCantidad)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -221,11 +219,11 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DateTimePicker date_canje;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown cbCantidad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbPremios;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cantPremios;
     }
 }

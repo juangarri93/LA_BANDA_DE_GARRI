@@ -70,8 +70,10 @@ namespace AerolineaFrba.Consulta_Millas
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            dtvMillas.Hide();
-            dtvMillas.Show();
+            dtvMillas.ClearSelection();
+
+            dtvMillas.DataSource = "";
+
             txtDni.Text = "";
             lTotalViajes.Text = "Total de Viajes: "  ;
             lMillas.Text = "Total de Millas: "  ;

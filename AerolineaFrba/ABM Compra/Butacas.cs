@@ -204,7 +204,7 @@ namespace AerolineaFrba.ABM_Compra
 
         private void btnFin_Click(object sender, EventArgs e)
         {
-            if (listaDeSeleccionadas.Count()!=0)
+            if (_compraActual.CantidadKG!=0 || listaDeSeleccionadas.Count()!=0)
             {
                 _compraActual.ButacasSeleccionadas = listaDeSeleccionadas;
                 this.Hide();
