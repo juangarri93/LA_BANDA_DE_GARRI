@@ -34,6 +34,18 @@ namespace AerolineaFrba
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnABMAronaves.Enabled = false;
+            btnABMRol.Enabled = false;
+            btnABM_Ciudad.Enabled = false;
+            btnABMRutaAerea.Enabled = false;
+            btn_canjear_millas.Enabled = false;
+            btn_consulta_millas.Enabled = false;
+            btnEstadist.Enabled = false;
+            btnRegistrosDeUsuarios.Enabled = false;
+            btnGenerarViaje.Enabled = false;
+            btnRegistroDeLlegadaDestino.Enabled = false;
+            btnCompra.Enabled = false;
+            btnCancelacion.Enabled = false;
 
         }
 
@@ -94,7 +106,7 @@ namespace AerolineaFrba
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoginWindow login = new LoginWindow();
+            LoginWindow login = new LoginWindow(this);
             login.Show();
         }
 
@@ -122,6 +134,51 @@ namespace AerolineaFrba
             FormsHerramientas.mostrarVentanaNueva(nuevaVentanaDevolucion, this);
         }
 
-       
+
+
+        public void actualizaBotones(List<int> list)
+        {
+            foreach (var valor in list) 
+            {
+                switch (valor) 
+                {
+                    case 1: btnABMRol.Enabled = true;
+                        break;
+
+                    case 3: btnRegistrosDeUsuarios.Enabled = true;
+                        break;
+
+                    case 4: btnABM_Ciudad.Enabled = true;
+                        break;
+
+                    case 5: btnABMRutaAerea.Enabled = true;
+                        break;
+
+                    case 6: btnABMAronaves.Enabled = true;
+                        break;
+
+                    case 7: btnGenerarViaje.Enabled = true;
+                        break;
+
+                    case 8: btnRegistroDeLlegadaDestino.Enabled = true;
+                        break;
+
+                    case 9: btnCompra.Enabled = true;
+                        break;
+
+                    case 10: btnCancelacion.Enabled = true;
+                        break;
+
+                    case 11: btn_consulta_millas.Enabled = true;
+                        break;
+
+                    case 12: btn_canjear_millas.Enabled = true;
+                        break;
+
+                    case 13: btnEstadist.Enabled = true;
+                        break;
+                }
+            }
+        }
     }
 }

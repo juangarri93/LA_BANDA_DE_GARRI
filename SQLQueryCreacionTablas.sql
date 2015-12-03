@@ -13,6 +13,15 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdame_idRol') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spdame_idRol;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_resetearLogins') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_resetearLogins;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_dameDatosUsuario') IS NOT NULL)
+  DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_dameDatosUsuario;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_encomienda') IS NOT NULL)
   DROP PROCEDURE   LA_BANDA_DE_GARRI.sp_cancelar_encomienda;
 
@@ -1078,32 +1087,6 @@ END
 
 GO
 
-
---COMPRA PASAJE-ENCOMIENDA
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_pasaje(@fecha datetime, @origen int, @destino int) AS
-BEGIN
-return 1;
-END
-
-GO
-
-
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_encomienda AS
-BEGIN 
-
-	return 1;
-END
-
-GO
-
---CANCELACION/DEVOLUCION PASAJE-ENCOMIENDA
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas (@codigo NUMERIC (18,0)) AS
-BEGIN
-	return 1;
-END
-
-GO
-
 --CONSULTAR MILLAS
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_consultar_millas(@dni numeric(18,0)) AS
 BEGIN
@@ -2148,3 +2131,30 @@ delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda where @idPago = Id_Pago and @idV
 
 end
 go
+
+create proc LA_BANDA_DE_GARRI.sp_dameDatosUsuario
+(
+@usuario nvarchar(255)
+)
+as
+select * from LA_BANDA_DE_GARRI.Usuario where @usuario = Username
+go
+
+create proc LA_BANDA_DE_GARRI.sp_resetearLogins
+(
+@usuario nvarchar(255)
+)
+as
+update LA_BANDA_DE_GARRI.Usuario set intentos_fallidos = 0 where @usuario = Username
+go
+
+create proc LA_BANDA_DE_GARRI.spdame_idRol
+(
+@usuario nvarchar(255)
+)
+as
+declare @auxId int
+set @auxId = (select Id_Rol from LA_BANDA_DE_GARRI.Usuario where @usuario = Username)
+return @auxId
+go
+

@@ -81,5 +81,14 @@ namespace AerolineaFrba.CapaADO
 
              executeProcedure("sp_cambiar_estado_rol", rol.Codigo,rol.Habilitado);
          }
+
+         public static List<int> dameFuncionalidades(int idRol)
+         {
+             var table = retrieveDataTable("sptraerRol_Funcionalidad", idRol);
+
+             var lista = (from DataRow fila in table.Rows select (Convert.ToInt32(fila["Id_Funcionalidad"]))).ToList();
+             return lista;
+             
+         }
     }
 }

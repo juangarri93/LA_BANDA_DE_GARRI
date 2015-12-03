@@ -7,35 +7,92 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Windows.Forms;
+using System.Data;
+
+
 namespace AerolineaFrba.Login
 {
     class Login : SqlConnector
     {
         internal void validateUser()
         {
-            Dictionary<String, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("username_enviado", userName);
-            parameters.Add("password", password);
-            parameters.Add("result", "");
-            SqlCommand command;
-            string resultado = "";
+           
             try
             {
-                SqlDataReader reader = executeProcedureWithOutput("sp_login", parameters, out command);
-                resultado = (string)command.Parameters["@result"].Value;
-                reader.Close();
+                var passObtenido = GetUserPassword(userName);
 
+                if (passObtenido == null)
+                {
+                    auxCase = 1;
+                }
+
+                if(getValidarLogins(userName) >= 3)
+                {
+                    auxCase = 2;
+                }
+
+                if(passObtenido.Equals(password))
+                {
+                    resetearContadorLoguin(userName);
+                    int idRol = getRolUsuario(userName);
+
+                    listaFuncionalidades = DAORol.dameFuncionalidades(idRol);
+                }
             }
             catch
             {
 
             }
+     
+        }
 
+        private int getRolUsuario(string userName)
+        {
+            return executeProcedureWithReturnValue("spdame_idRol",userName);
+        }
 
-            if (!resultado.Equals("LOGIN_OK"))
-            {
-                throw new Exception(resultado);
-            }
+        public static void resetearContadorLoguin(string userName)
+        {
+            executeProcedure("sp_resetearLogins",userName);
+        }
+
+        public static int getValidarLogins(string userName)
+        {
+            DataTable dt = retrieveDataTable("sp_dameDatosUsuario", userName);
+            return Convert.ToInt32(dt.Rows[0]["intentos_fallidos"]);
+
+        }
+
+        public static string GetUserPassword(string nombreUsuario)
+        {
+            DataTable dt = retrieveDataTable("sp_dameDatosUsuario", nombreUsuario);
+
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow dr = dt.Rows[0];
+            return dr["Password"].ToString();
+        }
+
+        private List<int> _listaFuncionalidades;
+        public List<int> listaFuncionalidades
+        {
+            get { return _listaFuncionalidades; }
+            set { _listaFuncionalidades = value; }
+        }
+
+        private int _auxCase;
+        public int auxCase
+        {
+            get { return _auxCase; }
+            set { _auxCase = value; }
+        }
+
+        private String _result;
+        public String result
+        {
+            get { return _result; }
+            set { _result = value; }
         }
 
         private String userName;
@@ -48,7 +105,7 @@ namespace AerolineaFrba.Login
         public String Password
         {
             get { return password; }
-            set { password = SHA256Encrypt(value); }
+            set { password = SHA256Encrypt(value); } //Ya esta hasheada
         }
 
         private Boolean habilitado;
