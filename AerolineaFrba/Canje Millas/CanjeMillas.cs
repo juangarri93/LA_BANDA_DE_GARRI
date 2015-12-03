@@ -11,7 +11,6 @@ using AerolineaFrba.ConstructorDeClases;
 using AerolineaFrba.CapaADO;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
-using System.Data;
 
 namespace AerolineaFrba.Canje_Millas
 {

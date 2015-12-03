@@ -66,24 +66,24 @@ namespace AerolineaFrba.Listado_Estadistico
             {
                 case 1:
                     MessageBox.Show("TOP 5 de Destinos con mas pasajes comprados en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    DAOEstadistica.estadisticaDestinosconPasPasajesComprados(anio,semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosconPasPasajesComprados(anio,semestre);
                     break;
                 
                 case 2:
                     MessageBox.Show("TOP 5 de Destinos con aeronaves mas vacias en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    DAOEstadistica.estadisticaDestinosConAeronavesMasVacias(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosConAeronavesMasVacias(anio, semestre);
                     break;
                 case 3:
                     MessageBox.Show("TOP 5 de Clientes con mas puntos acumulados a la fecha en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    DAOEstadistica.estadisticaClientesConMasPuntosAcumulados(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaClientesConMasPuntosAcumulados(anio, semestre);
                     break;
                 case 4:
                     MessageBox.Show("TOP 5 de Destinos con pasajes cancelados en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    DAOEstadistica.estadisticaDestinosConPasajesCancelados(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosConPasajesCancelados(anio, semestre);
                     break;
                 case 5:
                     MessageBox.Show("TOP 5 de Aeronaves con mayor cantidad de dias fuera de servicio en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    DAOEstadistica.estadisticaAeronavesConMayorCantidadDeDiasFueraDeServicio(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaAeronavesConMayorCantidadDeDiasFueraDeServicio(anio, semestre);
                     break;
 
             }
