@@ -282,7 +282,7 @@ namespace AerolineaFrba.ABM_Compra
                 
             }
 
-            Random rnd = new Random(1);
+            Random rnd = new Random(DateTime.Now.GetHashCode());
             pago.Pnr = (int)rnd.Next();
             pago.Id_viaje = compraActual.ViajeSeleccionado;
             pago.Importe =(( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes))+ (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG)));

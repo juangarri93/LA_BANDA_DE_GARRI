@@ -59,7 +59,7 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_compra') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spinsertar_compra;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sprestar_premio') IS NOT NULL)
-  DROP PROCEDURE LA_BANDA_DE_GARRI. sprestar_premio;
+  DROP PROCEDURE LA_BANDA_DE_GARRI.sprestar_premio;
 
  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbaja_premio') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spbaja_premio;
@@ -253,6 +253,10 @@ DROP PROCEDURE LA_BANDA_DE_GARRI.sp_checkViaje;
 
  IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.sp_actualizar_cantidad_tipo_butacas;
+  
+   IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrarPremios') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spMostrarPremios;
+  
   
 --Dropeo las tablas
   
@@ -605,6 +609,13 @@ GO
 
 		insert into LA_BANDA_DE_GARRI.Funcionalidad(Nombre)
             values('Listado Estadístico')
+			
+		insert into LA_BANDA_DE_GARRI.Producto(Descripcion,Stock,Cantidad_Millas)
+		values ('remera Aerolineas FRBA',10,1)
+
+
+		insert into LA_BANDA_DE_GARRI.Producto(Descripcion,Stock,Cantidad_Millas)
+		values('gorra Aerolineas FRBA',10,1)
 		
 -- el hash de w23e --> e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7
 		insert into LA_BANDA_DE_GARRI.Usuario(Username, Password, intentos_fallidos, habilitado, Id_Rol)
@@ -725,6 +736,8 @@ GO
 			END
 			from LA_BANDA_DE_GARRI.Viaje V
 			join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
+	
+		
 
 commit tran trn_migracion_datos
 GO
@@ -737,6 +750,12 @@ BEGIN
 END
 GO
 
+
+
+
+ 
+ 
+ 
 --transaccion para insertar funcionalidad en los roles
 begin tran insertar_funcionalidades
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Rol'
@@ -771,6 +790,15 @@ commit tran insertar_funcionalidades
 go
 --STORED PROCEDURES
 --ABM ROL
+
+
+create procedure LA_BANDA_DE_GARRI.spMostrarPremios
+as
+begin
+select * from LA_BANDA_DE_GARRI.Producto
+end
+go
+
 
 create proc LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea
 as
@@ -1507,15 +1535,19 @@ go
 create proc LA_BANDA_DE_GARRI.sprestar_millas
 (
 @dni_cliente int,
-@cantidad int,
-@producto_elegido int,
-@fechaActual datetime
-)
+@cantidad int)
 as
+begin
+declare @idcliente int
+set @idcliente = (select Id from LA_BANDA_DE_GARRI.Cliente where Cliente.dni = @dni_cliente)
 
-insert into  LA_BANDA_DE_GARRI.Canje_Millas(DNI,Producto_elegido,Cantidad,Fecha)
-values(@dni_cliente,@producto_elegido,@cantidad,@fechaActual)
+ 
 
+update LA_BANDA_DE_GARRI.Millas 
+set Cantidad= @cantidad
+
+where  Id_cliente = @idcliente;
+END
 go
 
 --PROCEDURE spcalcular_millas", dni_cliente--
@@ -1533,7 +1565,7 @@ declare @sumaDeMillas int
 
 select @sumaDeMillas = (select SUM(Cantidad) FROM LA_BANDA_DE_GARRI.Millas
 where  @id_cliente = Id_cliente and (select DATEDIFF(day,Validez_Hasta,GETDATE())) <= 365)
-
+return  @sumaDeMillas
 end
 go
 
@@ -1579,20 +1611,21 @@ delete from LA_BANDA_DE_GARRI.Producto where Id = @id_premio
 go
 
 --PROCEDIMIENTO sprestar_premio id_Premio, cantidad)--
-CREATE PROC LA_BANDA_DE_GARRI. sprestar_premio
+ CREATE PROC LA_BANDA_DE_GARRI.sprestar_premio
 (
 @ID_PREMIO int,
-@cantidad int
+@cantidad int output
 )
 as
 begin
 
 declare @cantidadActualizada int
-set @cantidadActualizada = (select Stock from LA_BANDA_DE_GARRI.Producto where @ID_PREMIO = Id) - 1
+set @cantidadActualizada = (select Stock from LA_BANDA_DE_GARRI.Producto where @ID_PREMIO = Id) - @cantidad
 
 update LA_BANDA_DE_GARRI.Producto
-	set Stock = @cantidadActualizada - 1
+	set Stock = @cantidadActualizada 
 	where Id = @ID_PREMIO
+return @cantidadActualizada
 END
 go
 

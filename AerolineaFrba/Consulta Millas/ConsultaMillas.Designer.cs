@@ -37,7 +37,6 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.lMillas = new System.Windows.Forms.Label();
-            this.btnCanjear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.filtrarDNI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtvMillas)).BeginInit();
@@ -50,9 +49,9 @@
             this.filtrarDNI.Controls.Add(this.txtDni);
             this.filtrarDNI.Controls.Add(this.lDni);
             this.filtrarDNI.Location = new System.Drawing.Point(35, 30);
-            this.filtrarDNI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filtrarDNI.Margin = new System.Windows.Forms.Padding(4);
             this.filtrarDNI.Name = "filtrarDNI";
-            this.filtrarDNI.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filtrarDNI.Padding = new System.Windows.Forms.Padding(4);
             this.filtrarDNI.Size = new System.Drawing.Size(709, 86);
             this.filtrarDNI.TabIndex = 6;
             this.filtrarDNI.TabStop = false;
@@ -61,7 +60,7 @@
             // btnConsultarMillas
             // 
             this.btnConsultarMillas.Location = new System.Drawing.Point(547, 34);
-            this.btnConsultarMillas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsultarMillas.Margin = new System.Windows.Forms.Padding(4);
             this.btnConsultarMillas.Name = "btnConsultarMillas";
             this.btnConsultarMillas.Size = new System.Drawing.Size(116, 32);
             this.btnConsultarMillas.TabIndex = 7;
@@ -72,7 +71,7 @@
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(157, 39);
-            this.txtDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDni.Margin = new System.Windows.Forms.Padding(4);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(353, 22);
             this.txtDni.TabIndex = 1;
@@ -96,7 +95,7 @@
             this.dtvMillas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtvMillas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtvMillas.Location = new System.Drawing.Point(35, 123);
-            this.dtvMillas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtvMillas.Margin = new System.Windows.Forms.Padding(4);
             this.dtvMillas.MultiSelect = false;
             this.dtvMillas.Name = "dtvMillas";
             this.dtvMillas.ReadOnly = true;
@@ -117,8 +116,8 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(329, 28);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiar.Location = new System.Drawing.Point(437, 28);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(111, 39);
             this.btnLimpiar.TabIndex = 10;
@@ -129,7 +128,7 @@
             // btnSalir
             // 
             this.btnSalir.Location = new System.Drawing.Point(567, 28);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(111, 39);
             this.btnSalir.TabIndex = 11;
@@ -148,28 +147,16 @@
             this.lMillas.TabIndex = 12;
             this.lMillas.Text = "Total de Millas:";
             // 
-            // btnCanjear
-            // 
-            this.btnCanjear.Location = new System.Drawing.Point(448, 28);
-            this.btnCanjear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnCanjear.Name = "btnCanjear";
-            this.btnCanjear.Size = new System.Drawing.Size(111, 39);
-            this.btnCanjear.TabIndex = 13;
-            this.btnCanjear.Text = "Canjear Millas";
-            this.btnCanjear.UseVisualStyleBackColor = true;
-            this.btnCanjear.Click += new System.EventHandler(this.btnCanjear_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lMillas);
-            this.groupBox1.Controls.Add(this.btnCanjear);
             this.groupBox1.Controls.Add(this.lTotalViajes);
             this.groupBox1.Controls.Add(this.btnSalir);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Location = new System.Drawing.Point(35, 437);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(709, 86);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
@@ -207,7 +194,6 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lMillas;
-        private System.Windows.Forms.Button btnCanjear;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }

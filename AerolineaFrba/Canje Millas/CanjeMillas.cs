@@ -25,7 +25,7 @@ namespace AerolineaFrba.Canje_Millas
         public CanjeMillas()
         {
             InitializeComponent();
-          //  llenarComboBoxPremios();
+            llenarComboBoxPremios();
            
         }
 
@@ -41,8 +41,17 @@ namespace AerolineaFrba.Canje_Millas
             }
 
             cbPremios.DisplayMember = "Nombre";
-       
-           
+
+            cantPremios.Items.Add(1);
+            cantPremios.Items.Add(2);
+            cantPremios.Items.Add(3);
+            cantPremios.Items.Add(4);
+            cantPremios.Items.Add(5);
+            cantPremios.Items.Add(6);
+            cantPremios.Items.Add(7);
+            cantPremios.Items.Add(8);
+            cantPremios.Items.Add(9);
+            cantPremios.Items.Add(10);
         }
 
 
@@ -80,8 +89,7 @@ namespace AerolineaFrba.Canje_Millas
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            Premio premio = PremiosDisponibles.ElementAt(Convert.ToInt32(cbPremios.SelectedIndex));
-
+            Premio premio = (Premio)cbPremios.SelectedItem;
             if (!EsNumero(txtDni.Text))
             {
                 MessageBox.Show("Debe Ingresar un valor numerico");
@@ -90,7 +98,8 @@ namespace AerolineaFrba.Canje_Millas
             
             int dni = Convert.ToInt32(txtDni.Text);
             int millas = DAOMillas.Calcular_Millas(dni);
-            int millas_necesarias = millas * (Convert.ToInt32(cbCantidad.Text));
+
+            int millas_necesarias = premio.Cantidad_millas * (Convert.ToInt32(cantPremios.Text));
 
             if (millas < millas_necesarias)
             {
@@ -104,9 +113,9 @@ namespace AerolineaFrba.Canje_Millas
                 // if (!ValidacionesAeronave()) return;
                 try
                 {
-                    DAOPremio.InsertarCanje(premio);
+                   
                     MessageBox.Show("Canje realizado con exito");
-                    DAOMillas.restarMillas(dni, millas_necesarias);
+                    DAOMillas.restarMillas(dni, millas - millas_necesarias);
 
                     // limpiar();
                 }
@@ -121,9 +130,7 @@ namespace AerolineaFrba.Canje_Millas
 
         private void cbPremios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Premio premioseleccionado = PremiosDisponibles.ElementAt(Convert.ToInt32(cbPremios.SelectedIndex));
-
-            this.cbCantidad.Value = premioseleccionado.Cantidad;
+            
             
         }
 

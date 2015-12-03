@@ -11,10 +11,7 @@ namespace AerolineaFrba.CapaADO
 {
     class DAOPremio : SqlConnector
     {
-        public static void InsertarCanje(Premio premio)
-        {
-            executeProcedure("spinsertar_premio", 1 ,premio.Nombre,premio.Cantidad,premio.Cantidad_millas);
-        }
+        
 
         public static DataTable MostrarTodos()
         {
