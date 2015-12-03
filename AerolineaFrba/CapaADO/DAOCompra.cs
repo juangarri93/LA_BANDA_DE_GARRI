@@ -17,7 +17,7 @@ namespace AerolineaFrba.CapaADO
 
             int auxPNR = executeProcedureWithReturnValue("spdame_PNR");
 
-            if (auxPNR == 0) auxPNR = 1;
+            auxPNR = auxPNR + 1; //Porque necesito insertar uno nuevo
 
              foreach (var Butacas in compra.ButacasSeleccionadas)
             {
@@ -52,6 +52,15 @@ namespace AerolineaFrba.CapaADO
         public static void darDeBajaCompra(int id)
         {
             executeProcedure("spbaja_compra", id);
+        }
+
+        public static void AgregarCompraEncomienda(Compra compra)
+        {
+            int auxPNR = executeProcedureWithReturnValue("spdame_PNR");
+
+            auxPNR = auxPNR + 1; //Porque necesito insertar uno nuevo
+
+            executeProcedure("spinsertar_compraEncomienda", 1, auxPNR, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadKG, compra.FechaDeViaje, compra.Importe, compra.Tipopago);
         }
     }
 }

@@ -90,6 +90,7 @@ namespace AerolineaFrba.Login
 
             if (login.auxCase == 1)
             {
+                login.actualizaIntentosFallidos();
                 MessageBox.Show("EL USUARIO INGRESADO NO EXISTE EN LA BASE DE DATOS");
                 return true;
 

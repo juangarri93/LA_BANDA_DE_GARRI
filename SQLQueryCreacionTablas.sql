@@ -13,6 +13,12 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.fn_en_semestre') IS NOT NULL)
   DROP FUNCTION LA_BANDA_DE_GARRI.fn_en_semestre;  
   
 --Dropeo las procedures
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.spinsertar_compraEncomienda') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spinsertar_compraEncomienda;
+
+IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_sumarLogins') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.sp_sumarLogins;
+
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spdame_idRol') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.spdame_idRol;
 
@@ -1659,7 +1665,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 		end
 
 	declare @idPago int
-	set @idPago = (SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago)
+	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)
 
 	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago,KG)
 	values(@idCliente,@idviajeSeleccionado,@idButaca,@idPago,@cantidadKG)
@@ -2158,3 +2164,57 @@ set @auxId = (select Id_Rol from LA_BANDA_DE_GARRI.Usuario where @usuario = User
 return @auxId
 go
 
+create proc LA_BANDA_DE_GARRI.sp_sumarLogins
+(
+@usuario nvarchar(255)
+)
+as
+update LA_BANDA_DE_GARRI.Usuario set intentos_fallidos = intentos_fallidos + 1 where @usuario = Username
+go
+
+create proc LA_BANDA_DE_GARRI.spinsertar_compraEncomienda
+(
+@ID_compra int output,
+@PNR int,
+@idviajeSeleccionado int,
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric(18,0),
+@direccion nvarchar(255),
+@telefono numeric(18,0),
+@email nvarchar(255),
+@fechaNac date,
+@cantidadKG int,
+@fechaCompra datetime,
+@Importe decimal(18,0),
+@Tipo_Pago char(1)
+)
+as
+begin
+
+declare @idCliente int
+declare @idAeronave int
+
+if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	begin
+
+		insert into  LA_BANDA_DE_GARRI.Cliente(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
+		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechaNac)
+
+	end
+		
+	SET @idCliente = (select Cliente.Id from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and Apellido = @apellido and dni = @dni and direccion = @direccion and telefono = @telefono and mail = @email and fecha_nacimiento = @fechaNac)
+	SET @idAeronave = (select Viaje.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where @idviajeSeleccionado = Id)
+
+	
+		insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+	
+	declare @idPago int
+	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)
+
+	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago,KG)
+	values(@idCliente,@idviajeSeleccionado,NULL,@idPago,@cantidadKG)
+
+end
+go

@@ -133,5 +133,10 @@ namespace AerolineaFrba.Login
 
             return output.ToString();
         }
+
+        public void actualizaIntentosFallidos()
+        {
+            executeProcedure("sp_sumarLogins", UserName); ;
+        }
     }
 }
