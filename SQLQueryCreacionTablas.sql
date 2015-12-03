@@ -1034,7 +1034,7 @@ BEGIN
 FETCH pagos INTO @idcliente,@importe
 
 declare @venc DATETIME
-set @venc = DATEADD(yyyy,0001,@fecha_llegada)
+set @venc = DATEADD(year,0001,@fecha_llegada)
 
 insert into LA_BANDA_DE_GARRI.Millas(Id_cliente,Cantidad,Validez_Hasta)
 values(@idcliente, @importe / 10, @venc)
