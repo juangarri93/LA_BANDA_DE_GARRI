@@ -207,6 +207,9 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_ciudades') IS NOT NULL)
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea;
+  
+  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea_Esp') IS NOT NULL)
+  DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea_Esp;
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_viajes') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.spmostrar_viajes;
@@ -773,6 +776,14 @@ create proc LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea
 as
 select * from LA_BANDA_DE_GARRI.[Ruta_Aerea]
 go
+
+
+create proc LA_BANDA_DE_GARRI.spmostrar_Ruta_Aerea_Esp(@id_ruta int)
+as
+select * from LA_BANDA_DE_GARRI.[Ruta_Aerea]
+where Id = @id_ruta
+go
+
 
 create proc LA_BANDA_DE_GARRI.spmostrar_Viajes
 as
@@ -1773,8 +1784,8 @@ CREATE PROC   LA_BANDA_DE_GARRI.spinsertar_Ruta
 @TipoServicio int,
 @CiudadOrigen varchar(100),
 @CiudadDestino varchar(100),
-@PrecioKG int,
-@PrecioBase int,
+@PrecioKG numeric(18,2),
+@PrecioBase numeric(18,2),
 @habilitado varchar(100)
 )
 as
@@ -1890,12 +1901,11 @@ go
 
 
 CREATE proc LA_BANDA_DE_GARRI.spMostrar_viaje_esp(
-@id int
+@idviaje int
 )
 as
-select * from LA_BANDA_DE_GARRI.Ruta_Aerea
-where Id = id 
-order by Id
+select * from LA_BANDA_DE_GARRI.Viaje
+where Id = @idviaje 
 go
 
 CREATE proc LA_BANDA_DE_GARRI.sp_Kg_disponibles(

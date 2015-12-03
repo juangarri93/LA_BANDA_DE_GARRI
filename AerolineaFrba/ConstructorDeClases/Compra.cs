@@ -23,7 +23,7 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _cantidadKG;
         private int _viajeSeleccionado;
         private decimal _importe;
-        private int _tipopago;
+        private char _tipopago;
         private int _idButaca;
         private List<Butaca> _butacasSeleccionadas;
 
@@ -31,7 +31,7 @@ namespace AerolineaFrba.ConstructorDeClases
         public Compra() { }
 
 
-        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, decimal telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado, decimal importe, int tipopago, int idbutaca, List<Butaca> butacasSeleccionadas)
+        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, decimal telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado, decimal importe, char tipopago, int idbutaca, List<Butaca> butacasSeleccionadas)
         {
             this._idCompra = idCompra;
             this._nombre = nombre;
@@ -63,7 +63,7 @@ namespace AerolineaFrba.ConstructorDeClases
         }
 
 
-        public int Tipopago
+        public char Tipopago
         {
             get { return _tipopago; }
             set { _tipopago = value; }

@@ -259,6 +259,7 @@ namespace AerolineaFrba.ABM_Compra
             decimal precioBasePasaje=0;
             decimal precioBaseKG=0;
             int id_usuario= 0;
+            pago.Id_viaje = compraActual.ViajeSeleccionado;
 
                 /*
             int _id;
@@ -274,7 +275,7 @@ namespace AerolineaFrba.ABM_Compra
             if(viaje!=null){
 
                 DataRow rowviaje = viaje.Rows[0];
-                int id_ruta = rowviaje.Field<int>("Id");
+                int id_ruta = rowviaje.Field<int>("Codigo_Ruta_Aerea");
                 DataTable ruta = DAORuta.MostrarRutaEspecifica(id_ruta);
                 if (ruta != null)
                 {
