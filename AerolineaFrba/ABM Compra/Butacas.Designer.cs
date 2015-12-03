@@ -37,6 +37,7 @@
             this.btnFin = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.KgDisp = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -125,11 +126,21 @@
             this.KgDisp.TabIndex = 12;
             this.KgDisp.Text = "Kg disponibles: ";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(280, 228);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(133, 17);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Restan seleccionar:";
+            // 
             // Butacas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 394);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.KgDisp);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnFin);
@@ -160,5 +171,6 @@
         private System.Windows.Forms.Button btnFin;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Label KgDisp;
+        private System.Windows.Forms.Label label3;
     }
 }

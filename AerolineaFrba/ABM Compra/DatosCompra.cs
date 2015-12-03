@@ -101,12 +101,7 @@ namespace AerolineaFrba.ABM_Compra
                 return false;
             }
 
-            if (txtMail.Text == "")
-            {
-                
-                MessageBox.Show("Email incorrecto");
-                return false;
-            }
+           
 
             if (txtNombre.Text == "" && EsNumero(txtApellido.Text))
             {

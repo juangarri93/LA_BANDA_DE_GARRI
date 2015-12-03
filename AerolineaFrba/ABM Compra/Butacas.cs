@@ -41,6 +41,10 @@ namespace AerolineaFrba.ABM_Compra
             
             InitializeComponent();
             this.btnFin.Enabled = false;
+            if (compraActual.CantidadPasajes == 0)
+            {
+                this.checkedListBox1.Enabled = false;
+            }
         }
 
         private void CrearListaDeButacasLibres()
@@ -84,8 +88,9 @@ namespace AerolineaFrba.ABM_Compra
             checkedListBox1.DisplayMember = "Nro";
             checkedListBox1.ValueMember = "Id";
 
-            label5.Text = "Restan seleccionar:" + CantidadPasajes;
-            KgDisp.Text = "Kg disponibles:" + kgsDisponibles;
+            label5.Text = "Restan seleccionar: " + CantidadPasajes + "pasajes";
+            label3.Text = "Restan seleccionar: " + kgComprados +"kgs";
+            KgDisp.Text = "Kg disponibles: " + kgsDisponibles;
 
         }
 
@@ -121,7 +126,10 @@ namespace AerolineaFrba.ABM_Compra
 
                 else
                 {
-                    label5.Text = "Restan seleccionar: 0";
+                    label5.Text = "Restan seleccionar: 0 pasajes";
+
+                
+                    label3.Text = "Restan seleccionar: 0 kgs";
                     KgDisp.Text = "Kg disponibles: " + Convert.ToString(kgsDisponibles - this._compraActual.CantidadKG);
 
                     MessageBox.Show("Ha finalizado la selección, ya puede realizar el Pago");
