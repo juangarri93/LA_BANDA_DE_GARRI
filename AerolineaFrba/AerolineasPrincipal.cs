@@ -34,18 +34,18 @@ namespace AerolineaFrba
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            btnABMAronaves.Enabled = false;
-            btnABMRol.Enabled = false;
-            btnABM_Ciudad.Enabled = false;
-            btnABMRutaAerea.Enabled = false;
-            btn_canjear_millas.Enabled = false;
-            btn_consulta_millas.Enabled = false;
-            btnEstadist.Enabled = false;
-            btnRegistrosDeUsuarios.Enabled = false;
-            btnGenerarViaje.Enabled = false;
-            btnRegistroDeLlegadaDestino.Enabled = false;
-            btnCompra.Enabled = false;
-            btnCancelacion.Enabled = false;
+            btnABMAronaves.Visible = false;
+            btnABMRol.Visible = false;
+            btnABM_Ciudad.Visible = false;
+            btnABMRutaAerea.Visible = false;
+            btn_canjear_millas.Visible = false;
+            btn_consulta_millas.Visible = false;
+            btnEstadist.Visible = false;
+            btnRegistrosDeUsuarios.Visible = false;
+            btnGenerarViaje.Visible = false;
+            btnRegistroDeLlegadaDestino.Visible = false;
+            btnCompra.Visible = false;
+            btnCancelacion.Visible = false;
 
         }
 
@@ -142,40 +142,40 @@ namespace AerolineaFrba
             {
                 switch (valor) 
                 {
-                    case 1: btnABMRol.Enabled = true;
+                    case 1: btnABMRol.Visible = true;
                         break;
 
-                    case 3: btnRegistrosDeUsuarios.Enabled = true;
+                    case 3: btnRegistrosDeUsuarios.Visible = true;
                         break;
 
-                    case 4: btnABM_Ciudad.Enabled = true;
+                    case 4: btnABM_Ciudad.Visible = true;
                         break;
 
-                    case 5: btnABMRutaAerea.Enabled = true;
+                    case 5: btnABMRutaAerea.Visible = true;
                         break;
 
-                    case 6: btnABMAronaves.Enabled = true;
+                    case 6: btnABMAronaves.Visible = true;
                         break;
 
-                    case 7: btnGenerarViaje.Enabled = true;
+                    case 7: btnGenerarViaje.Visible = true;
                         break;
 
-                    case 8: btnRegistroDeLlegadaDestino.Enabled = true;
+                    case 8: btnRegistroDeLlegadaDestino.Visible = true;
                         break;
 
-                    case 9: btnCompra.Enabled = true;
+                    case 9: btnCompra.Visible = true;
                         break;
 
-                    case 10: btnCancelacion.Enabled = true;
+                    case 10: btnCancelacion.Visible = true;
                         break;
 
-                    case 11: btn_consulta_millas.Enabled = true;
+                    case 11: btn_consulta_millas.Visible = true;
                         break;
 
-                    case 12: btn_canjear_millas.Enabled = true;
+                    case 12: btn_canjear_millas.Visible = true;
                         break;
 
-                    case 13: btnEstadist.Enabled = true;
+                    case 13: btnEstadist.Visible = true;
                         break;
                 }
             }

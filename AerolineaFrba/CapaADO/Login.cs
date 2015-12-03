@@ -32,12 +32,16 @@ namespace AerolineaFrba.Login
                     auxCase = 2;
                 }
 
-                if(passObtenido.Equals(password))
+                if (passObtenido.Equals(password))
                 {
                     resetearContadorLoguin(userName);
                     int idRol = getRolUsuario(userName);
 
                     listaFuncionalidades = DAORol.dameFuncionalidades(idRol);
+                }
+                else 
+                {
+                    auxCase = 3;
                 }
             }
             catch
@@ -128,6 +132,11 @@ namespace AerolineaFrba.Login
                 output.Append(hashedBytes[i].ToString("x2").ToLower());
 
             return output.ToString();
+        }
+
+        public void actualizaIntentosFallidos()
+        {
+            executeProcedure("sp_sumarLogins", UserName); ;
         }
     }
 }

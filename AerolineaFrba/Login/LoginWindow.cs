@@ -40,7 +40,15 @@ namespace AerolineaFrba.Login
 
             try
             {
+             
                 login.validateUser();
+                if (Validaciones())
+                {
+                    TxtBox_password.Text = "";
+                    TxtBox_userName.Text = "";
+                    return;
+                }
+                   
                 Aerolineas.actualizaBotones(login.listaFuncionalidades);
                 MessageBox.Show("El LOGIN HA SIDO CORRECTO, BIENVENIDO");
                 this.Hide();
@@ -49,31 +57,61 @@ namespace AerolineaFrba.Login
             }
             catch (Exception excep)
             {
-                //if (excep.Message.Equals("LOGIN_ERROR_PASSWORD"))
-                //{
-                //    MessageBox.Show("Error al loguearse. Verifique su usuario y contraseña");
-                //    return;
-                //}
-
-                //if (excep.Message.Equals("LOGIN_ERROR"))
-                //{
-                //    MessageBox.Show("Error de login");
-                //    return;
-                //}
-                //if (excep.Message.Equals("LOGIN_MAS_TRES_VECES"))
-                //{
-                //    MessageBox.Show("Se superó la cantidad de intentos para loguearse.\nEl usuario queda inhabilitado.");
-                //    return;
-                //}
-
-                //if (excep.Message.Equals("LOGIN_OFF"))
-                //{
-                //    MessageBox.Show("Usuario inhabilitado.");
-                //    return;
-                //}
+               
 
             }
         }
+
+
+        private bool Validaciones()
+        {
+
+            if (TxtBox_userName.Text == "")
+            {
+                MessageBox.Show("NO INGRESO EL NOMBRE DEL USUARIO");
+                return true;
+
+            }
+
+            if (TxtBox_password.Text == "")
+            {
+                MessageBox.Show("NO INGRESO LA PASSWORD");
+                return true;
+
+            }
+
+           
+            if (login.auxCase == 2)
+            {
+                MessageBox.Show("LOS INTENTOS FALLIDOS SUPERAN EL LIMITE DE INTENTOS ESTABLECIDOS");
+                return true;
+
+            }
+
+            if (login.auxCase == 1)
+            {
+                login.actualizaIntentosFallidos();
+                MessageBox.Show("EL USUARIO INGRESADO NO EXISTE EN LA BASE DE DATOS");
+                return true;
+
+            }
+
+            if (login.auxCase == 3)
+            {
+                MessageBox.Show("LA CLAVE INGRESADA NO ES CORRECTA");
+                return true;
+
+            }
+
+
+
+         
+
+            
+
+            return false;
+        }
+
 
         private void LoginWindow_Load(object sender, EventArgs e)
         {
