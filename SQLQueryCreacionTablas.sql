@@ -1013,10 +1013,38 @@ go
 
 
 --REGISTRO LLEGADA A DESTINO
-CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@matricula VARCHAR(255), @origen int, @destino int, @fecha_llegada DATETIME ) AS
+
+CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino(@matricula VARCHAR(255),  @fecha_llegada DATETIME, @idviaje int ) AS
 BEGIN
-return 1;
---insert a una tabla nueva de registro de llegadas?
+declare @idaeronave int
+set @idaeronave = (select Id from LA_BANDA_DE_GARRI.Aeronave where Matricula like @matricula)
+
+declare @idcliente int
+declare @importe int
+DECLARE pagos CURSOR FOR 
+select Id_Cliente, Importe from Pago
+where Id_viaje = @idviaje;
+
+OPEN pagos;
+
+FETCH pagos INTO @idcliente,@importe
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+FETCH pagos INTO @idcliente,@importe
+
+declare @venc DATETIME
+set @venc = DATEADD(yyyy,0001,@fecha_llegada)
+
+insert into LA_BANDA_DE_GARRI.Millas(Id_cliente,Cantidad,Validez_Hasta)
+values(@idcliente, @importe / 10, @venc)
+
+END
+CLOSE PAGOS
+deallocate pagos
+
+delete  from LA_BANDA_DE_GARRI.Viaje_Butaca
+where id_Viaje = @idviaje
 
 END
 
@@ -1033,7 +1061,7 @@ GO
 
 
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_encomienda AS
-BEGIN
+BEGIN 
 
 	return 1;
 END
@@ -1954,7 +1982,7 @@ begin
 	end
 else
 begin
-	return(1)
+	return(@resul)
 	end
 end
 go

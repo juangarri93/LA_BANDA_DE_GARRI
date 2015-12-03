@@ -16,6 +16,9 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         string matricula;
         string origen;
         string destino;
+        int id_origen;
+        int idviaje;
+            int id_destino;
 
         public Registro()
         {
@@ -67,9 +70,14 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 origen = Convert.ToString(cbOrigen.Text);
                 destino = Convert.ToString(cbDestino.Text);
 
-                int aux = DAOViaje.CheckearViaje(matricula, origen, destino);
+                 
 
-                if (aux == 0)
+                
+                id_origen = 
+
+                idviaje = DAOViaje.CheckearViaje(matricula, origen, destino);
+
+                if (idviaje == 0)
                 {
                     MessageBox.Show("No se ha encontrado un Vuelo, intente nuevamente..");
                     this.dtpFecha.Enabled = false;
@@ -105,14 +113,14 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         {
             DateTime fecha = new DateTime(dtpFecha.Value.Year, dtpFecha.Value.Month, dtpFecha.Value.Day, tpHorario.Value.Hour, tpHorario.Value.Minute, tpHorario.Value.Second);
 
-            int aux = DAOViaje.RegistrarLlegada(matricula, origen, destino, fecha);
+            try{
+                DAOViaje.RegistrarLlegada(matricula, fecha, idviaje);
 
-            if (aux == 1)
-            {
+          
                 MessageBox.Show("Se ha registrado el arrivo correctamente.");
                 return;
             }
-            else
+            catch
             {
                 MessageBox.Show("Se ha producido un error al registrar el arrivo.");
                 return;

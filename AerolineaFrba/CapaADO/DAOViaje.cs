@@ -60,9 +60,9 @@ namespace AerolineaFrba.CapaADO
 
         }
 
-        public static int RegistrarLlegada(string matricula, string origen, string destino, DateTime fecha)
+        public static void RegistrarLlegada(string matricula,  DateTime fecha, int viaje)
         {
-            return executeProcedureWithReturnValue("sp_registrar_llegada_destino", matricula, origen, destino,fecha);
+            executeProcedure("sp_registrar_llegada_destino", matricula,fecha,viaje);
         }
 
     }
