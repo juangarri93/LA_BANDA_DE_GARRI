@@ -755,7 +755,22 @@ GO
 			from LA_BANDA_DE_GARRI.Viaje V
 			join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
 	
-		
+		insert into [LA_BANDA_DE_GARRI].[Pago]([PNR],[Id_viaje],[Id_Cliente],[Importe],[Fecha_compra])
+			SELECT 		
+			(SELECT count(*)+1 FROM LA_BANDA_DE_GARRI.Pago),
+			(select V.Id from LA_BANDA_DE_GARRI.Viaje V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
+			and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
+			(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
+			where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.[Id_Tipo_Servicio])= m.Tipo_Servicio 
+			and (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
+			and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
+			(select C.Id from LA_BANDA_DE_GARRI.Cliente c 
+			where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
+			IIF(m.Butaca_Nro = 0, m.Paquete_Precio, m.Pasaje_Precio),
+			IIF(m.Butaca_Nro = 0, m.Paquete_FechaCompra, m.Pasaje_FechaCompra)
+			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula		
+
+		update LA_BANDA_DE_GARRI.Pago set PNR = Id
 
 commit tran trn_migracion_datos
 GO
@@ -767,12 +782,6 @@ BEGIN
 		        (SELECT Id FROM LA_BANDA_DE_GARRI.Funcionalidad WHERE Nombre = @func))
 END
 GO
-
-
-
-
- 
- 
  
 --transaccion para insertar funcionalidad en los roles
 begin tran insertar_funcionalidades
