@@ -371,11 +371,24 @@ namespace AerolineaFrba.ABM_Compra
                 completarCompra();
                     try
                     {
-                        
-                        DAOCompra.AgregarCompra(compraActual);
+                        int aux=0;
+                        if (this.clienteActual != null)
+                        {
+                         aux=    DAOCompra.VerificarClienteNoEsteVolando(this.clienteActual.Dni, compraActual.ViajeSeleccionado);
+                        }
+                        if (aux == 0)
+                        {
+                            DAOCompra.AgregarCompra(compraActual);
 
-                        MessageBox.Show("Felicitaciones has realizado tu compra");
-                        this.Hide();
+                            MessageBox.Show("Felicitaciones has realizado tu compra");
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El cliente  se encuentra viajando en este momento. no puede realizar compra");
+                            this.Hide();
+                        }
+
                     }
 
                     catch (Exception ex)
