@@ -691,7 +691,7 @@ GO
 			gd_esquema.Maestra.Butaca_Piso,
 			(Select LA_BANDA_DE_GARRI.Aeronave.Id from LA_BANDA_DE_GARRI.Aeronave
 			where LA_BANDA_DE_GARRI.Aeronave.Matricula = gd_esquema.Maestra.Aeronave_Matricula)
-			 from gd_esquema.Maestra where gd_esquema.Maestra.Butaca_Tipo != '0';
+			 from gd_esquema.Maestra where gd_esquema.Maestra.Butaca_Tipo != '0' and gd_esquema.Maestra.Butaca_Nro !='0';
 
 		insert into LA_BANDA_DE_GARRI.Cliente(Nombre, Apellido, dni, direccion, telefono, mail, fecha_nacimiento)
 			select distinct m.Cli_Nombre, m.Cli_Apellido, m.Cli_Dni, m.Cli_Dir, m.Cli_Telefono, m.Cli_Mail, m.Cli_Fecha_Nac
