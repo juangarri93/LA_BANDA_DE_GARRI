@@ -798,6 +798,7 @@ begin tran insertar_funcionalidades
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Generar Viaje'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Aeronave'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Ruta Aerea'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Ciudad'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Registro de Usuario'
 	
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Rol'
@@ -810,6 +811,7 @@ begin tran insertar_funcionalidades
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Generar Viaje'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Aeronave'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Ruta Aerea'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Ciudad'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Registro de Usuario'
 	
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Cliente',@func = 'Canje de millas'
