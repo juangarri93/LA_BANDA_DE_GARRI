@@ -16,7 +16,10 @@ namespace AerolineaFrba.Canje_Millas
 {
     public partial class CanjeMillas : Form
     {
-
+        bool a = false;
+        bool b = false;
+        bool c = false;
+     
 
         private List<Premio> PremiosDisponibles;
 
@@ -25,7 +28,10 @@ namespace AerolineaFrba.Canje_Millas
         {
             InitializeComponent();
             llenarComboBoxPremios();
+          
+             this.btnAceptar.Enabled = false;
            
+            
         }
 
 
@@ -109,7 +115,7 @@ namespace AerolineaFrba.Canje_Millas
             
             if(DAOPremio.restarCantidadPremios(premio.Id, millas_necesarias)>0 )
             {
-                // if (!ValidacionesAeronave()) return;
+                
                 try
                 {
                    
@@ -129,23 +135,38 @@ namespace AerolineaFrba.Canje_Millas
 
         private void cbPremios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            a = true;
             
         }
 
         private void txtDni_TextChanged(object sender, EventArgs e)
         {
+            if (this.txtDni.Text == "")
+            {
+                b = false;
+            }
+            else
+            {
+                b = true;
 
+            }
         }
 
         private void cbCantidad_ValueChanged(object sender, EventArgs e)
         {
+            c = true;
 
         }
 
         private void date_canje_ValueChanged(object sender, EventArgs e)
         {
 
+
+            if (a = b = c = true)
+            {
+                this.btnAceptar.Enabled = true;
+            }
+            
         }
 
         

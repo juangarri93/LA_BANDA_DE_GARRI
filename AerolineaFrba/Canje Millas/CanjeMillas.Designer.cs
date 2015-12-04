@@ -32,6 +32,7 @@
             this.txtDni = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cantPremios = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbPremios = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.cantPremios = new System.Windows.Forms.ComboBox();
             this.filtrarDNI.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -93,6 +93,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione Premio";
             // 
+            // cantPremios
+            // 
+            this.cantPremios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cantPremios.FormattingEnabled = true;
+            this.cantPremios.Location = new System.Drawing.Point(107, 91);
+            this.cantPremios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cantPremios.Name = "cantPremios";
+            this.cantPremios.Size = new System.Drawing.Size(331, 24);
+            this.cantPremios.TabIndex = 22;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -105,6 +115,7 @@
             // 
             // cbPremios
             // 
+            this.cbPremios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPremios.FormattingEnabled = true;
             this.cbPremios.Location = new System.Drawing.Point(107, 47);
             this.cbPremios.Margin = new System.Windows.Forms.Padding(4);
@@ -176,15 +187,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // cantPremios
-            // 
-            this.cantPremios.FormattingEnabled = true;
-            this.cantPremios.Location = new System.Drawing.Point(107, 91);
-            this.cantPremios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cantPremios.Name = "cantPremios";
-            this.cantPremios.Size = new System.Drawing.Size(331, 24);
-            this.cantPremios.TabIndex = 22;
             // 
             // CanjeMillas
             // 
