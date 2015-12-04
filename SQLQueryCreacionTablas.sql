@@ -274,8 +274,10 @@ DROP PROCEDURE LA_BANDA_DE_GARRI.sp_checkViaje;
   
    IF (OBJECT_ID('LA_BANDA_DE_GARRI.spMostrarPremios') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.spMostrarPremios;
-  
-  
+
+ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spverificarCliente') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spverificarCliente;  
+ 
 --Dropeo las tablas
   
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Usuario]', 'U') IS NOT NULL
@@ -343,6 +345,7 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
  
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ciudad]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Ciudad];
+
 go
 
 
@@ -2264,5 +2267,35 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago,KG)
 	values(@idCliente,@idviajeSeleccionado,NULL,@idPago,@cantidadKG)
 
+end
+go
+
+
+create proc LA_BANDA_DE_GARRI.spverificarCliente(@dni numeric(18,0),@idviaje int)
+as
+begin
+declare @id_cliente int 
+set @id_cliente = (select Id from LA_BANDA_DE_GARRI.Cliente where dni=@dni)
+if @id_cliente is null
+begin
+return 0
+end
+
+declare @idbutaca int
+set @idbutaca  = (select Id_Butaca from LA_BANDA_DE_GARRI.Pasaje_Encomienda where Id_Cliente = @id_cliente and Id_Viaje = @idviaje)
+if @idbutaca is null
+begin
+return 0
+end
+declare @aux int
+set @aux = (select Id from LA_BANDA_DE_GARRI.Viaje_Butaca where id_Butaca = @idbutaca)
+if @aux is null
+begin
+return 0
+end
+else
+begin
+return 1
+end
 end
 go

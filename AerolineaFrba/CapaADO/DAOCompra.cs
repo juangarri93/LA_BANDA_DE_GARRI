@@ -12,6 +12,15 @@ namespace AerolineaFrba.CapaADO
 {
     class DAOCompra : SqlConnector
     {
+
+
+        public static int VerificarClienteNoEsteVolando(decimal dni, int viaje)
+        {
+            int aux  = executeProcedureWithReturnValue("spverificarCliente",dni,viaje);
+            return aux;
+        
+        }
+
         public static void AgregarCompra(Compra compra)
         {
 
