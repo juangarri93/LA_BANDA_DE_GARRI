@@ -1721,12 +1721,14 @@ GO
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_comprados (@anio numeric(4,0), @semestre int)
 as
 begin
+
 	select top 5 c.id, c.Nombre, count(p.Id)
-	from LA_BANDA_DE_GARRI.Ciudad c
-	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
-	join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
-	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
-	join LA_BANDA_DE_GARRI.Pago pa on(pa.Id_viaje = p.Id_Viaje)
+	from LA_BANDA_DE_GARRI.Pago pa
+	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (pa.Id_viaje = p.Id_Viaje
+													and pa.Id_Cliente = p.Id_Cliente)
+	join LA_BANDA_DE_GARRI.Viaje v on (v.Id = p.Id_Viaje)
+	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
+	join LA_BANDA_DE_GARRI.Ciudad c on(c.Id = r.Ciudad_Destino)
 	where p.KG != 0
 	and year(pa.Fecha_compra) = @anio 
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, pa.Fecha_compra) = 1
