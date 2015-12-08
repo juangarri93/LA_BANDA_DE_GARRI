@@ -20,13 +20,14 @@ namespace AerolineaFrba.Registro_Llegada_Destino
         int idviaje;
             int id_destino;
 
+
         public Registro()
         {
             InitializeComponent();
             cargarComboBox();
             this.dtpFecha.Enabled = false;
             this.tpHorario.Enabled = false;
-
+            this.dtpFecha.Value = DateTime.Now;
         }
 
         private void cargarComboBox()
@@ -136,7 +137,7 @@ namespace AerolineaFrba.Registro_Llegada_Destino
 
         private void tpHorario_ValueChanged(object sender, EventArgs e)
         {
-
+           
         }
 
         private void cbOrigen_SelectedIndexChanged(object sender, EventArgs e)

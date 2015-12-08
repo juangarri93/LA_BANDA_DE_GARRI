@@ -165,21 +165,10 @@ namespace AerolineaFrba.Abm_Compra
                         this.compraActual.CantidadPasajes = pasajes;
                         this.compraActual.FechaDeViaje = dtpFechaViaje.Value;
 
-                        if (pasajes > 0)
-                        {
+                        var ventanaDatosUsuario = new Butacas(compraActual);
+                        FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
 
-                            var ventanaDatosUsuario = new Butacas(compraActual);
-                            FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
-
-                        }
-                        else 
-                        {
-                            if (kgs > 0) 
-                            {
-                                DAOCompra.AgregarCompraEncomienda(compraActual);
-                            }
-                            
-                        }
+                       
                     }
                     else MessageBox.Show("Debe ingresar una cantidad valida de pasajes y/o encomiendas");
             

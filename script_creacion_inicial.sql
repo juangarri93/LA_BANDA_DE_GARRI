@@ -1,4 +1,4 @@
-USE [GD2C2015]
+SE [GD2C2015]
 GO
 
 --Dropeo las functions
@@ -580,7 +580,7 @@ CONSTRAINT [FK_ButacaIntermedio] FOREIGN KEY ([id_Butaca]) REFERENCES [LA_BANDA_
 )
 GO
 
- -- Transaccion para la migracion de datos (ac√° irian todos los inserts a las tablas)
+ -- Transaccion para la migracion de datos (ac· irian todos los inserts a las tablas)
  begin tran trn_migracion_datos
         
 		insert into LA_BANDA_DE_GARRI.Rol(Rol,Habilitado)
@@ -629,7 +629,7 @@ GO
             values('Canje de millas')
 
 		insert into LA_BANDA_DE_GARRI.Funcionalidad(Nombre)
-            values('Listado Estad√≠stico')
+            values('Listado EstadÌstico')
 			
 		insert into LA_BANDA_DE_GARRI.Producto(Descripcion,Stock,Cantidad_Millas)
 		values ('remera Aerolineas FRBA',10,1)
@@ -789,7 +789,7 @@ GO
 --transaccion para insertar funcionalidad en los roles
 begin tran insertar_funcionalidades
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'ABM Rol'
-	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Listado Estad√≠stico'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Listado EstadÌstico'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Canje de millas'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Consulta de millas de pasajero frecuente'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Devolucion/Cancelacion de pasaje y/o encomienda'
@@ -802,7 +802,7 @@ begin tran insertar_funcionalidades
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador General',@func = 'Registro de Usuario'
 	
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'ABM Rol'
-	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Listado Estad√≠stico'
+	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Listado EstadÌstico'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Canje de millas'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Consulta de millas de pasajero frecuente'
 	exec LA_BANDA_DE_GARRI.sp_agregar_funcionalidad @rol = 'Administrador',@func = 'Devolucion/Cancelacion de pasaje y/o encomienda'
@@ -915,7 +915,7 @@ begin
 			-- Seleccionamos el hash
 			set @check_password = (select password from LA_BANDA_DE_GARRI.Usuario where username = @username_enviado)
 
-			-- Seleccionamos si est√° habilitado
+			-- Seleccionamos si est· habilitado
 			set @check_habilitado = (select habilitado from LA_BANDA_DE_GARRI.Usuario where username = @username_enviado)
 			if (@check_habilitado = 0)
 
@@ -937,7 +937,7 @@ begin
 						return 1
 				end    
 
-			-- Usuario correcto pero contrase√±a incorrecta
+			-- Usuario correcto pero contraseÒa incorrecta
 			if (@check_password <> @password)
 				
 				begin
@@ -2108,7 +2108,11 @@ go
 
 create proc  LA_BANDA_DE_GARRI.spdame_PNR
 as
-SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago
+begin
+declare @pnr int
+set @pnr = (SELECT MAX(PNR) FROM LA_BANDA_DE_GARRI.Pago)
+return(@pnr)
+end
 go
 
 -- Agregado Nico 01/12/2015 --

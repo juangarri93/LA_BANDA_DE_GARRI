@@ -23,7 +23,8 @@ namespace AerolineaFrba.ABM_Compra
         private Persona clienteActual;
         private bool existe;
         private List<Persona> ClientesRegistrados;
-
+        int pnrcompra;
+        int pnrencomienda;
         public DatosCompra(Compra compra)
         {
             clientes = DAOCliente.buscarClientes();
@@ -282,8 +283,10 @@ namespace AerolineaFrba.ABM_Compra
                 
             }
 
-            Random rnd = new Random(DateTime.Now.GetHashCode());
-            pago.Pnr = (int)rnd.Next();
+
+           
+            
+           
             pago.Id_viaje = compraActual.ViajeSeleccionado;
             pago.Importe =(( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes))+ (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG)));
            
@@ -369,18 +372,21 @@ namespace AerolineaFrba.ABM_Compra
             if (estaTodoLLeno())
             {
                 completarCompra();
+                if (this.compraActual.CantidadPasajes > 0 && this.compraActual.CantidadKG >0)
+                {
                     try
                     {
-                        int aux=0;
+                        int aux = 0;
                         if (this.clienteActual != null)
                         {
-                         aux=    DAOCompra.VerificarClienteNoEsteVolando(this.clienteActual.Dni, compraActual.ViajeSeleccionado);
+                            aux = DAOCompra.VerificarClienteNoEsteVolando(this.clienteActual.Dni, compraActual.ViajeSeleccionado);
                         }
                         if (aux == 0)
                         {
-                            DAOCompra.AgregarCompra(compraActual);
+                            pnrcompra = DAOCompra.AgregarCompra(compraActual);
+                            pnrencomienda = DAOCompra.AgregarCompraEncomienda(compraActual);
 
-                            MessageBox.Show("Felicitaciones has realizado tu compra");
+                            MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de vuelo es: " + Convert.ToString(pnrcompra) + " y su PNR de encomienda es: " + Convert.ToString(pnrencomienda));
                             this.Hide();
                         }
                         else
@@ -395,7 +401,28 @@ namespace AerolineaFrba.ABM_Compra
                     {
                         MessageBox.Show("Hubo un error." + ex.Message);
                     }
+                }
 
+                else if (this.compraActual.CantidadKG > 0 && this.compraActual.CantidadPasajes == 0)
+                {
+
+                    try
+                    {
+
+                       pnrencomienda = DAOCompra.AgregarCompraEncomienda(compraActual);
+
+                       MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de encomienda es: " + Convert.ToString(pnrencomienda));
+                      
+
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hubo un error." + ex.Message);
+                    }
+
+
+                }
 
                 }
           
