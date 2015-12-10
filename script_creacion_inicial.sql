@@ -1751,11 +1751,11 @@ create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelado
 as
 begin
 	select top 5 c.id, c.Nombre, count(d.Id_Pasaje_Encomienda)
-	from LA_BANDA_DE_GARRI.Ciudad c
-	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Ciudad_Destino = c.Id)
-	join LA_BANDA_DE_GARRI.Viaje v on (r.Id = v.Codigo_Ruta_Aerea)
-	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (v.Id = p.Id_Viaje)
-	join LA_BANDA_DE_GARRI.Devolucion d on (d.Id_Pasaje_Encomienda = p.Id)
+	from LA_BANDA_DE_GARRI.Devolucion d 
+	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (d.Id_Pasaje_Encomienda = p.Id)
+	join LA_BANDA_DE_GARRI.Viaje v on v.Id = (p.Id_Viaje)
+	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
+	join LA_BANDA_DE_GARRI.Ciudad c on (r.Ciudad_Destino = c.Id)
 	where p.KG != 0
 	and year(d.Fecha_Devolucion) = @anio
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, d.Fecha_Devolucion) = 1
@@ -1799,16 +1799,22 @@ go
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_aeronave_mas_vacia (@anio numeric(4,0), @semestre int)
 as
 begin
-	select v.Id_Aeronave, COUNT(v.Id_Aeronave)
-	from LA_BANDA_DE_GARRI.Viaje v
-	join LA_BANDA_DE_GARRI.Butaca b on b.Aeronave_id = v.Id_Aeronave
-	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (p.Id_Butaca = b.Id
-													and p.Id_Viaje = v.Id)
-	where p.KG > 0 
-	and year(v.Fecha_salida) = @anio
+	select top 5 a.Id Aeronave, 
+			v.id Viaje, 
+			c.Nombre Ciudad,
+			lugares_vacios = (select sum(a1.Cantidad_Butacas_Ventana + a1.Cantidad_Ventanas_Pasillo) 
+											from LA_BANDA_DE_GARRI.Aeronave a1
+											where a1.Id = a.id) - count(b.Id)
+	from LA_BANDA_DE_GARRI.Aeronave a
+	join LA_BANDA_DE_GARRI.Butaca b on (b.Aeronave_id = a.id)
+	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (p.Id_Butaca = b.Id)
+	join LA_BANDA_DE_GARRI.Viaje v on (p.Id_Viaje = v.Id)
+	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
+	join LA_BANDA_DE_GARRI.Ciudad c on (c.Id = r.Ciudad_Destino)
+	where year(v.Fecha_salida) = @anio
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, v.Fecha_salida) = 1
-	group by v.Id_Aeronave
-	order by 2 asc
+	group by a.Id, v.id, c.Nombre
+	order by 4 desc
 end
 
 go
