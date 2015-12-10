@@ -83,14 +83,13 @@ namespace AerolineaFrba.Login
            
             if (login.auxCase == 2)
             {
-                MessageBox.Show("LOS INTENTOS FALLIDOS SUPERAN EL LIMITE DE INTENTOS ESTABLECIDOS");
+                MessageBox.Show("LOS INTENTOS FALLIDOS SUPERAN EL LIMITE DE INTENTOS ESTABLECIDOS, EL USUARIO ESTA INHABILITADO");
                 return true;
 
             }
 
             if (login.auxCase == 1)
             {
-                login.actualizaIntentosFallidos();
                 MessageBox.Show("EL USUARIO INGRESADO NO EXISTE EN LA BASE DE DATOS");
                 return true;
 

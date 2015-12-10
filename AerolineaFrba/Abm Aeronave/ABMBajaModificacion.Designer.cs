@@ -54,7 +54,6 @@
             this.cbTipoDeServicio = new System.Windows.Forms.ComboBox();
             this.txtCantidadDeButacasVentana = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbBajaFueraDeServicio = new System.Windows.Forms.ComboBox();
             this.dtFechaFueraDeServicio = new System.Windows.Forms.DateTimePicker();
             this.dtFechaDeReinicio = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
@@ -63,7 +62,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.txtNumeroAeronave = new System.Windows.Forms.TextBox();
@@ -268,7 +266,6 @@
             this.groupBox1.Controls.Add(this.cbTipoDeServicio);
             this.groupBox1.Controls.Add(this.txtCantidadDeButacasVentana);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbBajaFueraDeServicio);
             this.groupBox1.Controls.Add(this.dtFechaFueraDeServicio);
             this.groupBox1.Controls.Add(this.dtFechaDeReinicio);
             this.groupBox1.Controls.Add(this.dtpFechaAlta);
@@ -277,7 +274,6 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtMatricula);
             this.groupBox1.Controls.Add(this.txtNumeroAeronave);
@@ -377,16 +373,6 @@
             this.label1.TabIndex = 67;
             this.label1.Text = "Cantidad de Butacas V:";
             // 
-            // cmbBajaFueraDeServicio
-            // 
-            this.cmbBajaFueraDeServicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.cmbBajaFueraDeServicio.FormattingEnabled = true;
-            this.cmbBajaFueraDeServicio.Location = new System.Drawing.Point(757, 27);
-            this.cmbBajaFueraDeServicio.Name = "cmbBajaFueraDeServicio";
-            this.cmbBajaFueraDeServicio.Size = new System.Drawing.Size(121, 21);
-            this.cmbBajaFueraDeServicio.TabIndex = 66;
-            this.cmbBajaFueraDeServicio.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // dtFechaFueraDeServicio
             // 
             this.dtFechaFueraDeServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -472,15 +458,6 @@
             this.label12.Size = new System.Drawing.Size(174, 23);
             this.label12.TabIndex = 29;
             this.label12.Text = "Fecha fuera de servicio :";
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(574, 27);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(183, 23);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Baja Fuera De Servicio :";
             // 
             // label9
             // 
@@ -671,7 +648,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtMatricula;
         private System.Windows.Forms.TextBox txtNumeroAeronave;
@@ -691,7 +667,6 @@
         private System.Windows.Forms.DateTimePicker dtpFechaAlta;
         private System.Windows.Forms.DateTimePicker dtFechaFueraDeServicio;
         private System.Windows.Forms.DateTimePicker dtFechaDeReinicio;
-        private System.Windows.Forms.ComboBox cmbBajaFueraDeServicio;
         private System.Windows.Forms.Button btnBajaLogica;
         private System.Windows.Forms.CheckBox checkBoxbajaLogica1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;

@@ -237,6 +237,11 @@ namespace AerolineaFrba.Abm_Aeronave
         private bool Validaciones()
         {
 
+        
+
+            
+
+
             if (txtNumeroAeronave.Text == "")
             {
                 MessageBox.Show("NO INGRESO NUMERO DE AERONAVE");
@@ -336,7 +341,7 @@ namespace AerolineaFrba.Abm_Aeronave
                                 txtMatricula.Text,
                                 cbFabricante.SelectedIndex + 1,
                                 cbTipoDeServicio.SelectedIndex + 1,
-                                cmbBajaFueraDeServicio.Text,
+                                "Habilitado",
                                 dtFechaFueraDeServicio.Value,
                                 dtFechaDeReinicio.Value,
                                 Convert.ToInt32(txtCantidadDeButacasVentana.Text),
@@ -380,14 +385,13 @@ namespace AerolineaFrba.Abm_Aeronave
             this.Left = 0;
             Mostrar();
             btnBajaLogica.Enabled = false;
-            cmbBajaFueraDeServicio.Items.Add("Habilitado");
-            cmbBajaFueraDeServicio.Items.Add("Deshabilitado");
+           
             cargarComboBox();
             btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;
             btnGuardar.Enabled = false;
             deshabilitarTextBox();
-            cmbBajaFueraDeServicio.Enabled = false;
+            //cmbBajaFueraDeServicio.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
             dtpFechaAlta.Value = DateTime.Today;
@@ -529,7 +533,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void btnEditarBFS_Click(object sender, EventArgs e)
         {
-            cmbBajaFueraDeServicio.Enabled = true;
+            //cmbBajaFueraDeServicio.Enabled = true;
             dtFechaFueraDeServicio.Enabled = true;
             dtFechaDeReinicio.Enabled =  true;
             flagBajaFueraServicio = true;
@@ -538,11 +542,13 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cmbBajaFueraDeServicio.Enabled = false;
+            //cmbBajaFueraDeServicio.Enabled = false;
             dtFechaFueraDeServicio.Enabled = false;
             dtFechaDeReinicio.Enabled = false;
             flagBajaFueraServicio = false;
             habilitado = 0;
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)

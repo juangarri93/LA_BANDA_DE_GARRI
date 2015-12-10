@@ -1,4 +1,4 @@
-SE [GD2C2015]
+USE [GD2C2015]
 GO
 
 --Dropeo las functions
@@ -1177,6 +1177,11 @@ order by LA_BANDA_DE_GARRI.Viaje.Id
 end
 go
 
+--create proc LA_BANDA_DE_GARRI.spmostrar_aeronaveHabilitada
+--as
+--select * from LA_BANDA_DE_GARRI.Aeronave where i
+--order by Aeronave.Id
+--GO
 
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
 as
@@ -1208,7 +1213,7 @@ insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
 [Id_Tipo_Servicio],[Cantidad_Butacas_Ventana],[Cantidad_Ventanas_Pasillo],
 [Baja_Vida_Util], 
 [Fecha_baja_definitiva],[Kg_Disponibles])
-values(null,@numeroAeronave,@matricula,@modelo,@fabricante,
+values(@fechaAlta,@numeroAeronave,@matricula,@modelo,@fabricante,
 @tipoDeServicio,@CantidadButacasVentana,@CantidadButacasPasillo,null,
 null, @kgDisponible)
 
@@ -2228,7 +2233,16 @@ create proc LA_BANDA_DE_GARRI.sp_sumarLogins
 @usuario nvarchar(255)
 )
 as
+begin
+
+declare @intentos_fallidos int
+
 update LA_BANDA_DE_GARRI.Usuario set intentos_fallidos = intentos_fallidos + 1 where @usuario = Username
+set @intentos_fallidos = (select intentos_fallidos from LA_BANDA_DE_GARRI.Usuario where Username = @usuario)
+	
+	if(@intentos_fallidos >= 3)update LA_BANDA_DE_GARRI.Usuario set habilitado = 0 where @usuario = Username
+
+end
 go
 
 create proc LA_BANDA_DE_GARRI.spinsertar_compraEncomienda

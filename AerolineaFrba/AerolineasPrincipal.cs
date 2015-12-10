@@ -177,8 +177,13 @@ namespace AerolineaFrba
 
                     case 13: btnEstadist.Visible = true;
                         break;
+
+
                 }
             }
+
+            linkLabel1.Enabled = false;
+
         }
     }
 }

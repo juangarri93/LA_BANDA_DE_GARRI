@@ -25,11 +25,14 @@ namespace AerolineaFrba.Login
                 if (passObtenido == null)
                 {
                     auxCase = 1;
+                    return;
                 }
 
                 if(getValidarLogins(userName) >= 3)
                 {
                     auxCase = 2;
+                    actualizaIntentosFallidos(userName);
+                    return;
                 }
 
                 if (passObtenido.Equals(password))
@@ -42,6 +45,8 @@ namespace AerolineaFrba.Login
                 else 
                 {
                     auxCase = 3;
+                    actualizaIntentosFallidos(userName);
+                    return;
                 }
             }
             catch
@@ -134,9 +139,9 @@ namespace AerolineaFrba.Login
             return output.ToString();
         }
 
-        public void actualizaIntentosFallidos()
+        public static int actualizaIntentosFallidos(String UserName)
         {
-            executeProcedure("sp_sumarLogins", UserName); ;
+            return executeProcedureWithReturnValue("sp_sumarLogins", UserName); ;
         }
     }
 }

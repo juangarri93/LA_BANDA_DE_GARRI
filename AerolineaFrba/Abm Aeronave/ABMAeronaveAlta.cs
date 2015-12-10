@@ -148,7 +148,7 @@ namespace AerolineaFrba.Abm_Aeronave
                                 txtMatricula.Text,
                                 (cbFabricante.SelectedIndex + 1),
                                 (cbTipoServicio.SelectedIndex + 1),
-                                "Habilitado",
+                                "Deshabilitado",
                                 dtpFECHA.Value,
                                 dtpFECHA.Value,
                                 Convert.ToInt32(txtCantidadDeButacasPasillo.Text),
