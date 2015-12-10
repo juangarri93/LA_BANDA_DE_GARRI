@@ -446,7 +446,8 @@ CREATE TABLE [LA_BANDA_DE_GARRI].[Aeronave](
 [Cantidad_Ventanas_Pasillo] int,
 [Baja_Vida_Util] varchar(50),
 [Fecha_baja_definitiva] date,
-[Kg_Disponibles] int
+[Kg_Disponibles] int,
+[Habilitada] BIT DEFAULT 1 NOT NULL, 
 PRIMARY KEY (id),
 CONSTRAINT [FK_Modelo] FOREIGN KEY ([Modelo]) REFERENCES [LA_BANDA_DE_GARRI].[Modelo] ([Id]),
 CONSTRAINT [FK_Fabricante] FOREIGN KEY (Fabricante) REFERENCES [LA_BANDA_DE_GARRI].Fabricante ([Id]),
