@@ -1322,23 +1322,46 @@ create proc LA_BANDA_DE_GARRI.speditar_aeronave
 @fechaFueraReinicio date,
 @habilitadoFueraDeServicio int)
 as
-update Aeronave set Fecha_alta = @fechaAlta,
-Numero = @numeroAeronave,
-Modelo = @modelo,
-Matricula = @matricula,
-Fabricante = @fabricante,
-Id_Tipo_Servicio = @tipoDeServicio,
-Cantidad_Butacas_Ventana = @CantidadButacasVentana,
-Cantidad_Ventanas_Pasillo = @CantidadButacasPasillo,
-Kg_Disponibles = @kgDisponible
-where Id = @codigo
+begin
+	declare @viajes int;
+	
+		select * 
+		from LA_BANDA_DE_GARRI.Aeronave a
+		join LA_BANDA_DE_GARRI.Viaje v on v.Id_Aeronave = a.Id
+		where year(v.Fecha_salida) = year(GETDATE())
+		and MONTH(v.Fecha_salida) = month(getdate())
+		and DAY(GETDATE()) between day(v.Fecha_salida) and day(v.Fecha_llegada_estimada)
+		
+		set @viajes = @@ROWCOUNT
+		
+		if(@viajes = 0)
+			
+			begin
+				update Aeronave set Fecha_alta = @fechaAlta,
+				Numero = @numeroAeronave,
+				Modelo = @modelo,
+				Matricula = @matricula,
+				Fabricante = @fabricante,
+				Id_Tipo_Servicio = @tipoDeServicio,
+				Cantidad_Butacas_Ventana = @CantidadButacasVentana,
+				Cantidad_Ventanas_Pasillo = @CantidadButacasPasillo,
+				Kg_Disponibles = @kgDisponible
+				where Id = @codigo
 
-	if @habilitadoFueraDeServicio = 1
-		begin
+				if @habilitadoFueraDeServicio = 1
+					begin
 
-		insert into Aeronave_Baja_Temporaria(id_Aeronave,Baja_Fuera_Servicio,Fecha_Fuera_Servicio,Fecha_Reinicio)
-			values(@codigo,@bajaFueraDeServicio,@fechaFueraDeServicio,@fechaFueraReinicio)
-		end
+					insert into Aeronave_Baja_Temporaria(id_Aeronave,Baja_Fuera_Servicio,Fecha_Fuera_Servicio,Fecha_Reinicio)
+						values(@codigo,@bajaFueraDeServicio,@fechaFueraDeServicio,@fechaFueraReinicio)
+					end
+			
+				return @viajes
+			end
+		else
+			begin
+				return @viajes
+			end			
+end
 go
 
 -- AGREGADOR POR NICO -- FECHA : 01/11/2015 --
