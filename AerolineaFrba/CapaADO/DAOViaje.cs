@@ -17,6 +17,11 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spmostrar_aeronave");
         }
 
+        public static DataTable getAeronavesHabilitadas()
+        {
+            return retrieveDataTable("spmostrar_aeronave_habilitada");
+        }
+
 
         public static DataTable getRutaAerea()
         {

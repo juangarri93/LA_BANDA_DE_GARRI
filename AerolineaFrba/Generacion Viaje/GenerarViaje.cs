@@ -55,7 +55,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void cargarComboBox()
         {
-            cbAeronave.DataSource = DAOViaje.getAeronaves().DefaultView;
+            cbAeronave.DataSource = DAOViaje.getAeronavesHabilitadas().DefaultView;
             cbAeronave.DisplayMember = "Matricula";
             cbRutaAerea.DataSource = DAOViaje.getRutaAerea().DefaultView;
             cbRutaAerea.DisplayMember = "Codigo";

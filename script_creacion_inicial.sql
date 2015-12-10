@@ -277,6 +277,10 @@ DROP PROCEDURE LA_BANDA_DE_GARRI.sp_checkViaje;
 
  IF (OBJECT_ID('LA_BANDA_DE_GARRI.spverificarCliente') IS NOT NULL)
   DROP PROCEDURE  LA_BANDA_DE_GARRI.spverificarCliente;  
+  
+   IF (OBJECT_ID('LA_BANDA_DE_GARRI.spmostrar_aeronave_habilitada') IS NOT NULL)
+  DROP PROCEDURE  LA_BANDA_DE_GARRI.spmostrar_aeronave_habilitada;  
+  
  
 --Dropeo las tablas
   
@@ -1187,6 +1191,14 @@ go
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
 as
 select * from LA_BANDA_DE_GARRI.Aeronave
+order by Aeronave.Id
+GO
+
+
+create proc LA_BANDA_DE_GARRI.spmostrar_aeronave_habilitada
+as
+select * from LA_BANDA_DE_GARRI.Aeronave
+where Habilitada = 1
 order by Aeronave.Id
 GO
 
