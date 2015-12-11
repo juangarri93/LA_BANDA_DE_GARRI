@@ -46,6 +46,7 @@ namespace AerolineaFrba
             btnRegistroDeLlegadaDestino.Visible = false;
             //btnCompra.Visible = false;
             btnCancelacion.Visible = false;
+            linkLabel2.Enabled = false;
 
         }
 
@@ -183,7 +184,29 @@ namespace AerolineaFrba
             }
 
             linkLabel1.Enabled = false;
+            linkLabel2.Enabled = true;
+        }
 
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            MessageBox.Show("SU SESION FUE FINALIZADA, GRACIAS POR USAR NUESTRO SERVICIO");
+
+            btnABMAronaves.Visible = false;
+            btnABMRol.Visible = false;
+            btnABM_Ciudad.Visible = false;
+            btnABMRutaAerea.Visible = false;
+            //btn_canjear_millas.Visible = false;
+            //btn_consulta_millas.Visible = false;
+            btnEstadist.Visible = false;
+            btnRegistrosDeUsuarios.Visible = false;
+            btnGenerarViaje.Visible = false;
+            btnRegistroDeLlegadaDestino.Visible = false;
+            //btnCompra.Visible = false;
+            btnCancelacion.Visible = false;
+
+            linkLabel1.Enabled = true;
+            linkLabel2.Enabled = false;
         }
     }
 }
