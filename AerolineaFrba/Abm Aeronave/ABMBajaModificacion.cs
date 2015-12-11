@@ -209,19 +209,25 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            int aux;
             try
             {
                  if (Validaciones()) return;
-                 DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
-                 MessageBox.Show("La Aeronave se agrego correctamente.");
-                 deshabilitarTextBox();
-                 limpiarTextBox();
-                 btnGuardar.Enabled = false;
-                 btnEditar.Enabled = true;
-                 btnCancelar.Enabled = false;
-                 this.Mostrar();
+                 aux = DAOAerolinea.EditarAeronave(cargarAerolineParaEditar());
 
+                 if (aux == 0)
+                 {
+                     MessageBox.Show("La Aeronave se agrego correctamente.");
+                     deshabilitarTextBox();
+                     limpiarTextBox();
+                     btnGuardar.Enabled = false;
+                     btnEditar.Enabled = true;
+                     btnCancelar.Enabled = false;
+                     this.Mostrar();
+                 }
+                 else {
+                     MessageBox.Show("La Aeronave no se puede editar porque está actualmente en uso.");
+                 }
             }
             catch(Exception ex)
             {

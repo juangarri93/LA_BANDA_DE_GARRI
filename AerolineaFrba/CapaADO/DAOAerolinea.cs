@@ -50,12 +50,13 @@ namespace AerolineaFrba.CapaADO
             return retrieveDataTable("spbuscarModelo_aeronave", textoBuscar);
         }
 
-        public static void EditarAeronave(Aeronave aeronave)
+        public static int EditarAeronave(Aeronave aeronave)
         {
-            executeProcedure("speditar_aeronave", aeronave.CodigoAeronave, aeronave.FechaAlta, aeronave.NumeroAeronave,aeronave.Matricula,aeronave.Modelo,
+            int aux = executeProcedureWithReturnValue("speditar_aeronave", aeronave.CodigoAeronave, aeronave.FechaAlta, aeronave.NumeroAeronave, aeronave.Matricula, aeronave.Modelo,
                             aeronave.Fabricante, aeronave.TipoDeServicio, aeronave.CantidadButacaVentana, aeronave.CantidadButacaPasillo,aeronave.KGDisponible,aeronave.BajaPorFueraDeServicio,
                             aeronave.FechaDeFueraDeServicio, aeronave.FechaDeReinicioDeServicio,
                             aeronave.FlagBajaFueraServicio);
+            return aux;
         }
 
         public static void EliminarAeronave(Int32 codigoAeronave)
