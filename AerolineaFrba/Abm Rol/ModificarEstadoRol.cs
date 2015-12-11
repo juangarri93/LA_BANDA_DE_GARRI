@@ -28,6 +28,7 @@ namespace AerolineaFrba.Abm_Rol
             textBox1.ReadOnly = true;
             textBox2.ReadOnly = true;
             textBox3.ReadOnly = true;
+            dgRolesEstado.ReadOnly = true;
 
         }
 
@@ -40,7 +41,7 @@ namespace AerolineaFrba.Abm_Rol
         {
             try
             {
-
+                if (Validaciones()) return;
                 DAORol.EditarEstadoRol(cargarRol());
                 MessageBox.Show("Rol Modificado correctamente.");
                 this.dgRolesEstado.DataSource = DAORol.getRol();
@@ -53,6 +54,20 @@ namespace AerolineaFrba.Abm_Rol
             }
         }
 
+        private bool Validaciones()
+        {
+
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("NO INGRESO INFORMACION PARA EDITAR, POR FAVOR SIGA LAS INSTRUCCIONES DEL MENU DE AYUDA,MUCHAS GRACIAS");
+                return true;
+
+            }
+           
+            return false;
+        }
+
+
         private Rol cargarRol()
         {
             return new Rol(Convert.ToInt32(textBox1.Text), textBox2.Text, Convert.ToBoolean(textBox3.Text));
@@ -60,6 +75,8 @@ namespace AerolineaFrba.Abm_Rol
 
         private void dgRolesEstado_DoubleClick(object sender, EventArgs e)
         {
+
+            dgRolesEstado.ReadOnly = false;
 
             textBox1.Text = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Id"].Value);
             textBox2.Text = Convert.ToString(this.dgRolesEstado.CurrentRow.Cells["Rol"].Value);
@@ -70,8 +87,8 @@ namespace AerolineaFrba.Abm_Rol
         private void button3_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Para modificar el estado de un rol siga los siguientes pasos:" + Environment.NewLine +
-                                  "  ● Hacer clic en el Rol a editar" + Environment.NewLine +
-                                  "  ● Hacer clic en la casilla de 'Habilitado' del Rol a editar" + Environment.NewLine +
+                                  "  ● Hacer Doble click en el Rol a editar para mostrarlo en los textbox de la derecha (ACLARACION: la funcionalidad de los textbox es solo informativo)" + Environment.NewLine +
+                                  "  ● Hacer click en la casilla de 'Habilitado' del Rol a editar" + Environment.NewLine +
                                   "  ● Finalmente Aceptar");
         }
     }

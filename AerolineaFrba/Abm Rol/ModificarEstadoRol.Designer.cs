@@ -46,6 +46,8 @@
             // dgRolesEstado
             // 
             this.dgRolesEstado.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.dgRolesEstado.AllowUserToAddRows = false;
+            this.dgRolesEstado.AllowUserToDeleteRows = false;
             this.dgRolesEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgRolesEstado.Location = new System.Drawing.Point(45, 12);
             this.dgRolesEstado.Name = "dgRolesEstado";

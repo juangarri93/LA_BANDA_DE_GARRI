@@ -106,6 +106,7 @@ namespace AerolineaFrba.Abm_Ciudad
 
             try
             {
+                if (Validaciones()) return;
                 DAOCiudad.EditarCiudad(cargarCiudadParaEditar());
                 MessageBox.Show("La Ciudad se agrego correctamente.");
                 deshabilitarTextBox();
@@ -123,6 +124,23 @@ namespace AerolineaFrba.Abm_Ciudad
             }
         }
 
+
+         private bool Validaciones()
+         {
+
+
+             if (txtCodigo.Text == "")
+             {
+                 MessageBox.Show("NO INGRESO CIUDAD PARA MODIFICAR, POR FAVOR SIGA LAS INSTRUCCIONES DEL MENU DE AYUDA, MUCHAS GRACIAS");
+                 return true;
+
+             }
+
+            
+
+             return false;
+
+         }
          private void limpiarTextBox()
          {
             txtCodigo.Text = "";

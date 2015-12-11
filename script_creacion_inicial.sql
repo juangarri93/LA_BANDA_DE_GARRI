@@ -1383,7 +1383,7 @@ select * from LA_BANDA_DE_GARRI.Aeronave
 where Numero like '%' + @numeroABuscar + '%'
 go
 
-/*
+
 --PROCEDIMIENTO BUSCAR MATRICULA--
 create proc LA_BANDA_DE_GARRI.spbuscarMatricula_aeronave
 @matricula varchar(255)
@@ -1391,7 +1391,7 @@ as
 select * from LA_BANDA_DE_GARRI.Aeronave
 where Matricula like '%' + @matricula + '%'
 go
-*/
+
 
 --PROCEDIMIENTO BUSCAR FABRICANTE--
 create proc LA_BANDA_DE_GARRI.spbuscarFabricante_aeronave
@@ -1996,7 +1996,7 @@ create proc LA_BANDA_DE_GARRI.spbuscar_ciudad
 @nombre varchar(100)
 as
 select * from LA_BANDA_DE_GARRI.Ciudad
-where Nombre like @nombre 
+where Nombre like  '%' + @nombre + '%'
 go
 
 create proc LA_BANDA_DE_GARRI.spMostrar_Ciudad_sin_baja_util
