@@ -1168,7 +1168,7 @@ BEGIN
 	 if(@existe_id is null)
 	 begin
 	 insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
-	values(@fecha_salida, @fecha_llegada, @fecha_llegada_estimada, @id_aeronave, @id_ruta)
+	values(convert(datetime,@fecha_salida,121), convert(datetime,@fecha_llegada,121), convert(datetime,@fecha_llegada_estimada,121), @id_aeronave, @id_ruta)
 
 	declare @idViaje int
 	set @id_viaje = (select max(Id) from LA_BANDA_DE_GARRI.Viaje)
@@ -1266,7 +1266,7 @@ BEGIN
 	end
 
 	insert into LA_BANDA_DE_GARRI.Canje_Millas(DNI, Producto_elegido, cantidad, Fecha)
-	values(@dni, @producto, @cant, @fecha_canje)
+	values(@dni, @producto, @cant, convert(datetime,@fecha_canje,121))
 
 END
 GO 
@@ -1447,7 +1447,7 @@ begin
 		if(@viajes = 0)
 			
 			begin
-				update Aeronave set Fecha_alta = @fechaAlta,
+				update Aeronave set Fecha_alta = convert(datetime,@fechaAlta,121),
 				Numero = @numeroAeronave,
 				Modelo = @modelo,
 				Matricula = @matricula,
@@ -1462,7 +1462,7 @@ begin
 					begin
 
 					insert into Aeronave_Baja_Temporaria(id_Aeronave,Baja_Fuera_Servicio,Fecha_Fuera_Servicio,Fecha_Reinicio)
-						values(@codigo,@bajaFueraDeServicio,@fechaFueraDeServicio,@fechaFueraReinicio)
+						values(@codigo,@bajaFueraDeServicio,convert(datetime,@fechaFueraDeServicio,121), convert(datetime,@fechaFueraReinicio,121))
 					end
 			
 				return @viajes
@@ -1648,7 +1648,7 @@ create proc LA_BANDA_DE_GARRI.spinsertar_millas
 )
 as
 insert into  LA_BANDA_DE_GARRI.Millas(Id_cliente,Cantidad,Validez_Hasta)
-values(@id_cliente,@cantMillas,@fechaExp)
+values(@id_cliente,@cantMillas,convert(datetime,@fechaExp,121))
 go
 
 --Procedimiento spmostrar_millas --
@@ -1816,7 +1816,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	begin
 
 		insert into  LA_BANDA_DE_GARRI.Cliente(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
-		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechaNac)
+		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,convert(datetime,@fechaNac,121))
 
 	end
 		
@@ -1828,7 +1828,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 		begin
 
 		insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,convert(datetime,@fechaCompra,121),@Tipo_Pago)
 	
 		end
 
@@ -2102,7 +2102,7 @@ CREATE PROC LA_BANDA_DE_GARRI.spinsertar_cliente
 )
 as 
 insert into  LA_BANDA_DE_GARRI.Cliente(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
-values (@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechanac)
+values (@nombre,@apellido,@dni,@direccion,@telefono,@email,convert(datetime,@fechanac,121))
 go
 
 CREATE proc LA_BANDA_DE_GARRI.spmostrar_clientes_pordni 
@@ -2131,7 +2131,7 @@ CREATE proc LA_BANDA_DE_GARRI.spinsertar_pago
 @fechacompra datetime,
 @tipo_pago char)
 as insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-values (@pnr,@id_viaje,@id_cliente,@importe,@fechacompra,@tipo_pago)
+values (@pnr,@id_viaje,@id_cliente,@importe,convert(datetime,@fechacompra,121),@tipo_pago)
 go
 
 
@@ -2297,7 +2297,7 @@ declare @idPago int
 set @idPago = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
 
 insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje,Fecha_Devolucion,Motivo)
-values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
+values(@idPago,@PNR,@nroPasaje,convert(datetime,@fechaDevolucion,121),@motivoDevolucion)
 
 --------------------------------------------------------------------------------------------------
 delete from LA_BANDA_DE_GARRI.Pasaje where @nroPasaje = Id
@@ -2323,7 +2323,7 @@ declare @idViaje int
 set @idViaje = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
 
 insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Encomienda,Fecha_Devolucion,Motivo)
-values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
+values(@idPago,@PNR,@nroPasaje,convert(datetime,@fechaDevolucion,121),@motivoDevolucion)
 -------------------------------------------------------------------------------
 -----------------COMPARAR CON LA DEVOLUCION DE PASAJES
 delete from LA_BANDA_DE_GARRI.Encomienda where @idPago = Id_Pago and @idViaje = Id_Viaje
@@ -2401,7 +2401,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	begin
 
 		insert into  LA_BANDA_DE_GARRI.Cliente(Nombre,Apellido,dni,direccion,telefono,mail,fecha_nacimiento)
-		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,@fechaNac)
+		values(@nombre,@apellido,@dni,@direccion,@telefono,@email,convert(datetime,@fechaNac,121))
 
 	end
 		
@@ -2410,7 +2410,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 
 	
 		insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,@fechaCompra,@Tipo_Pago)
+		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,convert(datetime,@fechaCompra,121),@Tipo_Pago)
 	
 	declare @idPago int
 	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)
