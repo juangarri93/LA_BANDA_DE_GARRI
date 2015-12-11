@@ -1500,7 +1500,7 @@ go
 create proc LA_BANDA_DE_GARRI.spdardebaja_aerolinea
 @CodigoAeronave int
 as
-update LA_BANDA_DE_GARRI.Aeronave Set Baja_Vida_Util = 'Deshabilitado',Fecha_baja_definitiva = getdate()
+update LA_BANDA_DE_GARRI.Aeronave Set Baja_Vida_Util = 'Deshabilitado',Fecha_baja_definitiva = convert(datetime,getdate(),121)
 where @CodigoAeronave = Id
 go
 
