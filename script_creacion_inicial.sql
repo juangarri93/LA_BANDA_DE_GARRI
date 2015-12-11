@@ -1336,7 +1336,7 @@ insert into LA_BANDA_DE_GARRI.Aeronave([Fecha_alta],
 [Id_Tipo_Servicio],[Cantidad_Butacas_Ventana],[Cantidad_Ventanas_Pasillo],
 [Baja_Vida_Util], 
 [Fecha_baja_definitiva],[Kg_Disponibles])
-values(@fechaAlta,@numeroAeronave,@matricula,@modelo,@fabricante,
+values(convert(datetime,@fechaAlta,121),@numeroAeronave,@matricula,@modelo,@fabricante,
 @tipoDeServicio,@CantidadButacasVentana,@CantidadButacasPasillo,null,
 null, @kgDisponible)
 
