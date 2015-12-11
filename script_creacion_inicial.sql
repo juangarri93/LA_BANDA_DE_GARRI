@@ -954,7 +954,14 @@ go
 
 create proc LA_BANDA_DE_GARRI.spmostrar_Viajes
 as
-select * from LA_BANDA_DE_GARRI.Viaje
+select 
+Id,
+CONVERT(VARCHAR(19), Fecha_salida, 120),
+CONVERT(VARCHAR(19), Fecha_llegada, 120),
+CONVERT(VARCHAR(19), Fecha_llegada_estimada, 120),
+Id_Aeronave,
+Codigo_Ruta_Aerea
+from LA_BANDA_DE_GARRI.Viaje
 go
 
 --MODIFICADOOOOOO-------------------------------
