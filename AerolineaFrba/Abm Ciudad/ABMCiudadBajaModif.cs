@@ -16,12 +16,14 @@ namespace AerolineaFrba.Abm_Ciudad
 {
     public partial class ABMCiudadBajaModif : Form
     {
-
+        ABMCiudad ciudad;
+        
         private bool IsFiltroNombreCiudad = false; 
 
-        public ABMCiudadBajaModif()
+        public ABMCiudadBajaModif(ABMCiudad Ciudad)
         {
             InitializeComponent();
+            ciudad = Ciudad;
         }
 
         private void deshabilitarTextBox()
@@ -305,6 +307,7 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            ciudad.Focus();
             this.Hide();
         }
 

@@ -350,6 +350,15 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ciudad]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Ciudad];
 
+--Datos nuevos----------------
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Pasaje]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Pasaje];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Encomienda]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Encomienda];
+
+
 go
 
 
@@ -560,18 +569,50 @@ CONSTRAINT [PK_Pasaje_Encomienda] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Cliente_PasajeEncomienda] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Cliente] ([Id]),
 CONSTRAINT [FK_Viaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viaje] ([Id]),
 CONSTRAINT [FK_Pago] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].Pago ([Id]),
+CONSTRAINT [FK_Butaca_PasajeEnc] FOREIGN KEY ([Id_Butaca]) REFERENCES [LA_BANDA_DE_GARRI].Butaca ([Id])
+)
+-------------------------------------------------------------
+--Datos nuevos
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Encomienda] (
+[Id] INT IDENTITY(1,1),
+[Id_Cliente] INT,
+[Id_Viaje] INT,
+[Id_Pago] INT DEFAULT NULL,
+[KG] NUMERIC(18,0)
+CONSTRAINT [PK_Encomienda] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Cliente_Encomienda] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Cliente] ([Id]),
+CONSTRAINT [FK_Viaje_Encomienda] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viaje] ([Id]),
+CONSTRAINT [FK_Pago_Encomienda] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].Pago ([Id])
+)
+
+
+CREATE TABLE [LA_BANDA_DE_GARRI].[Pasaje] (
+[Id] INT IDENTITY(1,1),
+[Id_Cliente] INT,
+[Id_Viaje] INT,
+[Id_Butaca] INT,
+[Id_Pago] INT DEFAULT NULL
+CONSTRAINT [PK_Pasaje] PRIMARY KEY ([Id]),
+CONSTRAINT [FK_Cliente_Pasaje] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Cliente] ([Id]),
+CONSTRAINT [FK_Viaje_Pasaje] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARRI].[Viaje] ([Id]),
+CONSTRAINT [FK_Pago_Pasaje] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].Pago ([Id]),
 CONSTRAINT [FK_Butaca_Pasaje] FOREIGN KEY ([Id_Butaca]) REFERENCES [LA_BANDA_DE_GARRI].Butaca ([Id])
 )
+
+------------------------------------------------
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Devolucion] (
 [Id_Pago] INT,
 [PNR] INT,
-[Id_Pasaje_Encomienda] INT,
+[Id_Pasaje] INT,
+[Id_Encomienda] INT,
 [Fecha_Devolucion] DATETIME,
 [Motivo] NVARCHAR(255),
 CONSTRAINT [PK_Devolucion] PRIMARY KEY ([Id_pago]),
 CONSTRAINT [FK_Id_Pago] FOREIGN KEY ([Id_Pago]) REFERENCES [LA_BANDA_DE_GARRI].[Pago] ([Id]),
-CONSTRAINT [FK_Pasaje_Encomienda] FOREIGN KEY ([Id_Pasaje_Encomienda]) REFERENCES [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] ([Id]),
+CONSTRAINT [FK_Pasaje] FOREIGN KEY ([Id_Pasaje]) REFERENCES [LA_BANDA_DE_GARRI].[Pasaje] ([Id]),
+CONSTRAINT [FK_Encomienda] FOREIGN KEY ([Id_Encomienda]) REFERENCES [LA_BANDA_DE_GARRI].[Encomienda] ([Id])
 )
 
 create table [LA_BANDA_DE_GARRI].[Viaje_Butaca] (
@@ -736,9 +777,33 @@ GO
 			where LA_BANDA_DE_GARRI.Aeronave.Matricula = m.Aeronave_Matricula),
 			(Select R.Id from LA_BANDA_DE_GARRI.Ruta_Aerea R
 			where R.Codigo = m.Ruta_Codigo and r.Ciudad_Origen=(select c.Id from LA_BANDA_DE_GARRI.Ciudad C where c.Nombre=m.Ruta_Ciudad_Origen))			
-			from gd_esquema.Maestra m				
-	
-		insert into [LA_BANDA_DE_GARRI].[Pasaje_Encomienda](Id_Cliente,Id_Viaje,Id_Butaca,KG)
+			from gd_esquema.Maestra m
+
+			delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda				
+	delete from LA_BANDA_DE_GARRI.Pago
+		insert into [LA_BANDA_DE_GARRI].[Pago]([Id_viaje],[Id_Cliente],[Importe],[Fecha_compra])
+			select
+			J.id_Viaje,
+			J.cli,
+			sum(J.pre),
+			J.fec
+			 from (SELECT 
+			(select V.Id from LA_BANDA_DE_GARRI.Viaje V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
+			and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
+			(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
+			where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.[Id_Tipo_Servicio])= m.Tipo_Servicio 
+			and (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
+			and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)) as id_Viaje,
+			(select C.Id from LA_BANDA_DE_GARRI.Cliente c 
+			where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido) as cli,
+			IIF(m.Butaca_Nro = 0, m.Paquete_Precio, m.Pasaje_Precio) as pre,
+			IIF(m.Butaca_Nro = 0, m.Paquete_FechaCompra, m.Pasaje_FechaCompra) as fec
+			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula) as J
+			group by J.id_Viaje,j.cli, J.fec	
+
+		update LA_BANDA_DE_GARRI.Pago set PNR = Id
+
+		insert into [LA_BANDA_DE_GARRI].[Pasaje_Encomienda](Id_Cliente,Id_Viaje,Id_Butaca,KG,Id_Pago)
 			select  (select C.Id from LA_BANDA_DE_GARRI.Cliente c 
 			where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
 			(select V.Id from LA_BANDA_DE_GARRI.Viaje V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
@@ -749,36 +814,73 @@ GO
 			and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
 			(Select B.Id from LA_BANDA_DE_GARRI.Butaca B
 			where B.nro = m.Butaca_Nro and b.aeronave_id=a.Id),			
-			m.Paquete_KG
-			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula		
+			m.Paquete_KG,
+			Pago.Id
+			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula
+			JOIN LA_BANDA_DE_GARRI.Pago on m.Cli_Dni=(select dni from LA_BANDA_DE_GARRI.Cliente where Pago.Id_Cliente = Cliente.Id)		
+			and m.Cli_Apellido = (select Apellido from LA_BANDA_DE_GARRI.Cliente where Pago.Id_Cliente = Cliente.Id)
+			and m.FechaSalida= (select Fecha_salida from LA_BANDA_DE_GARRI.Viaje where Id=Pago.Id_viaje)
+			and a.Id=(Select Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where Id=Pago.Id_viaje)
+			and (m.Paquete_Precio=Pago.Importe or m.Pasaje_Precio=Pago.Importe)
+			and (m.Paquete_FechaCompra=Pago.Fecha_compra or m.Pasaje_FechaCompra=Pago.Fecha_compra)
 
+---LO Nuevooooooooooooooooooo------------------
+-----------------------------------------
 
-		insert into LA_BANDA_DE_GARRI.[Viaje_Butaca](id_Butaca ,id_Viaje, libre) 
-			select B.Id,
-			V.Id,
-			case 
-			 when (select top 1 0 from [LA_BANDA_DE_GARRI].[Pasaje_Encomienda] P where P.Id_Viaje=V.Id and P.Id_Butaca=B.Id) = 0 then 0
-			 else 1 
-			END
-			from LA_BANDA_DE_GARRI.Viaje V
-			join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
-	
-		insert into [LA_BANDA_DE_GARRI].[Pago]([PNR],[Id_viaje],[Id_Cliente],[Importe],[Fecha_compra])
-			SELECT 		
-			(SELECT count(*)+1 FROM LA_BANDA_DE_GARRI.Pago),
+		insert into [LA_BANDA_DE_GARRI].[Pasaje](Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago)
+			select  (select C.Id from LA_BANDA_DE_GARRI.Cliente c 
+			where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
 			(select V.Id from LA_BANDA_DE_GARRI.Viaje V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
 			and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
 			(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
 			where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.[Id_Tipo_Servicio])= m.Tipo_Servicio 
 			and (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
 			and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
-			(select C.Id from LA_BANDA_DE_GARRI.Cliente c 
+			(Select B.Id from LA_BANDA_DE_GARRI.Butaca B
+			where B.nro = m.Butaca_Nro and b.aeronave_id=a.Id),
+			Pago.Id
+			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula
+			JOIN LA_BANDA_DE_GARRI.Pago on m.Cli_Dni=(select dni from LA_BANDA_DE_GARRI.Cliente where Pago.Id_Cliente = Cliente.Id)		
+			and m.Cli_Apellido = (select Apellido from LA_BANDA_DE_GARRI.Cliente where Pago.Id_Cliente = Cliente.Id)
+			and m.FechaSalida= (select Fecha_salida from LA_BANDA_DE_GARRI.Viaje where Id=Pago.Id_viaje)
+			and a.Id=(Select Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where Id=Pago.Id_viaje)
+			and (m.Paquete_Precio=Pago.Importe or m.Pasaje_Precio=Pago.Importe)
+			and (m.Paquete_FechaCompra=Pago.Fecha_compra or m.Pasaje_FechaCompra=Pago.Fecha_compra)
+			where 
+			m.Paquete_KG = 0
+	
+			insert into [LA_BANDA_DE_GARRI].[Encomienda](Id_Cliente,Id_Viaje,KG,Id_Pago)
+			select  (select C.Id from LA_BANDA_DE_GARRI.Cliente c 
 			where c.dni=m.Cli_Dni and c.fecha_nacimiento=m.Cli_Fecha_Nac and c.Apellido=m.Cli_Apellido),
-			IIF(m.Butaca_Nro = 0, m.Paquete_Precio, m.Pasaje_Precio),
-			IIF(m.Butaca_Nro = 0, m.Paquete_FechaCompra, m.Pasaje_FechaCompra)
-			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula		
+			(select V.Id from LA_BANDA_DE_GARRI.Viaje V where V.Fecha_salida=m.FechaSalida and v.Fecha_llegada=m.FechaLLegada
+			and A.Id=V.Id_Aeronave AND V.Codigo_Ruta_Aerea = 
+			(SELECT Ruta_Aerea.Id from LA_BANDA_DE_GARRI.Ruta_Aerea
+			where (select T.Tipo_Servicio from LA_BANDA_DE_GARRI.Tipo_Servicio T where T.Id=Ruta_Aerea.[Id_Tipo_Servicio])= m.Tipo_Servicio 
+			and (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Origen)= m.Ruta_Ciudad_Origen 
+			and  (select c.nombre from LA_BANDA_DE_GARRI.Ciudad C where c.Id=Ruta_Aerea.Ciudad_Destino)=m.Ruta_Ciudad_Destino)),
+			m.Paquete_KG,
+			Pago.Id
+			from gd_esquema.Maestra m JOIN LA_BANDA_DE_GARRI.Aeronave A ON	a.Matricula = m.Aeronave_Matricula
+			JOIN LA_BANDA_DE_GARRI.Pago on m.Cli_Dni=(select dni from LA_BANDA_DE_GARRI.Cliente where Pago.Id_Cliente = Cliente.Id)		
+			and m.Cli_Apellido = (select Apellido from LA_BANDA_DE_GARRI.Cliente where Pago.Id_Cliente = Cliente.Id)
+			and m.FechaSalida= (select Fecha_salida from LA_BANDA_DE_GARRI.Viaje where Id=Pago.Id_viaje)
+			and a.Id=(Select Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where Id=Pago.Id_viaje)
+			and m.Paquete_Precio=Pago.Importe
+			and m.Paquete_FechaCompra=Pago.Fecha_compra
+			where 
+			m.Butaca_Nro = 0
 
-		update LA_BANDA_DE_GARRI.Pago set PNR = Id
+		insert into LA_BANDA_DE_GARRI.[Viaje_Butaca](id_Butaca ,id_Viaje, libre) 
+			select B.Id,
+			V.Id,
+			case 
+			 when (select top 1 0 from [LA_BANDA_DE_GARRI].[Pasaje] P where P.Id_Viaje=V.Id and P.Id_Butaca=B.Id) = 0 then 0
+			 else 1 
+			END
+			from LA_BANDA_DE_GARRI.Viaje V
+			join LA_BANDA_DE_GARRI.Butaca B on b.Aeronave_id=V.Id_Aeronave
+
+-----------------------------------------
 
 commit tran trn_migracion_datos
 GO
@@ -855,17 +957,20 @@ as
 select * from LA_BANDA_DE_GARRI.Viaje
 go
 
+--MODIFICADOOOOOO-------------------------------
+----------------------------------
 create procedure LA_BANDA_DE_GARRI.sp_butacas_libres(@id_Viaje int)
 as
 begin
 	
 	SELECT * FROM LA_BANDA_DE_GARRI.Butaca B 
 	Where (Select V.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje V where V.Id=@id_Viaje)=B.Aeronave_id 
-	and NOT EXISTS(SELECT 1 from LA_BANDA_DE_GARRI.Pasaje_Encomienda P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
+	and NOT EXISTS(SELECT 1 from LA_BANDA_DE_GARRI.Pasaje P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
 	and Exists(Select 1 from LA_BANDA_DE_GARRI.Viaje_Butaca T where T.id_Butaca = B.Id and T.libre = 1)
 	
 END
 GO
+---------------------------------------------------------
 
 CREATE PROCEDURE LA_BANDA_DE_GARRI.sp_listar_roles AS
 BEGIN
@@ -1702,9 +1807,19 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	declare @idPago int
 	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)
 
-	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago,KG)
-	values(@idCliente,@idviajeSeleccionado,@idButaca,@idPago,@cantidadKG)
-
+--------MODIFICADOOOOOOOOOOO HAGO UN CASE E INSERTO EN PASAJE O ENCOMIENDA DEPENDIENDO QUE SEA----------
+if(@cantidadKG<>0)
+	begin
+		insert into  LA_BANDA_DE_GARRI.Encomienda(Id_Cliente,Id_Viaje,Id_Pago,KG)
+		values(@idCliente,@idviajeSeleccionado,@idPago,@cantidadKG)
+	end
+else
+	begin
+		insert into  LA_BANDA_DE_GARRI.Pasaje(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago)
+		values(@idCliente,@idviajeSeleccionado,@idButaca,@idPago)
+	end
+--------------------------------------------------------------------------------------------
+----------------------------
 	update LA_BANDA_DE_GARRI.Viaje_Butaca
 	set libre = 0
 	where id_Butaca = @idButaca and id_Viaje=@idviajeSeleccionado
@@ -1737,20 +1852,19 @@ as
 	end
 GO
 
---top 5 destinos con mas pasajes comprados
+--top 5 destinos con mas pasajes comprados --EN ESTA CAMBIE PASAJE ENCOMIENDA POR PASAJE Y SAQUE EL WWHERE KG DIST 0
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_comprados (@anio numeric(4,0), @semestre int)
 as
 begin
 
 	select top 5 c.id, c.Nombre, count(p.Id)
 	from LA_BANDA_DE_GARRI.Pago pa
-	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (pa.Id_viaje = p.Id_Viaje
+	join LA_BANDA_DE_GARRI.Pasaje p on (pa.Id_viaje = p.Id_Viaje
 													and pa.Id_Cliente = p.Id_Cliente)
 	join LA_BANDA_DE_GARRI.Viaje v on (v.Id = p.Id_Viaje)
 	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
 	join LA_BANDA_DE_GARRI.Ciudad c on(c.Id = r.Ciudad_Destino)
-	where p.KG != 0
-	and year(pa.Fecha_compra) = @anio 
+	where year(pa.Fecha_compra) = @anio 
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, pa.Fecha_compra) = 1
 	group by c.id, c.Nombre
 	order by 3 desc
@@ -1758,18 +1872,18 @@ end
 
 go
 
--- top 5 destinos con mas pasajes cancelados
+-- top 5 destinos con mas pasajes cancelados ----EN ESTA TOQUE DEVOLUCION Y EN WHERE  d.Id_Pasaje<>'NULL'
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelados (@anio numeric(4,0), @semestre int)
 as
 begin
-	select top 5 c.id, c.Nombre, count(d.Id_Pasaje_Encomienda)
+	select top 5 c.id, c.Nombre, count(d.Id_Pasaje)
 	from LA_BANDA_DE_GARRI.Devolucion d 
-	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (d.Id_Pasaje_Encomienda = p.Id)
+	join LA_BANDA_DE_GARRI.Pasaje p on (d.Id_Pasaje = p.Id)
 	join LA_BANDA_DE_GARRI.Viaje v on v.Id = (p.Id_Viaje)
 	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
 	join LA_BANDA_DE_GARRI.Ciudad c on (r.Ciudad_Destino = c.Id)
-	where p.KG != 0
-	and year(d.Fecha_Devolucion) = @anio
+	where d.Id_Pasaje<>'NULL'
+	and	year(d.Fecha_Devolucion) = @anio
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, d.Fecha_Devolucion) = 1
 	group by c.id, c.Nombre
 	order by 3 desc
@@ -2154,10 +2268,13 @@ update LA_BANDA_DE_GARRI.Viaje_Butaca set libre = 1 where id_Butaca = @nroPasaje
 declare @idPago int 
 set @idPago = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
 
-insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje_Encomienda,Fecha_Devolucion,Motivo)
+insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje,Fecha_Devolucion,Motivo)
 values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
 
-delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda where @nroPasaje = Id_Butaca
+--------------------------------------------------------------------------------------------------
+delete from LA_BANDA_DE_GARRI.Pasaje where @nroPasaje = Id
+--REVISAR ESTE DELETE ME PARECE QUE ESTA MALLLLLLLLLLL( ES ID EN VEZ DE ID BUTACA)(LO CAMBIE) FIJENSE
+----------------------------------------------------------------------------------------------------------
 
 end
 go
@@ -2177,11 +2294,12 @@ set @idPago = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
 declare @idViaje int 
 set @idViaje = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
 
-insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje_Encomienda,Fecha_Devolucion,Motivo)
+insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Encomienda,Fecha_Devolucion,Motivo)
 values(@idPago,@PNR,@nroPasaje,@fechaDevolucion,@motivoDevolucion)
-
-delete from LA_BANDA_DE_GARRI.Pasaje_Encomienda where @idPago = Id_Pago and @idViaje = Id_Viaje
-
+-------------------------------------------------------------------------------
+-----------------COMPARAR CON LA DEVOLUCION DE PASAJES
+delete from LA_BANDA_DE_GARRI.Encomienda where @idPago = Id_Pago and @idViaje = Id_Viaje
+------------------------------------------------------------
 end
 go
 
@@ -2209,42 +2327,6 @@ as
 declare @auxId int
 set @auxId = (select Id_Rol from LA_BANDA_DE_GARRI.Usuario where @usuario = Username)
 return @auxId
-go
-
-create proc LA_BANDA_DE_GARRI.spViajeYPagoTest
-as
-
-declare @auxId int
-declare @date1 DATETIME
-declare @date2 DATETIME
-declare @date3 DATETIME
-set @date1 = '02/12/2015 0:00:00'
-set @date2 = '03/12/2015 15:00:00'
-set @date3 = '02/12/2015 15:30:00'
-
-exec LA_BANDA_DE_GARRI.sp_generar_viaje @auxId,65805175,'ASQ-169',@date1,@date2,@date3
-
-select @auxId=Id from LA_BANDA_DE_GARRI.Viaje where Viaje.Fecha_salida=@date1 and Viaje.Codigo_Ruta_Aerea=65805175 and Viaje.Id_Aeronave=(select id from LA_BANDA_DE_GARRI.Aeronave where Aeronave.Matricula='ASQ-169')
-
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',324
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',325
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',326
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',327
-
-exec LA_BANDA_DE_GARRI.sp_registrar_llegada_destino 'ASQ-169',@date1,@auxId
-
-set @date1 = '10/12/2015 0:00:00'
-set @date2 = '12/12/2015 15:00:00'
-set @date3 = '12/12/2015 15:30:00'
-
-exec LA_BANDA_DE_GARRI.sp_generar_viaje @auxId,65805175,'ASQ-169',@date1,@date2,@date3
-
-select @auxId=Id from LA_BANDA_DE_GARRI.Viaje where Viaje.Fecha_salida=@date1 and Viaje.Codigo_Ruta_Aerea=65805175 and Viaje.Id_Aeronave=(select id from LA_BANDA_DE_GARRI.Aeronave where Aeronave.Matricula='ASQ-169')
-
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',324
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',325
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',326
-exec LA_BANDA_DE_GARRI.spinsertar_compra 1,1,@auxId,'Pepe','Perez',123123,'Hola 3102',123123,'','07/01/1990 14:44:37',4,0,'04/12/2015 14:38:19',1514.32,'T',327
 go
 
 create proc LA_BANDA_DE_GARRI.sp_sumarLogins

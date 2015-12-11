@@ -133,7 +133,7 @@
             // 
             this.dtFechaSalida.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtFechaSalida.Location = new System.Drawing.Point(143, 28);
-            this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtFechaSalida.Margin = new System.Windows.Forms.Padding(2);
             this.dtFechaSalida.Name = "dtFechaSalida";
             this.dtFechaSalida.Size = new System.Drawing.Size(165, 20);
             this.dtFechaSalida.TabIndex = 86;
@@ -143,7 +143,7 @@
             // 
             this.dtFechaLLegada.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtFechaLLegada.Location = new System.Drawing.Point(143, 76);
-            this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtFechaLLegada.Margin = new System.Windows.Forms.Padding(2);
             this.dtFechaLLegada.Name = "dtFechaLLegada";
             this.dtFechaLLegada.Size = new System.Drawing.Size(165, 20);
             this.dtFechaLLegada.TabIndex = 87;
@@ -153,7 +153,7 @@
             // 
             this.dtFechaLLegadaEstimada.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtFechaLLegadaEstimada.Location = new System.Drawing.Point(143, 131);
-            this.dtFechaLLegadaEstimada.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtFechaLLegadaEstimada.Margin = new System.Windows.Forms.Padding(2);
             this.dtFechaLLegadaEstimada.Name = "dtFechaLLegadaEstimada";
             this.dtFechaLLegadaEstimada.Size = new System.Drawing.Size(165, 20);
             this.dtFechaLLegadaEstimada.TabIndex = 88;
@@ -172,9 +172,9 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.cbRutaAerea);
             this.groupBox1.Location = new System.Drawing.Point(9, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(322, 274);
             this.groupBox1.TabIndex = 89;
             this.groupBox1.TabStop = false;

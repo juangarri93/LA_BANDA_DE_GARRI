@@ -14,9 +14,12 @@ namespace AerolineaFrba.Abm_Ciudad
 {
     public partial class ABMCiudadAlta : Form
     {
-        public ABMCiudadAlta()
+        ABMCiudad ciudad;
+
+        public ABMCiudadAlta(ABMCiudad Ciudad)
         {
             InitializeComponent();
+            ciudad = Ciudad;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -97,6 +100,7 @@ namespace AerolineaFrba.Abm_Ciudad
         private void btnVolver_Click(object sender, EventArgs e)
         {
             limpiar();
+            ciudad.Focus();
             this.Hide();
         }
 

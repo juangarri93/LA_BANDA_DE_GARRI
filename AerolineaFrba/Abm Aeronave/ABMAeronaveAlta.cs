@@ -15,10 +15,13 @@ namespace AerolineaFrba.Abm_Aeronave
 {
     public partial class ABMAeronaveAlta : Form
     {
-        
-        public ABMAeronaveAlta()
+
+        ABMAeronave Aeronave;
+
+        public ABMAeronaveAlta(ABMAeronave aeronave)
         {
             InitializeComponent();
+            Aeronave = aeronave;
         }
 
         private void ABMAeronaveAlta_Load(object sender, EventArgs e)
@@ -177,6 +180,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            Aeronave.Focus();
             this.Hide();
         }
 

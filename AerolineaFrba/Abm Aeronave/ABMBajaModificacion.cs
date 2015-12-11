@@ -8,17 +8,17 @@ namespace AerolineaFrba.Abm_Aeronave
 {
     public partial class ABMBajaModificacion : Form
     {
-
+        ABMAeronave Aeronave;
         private bool IsFiltroNumeroAeronave = false;
         private bool IsFiltroModelo = false;
         private bool IsFiltroFabricante = false;
         bool flagBajaFueraServicio = false;
         int habilitado = 0;
   
-        public ABMBajaModificacion()
+        public ABMBajaModificacion(ABMAeronave aeronave)
         {      
             InitializeComponent();
-           
+            Aeronave = aeronave;
         }
 
         private void deshabilitarTextBox()
@@ -528,6 +528,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            Aeronave.Focus();
             this.Hide();
         }
 

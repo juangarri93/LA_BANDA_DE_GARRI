@@ -29,13 +29,13 @@ namespace AerolineaFrba.Abm_Ciudad
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            var ventanaAltaCiudad = new ABMCiudadAlta();
+            var ventanaAltaCiudad = new ABMCiudadAlta(this);
             FormsHerramientas.mostrarVentanaNueva(ventanaAltaCiudad, this);
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            var ventanaBajaModif = new ABMCiudadBajaModif();
+            var ventanaBajaModif = new ABMCiudadBajaModif(this);
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModif, this);
         }
 

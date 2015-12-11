@@ -25,13 +25,13 @@ namespace AerolineaFrba.Abm_Aeronave
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            var ventanaAltaAeronave = new ABMAeronaveAlta();
+            var ventanaAltaAeronave = new ABMAeronaveAlta(this);
             FormsHerramientas.mostrarVentanaNueva(ventanaAltaAeronave, this);
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-            var ventanaBajaModificacionAeronave = new ABMBajaModificacion();
+            var ventanaBajaModificacionAeronave = new ABMBajaModificacion(this);
             FormsHerramientas.mostrarVentanaNueva(ventanaBajaModificacionAeronave , this);
         }
 
