@@ -305,6 +305,15 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Viaje_Butaca]', 'U') IS NOT NULL
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Pasaje_Encomienda]', 'U') IS NOT NULL
 DROP TABLE [LA_BANDA_DE_GARRI].[Pasaje_Encomienda];
 
+--Datos nuevos----------------
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Pasaje]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Pasaje];
+
+IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Encomienda]', 'U') IS NOT NULL
+  DROP TABLE [LA_BANDA_DE_GARRI].[Encomienda];
+------------------------------
+
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Butaca]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Butaca];
 
@@ -350,18 +359,7 @@ IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Tipo_Servicio]', 'U') IS NOT NULL
 IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Ciudad]', 'U') IS NOT NULL
   DROP TABLE [LA_BANDA_DE_GARRI].[Ciudad];
 
---Datos nuevos----------------
-
-IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Pasaje]', 'U') IS NOT NULL
-  DROP TABLE [LA_BANDA_DE_GARRI].[Pasaje];
-
-IF OBJECT_ID('[LA_BANDA_DE_GARRI].[Encomienda]', 'U') IS NOT NULL
-  DROP TABLE [LA_BANDA_DE_GARRI].[Encomienda];
-
-
 go
-
-
 
 --Dropeo el schema
 
