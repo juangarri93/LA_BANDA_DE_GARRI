@@ -1956,7 +1956,7 @@ begin
 											where a1.Id = a.id) - count(b.Id)
 	from LA_BANDA_DE_GARRI.Aeronave a
 	join LA_BANDA_DE_GARRI.Butaca b on (b.Aeronave_id = a.id)
-	join LA_BANDA_DE_GARRI.Pasaje_Encomienda p on (p.Id_Butaca = b.Id)
+	join LA_BANDA_DE_GARRI.Pasaje p on (p.Id_Butaca = b.Id)
 	join LA_BANDA_DE_GARRI.Viaje v on (p.Id_Viaje = v.Id)
 	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
 	join LA_BANDA_DE_GARRI.Ciudad c on (c.Id = r.Ciudad_Destino)
