@@ -389,8 +389,8 @@ namespace AerolineaFrba.ABM_Compra
                         {
                             pnrcompra = DAOCompra.AgregarCompra(compraActual);
                             pnrencomienda = DAOCompra.AgregarCompraEncomienda(compraActual);
-
                             MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de vuelo es: " + Convert.ToString(pnrcompra) + " y su PNR de encomienda es: " + Convert.ToString(pnrencomienda));
+                            compraActual.PNR = -1;
                             this.Hide();
                         }
                         else
@@ -415,8 +415,9 @@ namespace AerolineaFrba.ABM_Compra
 
                        pnrencomienda = DAOCompra.AgregarCompraEncomienda(compraActual);
 
-                       MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de encomienda es: " + Convert.ToString(pnrencomienda));
-                      
+                       MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de encomienda es: " + Convert.ToString( compraActual.PNR));
+                       compraActual.PNR = -1;
+                       this.Hide();
 
                     }
 
@@ -437,7 +438,8 @@ namespace AerolineaFrba.ABM_Compra
                         pnrcompra = DAOCompra.AgregarCompra(compraActual);
 
                         MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de pasaje es: " + Convert.ToString(compraActual.PNR));
-
+                        compraActual.PNR = -1;
+                        this.Hide();
 
                     }
 

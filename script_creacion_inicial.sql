@@ -964,8 +964,8 @@ begin
 	
 	SELECT * FROM LA_BANDA_DE_GARRI.Butaca B 
 	Where (Select V.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje V where V.Id=@id_Viaje)=B.Aeronave_id 
-	and NOT EXISTS(SELECT 1 from LA_BANDA_DE_GARRI.Pasaje P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
 	and Exists(Select 1 from LA_BANDA_DE_GARRI.Viaje_Butaca T where T.id_Butaca = B.Id and T.libre = 1)
+	--and NOT EXISTS(SELECT 1 from LA_BANDA_DE_GARRI.Pasaje P where P.Id_Butaca=B.Id and P.Id_Viaje=@id_Viaje)
 	
 END
 GO
@@ -2106,9 +2106,6 @@ order by Id
 go
 
 
- 
-
-
 CREATE proc LA_BANDA_DE_GARRI.spMostrar_viaje_esp(
 @idviaje int
 )
@@ -2125,12 +2122,10 @@ begin
 declare @idAeronave int
 set @idAeronave = (select viaje.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where Id = @id_viaje)
 declare @retorno int
-set @retorno = (select Aeronave.Kg_Disponibles from LA_BANDA_DE_GARRI.Aeronave where Id = @idAeronave)
+set @retorno = (select Aeronave.Kg_Disponibles-(select ISNULL(sum(KG), 0 ) from LA_BANDA_DE_GARRI.Encomienda where Encomienda.Id_Viaje=@id_viaje and NOT EXISTS(select 1 from LA_BANDA_DE_GARRI.Devolucion where Devolucion.Id_Encomienda=Encomienda.Id)) from LA_BANDA_DE_GARRI.Aeronave where Id = @idAeronave)
 return(@retorno)
 end
 go
-
-
 
 create proc LA_BANDA_DE_GARRI.sp_checkViaje(
 @matricula varchar(255),
@@ -2239,9 +2234,15 @@ as
 begin
 
 	declare @idViaje int
-	select @idViaje = Id_viaje from LA_BANDA_DE_GARRI.Pago where PNR = @PNR
+	declare @idButaca int
+	declare @idPago int
 
-	select * from LA_BANDA_DE_GARRI.Viaje_Butaca WHERE id_Viaje = @idViaje and libre = '0'
+	select @idViaje = Id_viaje, @idPago= Pago.Id  from LA_BANDA_DE_GARRI.Pago where PNR = @PNR
+	
+	select * from LA_BANDA_DE_GARRI.Viaje_Butaca WHERE id_Viaje = @idViaje and EXISTS(select 1 from LA_BANDA_DE_GARRI.Pasaje where Id_Pago = @idPago and Pasaje.Id_Butaca = Viaje_Butaca.id_Butaca and  Pasaje.Id_Viaje = @idViaje) and Viaje_Butaca.libre = '0'
+
+
+--	select * from LA_BANDA_DE_GARRI.Viaje_Butaca WHERE id_Viaje = @idViaje and libre = '0'
 
 end
 go
@@ -2259,23 +2260,27 @@ go
 create proc LA_BANDA_DE_GARRI.sp_cancelar_pasaje(
 @fechaDevolucion date,
 @PNR int,
-@nroPasaje int,
+@nroButaca int,
 @motivoDevolucion nvarchar(255)
 )
 as
 begin
 
-update LA_BANDA_DE_GARRI.Viaje_Butaca set libre = 1 where id_Butaca = @nroPasaje
-
 declare @idPago int 
 set @idPago = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
+declare @idViaje int 
+set @idViaje = (select Id_viaje from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
+declare @idPasaje int 
+set @idPasaje = (select Id from LA_BANDA_DE_GARRI.Pasaje where Pasaje.Id_Butaca = @nroButaca and Pasaje.Id_Viaje=@idViaje)
+
+update LA_BANDA_DE_GARRI.Viaje_Butaca set libre = 1 where id_Butaca = @nroButaca and id_Viaje=@idViaje
 
 insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Pasaje,Fecha_Devolucion,Motivo)
-values(@idPago,@PNR,@nroPasaje,convert(datetime,@fechaDevolucion,121),@motivoDevolucion)
+values(@idPago,@PNR,@idPasaje,convert(datetime,@fechaDevolucion,121),@motivoDevolucion)
 
 --------------------------------------------------------------------------------------------------
-delete from LA_BANDA_DE_GARRI.Pasaje where @nroPasaje = Id
---REVISAR ESTE DELETE ME PARECE QUE ESTA MALLLLLLLLLLL( ES ID EN VEZ DE ID BUTACA)(LO CAMBIE) FIJENSE
+--delete from LA_BANDA_DE_GARRI.Pasaje where @nroButaca = Id
+--REVISAR ESTE DELETE ME PARECE QUE ESTA MAL
 ----------------------------------------------------------------------------------------------------------
 
 end
@@ -2284,7 +2289,7 @@ go
 create proc LA_BANDA_DE_GARRI.sp_cancelar_encomienda
 (@fechaDevolucion date,
 @PNR int,
-@nroPasaje int,
+@idEncomienda int,
 @motivoDevolucion nvarchar(255)
 )
 as
@@ -2297,10 +2302,10 @@ declare @idViaje int
 set @idViaje = (select Id from LA_BANDA_DE_GARRI.Pago where PNR = @PNR)
 
 insert into LA_BANDA_DE_GARRI.Devolucion(Id_Pago,PNR,Id_Encomienda,Fecha_Devolucion,Motivo)
-values(@idPago,@PNR,@nroPasaje,convert(datetime,@fechaDevolucion,121),@motivoDevolucion)
+values(@idPago,@PNR,@idEncomienda,convert(datetime,@fechaDevolucion,121),@motivoDevolucion)
 -------------------------------------------------------------------------------
 -----------------COMPARAR CON LA DEVOLUCION DE PASAJES
-delete from LA_BANDA_DE_GARRI.Encomienda where @idPago = Id_Pago and @idViaje = Id_Viaje
+--delete from LA_BANDA_DE_GARRI.Encomienda where id = @idEncomienda
 ------------------------------------------------------------
 end
 go
@@ -2392,7 +2397,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	insert into  LA_BANDA_DE_GARRI.Encomienda(Id_Cliente,Id_Viaje,Id_Pago,KG)
 	values(@idCliente,@idviajeSeleccionado,@idPago,@cantidadKG)
 	
-	update LA_BANDA_DE_GARRI.Aeronave set Kg_Disponibles  = ( (select Kg_Disponibles from  LA_BANDA_DE_GARRI.Aeronave where Id = @idAeronave ) - @cantidadKG) where Id = @idAeronave
+	--update LA_BANDA_DE_GARRI.Aeronave set Kg_Disponibles  = ( (select Kg_Disponibles from  LA_BANDA_DE_GARRI.Aeronave where Id = @idAeronave ) - @cantidadKG) where Id = @idAeronave
 end
 go
 

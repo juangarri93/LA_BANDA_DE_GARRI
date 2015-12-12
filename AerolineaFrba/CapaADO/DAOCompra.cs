@@ -77,6 +77,8 @@ namespace AerolineaFrba.CapaADO
                 auxPNR = executeProcedureWithReturnValue("spdame_PNR");
 
                 auxPNR = auxPNR + 1; //Porque necesito insertar uno nuevo
+
+                compra.PNR = auxPNR;
             }
 
             executeProcedure("spinsertar_compraEncomienda", 1, auxPNR, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadKG, compra.FechaDeViaje,compra.ImporteEncomienda, compra.Tipopago);

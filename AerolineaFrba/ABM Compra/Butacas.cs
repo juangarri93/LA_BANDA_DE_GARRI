@@ -152,7 +152,7 @@ public Butacas(Compra compraActual, Abm_Compra.AltaCompra altaCompra)
            
             else
             {
-                MessageBox.Show("No se encuentran vuelos disponibles");
+                MessageBox.Show("El vuelo no cumple los requisitos necesarios para completar su pedido");
                 return;
             }
 

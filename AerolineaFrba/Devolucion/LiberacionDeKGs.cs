@@ -29,7 +29,9 @@ namespace AerolineaFrba.Devolucion
 
                 if (Validaciones()) return;
                 DAOCancelacion.cancelarEncomienda(cancelacion);
-               
+
+                MessageBox.Show("Encomienda cancelada con exito!!!!");
+                this.Hide();
             }
             catch (Exception ex)
             {

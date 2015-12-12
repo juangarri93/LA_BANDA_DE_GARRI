@@ -51,9 +51,12 @@ namespace AerolineaFrba.Devolucion
             try
             {
                 if (txtId.Text == "") MessageBox.Show("Por favor haga doble click en alguna fila de la tabla, en caso de no haber niguna fila es porque el PNR era incorrecto, vuelva a la pantalla anterior e ingrese bien el PNR");
+                
                 Cancelacion cn = new Cancelacion(Cancelacion.fechaDevolucion, Cancelacion.NumeroDeCompraPNR, Convert.ToInt32(txtButaca.Text), Cancelacion.motivoCancelacion);
+                MessageBox.Show("El pasaje se ha cancelado con exito!");
                 int numeroRespuesta = DAOCancelacion.cancelaPasaje(cn);
                 dtButacasCompradas.DataSource = DAOCancelacion.getButacas(Cancelacion);
+               
             }
             catch (Exception ex)
             {
