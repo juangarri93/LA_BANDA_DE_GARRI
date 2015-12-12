@@ -165,7 +165,7 @@ namespace AerolineaFrba.Abm_Compra
                         this.compraActual.CantidadPasajes = pasajes;
                         this.compraActual.FechaDeViaje = dtpFechaViaje.Value;
 
-                        var ventanaDatosUsuario = new Butacas(compraActual);
+                        var ventanaDatosUsuario = new Butacas(compraActual,this);
                         FormsHerramientas.mostrarVentanaNueva(ventanaDatosUsuario, this);
 
                        

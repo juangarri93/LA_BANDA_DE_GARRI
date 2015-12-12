@@ -182,6 +182,7 @@ namespace AerolineaFrba.Abm_Ruta
         {
             try
             {
+                if (Validaciones()) return;
                 DAORuta.EditarRuta(cargarAerolineParaEditar());
                 MessageBox.Show("La Ruta se modifico correctamente");
                 deshabilitarTextBox();
@@ -200,6 +201,96 @@ namespace AerolineaFrba.Abm_Ruta
             }
         }
 
+        private bool Validaciones()
+        {
+            if (txtId.Text == "")
+            {
+                MessageBox.Show("FALTA AGREGAR EL CAMPO ID");
+                return true;
+            }
+
+            if (txtCodigoRuta.Text == "")
+            {
+                MessageBox.Show("FALTA AGREGAR EL CAMPO Codigo de Ruta");
+                return true;
+            }
+
+            int codigoRuta = Convert.ToInt32(txtCodigoRuta.Text);
+
+            if(codigoRuta < 0)
+            {
+                MessageBox.Show("El codigo de ruta ingresado no es valido");
+                return true;
+
+            }
+
+            if (cbTipoDeServicio.Text == "")
+            {
+                MessageBox.Show("Establecer Tipo de Servicio");
+                return true;
+
+            }
+
+            if (cbOrigen.Text == "")
+            {
+                MessageBox.Show("Establecer Origen");
+                return true;
+
+            }
+
+            if (cbDestino.Text == "")
+            {
+                MessageBox.Show("Establecer Destino");
+                return true;
+
+            }
+
+            if (txtPrecioKG.Text == "")
+            {
+                MessageBox.Show("Establecer Precio de KG");
+                return true;
+            }
+
+            decimal PrecioKG = Convert.ToDecimal(txtPrecioKG.Text);
+
+            if (PrecioKG < 0)
+            {
+                MessageBox.Show("El PrecioKG ingresado no es valido");
+                return true;
+
+            }
+
+            if (txtPrecioBase.Text == "")
+            {
+                MessageBox.Show("Establecer Precio Base");
+                return true;
+            }
+
+            decimal PrecioBase = Convert.ToDecimal(txtPrecioBase.Text);
+
+            if (PrecioBase < 0)
+            {
+                MessageBox.Show("El PrecioBase ingresado no es valido");
+                return true;
+
+            }
+
+            if (cbHabilitado.SelectedIndex != 0 && cbHabilitado.SelectedIndex != 1)
+            {
+                MessageBox.Show("Establecer si la ruta se encuentra habilitada");
+                return true;
+
+            }
+
+            if (cbOrigen.Text == cbDestino.Text)
+            {
+                MessageBox.Show("La ciudad origen y la ciudad destino no pueden ser la misma");
+                return true;
+            }
+
+            return false;
+        }
+
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -215,6 +306,11 @@ namespace AerolineaFrba.Abm_Ruta
             MessageBox.Show("Si se desea editar una Ruta siga los siguientes pasos:" + Environment.NewLine +
                                 "  ● Hacer clic sobre la ruta a editar y sobre el boton 'Editar'" + Environment.NewLine +
                                 "  ● Finalmente sobre el boton 'Guardar'");
+        }
+
+        private void txtCodigoRuta_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

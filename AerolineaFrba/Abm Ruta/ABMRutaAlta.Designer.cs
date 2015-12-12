@@ -124,6 +124,7 @@
             this.txtPrecioKG.Name = "txtPrecioKG";
             this.txtPrecioKG.Size = new System.Drawing.Size(148, 20);
             this.txtPrecioKG.TabIndex = 12;
+            this.txtPrecioKG.TextChanged += new System.EventHandler(this.txtPrecioKG_TextChanged);
             // 
             // txtPrecioBase
             // 

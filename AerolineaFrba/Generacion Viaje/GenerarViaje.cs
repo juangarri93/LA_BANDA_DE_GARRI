@@ -37,7 +37,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private void deshabilitarTextBox()
         {
-            dtFechaLLegada.Enabled = false;
+            
             dtFechaLLegadaEstimada.Enabled = false;
             dtFechaSalida.Enabled = false;
             cbRutaAerea.Enabled = false;
@@ -46,7 +46,7 @@ namespace AerolineaFrba.Generacion_Viaje
         private void limpiar() 
         {
             dtFechaLLegadaEstimada.Value = DateTime.Today;
-            dtFechaLLegada.Value = DateTime.Today;
+             
             dtFechaSalida.Value = DateTime.Today;
             cbAeronave.ValueMember = null;
             cbRutaAerea.ValueMember = null;
@@ -83,7 +83,7 @@ namespace AerolineaFrba.Generacion_Viaje
 
         private Viaje CargarViaje()
         {
-            return new Viaje(dtFechaSalida.Value, dtFechaLLegada.Value, dtFechaLLegadaEstimada.Value, Convert.ToString(cbAeronave.Text), Convert.ToDecimal(cbRutaAerea.Text), "Habilitado");
+            return new Viaje(dtFechaSalida.Value, dtFechaLLegadaEstimada.Value, dtFechaLLegadaEstimada.Value, Convert.ToString(cbAeronave.Text), Convert.ToDecimal(cbRutaAerea.Text), "Habilitado");
         }
 
         private void btnGenerarViaje_Click(object sender, EventArgs e)
@@ -141,6 +141,11 @@ namespace AerolineaFrba.Generacion_Viaje
         }
 
         private void dtFechaLLegadaEstimada_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

@@ -953,12 +953,7 @@ go
 create proc LA_BANDA_DE_GARRI.spmostrar_Viajes
 as
 select 
-Id,
-CONVERT(VARCHAR(19), Fecha_salida, 120),
-CONVERT(VARCHAR(19), Fecha_llegada, 120),
-CONVERT(VARCHAR(19), Fecha_llegada_estimada, 120),
-Id_Aeronave,
-Codigo_Ruta_Aerea
+*
 from LA_BANDA_DE_GARRI.Viaje
 go
 
@@ -1167,8 +1162,8 @@ BEGIN
 
 	 if(@existe_id is null)
 	 begin
-	 insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida, Fecha_llegada, Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
-	values(convert(datetime,@fecha_salida,121), convert(datetime,@fecha_llegada,121), convert(datetime,@fecha_llegada_estimada,121), @id_aeronave, @id_ruta)
+	 insert into LA_BANDA_DE_GARRI.Viaje(Fecha_salida,  Fecha_llegada_estimada, Id_Aeronave, Codigo_Ruta_Aerea)
+	values(convert(datetime,@fecha_salida,121), convert(datetime,@fecha_llegada_estimada,121), @id_aeronave, @id_ruta)
 
 	declare @idViaje int
 	set @id_viaje = (select max(Id) from LA_BANDA_DE_GARRI.Viaje)
@@ -1314,7 +1309,7 @@ GO
 
 create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 (@Id int output, 
-@fechaAlta  date,
+@fechaAlta  datetime,
 @numeroAeronave int,  
 @modelo int,
 @matricula varchar(255),
@@ -1323,7 +1318,7 @@ create proc LA_BANDA_DE_GARRI.spinsertar_aeronave
 @CantidadButacasVentana int,
 @CantidadButacasPasillo int, 
 @bajaPorVidaUtil varchar(50),
-@FechaBajaDefinitiva date,
+@FechaBajaDefinitiva datetime,
 @kgDisponible int)
 as
 BEGIN
@@ -1836,16 +1831,8 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)
 
 --------MODIFICADOOOOOOOOOOO HAGO UN CASE E INSERTO EN PASAJE O ENCOMIENDA DEPENDIENDO QUE SEA----------
-if(@cantidadKG<>0)
-	begin
-		insert into  LA_BANDA_DE_GARRI.Encomienda(Id_Cliente,Id_Viaje,Id_Pago,KG)
-		values(@idCliente,@idviajeSeleccionado,@idPago,@cantidadKG)
-	end
-else
-	begin
 		insert into  LA_BANDA_DE_GARRI.Pasaje(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago)
 		values(@idCliente,@idviajeSeleccionado,@idButaca,@idPago)
-	end
 --------------------------------------------------------------------------------------------
 ----------------------------
 	update LA_BANDA_DE_GARRI.Viaje_Butaca
@@ -2409,15 +2396,16 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 	SET @idAeronave = (select Viaje.Id_Aeronave from LA_BANDA_DE_GARRI.Viaje where @idviajeSeleccionado = Id)
 
 	
-		insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,convert(datetime,@fechaCompra,121),@Tipo_Pago)
+	insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
+	values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,convert(datetime,@fechaCompra,121),@Tipo_Pago)
 	
 	declare @idPago int
 	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)
 
-	insert into  LA_BANDA_DE_GARRI.Pasaje_Encomienda(Id_Cliente,Id_Viaje,Id_Butaca,Id_Pago,KG)
-	values(@idCliente,@idviajeSeleccionado,NULL,@idPago,@cantidadKG)
-
+	insert into  LA_BANDA_DE_GARRI.Encomienda(Id_Cliente,Id_Viaje,Id_Pago,KG)
+	values(@idCliente,@idviajeSeleccionado,@idPago,@cantidadKG)
+	
+	update LA_BANDA_DE_GARRI.Aeronave set Kg_Disponibles  = ( (select Kg_Disponibles from  LA_BANDA_DE_GARRI.Aeronave where Id = @idAeronave ) - @cantidadKG) where Id = @idAeronave
 end
 go
 

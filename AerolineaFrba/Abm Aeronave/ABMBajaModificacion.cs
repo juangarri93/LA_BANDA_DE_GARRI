@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
+using System.Text.RegularExpressions;
 
 namespace AerolineaFrba.Abm_Aeronave
 {
@@ -240,6 +241,12 @@ namespace AerolineaFrba.Abm_Aeronave
 
         }
 
+        private bool EsNumero(string cadena)
+        {
+            var regex = new Regex(@"^-*[0-9,\.]+$");
+            return regex.IsMatch(cadena);
+        }
+
         private bool Validaciones()
         {
 
@@ -257,7 +264,7 @@ namespace AerolineaFrba.Abm_Aeronave
 
             int numero = Convert.ToInt32(txtNumeroAeronave.Text);
 
-            if (numero < 0)
+            if (!EsNumero(txtNumeroAeronave.Text) && numero < 0)
             {
                 MessageBox.Show("EL NUMERO INGRESADO ES NEGATIVO");
                 return true;

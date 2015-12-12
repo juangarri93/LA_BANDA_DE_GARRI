@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Text.RegularExpressions;
 using AerolineaFrba.CapaADO;
 using AerolineaFrba.ConstructorDeClases;
 
@@ -60,6 +60,12 @@ namespace AerolineaFrba.Abm_Ruta
             }
         }
 
+        private bool EsNumero(string cadena)
+        {
+            var regex = new Regex(@"^-*[0-9,\.]+$");
+            return regex.IsMatch(cadena);
+        }
+
         private bool Validaciones()
         {
             if(txtCodigo.Text == "")
@@ -70,7 +76,7 @@ namespace AerolineaFrba.Abm_Ruta
 
             int codigo = Convert.ToInt32(txtCodigo.Text);
 
-            if(codigo <= 0)
+            if (!EsNumero(txtCodigo.Text) && codigo <= 0)
             {
                 MessageBox.Show("EL CODIGO INGRESADO NO PUEDE SER MENOR O IGUAL A 0");
                 return true;
@@ -82,9 +88,10 @@ namespace AerolineaFrba.Abm_Ruta
                 return true;
             }
 
+
             int precioKG = Convert.ToInt32(txtPrecioKG.Text);
 
-            if (precioKG <= 0)
+            if (!EsNumero(txtPrecioKG.Text) && precioKG <= 0)
             {
                 MessageBox.Show("EL PRECIO POR KG NO PUEDE SER MENOR O IGUAL A 0");
                 return true;
@@ -98,7 +105,7 @@ namespace AerolineaFrba.Abm_Ruta
 
             int precioBase = Convert.ToInt32(txtPrecioBase.Text);
 
-            if (precioBase <= 0)
+            if (!EsNumero(txtPrecioBase.Text) && precioBase <= 0)
             {
                 MessageBox.Show("EL PRECIO BASE NO PUEDE SER MENOR A 0");
                 return true;
@@ -111,6 +118,12 @@ namespace AerolineaFrba.Abm_Ruta
 
             }
 
+            if (cbOrigen.Text == cbDestino.Text)
+            {
+                MessageBox.Show("La ciudad origen y la ciudad destino no pueden ser la misma");
+                return true;
+            }
+
             return false;
         }
 
@@ -119,6 +132,11 @@ namespace AerolineaFrba.Abm_Ruta
        
             txtPrecioKG.Text = "";
             txtPrecioBase.Text = "";
+            txtCodigo.Text = "";
+            cbDestino.SelectedIndex = 0;
+            cbOrigen.SelectedIndex = 0;
+            cbTipoDeServicio.SelectedIndex = 0;
+     
         }
 
         private  Ruta cargarRuta()
@@ -134,6 +152,11 @@ namespace AerolineaFrba.Abm_Ruta
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void txtPrecioKG_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

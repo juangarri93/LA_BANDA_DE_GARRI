@@ -114,6 +114,7 @@ namespace AerolineaFrba.Abm_Ciudad
                 btnGuardar.Enabled = false;
                 btnEditar.Enabled = true;
                 btnCancelar.Enabled = false;
+                Mostrar();
 
             }
             catch(Exception ex)
@@ -136,6 +137,13 @@ namespace AerolineaFrba.Abm_Ciudad
 
              }
 
+
+             if (txtNomb.Text == "")
+             {
+                 MessageBox.Show("NO INGRESO NOMBRE DE CIUDAD");
+                 return true;
+
+             }
             
 
              return false;
@@ -312,13 +320,14 @@ namespace AerolineaFrba.Abm_Ciudad
         private void button3_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Si se desea Habilitar/Deshabilitar una ciudad siga los siguientes pasos:" + Environment.NewLine +
-                                 "  ● Buscar la ciudad" + Environment.NewLine +
                                  "  ● Hacer clic en el checkbox 'Habilitar-Deshabilitar'" + Environment.NewLine +
                                  "  ● Habilite/Deshabilite las ciudades a su gusto" + Environment.NewLine +
                                  "  ● Finalmente hacer clic en el boton 'Habilitar-Deshabilitar'" + Environment.NewLine + Environment.NewLine +
                             "Si se desea Editar una Ciudad:" + Environment.NewLine +
-                            "● Simplemente hacer doble clic sobre la misma Editar, y modifique a su gusto" + Environment.NewLine +
-                            "● Hacer doble clic sobre el boton Editar" + Environment.NewLine +
+                          
+                            "● Buscar la ciudad" + Environment.NewLine +
+                            "● Hacer doble clic sobre la misma" + Environment.NewLine +
+                            "● Hacer clic sobre el boton Editar" + Environment.NewLine +
                             "● Edite a su gusto y guarde");
 
         }

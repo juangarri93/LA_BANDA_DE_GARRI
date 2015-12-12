@@ -75,9 +75,9 @@ namespace AerolineaFrba.CapaADO
 
          public static void EditarEstadoRol(Rol rol)
          {
-             if (rol.Habilitado == true) rol.Habilitado = false;
-             else
-                 if (rol.Habilitado == false) rol.Habilitado = true;
+             //if (rol.Habilitado == true) rol.Habilitado = false;
+             //else
+             //    if (rol.Habilitado == false) rol.Habilitado = true;
 
              executeProcedure("sp_cambiar_estado_rol", rol.Codigo,rol.Habilitado);
          }

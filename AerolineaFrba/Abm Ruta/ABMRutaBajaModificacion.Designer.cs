@@ -202,6 +202,7 @@
             this.txtCodigoRuta.Name = "txtCodigoRuta";
             this.txtCodigoRuta.Size = new System.Drawing.Size(148, 20);
             this.txtCodigoRuta.TabIndex = 78;
+            this.txtCodigoRuta.TextChanged += new System.EventHandler(this.txtCodigoRuta_TextChanged);
             // 
             // label1
             // 

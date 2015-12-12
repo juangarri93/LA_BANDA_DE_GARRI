@@ -26,9 +26,12 @@ namespace AerolineaFrba.ABM_Compra
         DataTable butacas;
         string kgComprados = "";
         string CantidadPasajes = "";
+private   Compra compraActual;
+private   Abm_Compra.AltaCompra AltaCompra;
 
-        public Butacas(Compra compraActual)
+public Butacas(Compra compraActual, Abm_Compra.AltaCompra altaCompra)
         {
+            AltaCompra = altaCompra;
             CantidadPasajes = Convert.ToString(compraActual.CantidadPasajes);
             kgComprados = Convert.ToString(compraActual.CantidadKG);
             this._compraActual = compraActual;
@@ -77,6 +80,7 @@ namespace AerolineaFrba.ABM_Compra
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
+            AltaCompra.Focus();
            
         }
 
@@ -114,13 +118,17 @@ namespace AerolineaFrba.ABM_Compra
 
                 if (listaDeSeleccionadas.Count() > _compraActual.CantidadPasajes)
                 {
-                    MessageBox.Show("La Cantidad de butacas solicitadas excede a la compra actual,seleccione la cantidad correspondiente");
+                    MessageBox.Show("La Cantidad de butacas solicitadas excede a la compra actual,seleccione la cantidad correspondiente nuevamente");
+                    this.Hide();
+                    AltaCompra.Focus();
                     return;
                 }
 
                 if (listaDeSeleccionadas.Count() < _compraActual.CantidadPasajes)
                 {
-                    MessageBox.Show("La Cantidad de butacas solicitadas es menor a la compra actual,seleccion la cantidad correspondiente");
+                    MessageBox.Show("La Cantidad de butacas solicitadas es menor a la compra actual,seleccion la cantidad correspondiente nuevamente");
+                    AltaCompra.Focus();
+                    this.Hide();
                     return;
                 }
 
@@ -134,6 +142,8 @@ namespace AerolineaFrba.ABM_Compra
 
                     MessageBox.Show("Ha finalizado la selección, ya puede realizar el Pago");
                     this.btnFin.Enabled = true;
+                    this.btnSeleccion.Enabled = false;
+                 
                     return;
                 }
 

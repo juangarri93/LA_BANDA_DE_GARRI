@@ -34,12 +34,12 @@
             this.btVolver = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.cbHabilitado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgRolesEstado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@
             this.dgRolesEstado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgRolesEstado.Location = new System.Drawing.Point(45, 12);
             this.dgRolesEstado.Name = "dgRolesEstado";
+            this.dgRolesEstado.ReadOnly = true;
             this.dgRolesEstado.Size = new System.Drawing.Size(368, 181);
             this.dgRolesEstado.TabIndex = 0;
             this.dgRolesEstado.DoubleClick += new System.EventHandler(this.dgRolesEstado_DoubleClick);
@@ -88,13 +89,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 20);
             this.textBox2.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(534, 147);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 20);
-            this.textBox3.TabIndex = 5;
             // 
             // label1
             // 
@@ -143,17 +137,25 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // cbHabilitado
+            // 
+            this.cbHabilitado.FormattingEnabled = true;
+            this.cbHabilitado.Location = new System.Drawing.Point(534, 147);
+            this.cbHabilitado.Name = "cbHabilitado";
+            this.cbHabilitado.Size = new System.Drawing.Size(121, 21);
+            this.cbHabilitado.TabIndex = 15;
+            // 
             // ModificarEstadoRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 261);
+            this.Controls.Add(this.cbHabilitado);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btVolver);
@@ -175,12 +177,12 @@
         private System.Windows.Forms.Button btVolver;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox cbHabilitado;
 
 
     }

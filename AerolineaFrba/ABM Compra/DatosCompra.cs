@@ -424,6 +424,27 @@ namespace AerolineaFrba.ABM_Compra
 
                 }
 
+                else if (this.compraActual.CantidadKG == 0 && this.compraActual.CantidadPasajes > 0)
+                {
+
+                    try
+                    {
+
+                        pnrcompra = DAOCompra.AgregarCompra(compraActual);
+
+                        MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de pasaje es: " + Convert.ToString(pnrencomienda));
+
+
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hubo un error." + ex.Message);
+                    }
+
+
+                }
+
                 }
           
 
