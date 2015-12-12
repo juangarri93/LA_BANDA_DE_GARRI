@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 using AerolineaFrba.CapaADO;
 
 namespace AerolineaFrba.Listado_Estadistico
@@ -61,29 +62,45 @@ namespace AerolineaFrba.Listado_Estadistico
             int indice = cmbListado.SelectedIndex + 1;
             decimal anio = Convert.ToDecimal(cbAño.Text);
             int semestre = Convert.ToInt32(cbSemestre.SelectedIndex + 1);
+           
+            DateTime desde;
+            DateTime hasta;
 
+            if (semestre == 1)
+            {
+                 desde = new DateTime(Convert.ToInt32(anio), 1, 1);
+                 hasta = new DateTime(Convert.ToInt32(anio), 6, 3);
+            }
+
+            else  
+            {
+                desde = new DateTime(Convert.ToInt32(anio), 7, 1);
+                hasta = new DateTime(Convert.ToInt32(anio), 12, 31);
+            }
+
+           
             switch (indice)
             {
                 case 1:
                     MessageBox.Show("TOP 5 de Destinos con mas pasajes comprados en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosconPasPasajesComprados(anio,semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosconPasPasajesComprados(desde, hasta);
                     break;
                 
                 case 2:
                     MessageBox.Show("TOP 5 de Destinos con aeronaves mas vacias en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosConAeronavesMasVacias(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosConAeronavesMasVacias(desde, hasta);
                     break;
                 case 3:
                     MessageBox.Show("TOP 5 de Clientes con mas puntos acumulados a la fecha en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    dgvListado.DataSource = DAOEstadistica.estadisticaClientesConMasPuntosAcumulados(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaClientesConMasPuntosAcumulados(desde, hasta);
                     break;
                 case 4:
                     MessageBox.Show("TOP 5 de Destinos con pasajes cancelados en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosConPasajesCancelados(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaDestinosConPasajesCancelados(desde, hasta);
                     break;
                 case 5:
                     MessageBox.Show("TOP 5 de Aeronaves con mayor cantidad de dias fuera de servicio en el " + cbSemestre.Text + " de " + cbAño.Text);
-                    dgvListado.DataSource = DAOEstadistica.estadisticaAeronavesConMayorCantidadDeDiasFueraDeServicio(anio, semestre);
+                    dgvListado.DataSource = DAOEstadistica.estadisticaAeronavesConMayorCantidadDeDiasFueraDeServicio(desde, hasta);
                     break;
 
             }
