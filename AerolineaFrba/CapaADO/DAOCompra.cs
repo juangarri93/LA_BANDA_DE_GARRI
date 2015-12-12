@@ -28,9 +28,11 @@ namespace AerolineaFrba.CapaADO
             
             auxPNR = auxPNR + 1; //Porque necesito insertar uno nuevo
 
+            compra.PNR = auxPNR;
+
              foreach (var Butacas in compra.ButacasSeleccionadas)
             {
-                executeProcedure("spinsertar_compra", 1,auxPNR, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadPasajes, compra.CantidadKG, compra.FechaDeViaje, compra.Importe, compra.Tipopago, Butacas.Id);
+                executeProcedure("spinsertar_compra", 1,auxPNR, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadPasajes, compra.CantidadKG, compra.FechaDeViaje, compra.ImportePasajes,  compra.Tipopago, Butacas.Id);
             }
 
              return auxPNR;
@@ -66,11 +68,18 @@ namespace AerolineaFrba.CapaADO
 
         public static int AgregarCompraEncomienda(Compra compra)
         {
-            int auxPNR = executeProcedureWithReturnValue("spdame_PNR");
 
-            auxPNR = auxPNR + 1; //Porque necesito insertar uno nuevo
-            
-            executeProcedure("spinsertar_compraEncomienda", 1, auxPNR, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadKG, compra.FechaDeViaje, compra.Importe, compra.Tipopago);
+            int auxPNR = 0;
+
+            if (compra.PNR > 0) auxPNR = compra.PNR;
+            else
+            {
+                auxPNR = executeProcedureWithReturnValue("spdame_PNR");
+
+                auxPNR = auxPNR + 1; //Porque necesito insertar uno nuevo
+            }
+
+            executeProcedure("spinsertar_compraEncomienda", 1, auxPNR, compra.ViajeSeleccionado, compra.Nombre, compra.Apellido, compra.Dni, compra.Direccion, compra.Telefono, compra.Email, compra.FechaNac, compra.CantidadKG, compra.FechaDeViaje,compra.ImporteEncomienda, compra.Tipopago);
             return auxPNR;
         }
 

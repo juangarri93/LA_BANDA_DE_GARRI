@@ -22,16 +22,23 @@ namespace AerolineaFrba.ConstructorDeClases
         private int _cantidadPasajes;
         private int _cantidadKG;
         private int _viajeSeleccionado;
-        private decimal _importe;
+        private decimal _importePasajes;
+        private decimal _importeEncomiendas;
         private char _tipopago;
         private int _idButaca;
         private List<Butaca> _butacasSeleccionadas;
+        private int _PNR;
 
+        public int PNR
+        {
+            get { return _PNR; }
+            set { _PNR = value; }
+        }
 
         public Compra() { }
 
 
-        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, decimal telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado, decimal importe, char tipopago, int idbutaca, List<Butaca> butacasSeleccionadas)
+        public Compra(int idCompra, string nombre, string apellido, decimal dni, string direccion, decimal telefono, string email, DateTime fechaNac, DateTime fechaDeViaje, int origen, int destino, int cantidadPasajes, int cantidadKG, int viajeSeleccionado, string estado, decimal importePasajes, decimal importeEncomienda, char tipopago, int idbutaca, List<Butaca> butacasSeleccionadas)
         {
             this._idCompra = idCompra;
             this._nombre = nombre;
@@ -47,7 +54,8 @@ namespace AerolineaFrba.ConstructorDeClases
             this._cantidadPasajes = cantidadPasajes;
             this._cantidadKG = cantidadKG;
             this._viajeSeleccionado = viajeSeleccionado;
-            this._importe = importe;
+            this._importePasajes = importePasajes;
+            this._importeEncomiendas = importeEncomienda;
             this.Tipopago = tipopago;
             this.IdButaca = idbutaca;
 
@@ -70,10 +78,16 @@ namespace AerolineaFrba.ConstructorDeClases
         }
 
 
-        public decimal Importe
+        public decimal ImportePasajes
         {
-            get { return _importe; }
-            set { _importe = value; }
+            get { return _importePasajes; }
+            set { _importePasajes = value; }
+        }
+
+        public decimal ImporteEncomienda
+        {
+            get { return _importeEncomiendas; }
+            set { _importeEncomiendas = value; }
         }
 
         public int IdButaca

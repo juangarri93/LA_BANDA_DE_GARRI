@@ -223,7 +223,8 @@ namespace AerolineaFrba.ABM_Compra
             compraActual.Telefono = esteCliente.Telefono;
             compraActual.FechaNac = esteCliente.FechaNac;
             compraActual.ViajeSeleccionado = estePago.Id_viaje;
-            compraActual.Importe = estePago.Importe;
+            compraActual.ImportePasajes = estePago.ImportePasaje;
+            compraActual.ImporteEncomienda = estePago.ImporteEncomienda;
             compraActual.Tipopago = estePago.Tipo_pago;
             
           
@@ -288,7 +289,8 @@ namespace AerolineaFrba.ABM_Compra
             
            
             pago.Id_viaje = compraActual.ViajeSeleccionado;
-            pago.Importe =(( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes))+ (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG)));
+            pago.ImportePasaje = ( precioBasePasaje * Convert.ToDecimal(compraActual.CantidadPasajes));
+            pago.ImporteEncomienda = (precioBaseKG * Convert.ToDecimal(compraActual.CantidadKG));
            
             DataTable usuario = DAOCliente.buscarClientePorDni(compraActual.Dni);
             if (usuario.DataSet != null)
@@ -376,6 +378,8 @@ namespace AerolineaFrba.ABM_Compra
                 {
                     try
                     {
+
+                        compraActual.PNR = -1;
                         int aux = 0;
                         if (this.clienteActual != null)
                         {
@@ -432,7 +436,7 @@ namespace AerolineaFrba.ABM_Compra
 
                         pnrcompra = DAOCompra.AgregarCompra(compraActual);
 
-                        MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de pasaje es: " + Convert.ToString(pnrencomienda));
+                        MessageBox.Show("Felicitaciones has realizado tu compra. Su PNR de pasaje es: " + Convert.ToString(compraActual.PNR));
 
 
                     }

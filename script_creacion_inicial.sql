@@ -181,8 +181,7 @@ IF (OBJECT_ID('LA_BANDA_DE_GARRI.spbuscarModelo_aeronave') IS NOT NULL)
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_cancelar_pasajes_encomiendas;
   
-IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_comprar_encomienda') IS NOT NULL)
-  DROP PROCEDURE LA_BANDA_DE_GARRI.sp_comprar_encomienda;
+ 
 
 IF (OBJECT_ID('LA_BANDA_DE_GARRI.sp_registrar_llegada_destino') IS NOT NULL)
   DROP PROCEDURE LA_BANDA_DE_GARRI.sp_registrar_llegada_destino;
@@ -1797,7 +1796,7 @@ CREATE PROC LA_BANDA_DE_GARRI.spinsertar_compra
 @cantidadPasaje int,
 @cantidadKG int,
 @fechaCompra datetime,
-@Importe decimal(18,0),
+@ImportePasaje decimal(18,0),
 @Tipo_Pago char(1),
 @idButaca int
 )
@@ -1823,7 +1822,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 		begin
 
 		insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-		values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,convert(datetime,@fechaCompra,121),@Tipo_Pago)
+		values(@PNR ,@idviajeSeleccionado,@idCliente,@ImportePasaje,convert(datetime,@fechaCompra,121),@Tipo_Pago)
 	
 		end
 
@@ -2107,19 +2106,7 @@ order by Id
 go
 
 
-
-CREATE proc LA_BANDA_DE_GARRI.spinsertar_pago
-(
-@codigo int output,
-@pnr int,
-@id_viaje int,
-@id_cliente int,
-@importe numeric(18,2),
-@fechacompra datetime,
-@tipo_pago char)
-as insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-values (@pnr,@id_viaje,@id_cliente,@importe,convert(datetime,@fechacompra,121),@tipo_pago)
-go
+ 
 
 
 CREATE proc LA_BANDA_DE_GARRI.spMostrar_viaje_esp(
@@ -2375,7 +2362,7 @@ create proc LA_BANDA_DE_GARRI.spinsertar_compraEncomienda
 @fechaNac date,
 @cantidadKG int,
 @fechaCompra datetime,
-@Importe decimal(18,0),
+@ImporteEncomienda decimal(18,0),
 @Tipo_Pago char(1)
 )
 as
@@ -2397,7 +2384,7 @@ if not exists(select * from LA_BANDA_DE_GARRI.Cliente where Nombre = @nombre and
 
 	
 	insert into  LA_BANDA_DE_GARRI.Pago(PNR,Id_viaje,Id_Cliente,Importe,Fecha_compra,Tipo_Pago)
-	values(@PNR ,@idviajeSeleccionado,@idCliente,@Importe,convert(datetime,@fechaCompra,121),@Tipo_Pago)
+	values(@PNR ,@idviajeSeleccionado,@idCliente,@ImporteEncomienda,convert(datetime,@fechaCompra,121),@Tipo_Pago)
 	
 	declare @idPago int
 	set @idPago = (SELECT MAX(Id) FROM LA_BANDA_DE_GARRI.Pago)

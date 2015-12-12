@@ -13,18 +13,20 @@ namespace AerolineaFrba.ConstructorDeClases
         int _pnr;
         int _id_viaje;
         int _id_cliente;
-        decimal _importe;
+        decimal _importe_pasaje;
+        decimal _importe_encomienda;
         DateTime _fecha_compra;
         char _tipo_pago;
 
         public Pago() { }
 
-        public Pago(int pnr, int idviaje, int idcliente, decimal importe, DateTime fechacompra, char tipopago)
+        public Pago(int pnr, int idviaje, int idcliente, decimal importepasaje, decimal importeencomienda, DateTime fechacompra, char tipopago)
         {
             Pnr = pnr;
             Id_viaje = idviaje;
             Id_cliente = idcliente;
-            Importe = importe;
+            ImportePasaje = importepasaje;
+            ImporteEncomienda = importeencomienda;
             Fecha_compra = fechacompra;
             Tipo_pago = tipopago;
 
@@ -55,10 +57,16 @@ namespace AerolineaFrba.ConstructorDeClases
         }
 
 
-        public decimal Importe
+        public decimal ImportePasaje
         {
-            get { return _importe; }
-            set { _importe = value; }
+            get { return _importe_pasaje; }
+            set { _importe_pasaje = value; }
+        }
+
+        public decimal ImporteEncomienda
+        {
+            get { return _importe_encomienda; }
+            set { _importe_encomienda = value; }
         }
 
 
