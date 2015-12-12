@@ -48,9 +48,11 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbListado);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(9, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(549, 94);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(412, 76);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione detalles de busqueda";
@@ -58,53 +60,59 @@
             // cbAño
             // 
             this.cbAño.FormattingEnabled = true;
-            this.cbAño.Location = new System.Drawing.Point(146, 62);
+            this.cbAño.Location = new System.Drawing.Point(110, 50);
+            this.cbAño.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbAño.Name = "cbAño";
-            this.cbAño.Size = new System.Drawing.Size(176, 24);
+            this.cbAño.Size = new System.Drawing.Size(133, 21);
             this.cbAño.TabIndex = 9;
             this.cbAño.SelectedIndexChanged += new System.EventHandler(this.cbAño_SelectedIndexChanged);
             // 
             // cbSemestre
             // 
             this.cbSemestre.FormattingEnabled = true;
-            this.cbSemestre.Location = new System.Drawing.Point(343, 62);
+            this.cbSemestre.Location = new System.Drawing.Point(257, 50);
+            this.cbSemestre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbSemestre.Name = "cbSemestre";
-            this.cbSemestre.Size = new System.Drawing.Size(189, 24);
+            this.cbSemestre.Size = new System.Drawing.Size(143, 21);
             this.cbSemestre.TabIndex = 8;
             this.cbSemestre.SelectedIndexChanged += new System.EventHandler(this.cbSemestre_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 26);
+            this.label1.Location = new System.Drawing.Point(8, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Top 5";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 62);
+            this.label2.Location = new System.Drawing.Point(8, 50);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 17);
+            this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Año y Semestre";
             // 
             // cmbListado
             // 
             this.cmbListado.FormattingEnabled = true;
-            this.cmbListado.Location = new System.Drawing.Point(146, 25);
+            this.cmbListado.Location = new System.Drawing.Point(110, 20);
+            this.cmbListado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbListado.Name = "cmbListado";
-            this.cmbListado.Size = new System.Drawing.Size(386, 24);
+            this.cmbListado.Size = new System.Drawing.Size(290, 21);
             this.cmbListado.TabIndex = 1;
             this.cmbListado.SelectedIndexChanged += new System.EventHandler(this.cmbListado_SelectedIndexChanged);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(12, 348);
+            this.btnBuscar.Location = new System.Drawing.Point(9, 283);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(549, 31);
+            this.btnBuscar.Size = new System.Drawing.Size(412, 25);
             this.btnBuscar.TabIndex = 13;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -112,9 +120,10 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(225, 393);
+            this.btnVolver.Location = new System.Drawing.Point(169, 319);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(120, 31);
+            this.btnVolver.Size = new System.Drawing.Size(90, 25);
             this.btnVolver.TabIndex = 12;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -122,23 +131,27 @@
             // 
             // dgvListado
             // 
+            this.dgvListado.AllowUserToAddRows = false;
+            this.dgvListado.AllowUserToDeleteRows = false;
             this.dgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListado.Location = new System.Drawing.Point(12, 126);
+            this.dgvListado.Location = new System.Drawing.Point(9, 102);
+            this.dgvListado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvListado.Name = "dgvListado";
             this.dgvListado.RowTemplate.Height = 24;
-            this.dgvListado.Size = new System.Drawing.Size(549, 202);
+            this.dgvListado.Size = new System.Drawing.Size(412, 164);
             this.dgvListado.TabIndex = 10;
             this.dgvListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_CellContentClick);
             // 
             // ListadoEstadistico
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 436);
+            this.ClientSize = new System.Drawing.Size(430, 354);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dgvListado);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ListadoEstadistico";
             this.Text = "Listado Estadistico";
             this.groupBox1.ResumeLayout(false);

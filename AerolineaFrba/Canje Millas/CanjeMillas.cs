@@ -113,14 +113,14 @@ namespace AerolineaFrba.Canje_Millas
             }
           
             
-            if(DAOPremio.restarCantidadPremios(premio.Id, millas_necesarias)>0 )
+            if(DAOPremio.restarCantidadPremios(premio.Id, millas_necesarias)>=0 )
             {
                 
                 try
                 {
-                   
+                    
                     MessageBox.Show("Canje realizado con exito");
-                    DAOMillas.restarMillas(dni, millas - millas_necesarias);
+                    DAOMillas.restarMillas(dni,  (Convert.ToInt32(cantPremios.Text)), premio.Id);
 
                     // limpiar();
                 }

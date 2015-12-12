@@ -513,10 +513,11 @@ CONSTRAINT [FK_Viaje_Pago] FOREIGN KEY ([Id_Viaje]) REFERENCES [LA_BANDA_DE_GARR
 
 
 CREATE TABLE [LA_BANDA_DE_GARRI].[Millas] (
+[Id] INT IDENTITY(1,1),
 [Id_cliente] INT,
 [Cantidad] INT,
 [Validez_Hasta] DATETIME,
-CONSTRAINT [PK_Millas] PRIMARY KEY ([Id_Cliente]),
+CONSTRAINT [PK_Millas] PRIMARY KEY ([Id]),
 CONSTRAINT [FK_Cliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [LA_BANDA_DE_GARRI].[Cliente] ([Id])
 )
 
@@ -1202,8 +1203,9 @@ WHILE (@@FETCH_STATUS = 0)
 BEGIN
 FETCH pagos INTO @idcliente,@importe
 
-declare @venc DATETIME
-set @venc = DATEADD(year,0001,@fecha_llegada)
+declare @venc DATETIME 
+ 
+set @venc = DATEADD(year,0001,convert(DATETIME,@fecha_llegada,121))
 
 insert into LA_BANDA_DE_GARRI.Millas(Id_cliente,Cantidad,Validez_Hasta)
 values(@idcliente, @importe / 10, @venc)
@@ -1212,8 +1214,6 @@ END
 CLOSE PAGOS
 deallocate pagos
 
-delete  from LA_BANDA_DE_GARRI.Viaje_Butaca
-where id_Viaje = @idviaje
 
 END
 
@@ -1294,8 +1294,16 @@ go
 
 create proc LA_BANDA_DE_GARRI.spmostrar_aeronave
 as
-select * from LA_BANDA_DE_GARRI.Aeronave
+
+begin
+
+declare @fechaActual datetime
+set @fechaActual = GETDATE()
+
+select * from LA_BANDA_DE_GARRI.Aeronave where not exists(select * from LA_BANDA_DE_GARRI.Viaje where @fechaActual > Fecha_salida and @fechaActual < Fecha_llegada)
 order by Aeronave.Id
+
+end
 GO
 
 
@@ -1686,18 +1694,19 @@ go
 create proc LA_BANDA_DE_GARRI.sprestar_millas
 (
 @dni_cliente int,
-@cantidad int)
+@cantidad int,
+@producto int)
 as
 begin
 declare @idcliente int
 set @idcliente = (select Id from LA_BANDA_DE_GARRI.Cliente where Cliente.dni = @dni_cliente)
 
+ declare @cantindadcanjeadas int
+ set @cantindadcanjeadas = (select producto.Cantidad_Millas from LA_BANDA_DE_GARRI.Producto where Id = @producto) * @cantidad
+
+insert into LA_BANDA_DE_GARRI.Canje_Millas(cantidad,DNI,Fecha,Producto_elegido)
+values(@cantindadcanjeadas,@dni_cliente,convert(datetime,GETDATE(),121),@producto)
  
-
-update LA_BANDA_DE_GARRI.Millas 
-set Cantidad= @cantidad
-
-where  Id_cliente = @idcliente;
 END
 go
 
@@ -1716,6 +1725,10 @@ declare @sumaDeMillas int
 
 select @sumaDeMillas = (select SUM(Cantidad) FROM LA_BANDA_DE_GARRI.Millas
 where  @id_cliente = Id_cliente and (select DATEDIFF(day,Validez_Hasta,GETDATE())) <= 365)
+
+set @sumaDeMillas = (@sumaDeMillas - (select SUM(Cantidad) FROM LA_BANDA_DE_GARRI.Canje_Millas
+where  @dni_cliente = DNI and (select DATEDIFF(day,Fecha,GETDATE())) <= 365))
+
 return  @sumaDeMillas
 end
 go
@@ -1871,7 +1884,7 @@ create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_comprados
 as
 begin
 
-	select top 5 c.id, c.Nombre, count(p.Id)
+	select top 5 c.id, c.Nombre, count(p.Id) cantidad
 	from LA_BANDA_DE_GARRI.Pago pa
 	join LA_BANDA_DE_GARRI.Pasaje p on (pa.Id_viaje = p.Id_Viaje
 													and pa.Id_Cliente = p.Id_Cliente)
@@ -1890,13 +1903,13 @@ go
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_destinos_mas_pasajes_cancelados (@anio numeric(4,0), @semestre int)
 as
 begin
-	select top 5 c.id, c.Nombre, count(d.Id_Pasaje)
+	select top 5 c.id, c.Nombre, count(d.Id_Pasaje) cantidad
 	from LA_BANDA_DE_GARRI.Devolucion d 
 	join LA_BANDA_DE_GARRI.Pasaje p on (d.Id_Pasaje = p.Id)
 	join LA_BANDA_DE_GARRI.Viaje v on v.Id = (p.Id_Viaje)
 	join LA_BANDA_DE_GARRI.Ruta_Aerea r on (r.Id = v.Codigo_Ruta_Aerea)
 	join LA_BANDA_DE_GARRI.Ciudad c on (r.Ciudad_Destino = c.Id)
-	where d.Id_Pasaje<>'NULL'
+	where d.Id_Pasaje is not null
 	and	year(d.Fecha_Devolucion) = @anio
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, d.Fecha_Devolucion) = 1
 	group by c.id, c.Nombre
@@ -1910,7 +1923,7 @@ go
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_aeronave_fuera_servicio (@anio numeric(4,0), @semestre int)
 as
 begin
-	select top 5 a.id_Aeronave, sum(DATEDIFF(day,a.Fecha_Fuera_Servicio,a.Fecha_Reinicio))
+	select top 5 a.id_Aeronave, sum(DATEDIFF(day,a.Fecha_Fuera_Servicio,a.Fecha_Reinicio)) cantidad
 	from LA_BANDA_DE_GARRI.Aeronave_Baja_Temporaria a
 	where year(a.Fecha_Fuera_Servicio) = @anio
 	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, a.Fecha_Fuera_Servicio) = 1
@@ -1924,6 +1937,9 @@ go
 create procedure LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados (@anio numeric(4,0), @semestre int)
 as
 begin
+
+DATEDIFF(day,Validez_Hasta,GETDATE())) <= 36
+	
 	select top 5 c.Id, c.Nombre, c.Apellido, cantidad_millas=sum(m.Cantidad) 
 	from LA_BANDA_DE_GARRI.Millas m
 	join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)

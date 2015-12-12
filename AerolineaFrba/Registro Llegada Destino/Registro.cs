@@ -121,12 +121,12 @@ namespace AerolineaFrba.Registro_Llegada_Destino
                 MessageBox.Show("Se ha registrado el arrivo correctamente.");
                 return;
             }
-            catch
+          
+              catch (Exception ex)
             {
-                MessageBox.Show("Se ha producido un error al registrar el arrivo.");
+                MessageBox.Show("Se ha producido un error al registrar el arrivo. " + ex.Message);
                 return;
             }
-
 
         }
 

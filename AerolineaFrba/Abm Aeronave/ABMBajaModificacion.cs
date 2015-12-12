@@ -149,6 +149,7 @@ namespace AerolineaFrba.Abm_Aeronave
             this.tabControl1.SelectedIndex = 1;
 
             btnEditar.Enabled = true;
+            btnEditarBFS.Enabled = true;
         }
 
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
@@ -398,7 +399,7 @@ namespace AerolineaFrba.Abm_Aeronave
             this.Left = 0;
             Mostrar();
             btnBajaLogica.Enabled = false;
-           
+            btnEditarBFS.Enabled = false;
             cargarComboBox();
             btnCancelar.Enabled = false;
             txtCodigo.ReadOnly = true;

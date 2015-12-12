@@ -31,9 +31,9 @@ namespace AerolineaFrba.CapaADO
             executeProcedure("spbaja_millas", dni_cliente);
         }
 
-        public static void restarMillas(int dni_cliente, int cantidad)
+        public static void restarMillas(int dni_cliente, int cantidad, int idproducto)
         {
-            executeProcedure("sprestar_millas", dni_cliente, cantidad);
+            executeProcedure("sprestar_millas", dni_cliente, cantidad, idproducto);
         }
 
         public static int Calcular_Millas(int dni_cliente)
