@@ -221,11 +221,11 @@ namespace AerolineaFrba.Abm_Aeronave
                  {
                      MessageBox.Show("La Aeronave se agrego correctamente.");
                      deshabilitarTextBox();
-                     limpiarTextBox();
                      btnGuardar.Enabled = false;
                      btnEditar.Enabled = true;
                      btnCancelar.Enabled = false;
                      this.Mostrar();
+                     limpiarTextBox();
                  }
                  else {
                      MessageBox.Show("La Aeronave no se puede editar porque está actualmente en uso.");

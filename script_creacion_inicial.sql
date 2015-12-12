@@ -1437,14 +1437,13 @@ as
 begin
 	declare @viajes int;
 	
-		select * 
-		from LA_BANDA_DE_GARRI.Aeronave a
-		join LA_BANDA_DE_GARRI.Viaje v on v.Id_Aeronave = a.Id
-		where year(v.Fecha_salida) = year(GETDATE())
+	set @viajes =	(select count(*)
+		from LA_BANDA_DE_GARRI.Viaje a	
+		where exists(select * from LA_BANDA_DE_GARRI.Viaje v where year(v.Fecha_salida) = year(GETDATE())
 		and MONTH(v.Fecha_salida) = month(getdate())
-		and DAY(GETDATE()) between day(v.Fecha_salida) and day(v.Fecha_llegada_estimada)
+		and DAY(GETDATE()) between day(v.Fecha_salida) and day(v.Fecha_llegada_estimada) and Id_Aeronave = @codigo))
 		
-		set @viajes = @@ROWCOUNT
+	
 		
 		if(@viajes = 0)
 			
@@ -1934,17 +1933,13 @@ end
 go
 
 -- top 5 clientes con mas puntos acumulados
-create procedure LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados (@anio numeric(4,0), @semestre int)
+create procedure LA_BANDA_DE_GARRI.sp_estadistico_clientes_mas_puntos_acumulados (@desde datetime, @hasta datetime)
 as
 begin
-
-DATEDIFF(day,Validez_Hasta,GETDATE())) <= 36
-	
 	select top 5 c.Id, c.Nombre, c.Apellido, cantidad_millas=sum(m.Cantidad) 
 	from LA_BANDA_DE_GARRI.Millas m
 	join LA_BANDA_DE_GARRI.Cliente c on(m.Id_cliente = c.Id)
-	where year(m.Validez_Hasta) = @anio
-	and LA_BANDA_DE_GARRI.fn_en_semestre(@semestre, m.Validez_Hasta) = 1
+	where m.Validez_Hasta between @desde and @hasta
 	group by c.id, c.Nombre, c.Apellido
 	order by 4 desc 
 end
